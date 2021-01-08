@@ -1,0 +1,45 @@
+body {            /* 웹페이지 전체 폰트 설정 */
+    
+    font-family: 'Noto Sans KR', sans-serif;   /* 구글 폰트임 */
+}
+
+ol, ul {
+    list-style-type: none;
+    
+}
+
+
+#main{      /*main과 footer의 경계선을 주기 위해 main 아래 부분에다가 선 만들어놈 */
+    border-bottom: 1px solid #f7f7f7;
+}
+
+
+
+
+
+
+
+#header {       /* 이부분은 common.css 받으면 삭제예정 */
+    background-color:violet;
+    color: black;
+    text-align: center;
+    margin: 0 auto;
+    font-size:55px;
+    width: 1384.5px;
+    height:155.98px;
+
+}
+
+
+
+#footer{
+    width: 1050px;
+    height:419px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    font-weight: 400;
+    letter-spacing: -.2px;
+    background-color: #f2ddc4;
+    color: black;
+    text-align:center;
+  }
