@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from .email_settings import EMAIL   # 이메일 정보가 담겨있는 py
-from . import debug_settings
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,14 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '!3vhrk@*^^o(^a*!@)^2mk3^opgi+(sh87y8dojontqxk0@m@t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = debug_settings.DEBUG
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    "localhost",
-    ".ap-northeast-2.compute.amazonaws.com",
-    ".inukurly.shop",
-    "127.0.0.1",
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -44,16 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'django.contrib.humanize',  # 가격에서 30,000 이런식으로 나오게 하기 위한 모듈
-    'accounts',             # 회원정보 관련 앱
-    'shop',                 # 제품 리스트 등 상점 앱
-    'rangefilter',          # accounts -> admin.py 에 사용됨. admin 페이지에서 모델을 범위별로 검색하기 위한 모듈
-    'six',
-    'main',                 # 메인 앱
-    'shop_admin',           # shop 관리자 앱
-    'debug_toolbar',        # 디버깅툴
+    'accounts',
+    'e_commerce',
+    'rangefilter',
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,10 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
-
-INTERNAL_IPS = debug_settings.INTERNAL_IPS
 
 ROOT_URLCONF = 'config.urls'
 
@@ -136,19 +121,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 # STATIC 파일 설정
-STATIC_URL = debug_settings.STATIC_URL
-STATICFILES_DIRS = [BASE_DIR / 'config' / 'static/']
-STATIC_ROOT = BASE_DIR / 'staticfiles/'     # collectstatic 실행할 시 모여지는 파일
-# Media files 설정 (웹 상에서 업로드 받은 이미지나 파일들이 들어갈 장소)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'config' / 'static/',
+                    ]
+STATIC_ROOT = BASE_DIR / 'static/'
+
+# Media files 설정
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'     # 업로드된 파일이 들어갈 장소
 
 SITE_ID = 1
-
-# email 전송을 위한 setting email_settings.py에 이메일 개인정보가 들어있음.
-EMAIL_USE_TLS = EMAIL['EMAIL_USE_TLS']
-EMAIL_PORT = EMAIL['EMAIL_PORT']
-EMAIL_HOST = EMAIL['EMAIL_HOST']
-EMAIL_HOST_USER = EMAIL['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = EMAIL['EMAIL_HOST_PASSWORD']
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
