@@ -1,0 +1,88 @@
+
+{% extends 'base.html'%}
+
+{% load static %}
+
+{% block content%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>join-complete</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/join_complete.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="container" class="container">
+        
+
+
+
+
+
+        <div id="main">
+            <div id="content">
+                <div style="height:180px;"></div>
+                <div class="layout-wrapper">
+                    <div class="indiv">
+                        <div class="xans-member-joincomplete">
+                            <div class="joinComplete">
+                                <p class="desc">회원가입이 완료되었습니다.</p>
+                                <div class="memberInfo">
+                                    <ul>
+                                        <li>
+                                            <strong class="bolds">아이디</strong>
+                                            <span>
+                                                <span>{{ username }}</span>
+                                            </span>
+
+                                        </li>
+                                        <li>
+                                            <strong class="bolds">이름</strong>
+                                            <span>
+                                                <span>{{ person_name }}</span>
+                                            </span>
+                                        </li>
+
+                                        <li>
+                                            <strong class="bolds">이메일</strong>
+                                            <span>
+                                                <span>{{ email }}</span>
+                                            </span>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                                <p class="button">
+                                    <a href="{% url 'accounts:login' %}">
+                                        <span class="bhs_button">로그인</span>
+                                    </a>
+                                </p>
+
+
+                            </div>
+                        </div>
+                        <div style="height:100px"></div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+{% endblock %}
