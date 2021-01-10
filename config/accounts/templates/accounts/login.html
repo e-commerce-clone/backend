@@ -3,7 +3,6 @@
 {% block title %} - 로그인{% endblock %}
 {% block content %}
 
-<!-- 내 컴퓨터에서 <head></head>부분 404 에러남. -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
@@ -11,7 +10,6 @@
     <link rel="stylesheet"  href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet"  href="{% static 'css/login.css' %}">
     <link rel="stylesheet"  href="{% static 'css/normalize.css' %}"> 
-    <link rel="stylesheet" href="{% static 'css/common.css' %}">
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -61,16 +59,16 @@
         </div>
         <script>
 
-            var id = "test"
-            var pw = "test"
+            var id = "${username}"
+            var pw = "${password}"
         
             // getId = '${m_id}';
             // getPw = '${password}';
             
             function check_input(){
-                if (!document.login_form.m_id.value){
+                if (!document.login_form.username.value){
                     alert("아이디를 입력하세요");
-                    document.login_form.m_id.focus();
+                    document.login_form.username.focus();
                     return;
                 }
                 if (!document.login_form.password.value){
@@ -78,7 +76,7 @@
                     document.login_form.password.focus();
                     return;
                 }
-                if (document.login_form.m_id.value != id || document.login_form.password.value != pw){
+                if (document.login_form.username.value != id || document.login_form.password.value != pw){
                     alert("아이디 또는 비밀번호가 틀렸습니다.");
                     history.go(0);
                     return;
