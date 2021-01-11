@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 from .models import Profile
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 
 # Create your views here
 
@@ -66,6 +67,8 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             return redirect("/")
+        else:
+            return render(request, "accounts/login.html")
 
     return render(request, "accounts/login.html")
 
@@ -74,13 +77,57 @@ def logout(request):
     auth_logout(request)
     return redirect("/")
 
+
 def findid(request):
-    return render(request, 'accounts/find_id.html')   
+    if request.method == 'POST':
+        name = request.POST.get('srch_name')
+        email = request.POST.get('srch_email')
+        try:
+            res_id = Profile.objects.get(person_name=name, email=email)
+        except:
+           return render(request, 'accounts/find_id_fail.html')
+
+        if res_id is not None:
+            res_data = {
+            'username':res_id,
+            }
+            return render(request,'accounts/find_id_ok.html',res_data)        
+        
+    else : return render(request, 'accounts/find_id.html')  
+
+def findidok(request):
+    return render(request, 'accounts/find_id_ok.html')
+
+def findidfail(request):
+    return render(request, 'accounts/find_id_fail.html')
 
 def findpw(request):
-    return render(request, 'accounts/find_pw.html')  
+    if request.method == 'POST':
+        name = request.POST.get('srch_name')
+        m_id = request.POST.get('srch_id')
+        email = request.POST.get('srch_email')
+        try:
+            res_pw = auth_User.objects.get(username=m_id)
+        except:
+           return render(request, 'accounts/find_pw_fail.html')
 
+        if res_pw is not None:
+            res_data = {
+            'username':name,
+            'email':email,
+            }
+            return render(request,'accounts/find_pw_ok.html',res_data)        
+        
+    else : return render(request, 'accounts/find_pw.html')   
 
+def findpwok(request):
+    return render(request, 'accounts/find_pw_ok.html')
+
+def findpwemail(request):
+    return render(request, 'accounts/find_pw_email.html')
+
+def findpwfail(request):
+    return render(request, 'accounts/find_pw_fail.html')
 
 
 

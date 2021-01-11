@@ -23,7 +23,7 @@
                 <div class="write_form">
                     <div class="write_view login_view">
                         <form method="post" name="login_form" id="form" onsubmit="return checkReCaptcha();"
-                         action="{% url 'main' %}">
+                         action="{% url 'accounts:login' %}">
                             {% csrf_token %}
 
                             <input type="hidden" name="returnUrl" value="">
@@ -47,6 +47,7 @@
                             <button type="button" onclick="check_input()" class="btn_type1">
                                 <span class="txt_type">로그인</span>
                             </button>
+                            
                         </form>
                         <a href="{% url 'accounts:register' %}" class="btn_type2 btn_member">
                             <span class="txt_type">회원가입</span>
@@ -59,11 +60,8 @@
         </div>
         <script>
 
-            var id = "${username}"
-            var pw = "${password}"
-        
-            // getId = '${m_id}';
-            // getPw = '${password}';
+            // var id = "${{username}}"
+            // var pw = "${{password}}"
             
             function check_input(){
                 if (!document.login_form.username.value){
@@ -76,11 +74,12 @@
                     document.login_form.password.focus();
                     return;
                 }
-                if (document.login_form.username.value != id || document.login_form.password.value != pw){
-                    alert("아이디 또는 비밀번호가 틀렸습니다.");
-                    history.go(0);
-                    return;
-                }
+                // if (){
+                //     alert("아이디 또는 비밀번호가 틀렸습니다.");
+                //     history.go(0);
+                //     return;
+                // }
+                // 아는 사람 이거 해주세요. - js에서 장고 db 사용하기.
                 document.login_form.submit();
 
             }

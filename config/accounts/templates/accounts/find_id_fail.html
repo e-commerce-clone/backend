@@ -22,13 +22,10 @@
             alt="아이디 찾기 완료">
             <!-- icon 변경 필요. -->
             <p class="desc">
-                고객님의<br>아이디가 존재합니다.
+                고객님께서 입력하신 정보가<br>정확한지 확인 후 다시 시도해주세요.
             </p>
-            <p class="info">
-                아이디: {{username}}
-            </p>
-            <a href="{% url 'accounts:login' %}" class="btn_type1">
-                <span class="txt_type">로그인 하기</span>
+            <a href="{% url 'accounts:findid' %}" class="btn_type1">
+                <span class="txt_type">아이디 다시 찾기</span>
             </a>
         </div>
     </div></div>
