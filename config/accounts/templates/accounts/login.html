@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <meta http-equiv="Cache-Control" content="no-cache">
     <title>e-commerce-clone</title>
     <link rel="stylesheet"  href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet"  href="{% static 'css/login.css' %}">
@@ -28,6 +29,13 @@
 
                             <input type="hidden" name="returnUrl" value="">
                             <input type="hidden" name="close" value>
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}">
+                                    {{message.message}}
+                                </div>                                
+                                {% endfor %}
+                            {% endif %}
                             <input type="text" name="username" id="username" size="20" tabindex="1" 
                             value="{{ form.username.value|default_if_none:'' }}" placeholder="아이디 입력">
                             <input type="password" name="password" id="password" size="20" tabindex="2" 
@@ -60,9 +68,9 @@
         </div>
         <script>
 
-            // var id = "${{username}}"
-            // var pw = "${{password}}"
             
+            
+
             function check_input(){
                 if (!document.login_form.username.value){
                     alert("아이디를 입력하세요");
@@ -74,15 +82,13 @@
                     document.login_form.password.focus();
                     return;
                 }
-                // if (){
-                //     alert("아이디 또는 비밀번호가 틀렸습니다.");
-                //     history.go(0);
-                //     return;
-                // }
-                // 아는 사람 이거 해주세요. - js에서 장고 db 사용하기.
+                
                 document.login_form.submit();
 
             }
+
+
+
         </script>
     </body>
 

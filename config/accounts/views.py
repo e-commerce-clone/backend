@@ -68,6 +68,7 @@ def login(request):
             auth_login(request, user)
             return redirect("/")
         else:
+            messages.warning(request, "아이디 또는 비밀번호가 틀렸습니다.")
             return render(request, "accounts/login.html")
 
     return render(request, "accounts/login.html")
@@ -85,7 +86,7 @@ def findid(request):
         try:
             res_id = Profile.objects.get(person_name=name, email=email)
         except:
-           return render(request, 'accounts/find_id_fail.html')
+            return render(request, 'accounts/find_id_fail.html')
 
         if res_id is not None:
             res_data = {
@@ -118,7 +119,8 @@ def findpw(request):
             }
             return render(request,'accounts/find_pw_ok.html',res_data)        
         
-    else : return render(request, 'accounts/find_pw.html')   
+    else : 
+        return render(request, 'accounts/find_pw.html')   
 
 def findpwok(request):
     return render(request, 'accounts/find_pw_ok.html')
