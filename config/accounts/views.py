@@ -3,10 +3,19 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User as auth_User
 from django.contrib.auth.hashers import make_password
+from django.contrib import messages
 from .models import Profile
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt    # csrf_token 무시하기 위한 @csrf_exempt
+import string, random
+
+# SMTP 관련 인증 : 이메일 인증 Gmail 이용
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.core.mail import EmailMessage
+from django.utils.encoding import force_bytes, force_text
+# from .token import account_activation_token
 
 # Create your views here
 
@@ -114,7 +123,7 @@ def findpw(request):
 
         if res_pw is not None:
             res_data = {
-            'username':name,
+            'name':name,
             'email':email,
             }
             return render(request,'accounts/find_pw_ok.html',res_data)        
@@ -125,11 +134,50 @@ def findpw(request):
 def findpwok(request):
     return render(request, 'accounts/find_pw_ok.html')
 
-def findpwemail(request):
-    return render(request, 'accounts/find_pw_email.html')
+def findpwemail(request, email):
+    def email_auth_num():
+        LENGTH = 6
+        string_pool = string.digits
+        certification_number = ""
+        for i in range(LENGTH):
+            certification_number += random.choice(string_pool)
+        return certification_number
+
+    certification_number = email_auth_num()
+    message = render_to_string('accounts/pw_change.html',
+                               {
+                                   'certification_number': certification_number,
+                               })
+    mail_title = "계정 비밀번호 변경 인증번호"
+    mail_to = email
+    email = EmailMessage(mail_title, message, to=[mail_to])
+    # email.send()
+    print("인증번호:",certification_number)
+    data = {
+        'certification_num':certification_number,
+        'email':mail_to,
+        }
+    return render(request, 'accounts/find_pw_email.html',data)
 
 def findpwfail(request):
     return render(request, 'accounts/find_pw_fail.html')
+
+def resetpw(request):
+    if request.method=='POST':
+        email = request.POST.get('email',None)
+        password = request.POST.get('newPassword',None)
+
+        user = auth_User.objects.get(email=email)
+
+        try:
+            user.password = password
+            user.save()
+            return render(request, 'accounts/login.html')
+        except:
+            print("")
+
+        
+    return render(request, 'accounts/reset_pw.html')
 
 
 
@@ -161,3 +209,19 @@ def email_overlap_check(request):
         overlap = "fail"
     context = {'overlap': overlap}
     return JsonResponse(context)
+
+def activate(request, uidb64, token):   # 이메일 인증 뷰 : 이메일 인증이 완료되면 계정활성화
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = auth_User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, auth_User.DoesNotExist):
+        user = None
+        print('에러발생')
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        auth_login(request, user)
+        return redirect("/")
+    else:
+        return render(request, 'shop/main.html', {'error': '계정 활성화 오류'})
+    return

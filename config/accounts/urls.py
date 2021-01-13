@@ -23,7 +23,10 @@ urlpatterns = [
      
      path('find_pw/', views.findpw, name='findpw'),
      path('find_pw_ok/', views.findpwok, name='findpwok'),
-     path('find_pw_email/', views.findpwemail, name='findpwemail'),
+     path('find_pw_email/<str:email>/', views.findpwemail, name='findpwemail'),     
      path('find_pw_fail/', views.findpwfail, name="findpwfail"),
+     path('activate/<str:uidb64>/<str:token>/', views.activate, name="activate"),
+     
+     path('reset_pw/', views.resetpw, name="resetpw"),
 
 ]
