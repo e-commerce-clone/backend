@@ -157,28 +157,52 @@ def findpwok(request):
 
 
 def findpwemail(request, email):
-    def email_auth_num():
-        LENGTH = 6
-        string_pool = string.ascii_letters + string.digits
-        certification_number = ""
-        for i in range(LENGTH):
-            certification_number += random.choice(string_pool)
-        return certification_number
+    if request.method == "GET":
+        def email_auth_num():
+            LENGTH = 6
+            string_pool = string.ascii_letters + string.digits
+            certification_number = ""
+            for i in range(LENGTH):
+                certification_number += random.choice(string_pool)
+            return certification_number
 
-    certification_number = email_auth_num()
-    message = render_to_string('accounts/pw_change.html',
-                               {
-                                   'certification_number': certification_number,
-                               })
-    mail_title = "계정 비밀번호 변경 인증번호"
-    mail_to = email
-    email = EmailMessage(mail_title, message, to=[mail_to])
-    email.send()
+        certification_number = email_auth_num()
+        data = {
+            'email': email,
+            'certification_num': certification_number
+        }
+        message = render_to_string('accounts/pw_change.html',
+                                   {
+                                       'certification_number': certification_number,
+                                   })
+        mail_title = "계정 비밀번호 변경 인증번호"
+        mail_to = email
+        email = EmailMessage(mail_title, message, to=[mail_to])
+        email.send()
+        print(f"인증번호:{certification_number}, 이메일:{mail_to}, 메일이름:{mail_title}")
+        return render(request, 'accounts/find_pw_email.html')
     return render(request, 'accounts/find_pw_email.html')
 
 
 def findpwfail(request):
     return render(request, 'accounts/find_pw_fail.html')
+
+
+def resetpw(request):
+    if request.method == 'POST':
+        email = request.POST.get('email', None)
+        password = request.POST.get('newPassword', None)
+
+        user = auth_User.objects.get(email=email)
+
+        try:
+            user.password = password
+            user.save()
+            return render(request, 'accounts/login.html')
+        except:
+            print("")
+
+    return render(request, 'accounts/reset_pw.html')
 
 
 @csrf_exempt

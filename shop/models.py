@@ -34,19 +34,17 @@ class Product(models.Model):
                             unique=True, allow_unicode=True)
     """
     # allow_unicode => 한글을 사용하기 위한 옵션
-    image = models.ImageField('이미지', upload_to='products/%Y/%m/%d', blank=True
-                              , null=True)
     sales_unit = models.CharField('판매단위', max_length=10, null=True)
     weight = models.CharField('중량/용량', max_length=10, null=True)
     delivery = models.CharField('배송구분', max_length=200, null=True)
-    description = models.TextField('설명', blank=True)
+    one_description = models.CharField('한줄설명', max_length=150, blank=True)
     origin = models.CharField('원산지', max_length=50, null=True)
     packing_type = models.CharField('포장타입', max_length=50, null=True)
-    allergy = models.CharField('알레르기정보', max_length=200, null=True)
+    guide = models.CharField('안내사항', max_length=200, null=True)
     shelf_life = models.CharField('유통기한', max_length=200, null=True)
-    meta_description = models.TextField(blank=True)
+    description = models.TextField('상품설명', blank=True)
     price = models.DecimalField('가격', max_digits=10, decimal_places=0, null=True)
-    stock = models.PositiveIntegerField('재고', null=True)   # 재고
+    stock = models.PositiveIntegerField('재고', null=True)                    # 재고
     available_display = models.BooleanField('판매가능여부', default=True)    # 판매가능여부
     available_order = models.BooleanField('주문가능여부', default=True)        # 주문가능여부
 
@@ -67,3 +65,17 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=[self.id])
+
+
+class Photo(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
+    main_image = models.ImageField('메인 이미지', upload_to='products/mainImage/%Y/%m/%d')
+    sub_image = models.ImageField('서브 이미지', upload_to='products/subImage/%Y/%m/%d')
+
+    class Meta:
+        ordering = ['product']
+        verbose_name = 'photo'
+        verbose_name_plural = 'photos'
+
+    def __str__(self):
+        return self.product.name

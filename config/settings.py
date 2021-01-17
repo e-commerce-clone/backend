@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+from .email_settings import EMAIL   # 이메일 정보가 담겨있는 py
+from . import debug_settings
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '!3vhrk@*^^o(^a*!@)^2mk3^opgi+(sh87y8dojontqxk0@m@t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = debug_settings.DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -38,11 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.humanize',
     'accounts',
     'shop',
     'rangefilter',
     'six',
+    'main',
+    'shop_admin',
+    'debug_toolbar',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,7 +58,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+INTERNAL_IPS = debug_settings.INTERNAL_IPS
 
 ROOT_URLCONF = 'config.urls'
 
@@ -122,26 +131,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 # STATIC 파일 설정
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'accounts' / 'static' / 'accounts/', ]
-STATIC_ROOT = BASE_DIR / 'static/'
-
-# Media files 설정
+STATIC_URL = debug_settings.STATIC_URL
+STATICFILES_DIRS = [BASE_DIR / 'config' / 'static/']
+STATIC_ROOT = BASE_DIR / 'staticfiles/'     # collectstatic 실행할 시 모여지는 파일
+# Media files 설정 (웹 상에서 업로드 받은 이미지나 파일들이 들어갈 장소)
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'     # 업로드된 파일이 들어갈 장소
 
 SITE_ID = 1
 
-EMAIL = {
-    'EMAIL_BACKEND': 'django.core.mail.backends.smtp.EmailBackend',
-    'EMAIL_USE_TLS': True,
-    'EMAIL_PORT': 587,
-    'EMAIL_HOST': 'smtp.gmail.com',
-    'EMAIL_HOST_USER': 'wkdtjdxo2@gmail.com',
-    'EMAIL_HOST_PASSWORD': 'wkd3124265!',
-    'SERVER_EMAIL': 'wkdtjdxo2',
-    'REDIRECT_PAGE': 'https://www.naver.com'
-}
-
+# email 전송을 위한 setting email_settings.py에 이메일 개인정보가 들어있음.
 EMAIL_USE_TLS = EMAIL['EMAIL_USE_TLS']
 EMAIL_PORT = EMAIL['EMAIL_PORT']
 EMAIL_HOST = EMAIL['EMAIL_HOST']

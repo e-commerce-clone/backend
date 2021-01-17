@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{% static 'shop_admin/css/admin_page_prd_modify.css' %}">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="{% static 'shop_admin/js/admin_common.js' %}"></script>
-    <script src="{% static 'shop_admin/js/admin_prd_uploads.js' %}"></script>
     <script>
         function chkword_name(obj, maxByte){                      // 상품명 글자수 제한 두기
             var strValue = obj.value;         //strValue : 글자수 값을 저장하기 위한 변수
@@ -39,8 +38,8 @@
             }
 
             if(totalByte > maxByte){                      // 맥스값보다 글자수가 초과되면 알림후에 뒷글자 자르기
-                alert(maxByte + "자를 초과 입력 할 수 없습니다.");
-                str2 = strValue.substr(0, len);
+                alert(maxByte + "자를 초과 입력 할 수 없습니다.");      
+                str2 = strValue.substr(0, len);               
                 obj.value = str2;
                 chkword_name(obj, 4000);
             }
@@ -120,8 +119,9 @@
 
 
 
-
+      
     </script>
+    <script src="{% static 'shop_admin/js/admin_prd_uploads.js' %}"></script>
 </head>
 <body>
     <div id="container">
@@ -141,7 +141,7 @@
                                         <td colspan="2"> 
                                             <div>
                                                 <span>
-                                                    <input type="text" name="product_name" value="{{ product.name }}" class="i_text text1" onkeyup="chkword_name(this, 80)">
+                                                    <input type="text" name="product_name" class="i_text text1" onkeyup="chkword_name(this, 80)">
                                                 </span>
                                             </div>
                                             <span class="txtByte" title="현재글자수/최대글자수">
@@ -156,7 +156,7 @@
                                         <td colspan="2">
                                             <div>
                                                 <span>
-                                                    <input type="text" class="i_text text2" name="product_introduce" value="{{ product.one_description }}" onkeyup="chkword_introduce(this, 150)">
+                                                    <input type="text" class="i_text text2" name="product_introduce" onkeyup="chkword_introduce(this, 150)">
                                                 </span>
                                                 
                                             </div>
@@ -172,7 +172,7 @@
                                         <td colspan="2">
                                             <div>
                                                 <span>
-                                                    <input type="text" name="product_price" value={{ product.price }} class="i_text text3">
+                                                    <input type="text" name="product_price" class="i_text text3">
                                                 </span>
                                             </div>
                                             <span class="won">
@@ -188,7 +188,7 @@
                                         <td colspan="2">
                                             <div>
                                                 <span>
-                                                    <input type="text" name="product_unit" value="{{ product.sales_unit }}" class="i_text text4">
+                                                    <input type="text" name="product_unit" class="i_text text4">
                                                 </span>
                                             </div>
                                             <span class="input_ex">
@@ -201,7 +201,7 @@
                                         <td colspan="2">
                                             <div>
                                                 <span>
-                                                    <input type="number" name="product_unit" value={{ product.stock }} class="i_text num1" placeholder="0">
+                                                    <input type="number" name="product_unit" class="i_text num1" placeholder="0">
                                                 </span>
                                             </div>
                                             
@@ -212,7 +212,7 @@
                                         <td>
                                             <div>
                                                 <span>
-                                                    <input type="text" name="product_weight" value="{{ product.weight }}" class="i_text text5">
+                                                    <input type="text" name="product_weight" class="i_text text5">
                                                 </span>
                                             </div>
                                             <span class="input_ex">
@@ -228,13 +228,13 @@
                                                     <select name="product_delivery" id="delivery_type">
                                                         <option value="">-- 선택하세요 --</option>
                                                         <optgroup label="배송구분">
-                                                            <option value="샛별 배송">
+                                                            <option value="A">
                                                                 샛별 배송
                                                             </option>
-                                                            <option value="일반 배송">
+                                                            <option value="A">
                                                                 일반 배송
                                                             </option>
-
+            
                                                         </optgroup>
                                                     </select>
                                                 </span>
@@ -246,7 +246,7 @@
                                         <td>
                                             <div>
                                                 <span>
-                                                    <input type="text" name="product_origin" value="{{ product.origin }}" class="i_text text6">
+                                                    <input type="text" name="product_origin" class="i_text text6">
                                                 </span>
                                             </div>
                                         </td>
@@ -259,10 +259,10 @@
                                                     <select name="product_packing" id="packing_type">
                                                         <option value="">-- 선택하세요 --</option>
                                                         <optgroup label="포장타입">
-                                                            <option value="냉장/종이포장">
+                                                            <option value="A">
                                                                 냉장/종이포장
                                                             </option>
-                                                            <option value="상온/종이포장">
+                                                            <option value="A">
                                                                 상온/종이포장
                                                             </option>
             
@@ -320,7 +320,7 @@
                                         <td>
                                             <div>
                                                 <span>
-                                                    <input type="text" name="product_life" value="{{ product.shelf_life }}" class="i_text text7">
+                                                    <input type="text" name="product_life" class="i_text text7">
                                                 </span>
                                             </div>
                                         </td>
@@ -332,7 +332,7 @@
                                         <td>
                                             <div>
                                                 <span>
-                                                    <textarea class="i_text text8" name="product_information" value="product.guide" id="" cols="30" rows="10" onkeyup="chkword_information(this, 550)"></textarea>
+                                                    <textarea class="i_text text8" name="product_information" id="" cols="30" rows="10" onkeyup="chkword_information(this, 550)"></textarea>
                                                 </span>
                                             </div>
                                             <span class="txtByte_big txtByte" title="현재글자수/최대글자수">
@@ -460,7 +460,7 @@
                                         <td>
                                             <div>
                                                 <span>
-                                                    <input type="text" name="product_description" value="{{ product.description }}" class="i_text text8">
+                                                    <input type="text" name="product_description" class="i_text text8">
                                                 </span>
                                             </div>
                                         </td>
@@ -486,3 +486,4 @@
     
 </body>
 </html>
+{% endblock %}
