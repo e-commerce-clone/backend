@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>e-commerce-clone</title>
+        <link rel="stylesheet"  href="{% static 'accounts/css/bootstrap.min.css' %}">
+        <link rel="stylesheet"  href="{% static 'accounts/css/login.css' %}">
+        <link rel="stylesheet"  href="{% static 'accounts/css/normalize.css' %}">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    </head>
+    <body>
+
+        <div id="content">
+            <div class="section_login">
+                <h3 class="tit_login">FIND YOUR ID</h3>
+                <div class="write_form find_view">
+                        <form method="post" name="fm_id" id="fm_id" onsubmit="return chkForm(this);"
+                        action="{% url 'accounts:findid' %}">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="act" value="Y">
+                        <input type="hidden" name="rncheck" value="none">
+                        <input type="hidden" name="dupeinfo" value>
+
+                        <strong class="tit_label">이름</strong>
+                        <input type="text" name="srch_name" id="srch_name" size="20" tabindex="2" size="29" required="required"
+                        value="{{form.srch_name.value|default_if_none:''}}" placeholder="이름 입력">
+                        <strong class="tit_label">이메일</strong>
+                        <input type="text" name="srch_email" id="srch_email" size="20" tabindex="5" size="29" required="required"
+                        value="{{form.srch_email.value|default_if_none:''}}" placeholder="가입 시 등록한 이메일 입력">
+
+                        <button type="button" onclick="check_input_fid()" class="btn_type1">
+                            <span class="txt_type">확인</span>
+                        </button>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+        <script>
+
+            // var name = "test"
+            // var email = "test@inu.ac.kr"
+
+
+            function check_input_fid(){
+                if (!document.fm_id.srch_name.value){
+                    alert("이름을 입력하세요");
+                    document.fm_id.srch_name.focus();
+                    return;
+                }
+                if (!document.fm_id.srch_email.value){
+                    alert("가입 시 등록한 이메일을 입력하세요");
+                    document.fm_id.srch_email.focus();
+                    return;
+                }
+                document.fm_id.submit();
+
+            }
+        </script>
+    </body>
+</html>
+{% endblock %}

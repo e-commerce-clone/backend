@@ -1,0 +1,455 @@
+
+
+ol, ul {
+  list-style-type: none;
+  
+}
+
+#main{      /*main과 footer의 경계선을 주기 위해 main 아래 부분에다가 선 만들어놈 */
+  border-bottom: 1px solid #f7f7f7;
+}
+
+
+
+/* #header {       이부분은 common.css 받으면 삭제예정 
+    background-color:#f2ddc4;
+    color: black;
+    text-align: center;
+    margin: 0 auto;
+    font-size:55px;
+    width: 1384.5px;
+    height:155.98px;
+
+} */
+
+
+/* #main{      main과 footer의 경계선을 주기 위해 main 아래 부분에다가 선 만들어놈 
+    border-bottom: 1px solid #f7f7f7;
+} */
+
+#content{     /*main 부분에서 내용이 들어갈 세로 크기 지정*/
+    min-width: 1050px;
+    padding-bottom: 170px;
+}
+
+.main_page_aticle{     /* main 부분에서 내용이 들어갈 부분 가로크기지정후 가운데 정렬 */
+    width: 1050px;
+    margin: 0 auto;    /*가운데 정렬 */
+}
+
+#content .form{               /*회원 가입 폼 가운데 정렬 */
+    width: 640px;
+    margin: 0 auto;       
+}
+
+#content .form .main_title{      /*회원가입 적혀있는 부분 */
+    padding-top: 64px;
+    font-weight: 900;
+    font-size: 30px;
+    color: #333;
+    line-height: 40px;
+    text-align: center;
+    letter-spacing: -.5px;
+    
+}
+#content .form .sub{                 /*필수 입력 사항 적혀있는 부분*/
+    padding: 23px 0 10px;
+    font-size: 12px;
+    color: #666;
+    line-height: 17px;
+    text-align: right;
+    border-bottom: 2px solid black;
+    margin-bottom:0;
+}
+
+#ico{                      /*    *표시 빨간색으로 하는거 */
+    padding-right: 2px;
+    color: #ee6a7b;
+}
+
+#main .col-sm-6 input::placeholder{         /* input칸에 있는 글씨 옅은색으로 */ 
+    color: rgba(110, 107, 107,0.4)
+}
+
+#font_size{        /*font 크기를 14로 할때 이거 사용*/
+    font-size:14px;
+    position: relative;
+}
+
+#fst{    /*회원 가입 폼에서 왼쪽 부분 ex)아이디, 비밀번호 , 비밀번호확인 등등.. */
+    width: 159px;
+    padding: 20px 0 0 20px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+    line-height: 20px;
+    vertical-align: top;
+    text-align: left;
+}
+
+#sst{  /*회원 가입 폼에서 오른쪽 부분 ex)input 기능, 중복확인 기능 등등.. */
+    display:flex;
+    padding: 10px 0;
+    border-top: 0;
+    font-size: 14px;
+    vertical-align: top;
+    text-align: left;
+}
+
+#idjungbok{ /* 아이디 중복 확인 */
+    position: absolute;
+    color: #5f0080;
+    left: 504px;
+    width: 120px;
+    height: 44px;
+    font-size:14px
+}
+
+#emailjungbok{ /* 이메일 중복 확인 */
+  position: absolute;
+  color: #5f0080;
+  left: 504px;
+  width: 120px;
+  height: 44px;
+  font-size:14px
+}
+
+#juso{  /*주소 검색 */
+    position: absolute;
+    color: #5f0080;
+    left: 159px;
+    width: 332px;
+    height: 44px;
+    font-size: 14px;
+    top: 8px;
+}
+
+.form-control:focus{  /*input 버튼 효과 없애고 보더 테두리 검정색으로 하기 */
+    outline: none;
+    box-shadow: none;
+    border: 1px solid black;
+}
+
+
+.btn:focus {  /*버튼 효과 없애기 */
+    outline: none;
+    box-shadow: none;
+  }
+
+  #adressNo{    /*주소검색 */
+    display: inline-block;
+    height: 100%;
+    margin-left: -14px;
+    padding-left: 24px;
+    color: #5f0080;
+    line-height: 30px;
+    background: url(https://res.kurly.com/pc/service/common/2006/ico_search.svg) no-repeat 0 50%;
+    background-size: 25px 24px;
+    vertical-align: top; 
+  }
+
+  
+
+
+
+
+
+
+
+
+  
+
+  #content .form form .standard{  /*배송지에 따라 상품 정보가 달라질수 있습니다 */
+    position:relative;
+  }
+
+  #content .form form .standard > span{   /*배송지에 따라 상품 정보가 달라질수 있습니다 */
+    position:absolute;
+    top: 22px;
+    left: 159px;
+    font-size:12px;
+    color: #666;
+    
+  }
+  
+
+  /* .new-row{  생년월일 col-sm-6 옆에 있던건데 내가 왜 만들었었지?? 
+    position: absolute;
+    top: 2px;
+    left: 159px;
+  } */
+
+ 
+
+  .birth_day{           /*생년월일 칸 */
+    overflow: hidden;
+    width: 332px;
+    padding-left: 18px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  
+
+  .birth_day input[type=text]{      /*생년월일 안에있는 input 들 */
+    float: left;
+    width: 84px;
+    height: 40px;
+    border: 0;
+    text-align: center;
+  }
+
+  #main .bar{  /*생년 월일 칸 안에 있는 bar */
+      float:left;
+  }
+
+  #main .bar::after{   /*생년 월일 칸 안에 있는 bar */
+    content: "/";
+    float: left;
+    width: 22px;
+    height: 100%;
+    font-size: 14px;
+    color: #ccc;
+    line-height: 42px;
+    text-align: center;
+  }
+
+  .boder_btom{       /*가입하기 위에 줄 */
+      border-bottom: 2px solid black;
+  }
+
+  .btom_line{  /*가입 하기 위에 줄 */
+      height:64px;
+      margin-bottom:19px;
+  }
+
+  .form_footer{   /*footer로 부터 가입하기 사이 간격 */
+    padding-top: 40px;
+    text-align: center;
+  }
+
+  .btn_join{    /*가입하기 버튼 */
+    width: 240px;
+    height: 56px;
+    font-size: 16px;
+    line-height: 41px;
+  }
+
+  #formSubmit .active{  /*가입하기 버튼 */
+    border: 1px solid #5f0081;
+    background-color: #5f0080;
+    color: #fff;
+  }
+/* 
+  #footer{
+    width: 1050px;
+    height:419px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    font-weight: 400;
+    letter-spacing: -.2px;
+    background-color: #f2ddc4;
+    color: black;
+    text-align:center;
+  } */
+
+
+
+  
+
+  .txt_guide{
+    position:relative;
+  }
+
+  .id_bell_f .id_txt_case1{  /*6자 이상의 영문 혹은 영문과 숫자를 조합 */
+    display:none;
+    top:51px;
+    left:-329px;
+}
+  
+
+  .id_bell_f .id_txt_case2{  /* 아이디 중복확인 */
+    display:none;
+    top:74px;
+    left:-329px;
+  }
+
+  #content .id_bell_f.on{
+    height: 129px;
+  }
+
+  /* #content .id_bell_s.on, .id_bell_t.on {  중복이라 제거 (혹시몰라서 나중에 삭제)
+    display:block;
+    position:absolute;
+    font-size:12px;
+    color: #666;
+  } */
+
+
+  #content .form .txt_guide span::before{      /* 앞에 점 붙이는거  */
+    content: '\2022';
+    display: inline-block;
+    padding: 0 4px 0 2px;
+    font-size: 12px;
+    vertical-align: 0;
+  }
+
+  
+
+  
+  
+
+  .pw_bell_f .pw_txt_case1{  /* 10자 이상 입력 */
+    display:none;
+    top:51px;
+    left:-329px;
+  }
+
+  .pw_bell_f .pw_txt_case2{  /*영문/숫자/특수문자/(공백 제외)만 허용하며, 2개 이상 조합 */
+    display:none;
+    top:73px;
+    left:-329px;
+  }
+
+  .pw_bell_f .pw_txt_case3{ /*동일한 숫자 3개 이상 연속 사용 불가 */
+    display:none;
+    top:95px;
+    left:-329px;
+  }
+
+  #content .pw_bell_f.on{    /*비밀번호 입력칸 활성화 되면 길이 늘어나게 */
+    height: 115px;
+  }
+
+  
+
+
+  .pw2_bell_f .pw2_bell_s{    /*동일한 비밀번호를 입력해주세요 */
+    display:none;
+    top:53px;
+    left:-329px;
+  }
+
+
+  #content .pw2_bell_f.on{      /* 비밀번호 확인칸 활성화되면 길이 늘어나게 */
+    height:101px;
+  }
+
+  #content .id_bell_s.on, .id_bell_t.on, .pw_bell_s.on, .pw_bell_t.on, .pw_bell_u.on, .pw2_bell_s.on{    /*공통분모 묶기 */
+    display:block;
+    position:absolute;
+    font-size:12px;
+    color: #666;
+  }
+
+  #main #content .main_page_aticle .form .juso_search.on{  /* juso_search 뒤에 .on 붙여야댐 */
+    padding-bottom:0 !important;
+    height:200px;
+  }
+
+  #juso.on{             /* 주소가 입력됐을떄 주소버튼 작게만드는거 */
+    position: absolute;
+    color: #5f0080;
+    left: 500px;
+    width: 120px;
+    height: 44px;
+    font-size: 14px;
+    top: 8px;
+  }
+
+  #user_address{         /*주소 칸 */
+    display:none;
+  }
+
+  #user_detail_address{  /*상세주소 칸 */
+    display:none;
+  }
+
+
+
+
+  #user_address.on{    /* 주소 칸 활성화 됐을 때 */
+    display:block;
+    border: 1px solid #ced4da;
+    width: 332px;
+    position: absolute;
+    height: 44px;
+    top: 8px;
+    left: 159px;
+    border-radius: 0.25rem;
+  }
+
+  #user_detail_address.on{   /*상세 주소 칸 활성화 됐을 때 */
+    display:block;
+    width: 332px;
+    border: 1px solid #ced4da;
+    position: absolute;
+    height: 44px;
+    top: 64px;
+    left: 159px;
+    border-radius: 0.25rem;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @media (max-width: 720px){      모바일로 변경할때 사용  https://dongvelopment.tistory.com/44  참고
+  #header{
+    display:none;
+  }
+  #main{
+    position:absolute;
+    top:0;
+    right:0;
+  }
+
+  #footer{
+    display:none;
+  }
+}
+
+@media (min-width: 720px) and (max-width:990px){
+  .class{
+    height:500px;
+  }
+}
+
+@media (min-width:990px){
+  .class{
+    height:500px;
+  }
+} */
+
+
+
+  
+

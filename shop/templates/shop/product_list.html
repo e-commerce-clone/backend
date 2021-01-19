@@ -1,0 +1,1255 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 리스트</title>
+    <link rel="stylesheet" href="{% static 'shop/css/common_JY.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/css/good_list01.css' %}">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="{% static 'shop/js/common_DH.js' %}"></script>
+    <script src="{% static 'shop/js/product_list.js' %}"></script>
+</head>
+<body class="noBody">
+    <div id="container" class="container">
+        <div id="top_event">
+            <div class="inner_top_event">
+                <a href="#" alt="가입하고 100원 혜택받기" class="top_event_bnr">
+                    지금 가입하고 인기상품
+                    <strong>100원</strong>에 받아가세요!
+                    <img src="https://res.kurly.com/pc/ico/1908/ico_arrow_fff_84x84.png" class="bnr_arr">
+                </a>
+                <button class="top_event_close" alt="배너 끄기"></button>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div id="header">
+            <div class="user_menu">
+                <!-- bnr = banner -->
+                <a href="#" class="bnr_delivery">
+                    <img src="https://res.kurly.com/pc/service/common/1908/delivery_190819.gif"
+                    alt="서울, 경기, 인천 샛별배송, 수도권 이외 지역 택배배송"
+                    class="bnr_delivery_img">
+                </a>
+                <ul class="sign_menu">
+                    <li class="link">
+                        <a href="#" class="item after join">회원가입</a>
+                    </li>
+                    <li class="link">
+                        <a href="#" class="item after">로그인</a>
+                    </li>
+                    <li class="link">
+                        <a href="#" class="item service">고객센터</a>
+                        <!-- 고객센터 hover 시 sub_menu 등장 -->
+                        <ul class="sub_menu">
+                            <li class="list">
+                                <a href="#" class="list_item">공지사항</a>
+                            </li>
+                            <li class="list">
+                                <a href="#" class="list_item">자주하는 질문</a>
+                            </li>
+                            <li class="list">
+                                <a href="#" class="list_item">1:1 문의</a>
+                            </li>
+                            <li class="list">
+                                <a href="#" class="list_item">상품 제안</a>
+                            </li>
+                            <li class="list">
+                                <a href="#" class="list_item">에코포장 피드백</a>
+                            </li>
+                        </ul>
+                    </li> 
+                </ul>
+                <!-- .sign_menu -->
+            </div>
+            <div class="header_logo">
+                <h1 class="logo">
+                    <a href="#" class="link_main">
+                        <span class="gnb_logo_container"></span>
+                        <img src="https://res.kurly.com/images/marketkurly/logo/logo_x2.png" alt="마켓컬리 로고" class="logo_img">
+                    </a>
+                </h1>
+            </div>
+            <div class="gnb">
+            <!-- gnb = global nav bar = 최상위 메뉴  -->
+                <h2 class="blind">메뉴</h2>
+                    <ul class="gnb_menu">
+                        <li class="list gnb_main">
+                            <a href="#" class="link">
+                                <span class="ico"></span>
+                                <!-- ico는 css에서 bg url로 처리 -->
+                                <span class="txt">전체 카테고리</span>
+                            </a>
+                            <div class="gnb_sub">
+                                <ul class="menu">
+                                    <li class="current">
+                                        <!-- hover나 active시 current가 옮겨가도록 설정해야 함 -->
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_newyear_inactive_pc@2x.1609722514.png" alt="" class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_newyear_active_pc@2x.1609722514.png" alt="" class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입 
+                                                클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                                <span class="ico_new" alt="new"></span>
+                                                <!-- ico_nex: bg url로 처리 -->
+                                            </span>
+                                            <!-- tit: text + ico -->
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt="" class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" alt="" class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입 
+                                                                                        클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
+                                                    class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" alt=""
+                                                    class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입 
+                                                                                                                            클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
+                                                    class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" alt=""
+                                                    class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입 
+                                                                                                                            클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
+                                                    class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" alt=""
+                                                    class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입 
+                                                                                                                            클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
+                                                    class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" alt=""
+                                                    class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입 
+                                                                                                                            클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
+                                                    class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" alt=""
+                                                    class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입 
+                                                                                                                            클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
+                                                    class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" alt=""
+                                                    class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입 
+                                                                                                                            클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
+                                                    class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" alt=""
+                                                    class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입 
+                                                                                                                            클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
+                                                    class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" alt=""
+                                                    class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입 
+                                                                                                                            클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="main_item">
+                                            <span class="ico">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
+                                                    class="ico off">
+                                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" alt=""
+                                                    class="ico on">
+                                                <!--카테고리 별 아이콘은 직관적이게 img src로 바로 삽입, 클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
+                                            </span>
+                                            <span class="tit">
+                                                <span class="txt">블라블라블라</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="list">
+                            <a href="#" class="link">
+                                <span class="txt">신상품</span>
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a href="#" class="link">
+                                <span class="txt">베스트</span>
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a href="#" class="link">
+                                <span class="txt">알뜰쇼핑</span>
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a href="#" class="link">
+                                <span class="txt">금주혜택</span>
+                            </a>
+                        </li>
+
+                        <div class="gnb_search">
+                            <form action="">
+                                <input type="text" id="keyword" value="건강 기원 새해맞이 보양식 레시피" title="검색어입력" class="inp_search">
+                                <input type="image" src="https://res.kurly.com/pc/service/common/1908/ico_search_x2.png" class="btn_search">
+                                <div class="init">
+                                    <button type="button" id="search_init" class="btn_delete">검색어 삭제하기</button>
+                                </div>
+                            </form>
+                        </div>
+                            
+                        <div class="location_login">
+                            <!-- 버튼 뒤로 넘기기, 가상요소 선택자로 bg url 아이콘 처리-->
+                            <button type="button" class="btn_location on">배송지 등록</button>
+                            
+                            <div class="location_notice">
+                                <!-- 첫 홈페이지 화면에 몇 초간 notice 띄우고 자동으로 off -->
+                                <span class="emph">배송지를 등록</span>하고<br>
+                                <span class="txt">구매가능한 상품을 확인하세요!</span>
+                                <div class="group_button">
+                                    <button type="button" class="btn login">로그인</button>
+                                    <button type="button" class="btn search_address">
+                                        <span class="ico"></span>
+                                        주소검색
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cart_count">
+                            <!-- bg url 아이콘 추가 -->
+                            <a href="#" class="btn_cart">
+                                <span class="blind">장바구니</span>
+                            </a>
+                        </div>    
+                    </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div id="main">
+            <div id="content">
+                <div class="page_aticle">
+                    <div id="lnbMenu" class="lnb_menu">
+                        <div class="inner_lnb">
+                            <div class="ico_cate">
+                                <span class="ico" style="display:block;">
+                                <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" id="goodsListIconView" alt="카테고리 아이콘"> </span>
+                                <span class="tit">채소</span>
+                            </div>
+
+                            <ul class="list">
+                                <li data-start="" data-end="">
+                                    <a class="on">전체보기</a>
+                                </li>
+                                <li data-start="" data-end="">
+                                    <a class=>고구마·감자·당근</a>
+                                </li>
+                                <li data-start="" data-end="">
+                                    <a class=>시금치·쌈채소·나물</a>
+                                </li>
+                                <li data-start="" data-end="">
+                                    <a class=>브로콜리·파프리카·양배추</a>
+                                </li>
+                                <li data-start="" data-end="">
+                                    <a class=>양파·대파·마늘·배추</a>
+                                </li>
+                                <li data-start="" data-end="">
+                                    <a class=>오이·호박·고추</a>
+                                </li>
+                                <li data-start="" data-end="">
+                                    <a class=>냉동·이색·간편채소</a>
+                                </li>
+                                <li data-start="" data-end="">
+                                    <a class=>콩나물·버섯</a>
+                                </li>
+                                <li class="bg" style="top: 78px; width: 68px; left: 29px; opacity: 1;"></li>
+                                
+                                
+                            </ul>
+
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="goodsList" class="page_section section_goodslist">
+                        <div class="list_ability">
+                            <div class="sort_menu">
+                                <div class>
+                                    <div class="select_type user_sort">
+                                        <a class="name_select">
+                                            추천순
+                                        </a>
+
+
+                                        <ul class="list checked">
+                                            <li>
+                                                <a class="on">추천순</a>
+                                            </li>
+                                            <li>
+                                                <a class>신상품순</a>
+                                            </li>
+                                            <li>
+                                                <a class>인기상품순</a>
+                                            </li>
+                                            <li>
+                                                <a class>혜택순</a>
+                                            </li>
+                                            <li>
+                                                <a class>낮은 가격순</a>
+                                            </li>
+                                            <li>
+                                                <a class>높은 가격순</a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="list_goods">
+                            <div class="inner_listgoods">
+                                <ul class="list">                                   <!-- 여기서 부터 물건 리스트-->
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a href="file:///C:/Users/Admin/Desktop/e-commerce-clone-main/good_view01.html" class="img" style="background-image: url(https://img-cf.kurly.com/shop/data/goods/1567574126435l0.jpg);">
+                                                    <img src="https://img-cf.kurly.com/shop/data/goods/1567574126435l0.jpg" alt="무농약 콩으로 재배한 콩나물(1봉/200g)" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    [김구원선생] 무농약 콩나물 200g
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">1,300</span>
+                                                    <input type="hidden"  id="product_cost1" value= 1300 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">무농약 콩으로 재배한 콩나물(1봉/200g)</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a class="img" style="background-image: url(https://img-cf.kurly.com/shop/data/goods/1567574126435l0.jpg);">
+                                                    <img src="https://img-cf.kurly.com/shop/data/goods/1530172373295l0.jpg" alt="믿고 먹을 수 있는 상품을 합리적인 가격에, KF365" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    [KF365] 감자 1kg
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">2,500</span>
+                                                    <input type="hidden"  id="product_cost2" value= 2500 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">믿고 먹을 수 있는 상품을 합리적인 가격에, KF365</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a href="file:///C:/Users/Admin/Desktop/e-commerce-clone-main/good_view02.html" class="img">
+                                                    <img src="" alt="" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    고구마
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">500</span>
+                                                    <input type="hidden"  id="product_cost2" value= 500 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">[한줄 소개]</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a class="img">
+                                                    <img src="" alt="" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    당근
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">200</span>
+                                                    <input type="hidden"  id="product_cost2" value= 200 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">[한줄 소개]</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a class="img">
+                                                    <img src="" alt="" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    사과
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">1,500</span>
+                                                    <input type="hidden"  id="product_cost2" value= 1500 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">[한줄 소개]</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a class="img">
+                                                    <img src="" alt="" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    딸기
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">900</span>
+                                                    <input type="hidden"  id="product_cost2" value= 900 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">[한줄 소개]</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a class="img">
+                                                    <img src="" alt=")" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    유과
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">300</span>
+                                                    <input type="hidden"  id="product_cost2" value= 300 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">[한줄 소개]</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a class="img">
+                                                    <img src="" alt="" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    배
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">5,000</span>
+                                                    <input type="hidden"  id="product_cost2" value= 5000 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">[한줄 소개]</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a class="img">
+                                                    <img src="" alt="" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    수박
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">10,000</span>
+                                                    <input type="hidden"  id="product_cost2" value= 10000 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">[한줄 소개]</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a class="img">
+                                                    <img src="" alt="" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                            
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    오이
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">700</span>
+                                                    <input type="hidden"  id="product_cost2" value= 700 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">[한줄 소개]</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a class="img">
+                                                    <img src="" alt="" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    귤
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">100</span>
+                                                    <input type="hidden"  id="product_cost2" value= 100 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">[한줄 소개]</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="item">
+                                            <div class="thumb">
+                                                <a class="img">
+                                                    <img src="" alt="" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+                                                
+                                                
+                                                </a>
+                                                <span class="global_sticker" style="display: none;">
+                                                    <span class="inner_sticker">
+                                                        <span class="bg_sticker"></span>
+                                                        <span class="txt_sticker">
+                                                            <span class="emph_sticker">1+2
+                                                            </span>
+                                                            이벤트
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                                <div class="group_btn">
+                                                    <button type="button" name="chk" class="btn btn_cart">
+                                                        <span class="screen_out">38300</span>
+                                                    </button>
+                                                </div>
+                                                
+
+
+                                            </div>
+
+                                            <a class="info">
+                                                <span class="name">
+                                                    콩
+                                                </span>
+                                                <span class="cost">
+                                                    <span class="price">30</span>
+                                                    <input type="hidden"  id="product_cost2" value= 30 >
+                                                    <span class="dodo">원</span>
+                                                </span>
+
+                                                <span class="desc">[한줄 소개]</span>
+                                                <span class="tag"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                        <div class="layout-pagination">
+                            <div class="pagediv">
+                                <a href="#main" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a>
+                                <a href="#main" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a>
+                                <span>
+                                    <strong class="layout-pagination-button layout-pagination-number __active">1</strong>
+                                </span>
+                                <span>
+                                    <strong class="layout-pagination-button layout-pagination-number">2</strong>
+                                </span>
+                                <span>
+                                    <strong class="layout-pagination-button layout-pagination-number">3</strong>
+                                </span>
+                                <span>
+                                    <strong class="layout-pagination-button layout-pagination-number">4</strong>
+                                </span>
+                                <span>
+                                    <strong class="layout-pagination-button layout-pagination-number">5</strong>
+                                </span>
+                                <a href="#main" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a>
+                                <a href="#main" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="bg_loading" id="bgLoading">
+                    <div class="loading_show"></div>
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div id="footer">
+            <div class="inner_footer">
+                <div class="cc_footer">
+                <!-- cc = company calls --> 
+                    <h2 class="cc_tit">고객행복센터</h2>
+                    <div class="cc_view cc_call">
+                        <h3>
+                            <span class="tit">1644-1107</span>
+                        </h3>
+                        <dl class="list">
+                            <dt>365고객센터</dt>
+                            <dd>오전 7시 - 오후 7시</dd>
+                        </dl>
+                    </div>
+                    <div class="cc_view cc_kakao">
+                        <h3>
+                            <a href="#" class="tit">카카오톡 문의</a>
+                        </h3>
+                        <dl class="list">
+                            <dt>365고객센터</dt>
+                            <dd>오전 7시 - 오후 7시</dd>
+                        </dl>
+                    </div>
+                    <div class="cc_view cc_qna">
+                        <h3>
+                            <a href="#" class="tit">1:1 문의</a>
+                        </h3>
+                        <dl class="list">
+                            <dt>24시간 접수 가능</dt>
+                            <dd>고객센터 운영시간에 순차적으로 답변해드리겠습니다.</dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="company_info">
+                    <ul class="list">
+                        <li>
+                            <a href="#" class="link">컬리소개</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">컬리소개영상</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">인재채용</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">이용약관</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">개인정보처리방침</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">이용안내</a>
+                        </li>
+                    </ul>
+                    <div class="spec_info">
+                        법인명 (상호) : 주식회사 컬리
+                        <span class="bar">I</span>
+                        사업자등록번호 : 000-00-0000 
+                        <a href="#" class="link">사업자정보확인</a><br>
+                        통신판매업 : 제 2018-서울강남-00000 호
+                        <span class="bar">I</span>
+                        개인정보보호책임자 : 000 <br>
+                        주소 : 서울시 도산대로 16길 20, 이래빌딩 B1 ~ 4F
+                        <span class="bar">I</span>
+                        대표이사 : 000 <br>
+                        입점문의 : <a href="#" class="link">입점문의하기</a>
+                        제휴문의 : <a href="#" class="link">ghkdvnfld345@naver.com</a><br>
+                        채용문의 : <a href="#" class="link">ghkdvnfld345@naver.com</a><br>
+                        팩스 : 000 - 0000 - 0000
+                        <span class="bar">I</span>
+                        이메일 : <a href="#" class="link">ghkdvnfld345@naver.com</a><br>
+                        <br>
+                        <strong class="copy">© KURLY CORP. ALL RIGHTS RESERVED</strong>
+                        <ul class="sns">
+                            <li>
+                                <a href="#" class="link_sns insta" target="_blank">
+                                    <img src="https://res.kurly.com/pc/ico/1810/ico_instagram.png" alt="마켓컬리 인스타그램 바로가기">
+                                </a>
+                                <!-- bg url 넣기 -->
+                            </li>
+                            <li>
+                                <a href="#" class="link_sns fb" target="_blank">
+                                    <img src="https://res.kurly.com/pc/ico/1810/ico_fb.png" alt="마켓컬리 페이스북 바로가기">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="link_sns naver_blog" target="_blank">
+                                    <img src="https://res.kurly.com/pc/ico/1810/ico_blog.png" alt="마켓컬리 네이버블로그 바로가기">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="link_sns naver_post" target="_blank">
+                                    <img src="https://res.kurly.com/pc/ico/1810/ico_naverpost.png" alt="마켓컬리 포스트 바로가기">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="link_sns yt" target="_blank">
+                                    <img src="https://res.kurly.com/pc/ico/1810/ico_youtube.png" alt="마켓컬리 유튜브 바로가기">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="link_footer">
+                <div class="authentication">
+                    <a href="#" class="mark" target="_blank">
+                        <img src="https://res.kurly.com/pc/ico/2001/logo_isms.png" alt="isms 로고" class="logo">
+                        <p class="txt">
+                            [인증범위] 마켓컬리 쇼핑몰 서비스 개발 · 운영<br>
+                            [유효기간] 2019.04.01 ~ 2022.03.31
+                        </p>
+                    </a>
+                    <a href="#" class="mark" target="_blank">
+                        <img src="https://res.kurly.com/pc/ico/2001/logo_eprivacyplus.png" alt="eprivacy plus 로고" class="logo">
+                        <p class="txt">
+                            개인정보보호 우수 웹사이트 ·<br>
+                            개인정보처리시스템 인증 (ePRIVACY PLUS)
+                        </p>
+                    </a>
+                    <a href="#" class="lguplus mark" target="_blank">
+                        <img src="https://res.kurly.com/pc/service/main/2009/logo_payments.png" alt="payments 로고" class="logo">
+                        <p class="txt">
+                            고객님의 안전거래를 위해 현금 등으로 결제 시 저희 쇼핑몰에서 가입한<br>
+                            토스 페이먼츠 구매안전(에스크로) 서비스를 이용하실 수 있습니다.
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+    <div id="cartPut">
+        <div class="cart_option cart_type3" style="opacity: 1;">
+            <form action="" method="POST">
+                {{add_to_cart}}
+                {% csrf_token %}
+                <div class="inner_option">
+                    <div class="in_option">
+                        <div class="list_goods">
+                            <ul class="list list_nopackage">
+                                <li class="on">
+                                    <span class="name">
+                                        
+                                    </span>
+                                    <div class="option">
+                                        <span class="count">
+                                            <button type="button" class="btn down on">수량내리기</button>
+                                            <input type="number" readonly="readonly"  value = 1 class="inp">
+                                            <div style="display:none;">
+                                                <input type="hidden"name="count" class="count_num" >
+                                            </div>
+                                            <button type="button" class="btn up on">수량올리기</button>
+                                        </span>
+                                        
+                                        <span class="price">
+                                            <span class="dc_price"></span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="total">
+                            <div class="price">
+                                <strong class="tit">합계</strong>
+                                <span class="sum">
+                                    <span class="num">1,300</span>
+                                    <span class="won">원</span>
+                                </span>
+                            </div>
+
+                            <p class="txt_point">
+                                <span class="ico">적립</span>
+                                <span class="point">
+                                    구매 시
+                                    <strong class="emph">65원 적립</strong>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="group_btn off layer_btn2">
+                        <span class="btn_type2">
+                            <button type="button" class="txt_type">취소</button>
+                        </span>
+                        <span class="btn_type1">
+                            <button type="submit" class="txt_type">장바구니 담기</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+    
+
+
+
+
+
+    
+</body>
+</html>

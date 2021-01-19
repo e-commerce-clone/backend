@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin-page</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+</head>
+<body>
+    <div id="container" class="container">
+        <div id="header">
+            <h1>관리자 페이지</h1>
+        </div>
+
+
+        <div id="main">
+            <div id="content">
+                <form action="" method="POST" onsubmit="">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                      <label for="loginId" class="col-sm-2 col-form-label" id="fst" style="padding-top:29px; ">상품명<span id=ico>*</span></label>
+                      <div class="col-sm-4" style="padding-top: 19px;">
+                        <input type="text" name="name" class="form-control inpt_id" id="submit_check_id">
+                      </div>
+                    </div>
+
+
+
+                    <div class="row mb-3">
+                      <label for="userpw" class="col-sm-2 col-form-label" id="fst">한줄 소개<span id=ico>*</span></label>
+                      <div class="col-sm-4">
+                        <input type="text" name="introduction" class="form-control" >
+                      </div>
+                    </div>
+
+
+
+                    <div class="row mb-3">
+                        <label for="userpw2" class="col-sm-2 col-form-label" id="fst">가격<span id=ico>*</span></label>
+                        <div class="col-sm-4">
+                          <input type="text" name="price" class="form-control">
+                        </div>
+                      </div>
+
+
+                      <div class="row mb-3">
+                        <label for="name" class="col-sm-2 col-form-label" id="fst">판매단위<span id=ico>*</span></label>
+                        <div class="col-sm-4">
+                          <input type="text" name="unit" class="form-control">
+                        </div>
+                      </div>
+
+
+                      <div class="row mb-3">
+                        <label for="useremail" class="col-sm-2 col-form-label" id="fst">중량/용량<span id=ico>*</span></label>
+                        <div class="col-sm-4">
+                          <input type="text" name="weight" class="form-control inpt_email">
+                        </div>
+                      </div>
+
+
+                      <div class="row mb-3">
+                        <label for="phonenumber" class="col-sm-2 col-form-label" id="fst">배송구분<span id=ico>*</span></label>
+                        <div class="col-sm-4">
+                          <input type="text" name="delivery" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="phonenumber" class="col-sm-2 col-form-label" id="fst">원산지<span id=ico>*</span></label>
+                        <div class="col-sm-4">
+                          <input type="text" name="origin" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="phonenumber" class="col-sm-2 col-form-label" id="fst">포장타입<span id=ico>*</span></label>
+                        <div class="col-sm-4">
+                          <input type="text" name="packing" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="phonenumber" class="col-sm-2 col-form-label" id="fst">유통기한<span id=ico>*</span></label>
+                        <div class="col-sm-4">
+                          <input type="text" name="life" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="phonenumber" class="col-sm-2 col-form-label" id="fst">안내사항<span id=ico>*</span></label>
+                        <div class="col-sm-4">
+                          <input type="text" name="information" class="form-control">
+                        </div>
+                      </div>
+
+
+
+
+                      <div class="row mb-3">
+                        <label for="phonenumber" class="col-sm-2 col-form-label" id="fst">카테고리<span id=ico>*</span></label>
+                        <div class="col-sm-4">
+                            <select name="category">
+                                <optgroup label="채소">
+                                    <option value="A">고구마·감자·당근</option>
+                                    <option value="A">시금치·쌈채소·나물</option>
+                                    <option value="A">브로콜리·파프리카·양배추</option>
+                                    <option value="A">양파·대파·마늘·배추</option>
+                                    <option value="A">오이·호박·고추</option>
+                                    <option value="A">냉동·이색·간편채소</option>
+                                    <option value="A">콩나물·버섯</option>
+                                </optgroup>
+                                <optgroup label="과일·견과·쌀">
+                                    <option value="B">제철과일</option>
+                                    <option value="B">국산과일</option>
+                                    <option value="B">수입과일</option>
+                                    <option value="B">간편과일</option>
+                                    <option value="B">냉동·건과일</option>
+                                    <option value="B">견과류</option>
+                                    <option value="B">쌀·잡곡</option>
+                                </optgroup>
+                                <optgroup label="수산·해산·건어물">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="정육·계란">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="국·반찬·메인요리">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="샐러드·간편식">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="면·양념·오일">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="생수·음료·우유·커피">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="간식·과자·떡">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="베이커리·치즈·델리">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="건강식품">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="생활용품·리빙">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="뷰티·바디케어">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="주방용품">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+                                <optgroup label="가전제품">
+                                    <option value="A">Apple</option>
+                                </optgroup>
+
+                              </select>
+                        </div>
+                      </div>
+
+
+
+
+
+
+
+
+
+
+                      <div id="formSubmit" class="form_footer">
+                        <button type="submit" class="btn active btn_join">등록하기</button>
+                      </div>
+
+                  </form>
+            </div>
+        </div>
+
+
+        <div id="footer"></div>
+    </div>
+
+</body>
+</html>
