@@ -96,12 +96,12 @@ def login(request):     # 로그인 뷰 : django auth login
             info = auth_User.objects.get(username=name)
             email = info.email
             person = Profile.objects.get(email=email)
-            # person_name=person.person_name
-            # data = {
-            #     'm_name':person_name,
-            # }
-            # return render(request, "main/main.html", data)
-            return redirect('/')
+            person_name=person.person_name
+            data = {
+                'm_name':person_name,
+            }
+            return render(request, "main/main.html", data)
+            # return redirect('/')
         else:
             message="아이디 또는 비밀번호가 틀렸습니다."
             data={
