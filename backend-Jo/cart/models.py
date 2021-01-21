@@ -1,6 +1,6 @@
 from django.core.validators import MinValueValidator,MaxValueValidator
 from django.db import models
-from shop.models import Product
+from shop.models import Product, Photo
 from accounts.models import Profile
 
 class Cart(models.Model):
@@ -15,7 +15,7 @@ class Cart(models.Model):
         return self.cart_id
 
 class CartItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    photo = models.ForeignKey(Photo, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     active=models.BooleanField(default=True)
     quantity=models.PositiveIntegerField(null=True,default=1,validators=[MinValueValidator(1),
@@ -25,7 +25,7 @@ class CartItem(models.Model):
         db_table= 'CartItem'
 
     def sub_total(self):
-        return self.product.price * self.quantity
+        return self.photo.product.price * self.quantity
 
     def __str__(self):
-        return self.product.name
+        return self.photo.product.name

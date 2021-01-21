@@ -102,7 +102,7 @@
 
                     <div id="cartPut">
                         <div class="cart_option cart_type2">
-                            <form action="{% url 'cart:add_cart' product.id %}" method="POST">
+                            <form action="{% url 'cart:add_cart' image.id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="inner_option">
                                     <div class="in_option">

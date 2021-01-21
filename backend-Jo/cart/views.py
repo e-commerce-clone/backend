@@ -11,9 +11,8 @@ def _cart_id(request):
         cart = request.session.create()
     return cart
 
-def add_cart(request, product_id):
-    product = Product.objects.get(id=product_id)
-    photo = get_object_or_404(Photo, product=product)
+def add_cart(request, image_id):
+    photo = Photo.objects.get(id=image_id)
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.DoesNotExist:
@@ -23,12 +22,12 @@ def add_cart(request, product_id):
         cart.save()
 
     try:
-        cart_item = CartItem.objects.get(product=product, cart=cart)
+        cart_item = CartItem.objects.get(photo=photo, cart=cart)
         cart_item.quantity += int(request.POST['count'])
         cart_item.save()
     except CartItem.DoesNotExist:
         cart_item = CartItem.objects.create(
-            product = product,
+            photo = photo,
             quantity = request.POST['count'],
             cart = cart
         )
@@ -55,21 +54,21 @@ def remove(request, product_id):
     cart.remove(product)
     return redirect('cart:detail')
 """
-def cart_detail(request, total=0, ship_price=0, counter=0, cart_items = None):
+def cart_detail(request, total=0, ship_price=3000, payment_amount=0, counter=0, cart_items = None):
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
         cart_items = CartItem.objects.filter(cart=cart, active=True)
+
         for cart_item in cart_items:
-            total += (cart_item.product.price * cart_item.quantity)
+            total += (cart_item.photo.product.price * cart_item.quantity)
             counter += cart_item.quantity
-            #photos = get_object_or_404(Photo, product=cart_item)
-        if total <= 40000:
-            ship_price = 3000
-            total += ship_price
+        if total >= 40000:
+            ship_price = 0
+        payment_amount = total + ship_price
     except ObjectDoesNotExist:
         pass
 
-    return render(request, 'cart/cart_item.html', dict(cart_items = cart_items, total = total, ship_price = ship_price, photos = photos, counter=counter))
+    return render(request, 'cart/cart_item.html', dict(cart_items = cart_items, total = total, ship_price = ship_price, payment_amount = payment_amount, counter=counter))
 """
     cart = Cart(request)
     for product in cart:

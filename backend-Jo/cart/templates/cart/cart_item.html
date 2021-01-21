@@ -33,12 +33,12 @@
 
                                 <!-- 상품 목록 중 1.-->
                                 <div class="name">
-                                    <div class="inner_name"><a href="#" class="package ">{{ cart_item.product.name }}</a>
+                                    <div class="inner_name"><a href="#" class="package ">{{ cart_item.photo.product.name }}</a>
                                         <div class="info"></div>
                                     </div>
 
                                     <div class="goods">
-                                        <a href="#" class="thumb " style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1610599300495i0.jpg&quot;);">상품이미지</a>
+                                        <a href="#" class="thumb " style="background-image: url( {{ cart_item.photo.main_image.url }} );">상품이미지</a>
                                         <!-- 이미지자리 ^-->
                                         <div class="price">
                                             <div class="in_price">
@@ -64,7 +64,7 @@
                                                             <div class="amount_view"><dl class="amount"><dt class="tit">상품금액</dt><dd class="price"><span class="num">{{ total | intcomma }}</span>
                                                                 <span class="won">원</span></dd></dl><dl class="amount"><dt class="tit">상품할인금액</dt><dd class="price"><span class="num">0</span>
                                                                     <span class="won">원</span></dd></dl><dl class="amount"><dt class="tit">배송비</dt><dd class="price"><span class="num">{{ ship_price | intcomma }}</span>
-                                                                        <span class="won">원</span></dd></dl><dl class="amount lst"><dt class="tit">결제예정금액</dt><dd class="price"><span class="num">{{ total | intcomma }}</span>
+                                                                        <span class="won">원</span></dd></dl><dl class="amount lst"><dt class="tit">결제예정금액</dt><dd class="price"><span class="num">{{ payment_amount | intcomma }}</span>
                                                                             <span class="won">원</span></dd></dl><div class="reserve"><span class="bage">적립</span>구매 시 <span class="emph">325원 적립</span></div></div>
                                                                             <div class="btn_submit"><button type="submit" class="btn active">주문하기</button></div>
                                                                             <div class="notice"><span class="txt">
