@@ -1,0 +1,274 @@
+{% load static%}
+<html>
+    <head>    
+        <meta charset="utf-8">
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <title>shopping-cart</title>
+        <link rel="stylesheet" href="css/cart.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/section1.css">
+        <link rel="stylesheet" href="css/list.bundle.css">
+    </head>
+    <body>
+
+    <div class="tit_page">
+
+        <h2 class="tit">장바구니</h2>
+    </div>
+
+    <div id="main">
+        <div id="content">
+
+            <div id="qnb" class="quick-navigation" style="top: 475.5px;">
+            <style>
+                #qnb{position:absolute;z-index:1;right:20px;top:70px;width:80px;font:normal 12px/16px "Noto Sans";color:#333;letter-spacing:-0.3px;transition:top 0.2s}
+                .goods-goods_view #qnb{top:20px}
+                /* 배너 */
+                #qnb .bnr_qnb{padding-bottom:7px}
+                #qnb .bnr_qnb .thumb{width:80px;height:120px;vertical-align:top}
+                /* 메뉴 */    
+                #qnb .side_menu{width:80px;border:1px solid #ddd;border-top:0 none;background-color:#fff}
+                #qnb .link_menu{display:block;height:29px;padding-top:5px;border-top:1px solid #ddd;text-align:center}
+                #qnb .link_menu:hover,
+                #qnb .link_menu.on{color:#5f0080}
+                /* 최근본상품 */
+                #qnb .side_recent{position:relative;margin-top:6px;border:1px solid #ddd;background-color:#fff}
+                #qnb .side_recent .tit{display:block;padding:22px 0 6px;text-align:center}
+                #qnb .side_recent .list_goods{overflow:hidden;position:relative;width:60px;margin:0 auto}
+                #qnb .side_recent .list{position:absolute;left:0;top:0}
+                #qnb .side_recent .link_goods{display:block;overflow:hidden;width:60px;height:80px;padding:1px 0 2px}
+                #qnb .side_recent .btn{display:block;overflow:hidden;width:100%;height:17px;border:0 none;font-size:0;line-height:0;text-indent:-9999px}
+                
+                #qnb .side_recent .btn_up{position:absolute;left:0;top:0;background:url(https://res.kurly.com/pc/service/main/2002/ico_quick_up_hover.png) no-repeat 50% 50%}
+                #qnb .side_recent .btn_up.off{background:url(https://res.kurly.com/pc/service/main/2002/ico_quick_up.png) no-repeat 50% 50%}
+                #qnb .side_recent .btn_down{background:url(https://res.kurly.com/pc/service/main/2002/ico_quick_down_hover.png) no-repeat 50% 0}
+                #qnb .side_recent .btn_down.off{background:url(https://res.kurly.com/pc/service/main/2002/ico_quick_down.png) no-repeat 50% 0}
+                
+                
+                @media
+                only screen and (-webkit-min-device-pixel-ratio: 1.5),
+                only screen and (min-device-pixel-ratio: 1.5),
+                only screen and (min-resolution: 1.5dppx) {
+                    #qnb .side_recent .btn_up{background-image:url(https://res.kurly.com/pc/service/main/2002/ico_quick_up_hover_x2.png);background-size:12px 18px}
+                    #qnb .side_recent .btn_down{background-image:url(https://res.kurly.com/pc/service/main/2002/ico_quick_down_hover_x2.png);background-size:12px 18px}
+                    #qnb .side_recent .btn_up.off{background-image:url(https://res.kurly.com/pc/service/main/2002/ico_quick_up_x2.png);background-size:12px 18px}
+                    #qnb .side_recent .btn_down.off{background-image:url(https://res.kurly.com/pc/service/main/2002/ico_quick_down_x2.png);background-size:12px 18px}
+                }
+                @media all and (max-width: 1250px){
+                    #qnb{display:none}
+                }
+            </style>
+            
+            <div class="bnr_qnb" id="brnQuick"><a href="/shop/event/kurlyEvent.php?htmid=event/2020/1231/newyearsday" id="brnQuickObj">
+                <img class="thumb" src="https://res.kurly.com/pc/service/main/2012/bnr_quick.png" alt="2021 설 선물">
+            </a>
+            <script>
+                var brnQuickScript = (function(){
+                    var $target = $('#brnQuickObj'), $targetThumb = $('#brnQuickObj .thumb');
+                    // 시간체크
+                    function timeCheck(){
+                        var now = brnQuick.nowTime; // 호출 하는 js에서 변수선언되어 가져다 사용
+                        if( new Date('2020-12-31T11:00:00+09:00').getTime() <= now && now <= new Date('2021-02-10T23:00:00+09:00').getTime()){
+                            $target.attr('href', '/shop/event/kurlyEvent.php?htmid=event/2020/1231/newyearsday');
+                            $targetThumb.attr('src', 'https://res.kurly.com/pc/service/main/2012/bnr_quick.png');
+                            $targetThumb.attr('alt', '2021 설 선물');
+                        }
+                    }
+                    return {
+                        timeCheck : timeCheck
+                    }
+                })();
+                brnQuickScript.timeCheck();
+            </script>
+            
+            
+            </div>
+            <script>
+                var brnQuick = {
+                    nowTime : '1610262896947',
+                    update : function(){
+                        $.ajax({
+                            url : campaginUrl + 'pc/service/bnr_quick.html'
+                        }).done(function(result){
+                            $('#brnQuick').html(result);
+                        });    
+                    }
+                }
+                brnQuick.update();
+            </script>
+            
+            <div class="side_menu">
+            <a href="/shop/main/html.php?htmid=event/kurly.htm&amp;name=lovers" class="link_menu ">등급별 혜택</a>
+            <a href="/shop/board/list.php?id=recipe" class="link_menu ">레시피</a>
+            <a href="/shop/goods/goods_review_best.php" class="link_menu ">베스트 후기</a>
+            </div>
+            <div class="side_recent" style="display:none">
+            <strong class="tit">최근 본 상품</strong>
+            <div class="list_goods" data-height="209" style="height: 0px;">
+            <ul class="list"></ul>
+            </div>
+            <button type="button" class="btn btn_up off">최근 본 상품 위로 올리기</button>
+            <button type="button" class="btn btn_down off">최근 본 상품 아래로 내리기</button>
+            </div>
+            <script>
+            /**
+            * 상품상세일때 현재 보고 있는 상품 담기. 상품URL & 상품이미지
+            * 최종 저장 날짜로 부터 24시가 지날시 localStorage 삭제
+            */
+            var getGoodsRecent = (function(){
+                var i, len, getGoodsRecent, item, _nowTime = '1610262896947';
+            
+                _goodsRecent();
+                function _goodsRecent(){
+                    if(localStorage.getItem('goodsRecent') === null){
+                        return false;
+                    }
+                    
+                    try{
+                        getGoodsRecent = JSON.parse(localStorage.getItem("goodsRecent"));
+                        len = getGoodsRecent.length;
+                        if(addDays(getGoodsRecent[len - 1].time, 1) < _nowTime){
+                            localStorage.removeItem('goodsRecent');
+                        }else{
+                            for(i = 0; i < len; i++){
+                                item = '<li><a class="link_goods" href="/shop/goods/goods_view.php?goodsno=' + getGoodsRecent[i].no + '"><img src="' + getGoodsRecent[i].thumb + '" alt=""></a></li>';
+                                $('.side_recent .list').append(item);
+                            }
+                            $('.side_recent').show();
+                        }
+                    } catch(e){
+                        console.log("JSON parse error from the Quick menu goods list!!!", e);
+                    }
+                }
+            
+                function addDays(date, days){
+                    var result = new Date(date);
+                    result.setDate(result.getDate() + days);
+                    return result.getTime();
+                }
+                
+                // return {
+                // }
+            })();
+            </script>
+            </div>
+            <link rel="stylesheet" type="text/css" href="/asset/css/cart/list.bundle.css?ver=1.25.24">
+            <link rel="preload" as="script" href="/asset/js/cart/list.bundle.js?ver=1.25.24">
+            <h3 class="screen_out">장바구니 상품 목록</h3>
+            <form>
+            <div id="cartItemList" class="only_pc" style="min-height: 609px;">
+                <!-- case1. empty state -->
+                <div class="empty"><div class="cart_item no_item"><div class="cart_select">
+                    <div class="inner_select">
+                        <label class="check">
+                            <input type="checkbox" name="checkAll" disabled="" checked="">
+                            <span class="ico"></span>전체선택 (0/0)</label>
+                            <a href="#none" class="btn_delete">선택삭제</a>
+                        </div></div>
+                        <div class="inner_empty"><span class="bg"></span>
+                            <p class="txt">장바구니에 담긴 상품이 없습니다</p>
+                            <div class="btn_submit">
+                                <button type="button" class="btn disabled">상품을 담아주세요</button></div></div>
+                                <div class="cart_select"><div class="inner_select"><label class="check">
+                                                
+                                                    <input type="checkbox" name="checkAll" disabled="" checked="">
+                                    <span class="ico"></span>전체선택 (0/0)</label>
+                                    <a href="#none" class="btn_delete">선택삭제</a></div></div></div>
+                                    <!-- 삭제 시 db삭제 > 페이지 새로고침-->
+                                    <div class="cart_result">
+                                        <div class="inner_result" style="top: 60px;">
+                                            <div class="cart_delivery"><h3 class="tit">배송지</h3>
+                                                <div class="address"><p class="addr">배송주소</p>
+                                                    <span class="delivery star">샛별배송</span>
+                                                    <a href="ship_destination.html" onclick="window.open(this.href,'shipping destination','width=514, height=584');return false;" class="btn default">배송지 변경</a></div></div>
+                                                   
+                                                    <div class="amount_view"><dl class="amount">
+                                                        <dt class="tit">상품금액</dt><dd class="price">
+                                                            <!-- 가격들어올 자리 -->
+                                                            <span class="num">0</span><span class="won">원</span>
+                                                        </dd></dl>
+                                                        <dl class="amount"><dt class="tit">상품할인금액</dt>
+                                                            <dd class="price"><span class="num">0</span>
+                                                                <span class="won">원</span></dd></dl>
+                                                                <dl class="amount"><dt class="tit">배송비</dt>
+                                                                    <dd class="price"><span class="num">0</span>
+                                                                        <span class="won">원</span></dd></dl>
+                                                                        <dl class="amount lst"><dt class="tit">결제예정금액</dt>
+                                                                            <!-- 총 합산 가격자리-->
+                                                                            <dd class="price"><span class="num">0</span><span class="won">원</span></dd></dl><div class="reserve"></div></div>
+                                                                            <div class="btn_submit">
+                                                                                <button type="submit" class="btn disabled">상품을 담아주세요</button></div><div class="notice">
+                                                                                <span class="txt"><span class="ico">·</span>쿠폰/적립금은 주문서에서 사용 가능합니다</span><span class="txt">
+                                                                                <span class="ico">·</span>‘입금확인’ 상태일 때는 주문 내역 상세에서 직접 주문취소가 가능합니다.</span><span class="txt">
+                                                                                <span class="ico">·</span>‘입금확인’ 이후 상태에는 고객센터로 문의해주세요.</span></div></div></div></div></div>
+            </form>
+            
+            <form id="viewCart" name="frmCart" method="post" action="/shop/order/order.php">
+            <input type="hidden" name="mode" value="setOrder">
+            </form>
+            <script src="/appProxy/appData.php?ver=1.25.24"></script>
+            <script src="/asset/js/cart/list.bundle.js?ver=1.25.24"></script>
+            <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    
+            <script>
+            _cart.showItemList('pc');
+            
+            /**
+            * 스크롤 이벤트 : CartContainer.jsx 에서 호출
+            * 스크립트 재시작 요건
+            * 아이템 삭제시
+            * 주소가 변경시
+            * 목록접을때
+            * 위치 값이 달라지는 경우
+            * .off('scroll') 을 사용할수 없음. gnb 때문에
+            */
+            function resultPosition() {
+                var objTarget = {};
+            
+                objTarget = {
+                winHeight: $(window).height(),
+                gnbHeight: $('#gnbMenu').height(),
+                moveBox: $('.cart_result').find('.inner_result'),
+                boxHeight: $('.cart_result').find('.inner_result').height(),
+                baseTop: $('#cartItemList').offset().top - $('#gnbMenu').height()
+                }
+            
+                var _position = {
+                scroll: function(){
+                    var that = this, num = 0;
+                    $(window).scroll(function () {
+                    num = $(this).scrollTop().toFixed(0);
+                    that.scrollEvent(num);
+                    }).scroll();
+                    if(num === 0){
+                    that.scrollEvent(num);
+                    }
+                },
+                scrollEvent: function(num){
+                    num = num - objTarget.baseTop + objTarget.gnbHeight;
+                    var baseHeight = $('#cartItemList').height();
+                    var resultBox = baseHeight - objTarget.boxHeight;
+                    if(objTarget.boxHeight > objTarget.winHeight || baseHeight <= objTarget.boxHeight){
+                    num = 0;
+                    $('#cartItemList').css({'minHeight' : objTarget.boxHeight});
+                    }
+                    if(num > resultBox){
+                    num = resultBox;
+                    }
+                    objTarget.moveBox.css({ top: num <= 60 ? 60 : num });
+                }
+                }
+            
+                _position.scroll();
+            }
+            
+            KurlyTracker.setScreenName('cart');
+            
+            function reloadAction(){
+                location.reload();
+            }
+            </script>
+            </div>
+    </div>
+    </body>
+</html>

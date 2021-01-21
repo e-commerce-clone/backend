@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %} - 로그인{% endblock %}
+{% block content %}
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet"  href="{% static 'accounts/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"  href="{% static 'accounts/css/login.css' %}">
+    <link rel="stylesheet"  href="{% static 'accounts/css/normalize.css' %}">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+
+    <body>
+
+        <div id="content">
+            <div class="section_login">
+                <h3 class="tit_login">LOGIN</h3>
+                <div class="write_form">
+                    <div class="write_view login_view">
+                        <form method="post" name="login_form" id="form" onsubmit="return checkReCaptcha();"
+                         action="{% url 'accounts:login' %}">
+                            {% csrf_token %}
+
+                            <input type="hidden" name="returnUrl" value="">
+                            <input type="hidden" name="close" value>
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}">
+                                    {{message.message}}
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                            <input type="text" name="username" id="username" size="20" tabindex="1"
+                            value="{{ form.username.value|default_if_none:'' }}" placeholder="아이디 입력">
+                            <input type="password" name="password" id="password" size="20" tabindex="2"
+                            value="{{ form.password.value|default_if_none:'' }}" placeholder="비밀번호 입력">
+                            <div class="checkbox_save">
+                                <label class="label_checkbox checked">
+                                    <input type="checkbox" id="chk_security" name="chk_security" value="y" checked="checked"
+                                    onchange="if (this.checked){$(this).parent().addClass('checked')}else{$(this).parent().removeClass('checked')}">
+                                    보안접속
+                                </label>
+                                <div class="login_search">
+                                    <a href="{% url 'accounts:findid' %}" class="link">아이디 찾기</a>
+                                    <span class="bar"></span>
+                                    <a href="{% url 'accounts:findpw' %}" class="link">비밀번호 찾기</a>
+                                </div>
+                            </div>
+                            <button type="button" onclick="check_input()" class="btn_type1">
+                                <span class="txt_type">로그인</span>
+                            </button>
+
+                        </form>
+                        <a href="{% url 'accounts:signup' %}" class="btn_type2 btn_member">
+                            <span class="txt_type">회원가입</span>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script>
+
+
+
+
+            function check_input(){
+                if (!document.login_form.username.value){
+                    alert("아이디를 입력하세요");
+                    document.login_form.username.focus();
+                    return;
+                }
+                if (!document.login_form.password.value){
+                    alert("비밀번호를 입력하세요");
+                    document.login_form.password.focus();
+                    return;
+                }
+
+                document.login_form.submit();
+
+            }
+
+
+
+        </script>
+    </body>
+
+{% endblock %}
