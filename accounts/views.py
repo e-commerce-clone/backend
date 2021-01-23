@@ -91,8 +91,14 @@ def login(request):     # 로그인 뷰 : django auth login
     if request.method == "POST":
         name = request.POST.get('username') # id
         pwd = request.POST.get('password') # pw
-        user = authenticate(username=name, password=pwd) 
-        check_user = auth_User.objects.get(username=name)
+        user = authenticate(username=name, password=pwd)
+        try:         
+            check_user = auth_User.objects.get(username=name)
+        except: # 정보 부정확.
+            error=2
+            data={'error':error,}
+            return render(request, template,data)
+
         if check_user is not None: # 계정이 있을 경우
             if (check_user.is_active == True): # 계정 활성화일 경우
                 try : # 로그인 가능
@@ -115,11 +121,6 @@ def login(request):     # 로그인 뷰 : django auth login
                 data={'error':error,}
                 print(error,'계정활성화 필요')
                 return render(request,template,data)
-        else:
-            error=2
-            data={'error':error,}
-            print(error,'계정없음')
-            return render(request, template,data)
     return render(request, template)
 
 

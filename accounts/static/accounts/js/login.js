@@ -28,6 +28,10 @@ function show_alert(err){
         alert("아이디 또는 비밀번호가 일치하지 않습니다.");
         return;
     }
+    if (err==2){
+        alert("회원정보를 정확히 입력해주세요.");
+        return;
+    }
     
     
 }
