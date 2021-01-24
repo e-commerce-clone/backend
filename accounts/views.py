@@ -10,8 +10,8 @@ from django.views.decorators.csrf import csrf_exempt    # csrf_token 무시하�
 import string, random
 
 # SMTP 관련 인증 : 이메일 인증 Gmail 이용
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site  # request 를 보낸 사이트를 알려줌
+from django.template.loader import render_to_string     # template 반환과 동시에 rendering 함.
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_text
@@ -29,9 +29,9 @@ def signup(request):        # 회원가입 뷰
         password = request.POST.get('pw', None)
         person_name = request.POST.get('name', None)
         email = request.POST.get('email', None)
-        phone_number = request.POST.get('phone_number', None)
+        phone_number = request.POST.get('mobileInp', None)
         user_address = request.POST.get('user_address', None)
-        user_address_detail = request.POST.get('user_address_detail', None)
+        user_address_detail = request.POST.get('user_detail_address', None)
         birthday_year = request.POST.get('year', None)
         birthday_month = request.POST.get('month', None)
         birthday_day = request.POST.get('day', None)
@@ -59,7 +59,7 @@ def signup(request):        # 회원가입 뷰
                          password=make_password(password),
                          email=email,
                          is_active=False)
-
+        user.save()     # 유저 저장
         user_info = Profile(user=user,
                             email=email,
                             person_name=person_name,
@@ -67,14 +67,16 @@ def signup(request):        # 회원가입 뷰
                             home_address=home_address,
                             birthday=birthday,
                             age=age)
-        user.save()
-        user_info.save()
+        user_info.save()        # 프로필 저장
         # 이메일 인증을 위한 추가 설정, 회원가입 완료 시 이메일 인증을 위한 이메일 전송
         current_site = get_current_site(request)
         message = render_to_string('accounts/activation_email.html',
                                    {
                                        'user': user,
                                        'domain': current_site.domain,
+                                       # force_bytes : 인자값을 bytes 로 변형, encode 인코딩
+                                       # user.pk = 57 -> force_bytes(user.pk) => b'57'
+                                       # urlsafe_base64_encode(force_bytes(user.pk)) => b'NTc'
                                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                                        'token': account_activation_token.make_token(user),
                                    })
@@ -96,7 +98,6 @@ def login(request):     # 로그인 뷰 : django auth login
         else:
             messages.warning(request, "아이디 또는 비밀번호가 틀렸습니다.")
             return render(request, "accounts/login.html")
-
     return render(request, "accounts/login.html")
 
 
@@ -158,7 +159,8 @@ def findpwok(request):
 
 def findpwemail(request, email):
     if request.method == "GET":
-        def email_auth_num():
+        # 인증번호 생성 후 이메일 발송
+        def email_auth_num():   # 인증번호 생성 메소드
             LENGTH = 6
             string_pool = string.ascii_letters + string.digits
             certification_number = ""
@@ -179,8 +181,9 @@ def findpwemail(request, email):
         mail_to = email
         email = EmailMessage(mail_title, message, to=[mail_to])
         email.send()
-        print(f"인증번호:{certification_number}, 이메일:{mail_to}, 메일이름:{mail_title}")
-        return render(request, 'accounts/find_pw_email.html')
+        # -------------------------------------------------------------------
+        # print(f"인증번호:{certification_number}, 이메일:{mail_to}, 메일이름:{mail_title}")
+        return render(request, 'accounts/find_pw_email.html', data)
     return render(request, 'accounts/find_pw_email.html')
 
 

@@ -1261,3 +1261,13 @@ table.extra-information th {
     left: 8px;
     
 }
+
+.goods-view-infomation-content {
+    padding-top: 60px;
+    min-height: 500px;
+    margin-bottom: 50px;
+}
+
+.goods-view-infomation-board {
+    width: 100%;
+}

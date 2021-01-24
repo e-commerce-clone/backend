@@ -185,34 +185,6 @@ window.addEventListener('DOMContentLoaded',function(){
             });
         });
 
-        $('.btn_type1 .txt_type').click(function(){
-
-
-
-
-            product_name = $('#cartPut .list_goods .name');
-            console.log(product_name.text());
-
-            $.ajax({
-              type: "GET",
-              url: "./product_check?product_name="+product_name,    //해당 url로 데이터를 넘김
-              data: {
-                'product_name': $('#cartPut .list_goods .name').text()
-              },
-              datatype: 'json',
-              success: function (data) {
-                console.log(data['overlap']);
-                if (data['overlap'] == "fail") {
-                  console.log('성공');
-                  return;
-                } else {
-                  console.log('성공');
-                  return;
-                }
-              }
-            });
-        });
-
 
 
         

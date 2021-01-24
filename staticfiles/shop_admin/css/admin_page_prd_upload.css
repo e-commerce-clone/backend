@@ -3,10 +3,12 @@
 
 
 
+
+
 .cManual{
     margin-left:10px;
     border: 1px solid black;
-
+    
     vertical-align: 3px;
     padding: 0 6px;
     border-radius: 8px;
@@ -69,7 +71,7 @@ tbody input, textarea{
 
 .text1{
     width:400px;
-
+    
 
 }
 

@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Category, Photo
+from .models import Product, Category, Photo, Review
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -14,7 +16,6 @@ def product_detail(request, id):
 
 
 def product_list(request):
-    products = Product.objects.all()
     photos = Photo.objects.all()
     return render(request, 'shop/product_list.html', {'photos': photos})
 
@@ -30,3 +31,11 @@ def product_in_category(request, category_slug=None):
         'current_category': current_category,
         'categories': categories,
         'products': products})
+
+
+@csrf_exempt
+def product_check(request):
+    product_name = request.GET.get('product_name')
+    product = Product.objects.get(name=product_name)
+    context = {'overlap': product_name}
+    return JsonResponse(context)

@@ -39,14 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'django.contrib.humanize',
-    'accounts',
-    'shop',
-    'rangefilter',
+    'django.contrib.humanize',  # 가격에서 30,000 이런식으로 나오게 하기 위한 모듈
+    'accounts',             # 회원정보 관련 앱
+    'shop',                 # 제품 리스트 등 상점 앱
+    'rangefilter',          # accounts -> admin.py 에 사용됨. admin 페이지에서 모델을 범위별로 검색하기 위한 모듈
     'six',
-    'main',
-    'shop_admin',
-    'debug_toolbar',
+    'main',                 # 메인 앱
+    'shop_admin',           # shop 관리자 앱
+    'debug_toolbar',        # 디버깅툴
 ]
 
 
