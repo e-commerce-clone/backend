@@ -76,44 +76,7 @@
     line-height: 22px;
 }
 
-.type_radio input[type="radio"] {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-}
 
-.section_destination .tbl_type1 .type_radio input[type="radio"] + .ico {
-    margin: 0;
-    vertical-align: middle;
-}
-
-.type_radio input[type="radio"]:checked + .ico {
-    background: url(https://res.kurly.com/mobile/service/common/2003/ico_checkbox_checked.png) no-repeat 50% 50%;
-    background-size: 24px 24px;
-}
-
-
-
-.type_radio input[type="radio"] + .ico {
-    display: inline-block;
-    position: relative;
-    width: 24px;
-    height: 24px;
-
-    border: 0 none;
-}
-
-.type_radio input[type="radio"] + .ico {
-    display: inline-block;
-    position: relative;
-    width: 24px;
-    height: 24px;
-    margin-right: 12px;
-    border: 0 none;
-    background: url(https://res.kurly.com/mobile/service/common/2003/ico_checkbox.png?v=1) no-repeat 50% 50%;
-    background-size: 24px 24px;
-    vertical-align: -7px;
-}
 
 .screen_out {
     display: block;
@@ -173,6 +136,7 @@
 
 #tblParent{
     border-top: 2px solid #333;
+    margin-bottom: 120px;
 }
 
 .delete_position{
@@ -192,6 +156,13 @@
     left: 19px;
 }
 
-.tbl_type1 th{
+
+
+.no_data{
+    display:none;
+    border-bottom: 1px solid #dddfe1;
+    padding: 90px 0 220px 0;
+    font-size: 15px;
+    color: #757575;
     text-align: center;
 }

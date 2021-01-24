@@ -140,6 +140,7 @@
 .section_orderlist .list_order {
     padding-top: 10px;
     border-top: 2px solid #333;
+    margin-bottom: 100px;
 }
 
 .section_orderlist .list_order .date {
@@ -259,4 +260,14 @@
 
 select:focus{
     outline:none;
+}
+
+
+.no_order_data{
+    display:none;
+    border-bottom: 1px solid #dddfe1;
+    padding: 90px 0 220px 0;
+    font-size: 15px;
+    color: #757575;
+    text-align: center;
 }
