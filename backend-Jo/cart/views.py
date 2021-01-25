@@ -68,7 +68,8 @@ def cart_detail(request, total=0, ship_price=3000, payment_amount=0, counter=0, 
     except ObjectDoesNotExist:
         pass
 
-    return render(request, 'cart/cart_item.html', dict(cart_items = cart_items, total = total, ship_price = ship_price, payment_amount = payment_amount, counter=counter))
+    return render(request, 'cart/cart_item.html', dict(cart_items = cart_items, total = total, ship_price = ship_price,
+                                                       payment_amount = payment_amount, counter=counter))
 """
     cart = Cart(request)
     for product in cart:
