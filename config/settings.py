@@ -29,7 +29,7 @@ DEBUG = debug_settings.DEBUG
 ALLOWED_HOSTS = [
     "localhost",
     ".ap-northeast-2.compute.amazonaws.com",
-    ".inucurly.shop",
+    ".inukurly.shop",
 ]
 
 
