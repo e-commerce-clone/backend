@@ -251,7 +251,7 @@ def activate(request, uidb64, token):   # 이메일 인증 뷰 : 이메일 인�
         auth_login(request, user)
         return redirect("/")
     else:
-        return render(request, 'shop/main.html', {'error': '계정 활성화 오류'})
+        return render(request, 'main/main.html', {'error': '계정 활성화 오류'})
     return
 
 
