@@ -27,8 +27,8 @@ SECRET_KEY = '!3vhrk@*^^o(^a*!@)^2mk3^opgi+(sh87y8dojontqxk0@m@t'
 DEBUG = debug_settings.DEBUG
 
 ALLOWED_HOSTS = [
+    "localhost",
     ".ap-northeast-2.compute.amazonaws.com",
-    '127.0.0.1',
     ".inucurly.shop",
 ]
 
