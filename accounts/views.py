@@ -10,8 +10,8 @@ from django.views.decorators.csrf import csrf_exempt    # csrf_token 무시하�
 import string, random
 
 # SMTP 관련 인증 : 이메일 인증 Gmail 이용
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site  # request 를 보낸 사이트를 알려줌
+from django.template.loader import render_to_string     # template 반환과 동시에 rendering 함.
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_text
@@ -29,9 +29,9 @@ def signup(request):        # 회원가입 뷰
         password = request.POST.get('pw', None)
         person_name = request.POST.get('name', None)
         email = request.POST.get('email', None)
-        phone_number = request.POST.get('phone_number', None)
+        phone_number = request.POST.get('mobileInp', None)
         user_address = request.POST.get('user_address', None)
-        user_address_detail = request.POST.get('user_address_detail', None)
+        user_address_detail = request.POST.get('user_detail_address', None)
         birthday_year = request.POST.get('year', None)
         birthday_month = request.POST.get('month', None)
         birthday_day = request.POST.get('day', None)
@@ -59,7 +59,7 @@ def signup(request):        # 회원가입 뷰
                          password=make_password(password),
                          email=email,
                          is_active=False)
-
+        user.save()     # 유저 저장
         user_info = Profile(user=user,
                             email=email,
                             person_name=person_name,
@@ -67,14 +67,16 @@ def signup(request):        # 회원가입 뷰
                             home_address=home_address,
                             birthday=birthday,
                             age=age)
-        user.save()
-        user_info.save()
+        user_info.save()        # 프로필 저장
         # 이메일 인증을 위한 추가 설정, 회원가입 완료 시 이메일 인증을 위한 이메일 전송
         current_site = get_current_site(request)
         message = render_to_string('accounts/activation_email.html',
                                    {
                                        'user': user,
                                        'domain': current_site.domain,
+                                       # force_bytes : 인자값을 bytes 로 변형, encode 인코딩
+                                       # user.pk = 57 -> force_bytes(user.pk) => b'57'
+                                       # urlsafe_base64_encode(force_bytes(user.pk)) => b'NTc'
                                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                                        'token': account_activation_token.make_token(user),
                                    })
@@ -270,7 +272,7 @@ def activate(request, uidb64, token):   # 이메일 인증 뷰 : 이메일 인�
         auth_login(request, user)
         return redirect("/")
     else:
-        return render(request, 'shop/main.html', {'error': '계정 활성화 오류'})
+        return render(request, 'main/main.html', {'error': '계정 활성화 오류'})
     return
 
 

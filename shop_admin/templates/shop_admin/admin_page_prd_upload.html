@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{% static 'shop_admin/css/admin_common.css' %}">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="{% static 'shop_admin/js/admin_common.js' %}"></script>
+  <script src="{% static 'shop_admin/js/admin_prd_uploads.js' %}"></script>
   <script>
         function chkword_name(obj, maxByte){                      // 상품명 글자수 제한 두기
             var strValue = obj.value;         //strValue : 글자수 값을 저장하기 위한 변수
@@ -37,8 +38,8 @@
             }
 
             if(totalByte > maxByte){                      // 맥스값보다 글자수가 초과되면 알림후에 뒷글자 자르기
-                alert(maxByte + "자를 초과 입력 할 수 없습니다.");      
-                str2 = strValue.substr(0, len);               
+                alert(maxByte + "자를 초과 입력 할 수 없습니다.");
+                str2 = strValue.substr(0, len);
                 obj.value = str2;
                 chkword_name(obj, 4000);
             }
@@ -118,9 +119,8 @@
 
 
 
-      
+
   </script>
-  <script src="{% static 'shop_admin/js/admin_prd_uploads.js' %}"></script>
 </head>
 <body>
 
@@ -137,32 +137,32 @@
 
 
 
-    <div id="main">
+     <div id="main">
       <div id="content">
         <div class="page_aticle aticle_type2">
           <div id="snb" class="snb_my">
-                      <h2 class="tit_snb">관리자 메뉴</h2>
-                      <div class="inner_snb">
-                        <ul class="list_menu">
-                          <li>
-                            <a href="#">상품 등록</a>
-                          </li>
-                          <li>
-                            <a href="{% url 'shop_admin:product_manage' %}">상품 관리</a>
-                          </li>
-                          <li>
-                            <a href="{% url 'shop_admin:product_order' %}">주문 관리</a>
-                          </li>
-                          <li>
-                            <a href="#">후기 관리</a>
-                          </li>
-                          <li>
-                            <a href="#">1:1문의 관리</a>
-                          </li>
+            <h2 class="tit_snb">관리자 메뉴</h2>
+            <div class="inner_snb">
+              <ul class="list_menu">
+                <li>
+                  <a href="#">상품 등록</a>
+                </li>
+                <li>
+                  <a href="{% url 'shop_admin:product_manage' %}">상품 관리</a>
+                </li>
+                <li>
+                  <a href="{% url 'shop_admin:product_order' %}">주문 관리</a>
+                </li>
+                <li>
+                  <a href="#">후기 관리</a>
+                </li>
+                <li>
+                  <a href="#">1:1문의 관리</a>
+                </li>
 
-                        </ul>
-                      </div>
-                    </div>
+              </ul>
+            </div>
+          </div>
 
           <div id="viewOrderList" class="page_section section_orderlist">
             <div class="head_aticle">
@@ -170,20 +170,20 @@
                 상품 등록
               </h2>
               <span class="cManual">
-                <a href="{% url 'shop_admin:product_manual' %}">메뉴얼</a>
+                <a href="#">매뉴얼</a>
               </span>
             </div>
 
             <div class="list_order">
-              <form action="" method="POST" enctype="multipart/form-data" class="">
+              <form action="" method="post" enctype="multipart/form-data" class="">
                   {% csrf_token %}
                 <div class="size">
                   <div class="p_board">
-                    <table width="100%"> 
+                    <table width="100%">
                         <tbody>
                             <tr>
                                 <th >상품명</th>
-                                <td colspan="2"> 
+                                <td colspan="2">
                                     <div>
                                         <span>
                                             <input type="text" name="product_name" class="i_text text1" onkeyup="chkword_name(this, 80)">
@@ -203,7 +203,7 @@
                                         <span>
                                             <input type="text" class="i_text text2" name="product_introduce" onkeyup="chkword_introduce(this, 150)">
                                         </span>
-                                        
+
                                     </div>
                                     <span class="txtByte" title="현재글자수/최대글자수">
                                       [
@@ -249,7 +249,7 @@
                                             <input type="number" name="product_count" class="i_text num1" placeholder="0">
                                         </span>
                                     </div>
-                                    
+
                                 </td>
                             </tr>
                             <tr>
@@ -353,8 +353,8 @@
                                                     <option value="C">-김·미역·해조류</option>
                                                     <option value="C">-건어물·다시팩</option>
                                                 </optgroup>
-                                                
-                
+
+
                                               </select>
                                         </span>
                                     </div>
@@ -370,7 +370,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            
+
 
                             <tr>
                                 <th>안내사항</th>
@@ -387,26 +387,27 @@
                                     </span>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <th>이미지</th>
                                 <td class="img_upload">
                                     <div>
                                         <span>대표 이미지</span>
-                                    
+
                                         <div class="image_box">
 
-                                        
+
                                             <div class="image_add">
-                                                
+
+
                                                 <input type="file" name="product_main_image" accept="image/*" id="image_input" onchange="set_image(event);">
                                                 <button type="button" class="image_input_button"></button>
                                                 <div id="image_container"></div>
 
                                                 <!--  이미지 업로드하면 미리보기 썸네일 나오기-->
-                                                <script>  
+                                                <script>
                                                     function set_image(){
-                                                        
+
                                                         var reader = new FileReader();
 
                                                         reader.onload = function(event) {
@@ -420,12 +421,13 @@
 
                                                 </script>
 
-                                                
+
 
                                                 <button type="button" class="re_upload">
                                                     <span>
                                                         수정
-                                                    </span></button>
+                                                    </span>
+                                                </button>
                                                 <button type="button" class="remove">
                                                     <span>
                                                         삭제

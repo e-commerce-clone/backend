@@ -12,12 +12,23 @@
     <link rel="stylesheet" href="{% static 'shop_admin/css/admin_page_prd_manage.css' %}">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="{% static 'shop_admin/js/admin_common.js' %}"></script>
+    <script src="{% static 'shop_admin/js/admin_prd_manage.js' %}"></script>
     <script>
         function popup(id){
             var url = "product_modify/"+ id;
             var name = "popup test";
             var option = "width = 850, height = 850, top = 400, left = 400, location = no"
             window.open(url, name, option);
+        }
+
+        function prd_delete(){
+            if (confirm("정말 삭제하시겠습니까??") == true){
+                return true;
+
+            }else{
+                return false;
+
+            }
         }
     </script>
 </head>
@@ -26,7 +37,7 @@
 
 
 
-        <div id="main">
+         <div id="main">
             <div id="content">
                 <div class="page_aticle aticle_type2">
                     <div id="snb" class="snb_my">
@@ -48,11 +59,11 @@
                           <li>
                             <a href="#">1:1문의 관리</a>
                           </li>
-          
+
                         </ul>
                       </div>
                     </div>
-          
+
                     <div id="viewOrderList" class="page_section section_destination">
                       <div class="head_aticle">
                         <h2 class="tit">
@@ -62,59 +73,75 @@
 
 
                       <div id="tblParent" class="type_select">
-                          <table class="tbl tbl_type1">
-                            <thead>
-                                <tr>
-                                    <th class="tit_select">선택</th>
-                                    <th class="tit_address">상품명</th>
-                                    <th class="tit_receive">가격</th>
-                                    <th class="tit_phone">남은 수량</th>
-                                    <th class="tit_delivery">배송유형</th>
-                                    <th class="tit_modify">수정</th>
-                                    <th class="tit_modify">삭제</th>
-                                </tr>
-                            </thead>
-                            <tbody id="addrList">
-                            {% for product in products %}
-                                <tr>
-                                    <td class="select type_radio">
-                                        <label class="skin_checkbox">
-                                            <input type="radio" name="addrNo" checked>
-                                            <span class="ico"></span>
-                                            <span class="screen_out">선택하기</span>
-                                        </label>
-                                    </td>
-                                    <td class="address">
-                                        
-                                        <p class="addr">
-                                            {{ product.name }}
-                                        </p>
-                                    </td>
-                                    <td class="name">
-                                        <span>{{ product.price | intcomma }}원</span>
-                                    </td>
-                                    <td class="phone">
-                                        <span>{{ product.stock }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="delivery star">{{ product.delivery }}</span>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="ico modify" onclick="popup({{ product.id }})" target = "_blank">수정하기</button>
-                                    </td>
-                                    <td class="delete_position">
-                                        <button type="button"  class="product_delete">삭제하기</button>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                                
-                            </tbody>
-                            
-                          </table>
+                          <form action="" method="POST" onsubmit="return prd_delete();">
+                              {% csrf_token %}
+                              <table class="tbl tbl_type1">
+                                <thead>
+                                    <tr>
+                                        <th class="tit_select">번호</th>
+                                        <th class="tit_address">상품명</th>
+                                        <th class="tit_receive">가격</th>
+                                        <th class="tit_phone">남은 수량</th>
+                                        <th class="tit_delivery">배송유형</th>
+                                        <th class="tit_modify">수정</th>
+                                        <th class="tit_modify">삭제</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="addrList">
+                                    {% for product in products %}
+                                        <tr>
+                                            <td class="select type_radio">
+                                                <label class="skin_checkbox">
+                                                    <input type="radio" name="addrNo" checked>
+                                                    <span class="ico"></span>
+                                                    <span class="screen_out">선택하기</span>
+                                                </label>
+                                            </td>
+                                            <td class="address">
+
+                                                <p class="addr">
+                                                    {{ product.name }}
+                                                </p>
+                                            </td>
+                                            <td class="name">
+                                                <span>{{ product.price | intcomma }}원</span>
+                                            </td>
+                                            <td class="phone">
+                                                <span>{{ product.stock }}</span>
+                                            </td>
+                                            <td>
+                                                <span class="delivery star">{{ product.delivery }}</span>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="ico modify" onclick="popup({{ product.id }})" target = "_blank">수정하기</button>
+                                            </td>
+                                            <input type="hidden" value="{{ product.id }}" name="delete">
+                                            <input type="text" style="display:none;"/>
+                                            <td class="delete_position">
+                                                <button type="submit" class="product_delete">삭제하기</button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
+
+
+                                </tbody>
+
+                              </table>
+                          </form>
                       </div>
-          
-                      
+
+
+
+                      <div class="no_data">
+                          상품이 없습니다.
+                      </div>
+
+
                     </div>
+
+
+
           
                   </div>
 

@@ -19,6 +19,7 @@ function enterkey(){ /* 엔터 누를 시 로그인 수행 */
         check_input();
     }
 }
+
 function show_alert(err){
     if (err==0){
         alert("계정 활성화를 위한 이메일 인증이 필요합니다.");
@@ -26,10 +27,6 @@ function show_alert(err){
     }
     if (err==1){
         alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-        return;
-    }
-    if (err==2){
-        alert("회원정보를 정확히 입력해주세요.");
         return;
     }
     

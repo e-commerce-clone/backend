@@ -2,7 +2,7 @@
 
 @charset "utf-8";
 
-/* 로그인 */
+/* 로그인 클래스 추가 /삭제 */
 /* 로그인: #top_event */
 #top_event .inner_top_event.login {
     display: none;
@@ -155,19 +155,20 @@
     white-space: nowrap;
 }
 
-/**/
+
 .sign_menu.login .link:nth-child(2):hover .sub{
     display: block;
     z-index: 200;
 }
-
-
 /* 로그인: sign_menu 끝 */
+
+
+
 
 
 /* header, footer */
 #wrap {
-    min-width: 1050px;
+    min-width: 1050px; /*고정 width 값으로 변경할 경우 min-width로 설정했던 모든 코드들이 쓸모없어져버림. >> 다른 방법 찾아야 함!*/
     min-height: 100%;
     /* 임시 height 값 */
     margin: 0 auto;
@@ -580,7 +581,7 @@
     padding: 20px 18px 19px 20px;
     border: 1px solid #ddd;
     background-color: #fff;
-    /* z-index: ; */
+    z-index: 100;
     font-weight: 700;
     font-size: 16px;
     color: #333;
@@ -590,14 +591,11 @@
 .gnb .location_notice::after {
     position: absolute;
     content: '';
-    top: -11px;
-    right: 19px;
-    border-top: 0 solid transparent;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 10px solid #ddd;
-    background-color: #fff;
-    z-index: 100;
+    top: -50px;
+    right: 9px;
+    width: 36px;
+    height: 50px;
+    background: url(https://res.kurly.com/pc/ico/2011/ico_point_up_18x12.svg) no-repeat 50% 100%;
 }
 /* /* border가 색자체가 돼서 나중에 변경 예정 * */
 
@@ -607,7 +605,9 @@
 .gnb .location_login:hover .location_notice {
     display: block;
 }
-/* 포인터가 영역을 벗어나면 notice가 바로 사라져버림 */
+/* 포인터가 영역을 벗어나면 notice가 바로 사라져버림 
+>> z-index 추가해서 수정 완료*/
+/* js로 location_login에 3초간 active 붙게 설정*/
 
 .gnb .location_notice .emph {
     color: #5f0080;

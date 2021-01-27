@@ -13,6 +13,9 @@
     <!-- header 에서 보라색 창 X 누르면 사라지는 기능 js -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="{% static 'js/common.js' %}"></script>
+    <script src="{% static 'js/search_addr.js' %}"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 
 
     <title>{% block title %}{% endblock %}</title>
@@ -43,7 +46,9 @@
                     alt="서울, 경기, 인천 샛별배송, 수도권 이외 지역 택배배송"
                     class="bnr_delivery_img">
                 </a>
-                
+
+
+
                 {% if user.is_authenticated %}    <!-- 로그인 상태일 때 -->  
                 <ul class="sign_menu login">                             <!--login class 추가-->
                     <li class="link"> <!-- 회원가입, 로그인은 클래스에 의해 사라지고 고객명과 고객센터 표시(후버 정상)-->
@@ -182,7 +187,7 @@
                                                 클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
                                             </span>
                                             <span class="tit">
-                                                <span class="txt">테스트1</span>
+                                                <span class="txt">제품 리스트</span>
                                                 <span class="ico_new" alt="new"></span>
                                                 <!-- ico_nex: bg url로 처리 -->
                                             </span>
@@ -198,7 +203,7 @@
                                                                                         클릭X(off): 기본, 클릭(on): 보라색 아이콘-->
                                             </span>
                                             <span class="tit">
-                                                <span class="txt">테스트2</span>
+                                                <span class="txt">제품 관리자</span>
                                             </span>
                                         </a>
                                     </li>
@@ -379,8 +384,8 @@
                                 <span class="emph">배송지를 등록</span>하고<br>
                                 <span class="txt">구매가능한 상품을 확인하세요!</span>
                                 <div class="group_button">
-                                    <button type="button" class="btn login">로그인</button>
-                                    <button type="button" class="btn search_address">
+                                    <a href="{% url 'accounts:login' %}" type="button" class="btn login" >로그인</a>
+                                    <button type="button" id="juso" class="btn search_address">
                                         <span class="ico"></span>
                                         주소검색
                                     </button>
