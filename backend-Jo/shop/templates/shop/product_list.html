@@ -15,21 +15,6 @@
 </head>
 <body class="noBody">
     <div id="container" class="container">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div id="main">
             <div id="content">
                 <div class="page_aticle">
@@ -121,9 +106,8 @@
 
                         <div class="list_goods">
                             <div class="inner_listgoods">
-                                <ul class="list">                                   <!-- 여기서 부터 물건 리스트-->
-
-                                    {% for photo in photos %}
+                                    <ul class="list">
+                                        {% for photo in photos %}     <!-- 여기서 부터 물건 리스트-->
                                         <li>
                                             <div class="item">
                                                 <div class="thumb">
@@ -144,7 +128,7 @@
                                                     </span>
 
                                                     <div class="group_btn">
-                                                        <button type="button" name="chk" class="btn btn_cart">
+                                                        <button type="submit" value={{ photo.id }} name="chk" class="btn btn_cart">
                                                             <span class="screen_out">38300</span>
                                                         </button>
                                                     </div>
@@ -203,58 +187,18 @@
 
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-
                 <div class="bg_loading" id="bgLoading">
                     <div class="loading_show"></div>
                 </div>
-
-
-
-
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
-
-
 
     <div id="cartPut">
         <div class="cart_option cart_type3" style="opacity: 1;">
-            <form action="" method="POST">
+            <form action="" method="POST" id="contactsForm">
                 {% csrf_token %}
                 <div class="inner_option">
                     <div class="in_option">
@@ -306,7 +250,7 @@
                             <button type="button" class="txt_type">취소</button>
                         </span>
                         <span class="btn_type1">
-                            <button type="submit" class="txt_type">장바구니 담기</button>
+                            <button type="submit" value=1 name="product_id" class="txt_type">장바구니 담기</button>
                         </span>
                     </div>
                 </div>

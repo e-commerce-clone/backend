@@ -23,12 +23,12 @@ def add_cart(request, image_id):
 
     try:
         cart_item = CartItem.objects.get(photo=photo, cart=cart)
-        cart_item.quantity += int(request.POST['count'])
+        cart_item.quantity += int(request.POST.get('count'))
         cart_item.save()
     except CartItem.DoesNotExist:
         cart_item = CartItem.objects.create(
             photo = photo,
-            quantity = request.POST['count'],
+            quantity = int(request.POST.get('count')),
             cart = cart
         )
         cart_item.save()
@@ -62,7 +62,9 @@ def cart_detail(request, total=0, ship_price=3000, payment_amount=0, counter=0, 
         for cart_item in cart_items:
             total += (cart_item.photo.product.price * cart_item.quantity)
             counter += cart_item.quantity
-        if total >= 40000:
+        if counter == 0:
+            ship_price = 0
+        elif total >= 40000:
             ship_price = 0
         payment_amount = total + ship_price
     except ObjectDoesNotExist:
@@ -70,10 +72,3 @@ def cart_detail(request, total=0, ship_price=3000, payment_amount=0, counter=0, 
 
     return render(request, 'cart/cart_item.html', dict(cart_items = cart_items, total = total, ship_price = ship_price,
                                                        payment_amount = payment_amount, counter=counter))
-"""
-    cart = Cart(request)
-    for product in cart:
-        product['quantity_form'] = AddProductForm(initial={'quantity':product['quantity'],
-                                                           'is_update':True})
-    return render(request, 'cart/cart.html', {'cart':cart})
-"""

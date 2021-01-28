@@ -13,6 +13,7 @@ window.addEventListener('DOMContentLoaded',function(){
         var product_price = [];       //썸네일 가격 변수 리스트
         var product_cost = [];        //상품 수량변경할떄 쓰는 가격 변수 리스트
 
+        var product_id = [];
 
         for(i=0; i < 13; i++){
             product_name[i] = $('li:nth-child('+ i +') .name').text();    //포문으로 리스트 에다가 값을 대입함
@@ -21,6 +22,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
             product_cost[i] = $(' li:nth-child('+ i +') input').val();
 
+            product_id[i] = $('li:nth-child('+ i +') .btn_cart').val();
         }
 
 
@@ -39,6 +41,9 @@ window.addEventListener('DOMContentLoaded',function(){
             $('.count_num').text(i);
             noBody.addClass('noBody_on');
 
+            btn_val = product_id[i];
+            $('#cartPut .btn_type1 .txt_type').val(btn_val);
+            console.log(btn_val);
 
 
             var number = $('.inp').val();   //수량
@@ -81,7 +86,6 @@ window.addEventListener('DOMContentLoaded',function(){
 
 
             });
-
 
 
             $('.up').click(function(){
@@ -243,7 +247,6 @@ window.addEventListener('DOMContentLoaded',function(){
 
 
 
-
         $('.name_select').click(function(){
             $(".checked").toggle(function(){
                 $('.name_select').css('color', '#5f0080');
@@ -253,38 +256,11 @@ window.addEventListener('DOMContentLoaded',function(){
 
 
 
-        $('.btn_type1 .txt_type').click(function(){
 
 
 
 
-            product_name = $('#cartPut .list_goods .name');
-            console.log(product_name.text());
 
-            $.ajax({
-              type: "GET",
-              url: "./id_check?id="+product_name,    //해당 url로 데이터를 넘김
-              data: {
-                'username': $('#cartPut .list_goods .name').text()
-              },
-              datatype: 'json',
-              success: function (data) {
-                console.log(data['overlap']);
-                if (data['overlap'] == "fail") {
-                  console.log('성공');
-                  return;
-                } else {
-                  console.log('성공');
-                  return;
-                }
-              }
-            });
-        });
-
-
-
-
-        
 
 
 

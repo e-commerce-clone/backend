@@ -51,6 +51,8 @@ class Product(models.Model):
     created_at = models.DateTimeField('생성 시간', auto_now_add=True)
     updated_at = models.DateTimeField('갱신 시간', auto_now=True)
 
+    p_id = models.PositiveIntegerField('아이디', null=True)
+
     class Meta:
         ordering = ['-created_at', '-updated_at']
 

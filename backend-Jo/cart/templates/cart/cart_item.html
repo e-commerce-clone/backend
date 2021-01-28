@@ -45,7 +45,7 @@
                                             <span class="selling">{{ cart_item.sub_total | intcomma }}<span class="won">원</span></span><p class="noti"></p></div>
                                             <div class="stamper count">
                                                 <button type="button" class="btn minus off" data-item-id="c7b3a4e1-4517-416c-9b3e-d41c0e7592f2" data-item-no="65810" data-opt="decrease">감소</button>
-                                                <input type="number" id="stepperCounter" class="num" readonly="" value={{ cart_item.quantity }}>
+                                                <input type="text" id="stepperCounter" class="num" readonly="" value={{ cart_item.quantity }}>
                                                 <button type="button" class="btn plus" data-item-id="c7b3a4e1-4517-416c-9b3e-d41c0e7592f2" data-item-no="65810" data-opt="increase">추가</button></div></div></div>
                                                 <button type="button" class="btn_delete" data-item-id="c7b3a4e1-4517-416c-9b3e-d41c0e7592f2" data-item-no="65810" data-type="cold">상품 삭제</button></div></li>
                             {% endfor %}

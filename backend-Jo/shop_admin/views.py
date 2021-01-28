@@ -59,6 +59,9 @@ def prd_upload(request):
         product.save()
         photo = Photo(product=product, main_image=main_image, sub_image=sub_image)
         photo.save()
+        product.p_id = photo.id
+        product.save()
+
 
         return redirect(reverse('shop_admin:product_manage'))
     return render(request, 'shop_admin/admin_page_prd_upload.html')
