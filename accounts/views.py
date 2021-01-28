@@ -88,17 +88,40 @@ def signup(request):        # 회원가입 뷰
 
 
 def login(request):     # 로그인 뷰 : django auth login
+    template="accounts/login.html"
+
     if request.method == "POST":
-        name = request.POST.get('username')
-        pwd = request.POST.get('password')
+        name = request.POST.get('username') # id
+        pwd = request.POST.get('password') # pw
         user = authenticate(username=name, password=pwd)
-        if user is not None:
-            auth_login(request, user)
-            return redirect("/")
-        else:
-            messages.warning(request, "아이디 또는 비밀번호가 틀렸습니다.")
-            return render(request, "accounts/login.html")
-    return render(request, "accounts/login.html")
+        try:
+            check_user = auth_User.objects.get(username=name)
+        except: # 정보 부정확.
+            return render(request, template)
+
+        if check_user is not None: # 계정이 있을 경우
+            if (check_user.is_active == True): # 계정 활성화일 경우
+                try : # 로그인 가능
+                    auth_login(request, user) # login 수행
+                    info = auth_User.objects.get(username=name)
+                    email = info.email
+                    person = Profile.objects.get(email=email)
+                    person_name=person.person_name
+                    data = {
+                        'm_name':person_name,
+                    }
+                    return render(request, "main/main.html", data)
+                except: # 아이디 비밀번호 불일치일 경우
+                    error=1
+                    data={'error':error,}
+                    print(error,'아이디 비번 불일치')
+                    return render(request, template,data)
+            elif (check_user.is_active == False): # 계정 활성화 아닐 경우
+                error=0
+                data={'error':error,}
+                print(error,'계정활성화 필요')
+                return render(request,template,data)
+    return render(request, template)
 
 
 def logout(request):    # 로그아웃 뷰 : django auth logout
@@ -159,10 +182,9 @@ def findpwok(request):
 
 def findpwemail(request, email):
     if request.method == "GET":
-        # 인증번호 생성 후 이메일 발송
-        def email_auth_num():   # 인증번호 생성 메소드
+        def email_auth_num():
             LENGTH = 6
-            string_pool = string.ascii_letters + string.digits
+            string_pool = string.digits # 번호만
             certification_number = ""
             for i in range(LENGTH):
                 certification_number += random.choice(string_pool)
@@ -181,9 +203,8 @@ def findpwemail(request, email):
         mail_to = email
         email = EmailMessage(mail_title, message, to=[mail_to])
         email.send()
-        # -------------------------------------------------------------------
-        # print(f"인증번호:{certification_number}, 이메일:{mail_to}, 메일이름:{mail_title}")
-        return render(request, 'accounts/find_pw_email.html', data)
+        print(f"인증번호:{certification_number}, 이메일:{mail_to}, 메일이름:{mail_title}")
+        return render(request, 'accounts/find_pw_email.html', data) # data도 같이 보냄.
     return render(request, 'accounts/find_pw_email.html')
 
 
