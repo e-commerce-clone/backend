@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     "localhost",
     ".ap-northeast-2.compute.amazonaws.com",
     ".inukurly.shop",
+    "127.0.0.1",
 ]
 
 

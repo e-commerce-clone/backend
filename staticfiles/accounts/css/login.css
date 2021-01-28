@@ -127,12 +127,13 @@
     padding-bottom: 14px;
     font-weight: 700;
     font-size: 20px;
-    color: #302606;
+    color: #240630;
     line-height: 29px;
 }
 
 .btn_type1 .txt_type, .btn_type2 .txt_type {
     display: inline-block;
+    color:#640a70;
     height: 100%;
     width:100%;
     font-weight: 500;
@@ -142,20 +143,20 @@
 }
 
 .btn_type1{
-    border:1px solid #5F4C0B;
-    background-color: #5F4C0B;
+    border:1px solid #550b5f;
+    background-color: #550b5f;
     width:100%;
 }
 .btn_type1 .txt_type{
     color:#fff;
 }
 .btn_type2{
-    border:1px solid #5F4C0B;
+    border:1px solid #550b5f;
     background-color: #fff;
     width:100%;
 }
 .btn_type2 .txt_type{
-    color:#5F4C0B;
+    color:#550b5f;
 }
 .btn_type1, .btn_type2{
     display:block;
