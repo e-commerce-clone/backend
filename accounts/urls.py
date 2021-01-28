@@ -4,6 +4,7 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
     path('signup/', views.signup, name="signup"),
     path('signup/id_check', views.id_overlap_check, name="id_overlap_check"),
     path('signup/email_check', views.email_overlap_check, name="email_overlap_check"),
