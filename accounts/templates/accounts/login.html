@@ -9,12 +9,19 @@
     <link rel="stylesheet"  href="{% static 'accounts/css/bootstrap.min.css' %}">
     <link rel="stylesheet"  href="{% static 'accounts/css/login.css' %}">
     <link rel="stylesheet"  href="{% static 'accounts/css/normalize.css' %}">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="{% static 'accounts/js/login.js' %}"></script>
 
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>e-commerce</title>
 </head>
 
     <body>
-
+        {% if error >= 0 %}
+        <script>
+            var err = "{{ error }}";
+            show_alert(err);
+        </script>
+        {% endif %}
         <div id="content">
             <div class="section_login">
                 <h3 class="tit_login">LOGIN</h3>
@@ -23,19 +30,12 @@
                         <form method="post" name="login_form" id="form" onsubmit="return checkReCaptcha();"
                          action="{% url 'accounts:login' %}">
                             {% csrf_token %}
-
+                            <input type="hidden" name="ck" id="ck" value="true">
                             <input type="hidden" name="returnUrl" value="">
                             <input type="hidden" name="close" value>
-                            {% if messages %}
-                                {% for message in messages %}
-                                <div class="alert alert-{{message.tags}}">
-                                    {{message.message}}
-                                </div>
-                                {% endfor %}
-                            {% endif %}
                             <input type="text" name="username" id="username" size="20" tabindex="1"
                             value="{{ form.username.value|default_if_none:'' }}" placeholder="아이디 입력">
-                            <input type="password" name="password" id="password" size="20" tabindex="2"
+                            <input onkeyup="enterkey();" type="password" name="password" id="password" size="20" tabindex="2"
                             value="{{ form.password.value|default_if_none:'' }}" placeholder="비밀번호 입력">
                             <div class="checkbox_save">
                                 <label class="label_checkbox checked">
@@ -63,30 +63,7 @@
                 </div>
             </div>
         </div>
-        <script>
 
-
-
-
-            function check_input(){
-                if (!document.login_form.username.value){
-                    alert("아이디를 입력하세요");
-                    document.login_form.username.focus();
-                    return;
-                }
-                if (!document.login_form.password.value){
-                    alert("비밀번호를 입력하세요");
-                    document.login_form.password.focus();
-                    return;
-                }
-
-                document.login_form.submit();
-
-            }
-
-
-
-        </script>
     </body>
 
 {% endblock %}
