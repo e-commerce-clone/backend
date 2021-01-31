@@ -48,7 +48,7 @@
     position: relative;
     padding: 0 0 3px 22px;
     font-size: 13px;
-    line-height: 20px;
+    line-height: 20px;    
 }
 .section_login .label_checkbox.checked:before {
     background: url(
@@ -127,13 +127,12 @@
     padding-bottom: 14px;
     font-weight: 700;
     font-size: 20px;
-    color: #240630;
+    color: #302606;
     line-height: 29px;
 }
 
 .btn_type1 .txt_type, .btn_type2 .txt_type {
     display: inline-block;
-    color:#640a70;
     height: 100%;
     width:100%;
     font-weight: 500;
@@ -143,20 +142,20 @@
 }
 
 .btn_type1{
-    border:1px solid #550b5f;
-    background-color: #550b5f;
+    border: 1px solid #5f0081;
+    background-color: #5f0080;
     width:100%;
 }
 .btn_type1 .txt_type{
     color:#fff;
 }
 .btn_type2{
-    border:1px solid #550b5f;
+    border:1px solid #5F4C0B;
     background-color: #fff;
     width:100%;
 }
 .btn_type2 .txt_type{
-    color:#550b5f;
+    color:#5F4C0B;
 }
 .btn_type1, .btn_type2{
     display:block;
@@ -209,4 +208,22 @@ body, input, select, textarea, button{
 }
 img, video, canvas {
     max-width: 100%;
+}
+
+.square .txt{
+    display:block;
+}
+
+.square .txt:before {
+    content: '\2022';
+    display: inline-block;
+    padding: 0 4px 0 2px;
+    font-size: 12px;
+    vertical-align: 0;
+}
+
+.square{
+    line-height: 18px;
+    font-size:12px;
+    display:none;
 }
