@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, viewport-fit=cover">
+    <title>회원가입-모바일</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'accounts/css/mobile_join.css' %}">
+    <script src="{% static 'accounts/js/mobile_join.js' %}"></script>
+
+    <script>
+        function init(){
+            var a = $('#my_iframe').contents().find('#someID').html();
+            $('#user_address').text(a);
+            $('#user_address').val(a);
+
+
+            var b = $('#my_iframe').contents().find('#someID2').html();
+            $('#user_detail_address').text(b);
+            $('#user_detail_address').val(b);
+        }
+    </script>
+
+
+    <script>
+        function id_check(){
+            var id = $(".field_id input").val();             // 변수 id에  id값 대입
+
+            // var num = /[0-9]/;
+            // var eng = /[a-zA-Z]/;
+            var spe = /[~!@#$%^&*()_+|<>?:{}]/;         
+    
+
+
+            if(id.length < 6){                     //만약에 id의 길이가 6보다 작으면
+                $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
+            }else if(spe.test(id) == 1){    //spe.test(id) --> id안에 특수문자가 있으면 true반환 없으면 false반환
+                $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
+            }else{          // 모든 조건이 일치하지 않다면  
+                $(".field_id .txt_guide .txt_case1").css('color', '#0f851a');  //글자색 초록색으로 변경
+            }
+        }
+
+        function pw_check(){
+            var pw = $(".field_pw input").val();                   // 변수 pw에 pw값 대입
+
+            var num = /[0-9]/;
+            var eng = /[a-zA-Z]/;
+            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+        
+
+
+            if(pw.length < 10){                                  //pw의 길이가 10 이하일 때
+                $(".field_pw .txt_guide .txt_case1").css('color', '#b3130b');
+            }
+
+            if(pw.length >= 10){                                  //pw의 길이가 10 이상일 때
+                $(".field_pw .txt_guide .txt_case1").css('color', '#0f851a'); 
+            }
+
+            if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){    // pw의 숫자가 없거나 , 영어가 없거나, 특수문자가 없을경우 실패
+                $(".field_pw .txt_guide .txt_case2").css('color', '#b3130b');
+            }
+            
+
+            if(num.test(pw) == 1 && eng.test(pw) == 1 && spe.test(pw) == 1){ // pw의 숫자,영어,특수문자가 1개이상씩 있을경우 성공
+                $(".field_pw .txt_guide .txt_case2").css('color', '#0f851a');
+            }
+
+        }
+
+
+
+        function pw2_check(){
+            var pwd1 = $(".field_pw input").val(); 
+            var pwd2 = $(".field_repw input").val();
+
+            if ( pwd1 != '' && pwd2 == '' ) {          //둘다 빈칸일 경우 아무것도 하지 않음
+                null;
+            } else if (pwd1 != "" || pwd2 != "") {     // 빈칸이 아닐 경우
+                if (pwd1 == pwd2) {                    // 비교해서 같으면
+                    $(".field_repw .txt_guide .txt_case1").css('color', '#0f851a');                 
+                    $(".field_repw .txt_guide .txt_case1").text("비밀번호가 동일합니다.");
+            
+                
+                } else {        // 비교해서 같지 않으면
+                    $(".field_repw .txt_guide .txt_case1").css('color', '#b3130b');
+                    $(".field_repw .txt_guide .txt_case1").text("비밀번호가 일치하지 않습니다.");
+                
+                
+                }
+            }
+
+
+
+        }
+
+
+
+
+
+
+    </script>
+
+
+
+    <script>
+        // onsubmit 관련된 코드짜기      
+
+        function on_id_check(){          //id 검사 함수
+            var id = $(".field_id input").val();
+            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+            if(id.length < 6){
+            alert('아이디를 정확히 입력해주세요');
+            return false;
+            }else if(spe.test(id) == 1){
+
+            alert('아이디를 정확히 입력해주세요');
+            return false;
+            }
+            else{
+            
+            return true;
+            }
+        }
+
+        function on_pw_check(){           //비밀번호 검사 함수
+            var pw = $(".field_pw input").val();
+            var num = /[0-9]/;
+            var eng = /[a-zA-Z]/;
+            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+            if(pw.length < 10){
+            
+            alert('비밀번호를 정확히 입력해주세요');
+            return false;
+            }else if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){
+            
+            alert('비밀번호를 정확히 입력해주세요');
+            return false;
+            }
+            else{
+            
+            return true;
+            }
+        }
+
+        function on_pw2_check(){           //비밀번호 확인 검사 함수
+            var pw = $(".field_pw input").val();
+            var pw2 = $(".field_repw input").val();
+            if(pw2.length == 0){
+            
+            alert('비밀번호 확인을 다시해주세요');
+            return false;
+            }else if(pw != pw2){
+            
+            alert('비밀번호 확인을 다시해주세요');
+            return false;
+            }
+            else{
+            
+            return true;
+            }
+        }
+
+        function on_name_check(){             //이름 검사 함수
+            var name = $(".field_name input").val();
+            if(name.length == 0){
+            
+            alert('이름을 입력해주세요');
+            return false;
+            }else{
+            
+            return true;
+            }
+        }
+
+        function on_email_check(){             //이메일 검사 함수
+            var email = $(".field_email input").val();
+            if(email.length == 0){
+            
+            alert('이메일을 정확히 입력해주세요');
+            return false;
+            }else{
+            
+            return true;
+            }
+        }
+
+
+
+
+        function on_submit_check(){               // fomr에 onsubmit으로 최종적으로 넘겨야될 함수
+            
+            var check = false;                   //check변수에 false를 넣어주고 다른 함수들이 false를 반환하면 다음페이지로 못넘어가게 설정
+            if(on_id_check() == check){
+            return false;
+            }else if(on_pw_check() == check){
+            return false;
+            }else if(on_pw2_check() == check){
+            return false;
+            }else if(on_name_check() == check){
+            return false;
+            }else if(on_email_check() == check){
+            return false;
+            }
+            else{
+            return true;
+            }
+        }
+
+        
+        
+    </script>
+</head>
+<body>
+    <div id="wrap" class="layout-main-wrapper no_relative" style="padding-top: 49px; ">
+        <header id="header" class="header" style="top: 0px;">
+            <h1 class="logo">
+                <span class="tit">회원가입</span>
+            </h1>
+            <a href="#" class="link_back" role="button">
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            <div class="header_shortcut">
+                <a href="#" class="cart_count" role="button">
+                    <span class="screen_out">장바구니로 가기</span>
+                    <span class="num_count" id="cart_item_count"></span>
+                </a>
+            </div>
+        </header>
+
+
+        <div id="appStyle" class="user_form section_join">
+            <section class="layout-register-form" id="memberjoin">
+                <form id="form" action="" method="POST" onsubmit="return on_submit_check();">
+                    {% csrf_token %}
+                    <div class="user_reg">
+                        <div class="join_cell field_id">
+                            <div class="tit">
+                                아이디
+                                <span class="ico">
+                                    *
+                                    <span class="screen_out">필수항목</span>
+                                </span>
+                            </div>
+                            <div class="desc">
+                                <input type="text" name="id" size="13" maxlength="16" required="" placeholder="예 : marketkurly12" label="아이디" onkeyup="id_check()">
+                                <button type="button" class="btn default" >중복확인</button>
+                            </div>
+                            <p class="txt_guide">
+                                <span class="txt txt_case1">
+                                    6자 이상의 영문 혹은 영문과 숫자를 조합
+                                </span>
+                                <span class="txt txt_case2">
+                                    아이디 중복확인
+                                </span>
+                            </p>
+                        </div>
+
+
+                        <div class="join_cell field_pw">
+                            <div class="tit">
+                                비밀번호
+                                <span class="ico">
+                                    *
+                                    <span class="screen_out">필수항목</span>
+                                </span>
+                            </div>
+                            <div class="desc">
+                                <input type="password" name="pw" size="13" maxlength="16" required="" placeholder="비밀번호를 입력해주세요" label="비밀번호" onkeyup="pw_check()">
+                                <p class="txt_guide">
+                                    <span class="txt txt_case1">10자 이상 입력</span>
+                                    <span class="txt txt_case2">영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합</span>
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="join_cell field_repw">
+                            <div class="tit">
+                                비밀번호 확인
+                                <span class="ico">
+                                    *
+                                    <span class="screen_out">
+                                        필수항목
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="desc">
+                                <input type="password"  size="13" maxlength="16" required="" placeholder="비밀번호를 한번 더 입력해주세요" label="비밀번호 확인" onkeyup="pw2_check()">
+                                <p class="txt_guide">
+                                    <span class="txt txt_case1">동일한 비밀번호를 입력해주세요</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="join_cell field_name">
+                            <div class="tit">
+                                이름
+                                <span class="ico">
+                                    *
+                                    <span class="screen_out">
+                                        필수항목
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="desc">
+                                <input type="text" name="name" value="" size="13" maxlength="10" required="" placeholder="이름을 입력해주세요" label="이름">
+                            </div>
+                        </div>
+
+                        <div class="join_cell field_email">
+                            <div class="tit">
+                                이메일
+                                <span class="ico">
+                                    *
+                                    <span class="screen_out">
+                                        필수항목
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="desc">
+
+                                <input type="email" name="email" size="17" required="" placeholder="예: marketkurly@kurly.com" label="이메일">
+                                <button type="button" class="btn default" >중복확인</button>
+                            </div>
+                        </div>
+
+                        <div class="join_cell field_phone">
+                            <div class="tit">
+                                휴대폰
+                                <span class="ico">
+                                    *
+                                    <span class="screen_out">
+                                        필수항목
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="desc">
+                                <input type="text" value="" pattern="[0-9]*" name="phone_number" placeholder="숫자만 입력해주세요" class="inp">
+                            </div>
+                        </div>
+
+                        <div class="join_cell field_address">
+                            <div class="tit">
+                                주소
+                                <span class="ico">
+                                    *
+                                    <span class="screen_out">필수항목</span>
+                                </span>
+                            </div>
+
+                            <div class="desc">
+                                <a href="#none" id="addressSearch" class="search">
+                                    <p id="addressNo" class="address_no">도로명, 지번, 건물명 검색</p>
+                                    <div id="selectAddress">
+                                        <p id="addr"></p>
+                                        <p id="delivery"></p>
+                                    </div>
+                                </a>
+                                <div id="selectAddressSub">
+                                    <input type="text" id="user_address" name="user_address" placeholder="주소" readonly>
+                                    <input type="text"  id="user_detail_address" name="user_detail_address"  class="byteTotext" placeholder="나머지 주소를 입력해주세요">
+                                    
+                                    
+                                </div>
+                                <p class="txt">배송지에 따라 상품 정보가 달라질 수 있습니다.</p>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="join_cell field_birth">
+                            <div class="tit">
+                                생년월일
+                            </div>
+
+                            <div class="birth_day">
+                                <input type="number" pattern="[0-9]*" name="year" value="" size="4" maxlength="4"  placeholder="YYYY">
+                                <span class="bar">/</span>
+                                <input type="number" pattern="[0-9]*" name="month" value="" size="2" maxlength="2"  placeholder="MM" style="width:34%">
+                                <span class="bar">/</span>
+                                <input type="number" pattern="[0-9]*" name="day" value="" size="2" maxlength="2"  placeholder="DD">
+                            
+                            </div>
+                            
+                            <p class="txt_guide">
+                                <span class="txt"></span>
+                            </p>
+                        </div>
+
+                        
+
+
+
+
+                    </div>
+
+                    <div class="user_reg reg_agree">
+                        <div class="join_submit">
+                            <button type="submit" class="btn active">
+                                <span class="txt_type">
+                                    가입하기
+                                </span>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </section>
+        </div>
+            
+
+    </div>
+    
+
+
+
+    <div class="layout-layer-popup" style="display:none;">
+        <div class="layout-layer-popup-wrapper" style="padding: 0px; height: 95%;">
+            <div class="layout-layer-popup-container" style="width:95%; height: 100%; padding:0px">
+                <button class="btn_delivery_close" onclick="init()">확인</button>
+                <div class="layout-layer-popup-scroller address_scroll" >
+                    <iframe id="my_iframe" name="test1" src="{% url 'accounts:mobile_iframe' %}" frameborder="0" style="width: 100%; height:866px;"></iframe>  <!-- 주소 검색 iframe 주소 넣어줘야됌-->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

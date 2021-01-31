@@ -24,7 +24,7 @@
 }
 
 #top_event.login .inner_top_event.login {
-
+    
 }
 
 #top_event.login .inner_top_event .top_event_bnr.login {
@@ -53,7 +53,7 @@
 }
 
 .sign_menu.login .join,
-.sign_menu.login .login_none {
+.sign_menu.login .login_none { 
     display: none;
 }
 
@@ -605,7 +605,7 @@
 .gnb .location_login:hover .location_notice {
     display: block;
 }
-/* 포인터가 영역을 벗어나면 notice가 바로 사라져버림
+/* 포인터가 영역을 벗어나면 notice가 바로 사라져버림 
 >> z-index 추가해서 수정 완료*/
 /* js로 location_login에 3초간 active 붙게 설정*/
 

@@ -1,3 +1,4 @@
+/* 브라우저가 갖고 있는 기본 css 초기화 */
 @charset "utf-8";
 
 @font-face {
@@ -37,7 +38,7 @@
 
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,
 h6,form,fieldset,legend,input,button,
-textarea,p,blockquote,th,td,a {
+textarea,p,blockquote,th,td,a,span {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -46,8 +47,6 @@ textarea,p,blockquote,th,td,a {
 html, body {
     height: 100%;
 }
-
-
 
 body, input, select, textarea, button {
     font-family: noto sans,malgun gothic,AppleGothic,dotum;

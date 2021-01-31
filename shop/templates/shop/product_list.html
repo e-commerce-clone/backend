@@ -8,27 +8,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'shop/css/good_list01.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/css/good_list.css' %}">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="{% static 'js/common.js' %}"></script>
-    <script src="{% static 'shop/js/good_list01.js' %}"></script>
+    <script src="{% static 'shop/js/good_list.js' %}"></script>
+    <SCRIPT LANGUAGE="JavaScript">
+
+        if(top.document.location.search != "?mobile")
+        {
+                var strGoto = "{% url 'shop:mobile_product_list' %}";
+                var str = window.navigator.userAgent.toLowerCase();
+                if(/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)){
+                 top.document.location.replace(strGoto);
+                }
+        }
+
+    </SCRIPT>
 </head>
 <body class="noBody">
     <div id="container" class="container">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div id="main">
             <div id="content">
@@ -265,7 +263,7 @@
                                 <div class="option">
                                     <span class="count">
                                         <button type="button" class="btn down on">수량내리기</button>
-                                        <input type="number" readonly="readonly"  value = 1 class="inp">
+                                        <input type="text" readonly="readonly"  value = 1 class="inp">
                                         <button type="button" class="btn up on">수량올리기</button>
                                     </span>
                                     <span class="price">

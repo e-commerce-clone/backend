@@ -46,6 +46,7 @@ a {
     margin: 0 0 30px;
     font-size: 20px;
     font-weight: 700;
+    background-color: rgba(243,250,247,var(--bg-opacity));
 }
 
 .xans-member-joincomplete .joinComplete .memberInfo{

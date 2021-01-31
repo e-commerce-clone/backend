@@ -14,10 +14,14 @@ def product_detail(request, id):
     return render(request, 'shop/product_detail.html', context={'product': product,
                                                                 'image': image})
 
-
 def product_list(request):
     photos = Photo.objects.all()
     return render(request, 'shop/product_list.html', {'photos': photos})
+
+
+def mobile_product_list(request):
+    photos = Photo.objects.all()
+    return render(request, 'shop/mobile_product_list.html', {'photos': photos})
 
 
 def product_in_category(request, category_slug=None):
@@ -36,6 +40,9 @@ def product_in_category(request, category_slug=None):
 @csrf_exempt
 def product_check(request):
     product_name = request.GET.get('product_name')
-    product = Product.objects.get(name=product_name)
     context = {'overlap': product_name}
     return JsonResponse(context)
+
+
+def mobile_category(request):
+    return render(request, 'shop/mobile_category.html')

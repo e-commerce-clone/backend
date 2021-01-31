@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
-{% block title %}회원가입{% endblock %}
-{% block content %}
 {% load static %}
-<html lang="ko">
+{% block content %}
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
     <link rel="stylesheet" href="{% static 'accounts/css/join.css' %}">
-    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="{% static 'accounts/js/join.js' %}"></script>
-
-<!--    <SCRIPT LANGUAGE="JavaScript">-->
-
-<!--        if(top.document.location.search != "?mobile") //접속할때 모바일이면 아래 strGoto 주소의 html로 접속됨-->
-<!--        {-->
-<!--                var strGoto = "join_mobile.html";-->
-<!--                var str = window.navigator.userAgent.toLowerCase();-->
-<!--                if(/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)){-->
-<!--                 top.document.location.replace(strGoto);-->
-<!--                }-->
-<!--        }-->
-
-<!--    </SCRIPT>-->
-
+    <SCRIPT LANGUAGE="JavaScript">
+        
+        if(top.document.location.search != "?mobile") //접속할때 모바일이면 아래 strGoto 주소의 html로 접속됨
+        {
+                var strGoto = "{% url 'accounts:mobile_join' %}";
+                var str = window.navigator.userAgent.toLowerCase();
+                if(/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)){
+                 top.document.location.replace(strGoto);
+                }
+        }
+        
+    </SCRIPT>
     <script>
         function id_check(){
             var id = $(".field_id input").val();             // 변수 id에  id값 대입
 
             // var num = /[0-9]/;
             // var eng = /[a-zA-Z]/;
-            var spe = /[~!@#$%^&*()_+|<>?:{}]/;
+            var spe = /[~!@#$%^&*()_+|<>?:{}]/;         
 
 
 
@@ -38,7 +35,7 @@
                 $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
             }else if(spe.test(id) == 1){    //spe.test(id) --> id안에 특수문자가 있으면 true반환 없으면 false반환
                 $(".field_id .txt_guide .txt_case1").css('color', '#b3130b');   //글자색 변경
-            }else{          // 모든 조건이 일치하지 않다면
+            }else{          // 모든 조건이 일치하지 않다면  
                 $(".field_id .txt_guide .txt_case1").css('color', '#0f851a');  //글자색 초록색으로 변경
             }
         }
@@ -49,7 +46,7 @@
             var num = /[0-9]/;
             var eng = /[a-zA-Z]/;
             var spe = /[~!@#$%^&*()_+|<>?:{}]/;
-
+        
 
 
             if(pw.length < 10){                                  //pw의 길이가 10 이하일 때
@@ -57,13 +54,13 @@
             }
 
             if(pw.length >= 10){                                  //pw의 길이가 10 이상일 때
-                $(".field_pw .txt_guide .txt_case1").css('color', '#0f851a');
+                $(".field_pw .txt_guide .txt_case1").css('color', '#0f851a'); 
             }
 
             if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){    // pw의 숫자가 없거나 , 영어가 없거나, 특수문자가 없을경우 실패
                 $(".field_pw .txt_guide .txt_case2").css('color', '#b3130b');
             }
-
+            
 
             if(num.test(pw) == 1 && eng.test(pw) == 1 && spe.test(pw) == 1){ // pw의 숫자,영어,특수문자가 1개이상씩 있을경우 성공
                 $(".field_pw .txt_guide .txt_case2").css('color', '#0f851a');
@@ -74,22 +71,22 @@
 
 
         function pw2_check(){
-            var pwd1 = $(".field_pw input").val();
+            var pwd1 = $(".field_pw input").val(); 
             var pwd2 = $(".field_repw input").val();
 
             if ( pwd1 != '' && pwd2 == '' ) {          //둘다 빈칸일 경우 아무것도 하지 않음
                 null;
             } else if (pwd1 != "" || pwd2 != "") {     // 빈칸이 아닐 경우
                 if (pwd1 == pwd2) {                    // 비교해서 같으면
-                    $(".field_repw .txt_guide .txt_case1").css('color', '#0f851a');
+                    $(".field_repw .txt_guide .txt_case1").css('color', '#0f851a');                 
                     $(".field_repw .txt_guide .txt_case1").text("비밀번호가 동일합니다.");
-
-
+            
+                
                 } else {        // 비교해서 같지 않으면
                     $(".field_repw .txt_guide .txt_case1").css('color', '#b3130b');
                     $(".field_repw .txt_guide .txt_case1").text("비밀번호가 일치하지 않습니다.");
-
-
+                
+                
                 }
             }
 
@@ -103,9 +100,8 @@
 
 
     </script>
-
     <script>
-        // onsubmit 관련된 코드짜기
+        // onsubmit 관련된 코드짜기      
 
         function on_id_check(){          //id 검사 함수
             var id = $(".field_id input").val();
@@ -119,7 +115,7 @@
             return false;
             }
             else{
-
+            
             return true;
             }
         }
@@ -130,16 +126,16 @@
             var eng = /[a-zA-Z]/;
             var spe = /[~!@#$%^&*()_+|<>?:{}]/;
             if(pw.length < 10){
-
+            
             alert('비밀번호를 정확히 입력해주세요');
             return false;
             }else if(num.test(pw) == 0 || eng.test(pw) == 0 || spe.test(pw) == 0){
-
+            
             alert('비밀번호를 정확히 입력해주세요');
             return false;
             }
             else{
-
+            
             return true;
             }
         }
@@ -148,16 +144,16 @@
             var pw = $(".field_pw input").val();
             var pw2 = $(".field_repw input").val();
             if(pw2.length == 0){
-
+            
             alert('비밀번호 확인을 다시해주세요');
             return false;
             }else if(pw != pw2){
-
+            
             alert('비밀번호 확인을 다시해주세요');
             return false;
             }
             else{
-
+            
             return true;
             }
         }
@@ -165,11 +161,11 @@
         function on_name_check(){             //이름 검사 함수
             var name = $(".field_name input").val();
             if(name.length == 0){
-
+            
             alert('이름을 입력해주세요');
             return false;
             }else{
-
+            
             return true;
             }
         }
@@ -177,23 +173,23 @@
         function on_email_check(){             //이메일 검사 함수
             var email = $(".field_email input").val();
             if(email.length == 0){
-
+            
             alert('이메일을 정확히 입력해주세요');
             return false;
             }else{
-
+            
             return true;
             }
         }
 
-        function on_phone_check(){               //휴대폰번호 검사함수
+        function on_phone_check(){               //휴대폰번호 검사함수  
             var phone = $(".field_phone input").val();
             if(phone.length == 0){
-
+            
             alert('휴대폰 번호를 입력해주세요');
             return false;
             }else{
-
+            
             return true;
             }
         }
@@ -201,7 +197,7 @@
 
 
         function on_submit_check(){               // fomr에 onsubmit으로 최종적으로 넘겨야될 함수
-
+            
             var check = false;                   //check변수에 false를 넣어주고 다른 함수들이 false를 반환하면 다음페이지로 못넘어가게 설정
             if(on_id_check() == check){
             return false;
@@ -221,14 +217,15 @@
             }
         }
 
-
-
+        
+        
     </script>
-
 </head>
 <body>
-    <div id="container" class="container">
 
+
+    <div id="container">
+ 
         <div id="main">
             <div id="content">
                 <div class="page_aticle">
@@ -290,7 +287,7 @@
                                         <th>
                                             비밀번호확인
                                             <span class="ico">
-                                                *
+                                                *                                                
                                                 <span class="screen_out">필수항목</span>
                                             </span>
                                         </th>
@@ -319,7 +316,7 @@
 
                                     <tr class="field_email">
                                         <th>
-                                            이메일
+                                            이메일 
                                             <span class="ico">
                                                 *
                                                 <span class="screen_out">필수항목</span>
@@ -344,7 +341,7 @@
 
                                         <td>
                                             <div class="phone_num">
-                                                <input type="text" value="" pattern="[0-9]*" name="mobileInp" placeholder="숫자만 입력해주세요" class="inp">
+                                                <input type="text" value="" pattern="[0-9]*" name="phone_number" placeholder="숫자만 입력해주세요" class="inp">
 
                                             </div>
                                         </td>
@@ -401,8 +398,9 @@
 
         </div>
 
-    </div>
 
+    </div>
+    
 </body>
 </html>
 {% endblock %}

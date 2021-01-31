@@ -1,17 +1,17 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/join_moblie.css">
+    <link rel="stylesheet" href="{% static 'accounts/css/mobile_join.css' %}">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="./js/join_mobile.js"></script>
+    <script src="{% static 'accounts/js/mobile_join.js' %}"></script>
     <script>
         function detail_address_save(){   //작성될 떄 실시간으로 계속 someID2에 상세주소 저장됨
             b = $('#sample3_detailAddress').val();
             $('#someID2').text(b);
-            console.log(b)
         }
     </script>
 </head>
@@ -20,7 +20,7 @@
 <body>
     
     <div class="layer_prev" style="display:none;">
-        <span class="tit">마켓컬링</span>
+        <span class="tit">마켓컬리</span>
     </div>
     <input type="text" id="sample3_address" placeholder="주소" style="display:none;"><br>
     <input type="text" id="sample3_detailAddress" placeholder="상세주소" style="display:none;" onkeyup="detail_address_save()">
@@ -132,7 +132,6 @@
         $('#sample3_detailAddress').click(function(){    // 상세입력 칸 클릭시 위에 주소 값  #someID에 저장
             a = $('#sample3_address').val();
             $('#someID').text(a);
-            console.log(a)
         });
 
        
