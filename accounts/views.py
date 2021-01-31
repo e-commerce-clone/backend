@@ -30,7 +30,7 @@ def join(request):        # 회원가입 뷰
         password = request.POST.get('pw', None)
         person_name = request.POST.get('name', None)
         email = request.POST.get('email', None)
-        phone_number = request.POST.get('mobileInp', None)
+        phone_number = request.POST.get('phone_number', None)
         user_address = request.POST.get('user_address', None)
         user_address_detail = request.POST.get('user_detail_address', None)
         birthday_year = request.POST.get('year', None)
@@ -54,24 +54,23 @@ def join(request):        # 회원가입 뷰
             'person_name': person_name,
             'email': email
         }
-
+        user = auth_User(username=username,
+                         password=make_password(password),
+                         email=email,
+                         is_active=False)
+        user_info = Profile(user=user,
+                            email=email,
+                            person_name=person_name,
+                            phone_number=phone_number,
+                            home_address=home_address,
+                            birthday=birthday,
+                            age=age)
         try:
-            user = auth_User(username=username,
-                             password=make_password(password),
-                             email=email,
-                             is_active=False)
             user.save()  # 유저 저장
-            user_info = Profile(user=user,
-                                email=email,
-                                person_name=person_name,
-                                phone_number=phone_number,
-                                home_address=home_address,
-                                birthday=birthday,
-                                age=age)
             user_info.save()  # 프로필 저장
         except:
-            print("회원가입 에러 발생")
-            return render(request, 'accounts/join.html')
+            user.delete()
+            print("회원가입 에러")
         # 이메일 인증을 위한 추가 설정, 회원가입 완료 시 이메일 인증을 위한 이메일 전송
         current_site = get_current_site(request)
         message = render_to_string('accounts/activation_email.html',
@@ -125,23 +124,23 @@ def mobile_join(request):
             'email': email
         }
 
+        user = auth_User(username=username,
+                         password=make_password(password),
+                         email=email,
+                         is_active=False)
+        user_info = Profile(user=user,
+                            email=email,
+                            person_name=person_name,
+                            phone_number=phone_number,
+                            home_address=home_address,
+                            birthday=birthday,
+                            age=age)
         try:
-            user = auth_User(username=username,
-                             password=make_password(password),
-                             email=email,
-                             is_active=False)
             user.save()  # 유저 저장
-            user_info = Profile(user=user,
-                                email=email,
-                                person_name=person_name,
-                                phone_number=phone_number,
-                                home_address=home_address,
-                                birthday=birthday,
-                                age=age)
             user_info.save()  # 프로필 저장
         except:
-            print("회원가입 에러 발생")
-            return render(request, 'accounts/mobile_join.html')
+            user.delete()
+            print("회원가입 에러")
         # 이메일 인증을 위한 추가 설정, 회원가입 완료 시 이메일 인증을 위한 이메일 전송
         current_site = get_current_site(request)
         message = render_to_string('accounts/activation_email.html',
