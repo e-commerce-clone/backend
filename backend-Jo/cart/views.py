@@ -70,5 +70,11 @@ def cart_detail(request, total=0, ship_price=3000, payment_amount=0, counter=0, 
     except ObjectDoesNotExist:
         pass
 
-    return render(request, 'cart/cart_item.html', dict(cart_items = cart_items, total = total, ship_price = ship_price,
+    return render(request, 'cart/cart.html', dict(cart_items = cart_items, total = total, ship_price = ship_price,
                                                        payment_amount = payment_amount, counter=counter))
+
+def ship_destination(request):
+    return render(request, 'cart/ship_destination.html')                                #미완성
+
+def add_mydestination(request):
+    return render(request, 'cart/add_mydestination.html')                               #미완성

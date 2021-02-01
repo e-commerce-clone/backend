@@ -1,13 +1,13 @@
-// 배송지추가에 쓰일 api : 추후구현예정
+// 배송지추가에 쓰일 api : problem 
 window.addEventListener('DOMContentLoaded',function(){
 
-    const juso = document.querySelector('#newAddressAddBtn');
-    const user_address = document.querySelector('#user_address');
-    const user_detail_address = document.querySelector('#user_detail_address'); 
-    const juso_search = document.querySelector('.juso_search');
+    const juso = document.querySelector('#juso');
+    const user_address = document.querySelector('#addrMain');
+    const user_detail_address = document.querySelector('#addrSub'); 
+    const juso_search = document.querySelector('.feild');
 
-    juso.addEventListener('click', juso_search);  
-    // 주소 검색 클릭 하면 함수 실행
+    juso.addEventListener('click', addr_search);  
+    // 검색 클릭 하면 함수 실행
 
     
     function addr_search(){   //주소 검색 카카오 api 
@@ -48,18 +48,11 @@ window.addEventListener('DOMContentLoaded',function(){
                 } else {
                     document.getElementById("sample6_extraAddress").value = '';
                 }
-
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-               
-                document.getElementById("user_address").value = addr;
+                document.getElementById("addrMain").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("user_detail_address").focus();
+                document.getElementById("addrSub").focus();
 
-                //주소 검색이 완료된 후 변하는 css 목록
-                user_address.classList.add('on'); //선택한 주소 나오는 창 생성 
-                juso_search.classList.add('on'); //주소 검색 쪽 height 키움
-                user_detail_address.classList.add('on');  // 상세 주소 입력하게 나오는 창 생성
-                juso.classList.add('on');    //주소검색 버튼 작게 만들기 on
 
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
                 // 예제를 참고하여 다양한 활용법을 확인해 보세요.
@@ -67,4 +60,98 @@ window.addEventListener('DOMContentLoaded',function(){
             }
         }).open();
     }
+});
+
+$(function(){ 
+    $('.plus').click(function(){ //count up
+        var n = $('.plus').index(this);
+        var num = $(".num:eq("+n+")").val();
+        num = $(".num:eq("+n+")").val(num*1+1); 
+        
+    });
+    $('.minus').click(function(){  // count down..
+        var n = $('.minus').index(this);
+        var num = $(".num:eq("+n+")").val();
+        if (num!=1){
+            num = $(".num:eq("+n+")").val(num*1-1); 
+        }
+    });
+});
+function check_sel_all(checkbox)  { /*개별 선택에 따른 전체선택상태변경 */
+    const selectall = document.querySelectorAll('input[name="checkAll"]');
+    const checkboxes = document.querySelectorAll('input[name="checkOne"]');    
+    var temp = false;
+    var temp2 = true;
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked){
+            temp=true;
+        }
+        if (!checkbox.checked){
+            temp2=false;
+        }
+        if (selectall[0].checked && !checkbox.checked){ //전체 선택이 아닐 경우1
+            selectall[0].checked = false;            
+            selectall[1].checked = false;
+        }
+    });
+    
+    if (temp === false){  //전체 선택이 아닐 경우2
+        selectall[0].checked = false;            
+        selectall[1].checked = false;
+    }  
+    
+    else if (temp2 === true){ //전체선택일 경우
+        selectall[0].checked = true;            
+        selectall[1].checked = true;
+    }  
+    
+}
+
+function sel_all(selectAll){ /* 전체선택버튼 활성화 */
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = selectAll.checked
+    });
+}
+
+function del_row(ths){
+    var ths = $(ths);
+
+    ths.parents("li").remove();
+}
+
+
+
+function dropup(){ /* 접기 / 펼치기 */
+    
+
+    if(document.getElementById('dropup_list').style.display === 'block') {
+        document.getElementById('dropup_list').style.display = 'none';
+        $(".btn_dropup").addClass('off');
+        return;
+      } 
+    
+    
+    else{
+        document.getElementById('dropup_list').style.display = 'block';
+        $(".btn_dropup").removeClass('off');
+
+
+    }  
+}
+
+
+$(document).ready(function(){ /* 체크박스 선택후 삭제하기 */
+    $('.btn_delete').click(function(){
+ 
+      // 현재 체크된 체크박스의 li 정보 얻기
+      $("input:checkbox[name=checkOne]").each(function() {
+          if (this.checked)
+          {
+                var ths = $(this);
+                ths.parents("li").remove();
+          }
+      }); 
+    });
 });
