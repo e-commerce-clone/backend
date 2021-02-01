@@ -52,7 +52,7 @@ def product_search(request):
         search_products = product_list.filter(product__name__icontains=search_keyword)
 
     print(search_products)
-    # paginator = Paginator(product_list, 100)
+    # paginator = Paginator(product_list, 100)                                         # 페이지 나누기
     # page_obj = paginator.get_page(page)
     return render(request, 'shop/product_search.html', {'photos': search_products})
 
