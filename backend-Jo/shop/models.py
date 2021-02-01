@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from accounts.models import Profile
 from django.utils.text import slugify
 # Create your models here.
 
@@ -51,8 +52,6 @@ class Product(models.Model):
     created_at = models.DateTimeField('생성 시간', auto_now_add=True)
     updated_at = models.DateTimeField('갱신 시간', auto_now=True)
 
-    p_id = models.PositiveIntegerField('아이디', null=True)
-
     class Meta:
         ordering = ['-created_at', '-updated_at']
 
@@ -81,3 +80,17 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.product.name
+
+
+class Review(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.PROTECT, null=False)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
+    title = models.CharField('제목', max_length=200, blank=False)
+    image = models.ImageField('후기 이미지', upload_to='products/reviewImage/%Y/%m/%d')
+    text = models.TextField('내용', blank=False)
+    help = models.PositiveIntegerField('도움', default=0, null=True)
+    lookup = models.PositiveIntegerField('조회', default=0, null=True)
+    created_at = models.DateField('작성일', auto_now_add=True)
+
+    def __str__(self):
+        return self.title

@@ -1,0 +1,248 @@
+<!DOCTYPE html>                     <!-- list 가격 표시하는 곳에 intcomma 로 변경해야 겠음.-->
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 리스트</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'shop/css/mobile_good_list.css' %}">
+    <script src="{% static 'shop/js/mobile_good_list.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sly/1.6.1/sly.min.js"></script> <!-- sly 플러그인 (스와이프 메뉴에 이용)-->
+    
+
+    
+
+    
+
+</head>
+<body class="noBody"> 
+    <div id="wrap" class="layout-main-wrapper" style="padding-top:95px;">
+        <header id="header" class="header" style="top: 0px; border-bottom: none;">   
+            <h1 class="logo">                                           
+                <span class="tit">채소</span>  <!--카테고리 이름-->                   
+            </h1>
+            <div class="header_shortcut">
+                <div id="sectionLocation">
+                    {% if user.is_authenticated %}
+                        <a class="location" href="{% url 'main:mobile_address_search' %}">배송지관리 바로가기</a>
+                    {% else %}
+                        <a class="location" href="{% url 'accounts:login' %}">배송지관리 바로가기</a>
+<!--                    모바일 로그인 페이지 구현해야함-->
+                    {% endif %}
+                </div>
+                <a href="#" class="link_back" role="button">
+                    <span class="screen_out">뒤로가기</span>
+                </a>
+                <div class="header_shortcut">
+                    <a href="#" class="cart_count" role="button">
+                        <span class="screen_out">장바구니로 가기</span>
+                        <span class="num_count" id="cart_item_count"></span>
+                    </a>
+                </div>
+            </div>
+        </header>
+    
+    
+        <div id="lnbMenu" class="lnb_menu" style="top:50px;">
+            <span class="bg_shadow shadow_before"></span>
+            <span class="bg_shadow shadow_after"></span>
+            <div class="inner_lnb" style="height: 667px;">
+                <ul class="list" style="width:984px;">
+                    <li data-start="8" data-end="80" name="cate_gory">
+                        <a class="on">
+                            전체보기
+                        </a>
+                    </li>
+                    <li data-start="80" data-end="200" name="cate_gory">
+                        <a class="">
+                            고구마·감자·당근
+                        </a>
+                    </li>
+                    <li data-start="200" data-end="334" name="cate_gory">
+                        <a class="">
+                            시금치·쌈채소·나물
+                        </a>
+                    </li>
+                    <li data-start="334" data-end="510" name="cate_gory">
+                        <a class="">
+                            브로콜리·파프리카·양배추
+                        </a>
+                    </li>
+                    <li data-start="510" data-end="647" name="cate_gory">
+                        <a class="">
+                            양파·대파·마늘·배추
+                        </a>
+                    </li>
+                    <li data-start="647" data-end="753" name="cate_gory">
+                        <a class="">
+                            오이·호박·고추
+                        </a>
+                    </li>
+                    <li data-start="753" data-end="887" name="cate_gory">
+                        <a class="">
+                            냉동·이색·간편채소
+                        </a>
+                    </li>
+                    <li data-start="887" data-end="976" name="cate_gory">
+                        <a class="">
+                            콩나물·버섯
+                        </a>
+                    </li>
+                    <li class="bg" style="width: 56px; left: 16px;"></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div id="goodsList">           
+            <div class="sort_menu">
+                <div>
+                    <div class="select_type user_sort">
+                        <a class="name_select">
+                            추천순
+                        </a>
+                        <ul class="list">
+                            <li>
+                                <a class="on">추천순</a>
+                            </li>
+                            <li>
+                                <a>신상품순</a>
+                            </li>
+                            <li>
+                                <a>인기상품순</a>
+                            </li>
+                            <li>
+                                <a>혜택순</a>
+                            </li>
+                            <li>
+                                <a>낮은 가격순</a>
+                            </li>
+                            <li>
+                                <a>높은 가격순</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="list_goods">  <!-- 여기서 부터 물건 리스트 -->
+                {% for photo in photos %}
+                    <ul class="list">
+                    <li>
+                        <div class="item">
+                            <div class="thumb">
+                                <a class="img" style="background-image: url(https://img-cf.kurly.com/shop/data/goods/1567574126435l0.jpg);">
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKgAAADaCAQAAACYqMH1AAAAXklEQVR42u3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3g0fCQABohc6wAAAAABJRU5ErkJggg==" alt="무농약 콩으로 재배한 콩나물(1봉/200g)">
+                                </a>
+                                <div class="group_btn">
+                                    <button type="button" name="chk" value={{ photo.product.id }} class="btn btn_cart"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="info">
+                            <span class="name">
+                                {{ photo.product.name }}
+                            </span>
+                            <span class="cost">
+                                <span class="price">{{ photo.product.price | intcomma }}</span>
+                                <input type="hidden"  id="product_cost1" value={{ photo.product.price }} > <!--가격 벨류에넣어야댐-->
+                                <span class="dodo">원</span>
+                            </span>
+                            <span class="tag">
+
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="cartPut">
+            <div class="cart_option cart_type3" style="opacity: 1;">
+                <div class="inner_option">
+                    <div class="in_option">
+                        <div class="list_goods">
+                            <ul class="list list_nopackage">
+                                <li class="on">
+                                    <span class="name">
+                                        
+                                    </span>
+                                    <div class="option">
+                                        <span class="count">
+                                            <button type="button" class="btn down on">수량내리기</button>
+                                            <input type="text" readonly="readonly" value = 1 class="inp">
+                                            <button type="button" class="btn up on">수량올리기</button>
+                                        </span>
+                                        <span class="price">
+                                            <span class="dc_price"></span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="total">
+                            <div class="price">
+                                <strong class="tit">합계</strong>
+                                <span class="sum">
+                                    <span class="num">2,500</span>
+                                    <span class="won">원</span>
+                                </span>
+                            </div>
+                            <p class="txt_point">
+                                <span class="ico">적립</span>
+                                <span class="point">
+                                    구매 시
+                                    <strong class="emph">65원 적립</strong>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="group_btn off layer_btn2">
+                        <span class="btn_type2">
+                            <button type="button" class="txt_type">취소</button>
+                        </span>
+                        <span class="btn_type1">
+                            <button type="button" class="txt_type">장바구니 담기</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+   
+
+
+    <div class="bg_loading" id="bgLoading" style="display:none;">
+        <div class="loading_show"></div>
+    </div>
+
+    <script>
+        var on = $('.list').find('.on').index();
+         
+         var options = {
+            horizontal: 1,
+            itemNav: 'centered', //basic , centered,
+            speed: 300,
+            smart: 1,
+            activateOn: 'click',
+            mouseDragging: 1,
+            touchDragging: 1,
+            activateMiddle: 1,
+            releaseSwing: 1,
+            activeClass:'on',
+            startAt: on
+            // itemSelector:1
+         };
+         var frame = new Sly('.inner_lnb', options).init();
+     </script>
+    
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이메일 인증</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'accounts/css/mobile_join_complete.css' %}">
+    <script src="{% static 'accounts/js/mobile_join.js' %}"></script>
+</head>
+<body>
+
+    <div id="wrap" class="layout-main-wrapper no_relative" style="padding-top: 49px; ">
+        <header id="header" class="header" style="top: 0px;">
+            <h1 class="logo">
+                <span class="tit">이메일 인증</span>
+            </h1>
+            <a href="#" class="link_back" role="button">
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            <div class="header_shortcut">
+                <a href="#" class="cart_count" role="button">
+                    <span class="screen_out">장바구니로 가기</span>
+                    <span class="num_count" id="cart_item_count"></span>
+                </a>
+            </div>
+        </header>
+
+
+        <div class="bg-gray-50 flex flex-col py-12 sm:px-6 lg:px-8">
+            <div class="mx-auto sm:w-full sm:max-w-md">
+                
+
+                <div class="mt-8 mx-auto sm:w-full sm:max-w-md">
+                    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                        <div class="rounded-md bg-green-50 p-4 mb-5" style="margin-top: 55px;">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                </div>
+
+                                <div class="undefined ml-3 flex-1 md:flex md:justify-between ">
+                                    <p class="text-sm leading-5 text-green-700 undefined">이메일로 전송된 로그인 링크를 확인하세요</p>
+                                    <p class="md:ml-6 mt-3 text-sm leading-5 md:mt-0"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="memberInfo">
+                            <ul>
+                                <li>
+                                    <strong>아이디</strong>
+                                    <span>
+                                        <span>{{ username }}</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <strong>이름</strong>
+                                    <span>
+                                        <span>{{ person_name }}</span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <strong>이메일</strong>
+                                    <span>
+                                        <span>{{ email }}</span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="button">
+                            <a href="#">
+                                <span class="bhs_button" style="display: block; margin: 0 auto;">
+                                    로그인 페이지로 이동
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        
+
+
+
+        
+            
+
+    </div>
+    
+</body>
+</html>
+{% endblock %}

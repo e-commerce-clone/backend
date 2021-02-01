@@ -26,7 +26,12 @@ SECRET_KEY = '!3vhrk@*^^o(^a*!@)^2mk3^opgi+(sh87y8dojontqxk0@m@t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = debug_settings.DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    ".ap-northeast-2.compute.amazonaws.com",
+    ".inukurly.shop",
+    "127.0.0.1",
+]
 
 
 # Application definition
@@ -39,15 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'django.contrib.humanize',
-    'accounts',
-    'shop',
-    'cart',
-    'rangefilter',
+    'django.contrib.humanize',  # 가격에서 30,000 이런식으로 나오게 하기 위한 모듈
+    'accounts',             # 회원정보 관련 앱
+    'shop',                 # 제품 리스트 등 상점 앱
+    'rangefilter',          # accounts -> admin.py 에 사용됨. admin 페이지에서 모델을 범위별로 검색하기 위한 모듈
     'six',
-    'main',
-    'shop_admin',
-    'debug_toolbar',
+    'main',                 # 메인 앱
+    'shop_admin',           # shop 관리자 앱
+    'debug_toolbar',        # 디버깅툴
 ]
 
 
@@ -148,3 +152,8 @@ EMAIL_HOST = EMAIL['EMAIL_HOST']
 EMAIL_HOST_USER = EMAIL['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = EMAIL['EMAIL_HOST_PASSWORD']
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# iframe 'deny' except
+X_FRAME_OPTIONS = 'ALLOWALL'
+
+XS_SHARING_ALLOWED_METHODS = ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE']

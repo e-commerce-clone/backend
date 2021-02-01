@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block title %}주소 검색{% endblock %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'main/css/mobile_address_search.css' %}">
+</head>
+<body>
+    <div id="wrap" class="layout-main-wrapper bg_ececec" style="padding-top: 49px; opacity: 1;">
+        <header id="header" class="header" style="top: 0px;">     
+            <h1 class="logo">                                           
+                <span class="tit">주소 검색</span>                  
+            </h1>
+            <a href="#" class="link_back" role="button">
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            
+        </header>
+
+
+        <div class="section_destination">
+            <div id="layerAddressSearch" class="layer_addresssearch" style="display: block; height: 466px;">
+                <div id="__daum__layer" style="width: 100%; height: 100%; background-color: rgb(255, 255, 255); z-index: 0; overflow: hidden; min-width: 300px; margin: 0px; padding: 0px;">
+                    <iframe src="{% url 'main:mobile_address_iframe' %}" id="my_iframe" frameborder="0"  style="position: absolute; left: 0px; top: 0px; width: 100%; height: 900px; border: 0px none; margin: 0px; padding: 0px; overflow: hidden; min-width: 300px;">
+                    
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+    
+</body>
+</html>
+{% endblock %}

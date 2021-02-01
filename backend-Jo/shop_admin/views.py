@@ -1,11 +1,17 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from shop.models import Product, Category, Photo
 from django.urls import reverse
+from django.views.generic.edit import DeleteView
 # Create your views here.
 
 
 def prd_manage(request):
-    products = Product.objects.all()
+    if request.method == "GET":
+        products = Product.objects.all()
+    elif request.method == "POST":
+        product = Product.objects.get(pk=request.POST.get('delete'))
+        product.delete()
+        return HttpResponseRedirect(reverse('shop_admin:product_manage_re'))
     return render(request, 'shop_admin/admin_page_prd_manage.html', {'products': products})
 
 
@@ -31,12 +37,12 @@ def prd_upload(request):
         try:
             main_image = request.FILES['product_main_image']
         except:
-            main_image = "products/no_image.png"
+            main_image = None
 
         try:
             sub_image = request.FILES['product_sub_image']
         except:
-            sub_image = "products/no_image.png"
+            sub_image = None
 
         category = Category(name=request.POST.get('product_category', None))
         category.save()
@@ -59,9 +65,6 @@ def prd_upload(request):
         product.save()
         photo = Photo(product=product, main_image=main_image, sub_image=sub_image)
         photo.save()
-        product.p_id = photo.id
-        product.save()
-
 
         return redirect(reverse('shop_admin:product_manage'))
     return render(request, 'shop_admin/admin_page_prd_upload.html')
@@ -73,3 +76,4 @@ def prd_order(request):
 
 def prd_manual(request):
     return render(request, 'shop_admin/product_manual.html')
+

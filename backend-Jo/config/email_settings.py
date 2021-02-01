@@ -1,3 +1,5 @@
+# 이메일 발송을 위한 email 정보
+
 EMAIL = {
     'EMAIL_BACKEND': 'django.core.mail.backends.smtp.EmailBackend',
     'EMAIL_USE_TLS': True,
