@@ -37,12 +37,12 @@ def prd_upload(request):
         try:
             main_image = request.FILES['product_main_image']
         except:
-            main_image = "products/no_image.png"
+            main_image = None
 
         try:
             sub_image = request.FILES['product_sub_image']
         except:
-            sub_image = "products/no_image.png"
+            sub_image = None
 
         category = Category(name=request.POST.get('product_category', None))
         category.save()

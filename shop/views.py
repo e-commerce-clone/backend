@@ -24,17 +24,17 @@ def mobile_product_list(request):
     return render(request, 'shop/mobile_product_list.html', {'photos': photos})
 
 
-def product_in_category(request, category_slug=None):
-    current_category = None
-    categories = Category.objects.all()
-    products = Product.objects.filter(available_display=True)
-    if category_slug:
-        current_category = get_object_or_404(Category)
-        products = products.filter(category=current_category)
-    return render(request, 'shop/product_list.html', {
-        'current_category': current_category,
-        'categories': categories,
-        'products': products})
+# def product_in_category(request, category_slug=None):   # 카테고리 별 제품 리스트 보여줄 때 쓸 view (미완성)
+#     current_category = None
+#     categories = Category.objects.all()
+#     products = Product.objects.filter(available_display=True)
+#     if category_slug:
+#         current_category = get_object_or_404(Category)
+#         products = products.filter(category=current_category)
+#     return render(request, 'shop/product_list.html', {
+#         'current_category': current_category,
+#         'categories': categories,
+#         'products': products})
 
 
 @csrf_exempt
