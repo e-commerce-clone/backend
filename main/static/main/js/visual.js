@@ -17,7 +17,7 @@ function move() {
 		curIndex++; //index	1씩 증가
 
 		//언제까지?
-		if(curIndex === 4) { // 현재 index가 4인 경우,
+		if(curIndex === 5) { // 현재 index가 4인 경우,
 			setTimeout(function(){ //시간지연함수 실행(일정 시간 후 특정 함수/코드를 지연한 뒤 실행)
 				ul.style.transition = '0s'; //transition 삭제
 				ul.style.transform = "translate3d(0px, 0px, 0px)"; //현재 위치에서 이동 없음
@@ -27,6 +27,15 @@ function move() {
 
 	}, 3000); // 3초 간격 {코드} 실행
 }
+
+
+
+
+
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", function(){ //문서의 로드시점을 DOMContentLoaded로 함. = onload 이벤트보다 먼저 발생하며, 빠른 실행속도가 필요할 때 적합
 	move();
