@@ -345,3 +345,7 @@
 .main_type3 .bx_controls_direction .bx-next {
     bottom: 58px;
 }
+
+body #header .location_login .location_notice{  /* 안내메세지 처음에 block이였다가 사라지게 하기위해 */
+    display:block;
+}

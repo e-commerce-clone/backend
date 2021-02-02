@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
 
 
-    $(document).ready(function() {
+    $(document).ready(function() {
 
         var noBody = $('.noBody');
 
@@ -16,20 +16,20 @@ window.addEventListener('DOMContentLoaded',function(){
 
         for(i=0; i < $('.list_goods .inner_listgoods ul li').length+1; i++){
             product_name[i] = $('li:nth-child('+ i +') .name').text();    //포문으로 리스트 에다가 값을 대입함
-            
+
             product_price[i] = $('li:nth-child('+ i +') .price').text();
-            
+
             product_cost[i] = $(' li:nth-child('+ i +') input').val();
-            
+
             product_id[i] = $('li:nth-child('+ i +') .btn_cart').val();
         }
 
-        
 
-        
-        
 
-        
+
+
+
+
         function cart_button(i){                                // 장바구니 버튼 클릭했을떄 수량,적립금 설정함수
             // $('#cartPut').css('display','block');
             $('#cartPut').fadeIn(300);                 // 서서히 보이게 설정 완료
@@ -39,78 +39,77 @@ window.addEventListener('DOMContentLoaded',function(){
             $('#cartPut .num').text(product_price[i]);  // 초기 가격설정
 
             $('.count_num').text(i);
-    
+
             noBody.addClass('noBody_on');
 
             btn_val = product_id[i];
             $('#cartPut .btn_type1 .txt_type').val(btn_val);
             console.log(btn_val);
-        
-        
-        
+
+
+
             var number = $('.inp').val();   //수량
             var cost = product_cost[i];   // 상품의 가격을 설정해줘야됨.
             $('.emph').text((number*cost)/20 + '원 적립');
-        
-        
+
+
             $('.down').click(function(){
                 if(number > 0){
                     number--;
                     $(".inp").val(number);
                     $(".count_num").text(number);
-                    if(number == 0){               // 0원이면 0출력
-                        $(".num").text(0);
-                    }
+                     if(number == 0){               // 0원이면 0출력
+                         $(".num").text(0);
+                     }
 
-                    else if(number*cost < 1000){
-                        $(".num").text(number*cost);
-                    }
+                     else if(number*cost < 1000){
+                         $(".num").text(number*cost);
+                     }
 
 
-                    else if((number*cost % 1000) == 0){
-                        
-                        $(".num").text(Math.floor(number*cost/1000) + ',' + '000');
-                    }
-                    else{
-                    
-                    $(".num").text(Math.floor(number*cost/1000) + ',' + number*cost%1000);
-                    }
+                     else if((number*cost % 1000) == 0){
+
+                         $(".num").text(Math.floor(number*cost/1000) + ',' + '000');
+                     }
+                     else{
+
+                     $(".num").text(Math.floor(number*cost/1000) + ',' + number*cost%1000);
+                     }
                 }
-        
+
                 if(number < 0){             //0 이하면 false 반환
                     return false;
                 }
-        
-        
+
+
                 $('.emph').text((number*cost)/20 + '원 적립');
-                
-            
-                
-                
+
+
+
+
             });
 
-           
-        
-        
-        
+
+
+
+
             $('.up').click(function(){
                 number++;
                 $(".inp").val(number);
                 $(".count_num").text(number);
-                if((number*cost % 1000) == 0){
-                    $(".num").text(Math.floor(number*cost/1000) + ',' + '000');
-                }
-
-                else if(number*cost < 1000){
                     $(".num").text(number*cost);
-                }
-        
-                else{
-                    $(".num").text(Math.floor(number*cost/1000) + ',' + number*cost%1000);
-                    
-        
-                }
-        
+                 if((number*cost % 1000) == 0){
+                     $(".num").text(Math.floor(number*cost/1000) + ',' + '000');
+                 }
+
+                 else if(number*cost < 1000){
+                  }
+
+                 else{
+                     $(".num").text(Math.floor(number*cost/1000) + ',' + number*cost%1000);
+
+
+                 }
         
         
                 
