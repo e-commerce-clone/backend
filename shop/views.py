@@ -19,7 +19,7 @@ def product_detail(request, id):
 
 def product_list(request):
     page = int(request.GET.get('page', 1))     # 현재 페이지 번호를 가져온다. 없으면 1을 가져온다.
-    paginated_by = 4        # 페이지당 노출될 개수
+    paginated_by = 3        # 페이지당 노출될 개수
     photos = get_list_or_404(Product_photo)
     total_count = len(photos)
     if paginated_by >= total_count:
