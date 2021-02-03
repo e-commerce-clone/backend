@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- 공통으로 많이쓰는 css 파일 -->
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
     <!-- header, footer css 파일 -->
@@ -268,7 +267,7 @@
 
                         <div class="cart_count">
                             <!-- bg url 아이콘 추가 -->
-                            <a href="#" class="btn_cart">
+                            <a href="{% url 'cart:cart_detail' %}" class="btn_cart">
                                 <span class="blind">장바구니</span>
                             </a>
                         </div>

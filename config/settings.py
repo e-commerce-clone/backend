@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'shop_admin',           # shop 관리자 앱
     'debug_toolbar',        # 디버깅툴
     'photo',                # 이미지 업로드
+    'cart',                 # 장바구니
 ]
 
 
