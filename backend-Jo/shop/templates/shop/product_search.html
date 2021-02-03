@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'shop/css/good_list01.css' %}">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="{% static 'shop/js/good_list01.js' %}"></script>
+</head>
+
+<body>
+<div class="list_goods">
+                            <div class="inner_listgoods">
+                                    <ul class="list">
+                                        {% for photo in photos %}     <!-- 여기서 부터 물건 리스트-->
+                                        <li>
+                                            <div class="item">
+                                                <div class="thumb">
+                                                    <a href="{% url 'shop:product_detail' photo.product.id %}" class="img" style="background-image: url(https://img-cf.kurly.com/shop/data/goods/1567574126435l0.jpg);">
+                                                        <img src="{{ photo.main_image.url }}" alt="무농약 콩으로 재배한 콩나물(1봉/200g)" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+
+
+                                                    </a>
+                                                    <span class="global_sticker" style="display: none;">
+                                                        <span class="inner_sticker">
+                                                            <span class="bg_sticker"></span>
+                                                            <span class="txt_sticker">
+                                                                <span class="emph_sticker">1+2
+                                                                </span>
+                                                                이벤트
+                                                            </span>
+                                                        </span>
+                                                    </span>
+
+                                                    <div class="group_btn">
+                                                        <button type="submit" value={{ photo.product.id }} name="chk" class="btn btn_cart">
+                                                            <span class="screen_out">38300</span>
+                                                        </button>
+                                                    </div>
+
+
+
+                                                </div>
+
+                                                <a class="info">
+                                                    <span class="name">
+                                                        {{ photo.product.name }}
+                                                    </span>
+                                                    <span class="cost">
+                                                        <span class="price">{{ photo.product.price | intcomma }}</span>
+                                                        <input type="hidden"  id="product_cost1" value={{ photo.product.price }} >
+                                                        <span class="dodo">원</span>
+                                                    </span>
+
+                                                    <span class="desc">{{ photo.product.description }}</span>
+                                                    <span class="tag"></span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+</body>
+</html>
