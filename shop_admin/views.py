@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
-from shop.models import Product, Category, Photo
+from shop.models import Product, Category
+from photo.models import Product_photo
 from django.urls import reverse
 from django.views.generic.edit import DeleteView
 # Create your views here.
@@ -45,7 +46,11 @@ def prd_upload(request):
             sub_image = "no_image"
 
         category = Category(name=request.POST.get('product_category', None))
-        category.save()
+
+        try:        # 쿼리가 DB 에 존재하지 않으면 category table 생성 X
+            category = Category.objects.get(name=category.name)
+        except:     # category table 생성하여 DB 에 저장
+            category.save()
 
         product = Product(
             name=name,
@@ -63,7 +68,7 @@ def prd_upload(request):
             category=category
         )
         product.save()
-        photo = Photo(product=product, main_image=main_image, sub_image=sub_image)
+        photo = Product_photo(product=product, main_image=main_image, sub_image=sub_image)
         photo.save()
 
         return redirect(reverse('shop_admin:product_manage'))

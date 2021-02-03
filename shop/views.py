@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Category, Photo, Review
+from .models import Product, Category
+from photo.models import Product_photo
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.http import JsonResponse
@@ -10,31 +11,23 @@ from django.views.decorators.csrf import csrf_exempt
 
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id)
-    image = get_object_or_404(Photo, product=product)
+    image = get_object_or_404(Product_photo, product=product)
     return render(request, 'shop/product_detail.html', context={'product': product,
                                                                 'image': image})
 
+
 def product_list(request):
-    photos = Photo.objects.all()
+    photos = Product_photo.objects.all()
     return render(request, 'shop/product_list.html', {'photos': photos})
 
 
 def mobile_product_list(request):
-    photos = Photo.objects.all()
+    photos = Product_photo.objects.all()
     return render(request, 'shop/mobile_product_list.html', {'photos': photos})
 
 
-# def product_in_category(request, category_slug=None):   # 카테고리 별 제품 리스트 보여줄 때 쓸 view (미완성)
-#     current_category = None
-#     categories = Category.objects.all()
-#     products = Product.objects.filter(available_display=True)
-#     if category_slug:
-#         current_category = get_object_or_404(Category)
-#         products = products.filter(category=current_category)
-#     return render(request, 'shop/product_list.html', {
-#         'current_category': current_category,
-#         'categories': categories,
-#         'products': products})
+def product_review(request):
+    return render(request, 'shop/product_review_list.html')
 
 
 @csrf_exempt
