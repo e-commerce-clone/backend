@@ -7,6 +7,7 @@ from django.contrib import messages
 from .models import Profile
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt    # csrf_token 무시하기 위한 @csrf_exempt
+from django.conf import settings 
 import string, random
 
 # SMTP 관련 인증 : 이메일 인증 Gmail 이용
@@ -88,14 +89,20 @@ def signup(request):        # 회원가입 뷰
 
 
 def login(request):     # 로그인 뷰 : django auth login
+<<<<<<< Updated upstream
     template="accounts/login.html"
 
+=======
+    template = "accounts/login.html"
+    context={}
+>>>>>>> Stashed changes
     if request.method == "POST":
         name = request.POST.get('username') # id
         pwd = request.POST.get('password') # pw
         user = authenticate(username=name, password=pwd)
         try:         
             check_user = auth_User.objects.get(username=name)
+<<<<<<< Updated upstream
         except: # 정보 부정확.            
             return render(request, template)
 
@@ -121,6 +128,37 @@ def login(request):     # 로그인 뷰 : django auth login
                 data={'error':error,}
                 print(error,'계정활성화 필요')
                 return render(request,template,data)
+=======
+        except:     # 정보 부정확.
+            error = 2
+            data = {'error': error, }
+            return render(request, template,data)
+
+        if check_user is not None:  # 계정이 있을 경우
+            if (check_user.is_active == True):  # 계정 활성화일 경우
+                try:    # 로그인 가능
+                    auth_login(request, user)   # login 수행
+
+                    if (name == "admin"):
+                        return render(request, "main/main.html", {'m_name': "admin"})
+                    
+                    profile = Profile.objects.get(user=user)
+                    request.session['user_name'] = profile.person_name
+                    context['userSession']=request.session['user_name']
+                    # person_name = profile.person_name
+                    # data = {
+                    #     'm_name': person_name,
+                    # }
+                    return render(request, "main/main.html", context)
+                except:     # 아이디 비밀번호 불일치일 경우
+                    error = 1
+                    data = {'error': error, }
+                    return render(request, template, data)
+            elif (check_user.is_active == False):   # 계정 활성화 아닐 경우
+                error = 0
+                data = {'error': error, }
+                return render(request, template, data)
+>>>>>>> Stashed changes
     return render(request, template)
 
 
