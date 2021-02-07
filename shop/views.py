@@ -71,7 +71,6 @@ def product_in_category(request, name):
     start_index = paginated_by * (page - 1)
     end_index = paginated_by * page
     photos = photos[start_index:end_index]
-    print(category_name)
     return render(request, 'shop/product_list.html', {'photos': photos, 'total_page': total_page,
                                                       'page_range': page_range, 'categories': all_categories,
                                                       'category_name': category_name})
