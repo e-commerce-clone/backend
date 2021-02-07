@@ -1,11 +1,10 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-from .models import Product, Category
+from .models import Product, Category, MainCategory
 from photo.models import Product_photo
-from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import math
+from urllib import parse
 from cart.views import add_cart
 
 # Create your views here.
@@ -21,20 +20,62 @@ def product_detail(request, id):
 def product_list(request):
     if request.method == "POST":
         add_cart(request, request.POST.get('product_id'))
-    page = int(request.GET.get('page', 1))     # 현재 페이지 번호를 가져온다. 없으면 1을 가져온다.
-    paginated_by = 3        # 페이지당 노출될 개수
+    page = int(request.GET.get('page', 1))                  # 현재 페이지 번호를 가져온다. 없으면 1을 가져온다.
+    paginated_by = 3                                        # 페이지당 노출될 개수
+
     photos = get_list_or_404(Product_photo)
     total_count = len(photos)
+
     if paginated_by >= total_count:
         total_page = 1
     else:
         total_page = math.ceil(total_count / paginated_by)
+
     page_range = range(1, total_page+1)
+    all_categories = Category.objects.all()
     start_index = paginated_by * (page - 1)
     end_index = paginated_by * page
     photos = photos[start_index:end_index]
+    category_name = None
+
     return render(request, 'shop/product_list.html', {'photos': photos, 'total_page': total_page,
-                                                      'page_range': page_range})
+                                                      'page_range': page_range, 'categories': all_categories,
+                                                      'category_name': category_name})
+
+
+def product_in_category(request, name):
+    if request.method == "POST":
+        add_cart(request, request.POST.get('product_id'))
+    page = int(request.GET.get('page', 1))              # 현재 페이지 번호를 가져온다. 없으면 1을 가져온다.
+    category_name = name                                # 카테고리 이름을 가져온다.
+    paginated_by = 3                                    # 페이지당 노출될 개수
+
+    if category_name:
+        category = get_object_or_404(Category, name=category_name)
+        products = get_list_or_404(Product, category=category)
+        photos = []
+        for product in products:
+            photos.append(get_object_or_404(Product_photo, product=product))
+    else:
+        photos = get_list_or_404(Product_photo)
+
+    total_count = len(photos)
+
+    if paginated_by >= total_count:
+        total_page = 1
+    else:
+        total_page = math.ceil(total_count / paginated_by)
+
+    page_range = range(1, total_page + 1)
+    all_categories = Category.objects.all()
+    start_index = paginated_by * (page - 1)
+    end_index = paginated_by * page
+    photos = photos[start_index:end_index]
+    print(category_name)
+    return render(request, 'shop/product_list.html', {'photos': photos, 'total_page': total_page,
+                                                      'page_range': page_range, 'categories': all_categories,
+                                                      'category_name': category_name})
+
 
 
 def mobile_product_list(request):

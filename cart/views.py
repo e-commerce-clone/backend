@@ -33,9 +33,9 @@ def add_cart(request, image_id):
         cart_item.save()
     except CartItem.DoesNotExist:
         cart_item = CartItem.objects.create(
-            photo = photo,
-            quantity = int(request.POST.get('count')),
-            cart = cart
+            photo=photo,
+            quantity=int(request.POST.get('count')),
+            cart=cart
         )
         cart_item.save()
 

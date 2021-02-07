@@ -3,7 +3,21 @@ from django.urls import reverse
 # Create your models here.
 
 
+class MainCategory(models.Model):
+    name = models.CharField(max_length=200, db_index=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'main_category'
+        verbose_name_plural = 'main_categories'
+
+    def __str__(self):
+        return self.name
+
+
 class Category(models.Model):
+    main_category = models.ForeignKey(MainCategory, on_delete=models.SET_NULL,
+                                      null=True)
     name = models.CharField(max_length=200, db_index=True)
     meta_description = models.TextField(blank=True)         # 검색엔진에 노출되게 하기위한 필드
     """
@@ -20,7 +34,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('shop:product_list')
+        return reverse('shop:product_list', args=[self.id])
 
 
 class Product(models.Model):
