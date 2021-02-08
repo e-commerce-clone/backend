@@ -17,13 +17,23 @@ def product_detail(request, id):
                                                                 'image': image})
 
 
-def product_list(request):
+def product_list(request, main_category):
     if request.method == "POST":
         add_cart(request, request.POST.get('product_id'))
     page = int(request.GET.get('page', 1))                  # 현재 페이지 번호를 가져온다. 없으면 1을 가져온다.
     paginated_by = 3                                        # 페이지당 노출될 개수
 
-    photos = get_list_or_404(Product_photo)
+    m_category = get_object_or_404(MainCategory, name=main_category)
+    all_categories = get_list_or_404(Category, main_category=m_category)
+
+    photos = []
+    products_in_category = []
+    for s_category in all_categories:
+        tmp = get_list_or_404(Product, category=s_category)
+        for product in tmp:
+            products_in_category.append(product)
+    for product in products_in_category:
+        photos.append(get_object_or_404(Product_photo, product=product))
     total_count = len(photos)
 
     if paginated_by >= total_count:
@@ -32,7 +42,7 @@ def product_list(request):
         total_page = math.ceil(total_count / paginated_by)
 
     page_range = range(1, total_page+1)
-    all_categories = Category.objects.all()
+
     start_index = paginated_by * (page - 1)
     end_index = paginated_by * page
     photos = photos[start_index:end_index]
@@ -40,24 +50,24 @@ def product_list(request):
 
     return render(request, 'shop/product_list.html', {'photos': photos, 'total_page': total_page,
                                                       'page_range': page_range, 'categories': all_categories,
-                                                      'category_name': category_name})
+                                                      'category_name': category_name, 'main_category': main_category})
 
 
-def product_in_category(request, name):
+def product_in_category(request, main_category, sub_category):
     if request.method == "POST":
         add_cart(request, request.POST.get('product_id'))
     page = int(request.GET.get('page', 1))              # 현재 페이지 번호를 가져온다. 없으면 1을 가져온다.
-    category_name = name                                # 카테고리 이름을 가져온다.
+    category_name = sub_category                        # 카테고리 이름을 가져온다.
     paginated_by = 3                                    # 페이지당 노출될 개수
 
-    if category_name:
+    if category_name == "all":
+        photos = get_list_or_404(Product_photo)
+    else:
         category = get_object_or_404(Category, name=category_name)
         products = get_list_or_404(Product, category=category)
         photos = []
         for product in products:
             photos.append(get_object_or_404(Product_photo, product=product))
-    else:
-        photos = get_list_or_404(Product_photo)
 
     total_count = len(photos)
 
@@ -67,13 +77,16 @@ def product_in_category(request, name):
         total_page = math.ceil(total_count / paginated_by)
 
     page_range = range(1, total_page + 1)
-    all_categories = Category.objects.all()
+
+    m_category = get_object_or_404(MainCategory, name=main_category)
+    all_categories = get_list_or_404(Category, main_category=m_category)
+
     start_index = paginated_by * (page - 1)
     end_index = paginated_by * page
     photos = photos[start_index:end_index]
     return render(request, 'shop/product_list.html', {'photos': photos, 'total_page': total_page,
                                                       'page_range': page_range, 'categories': all_categories,
-                                                      'category_name': category_name})
+                                                      'category_name': category_name, 'main_category': main_category})
 
 
 

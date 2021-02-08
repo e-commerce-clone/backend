@@ -38,11 +38,11 @@
 
                             <ul class="list">
                                 <li name="cate_gory">
-                                    <a href="{% url 'shop:product_list' %}" class="on">전체보기</a>
+                                    <a href="{% url 'shop:product_in_category' main_category 'all' %}" class="on">전체보기</a>
                                 </li>
                                 {% for category in categories %}
                                     <li name="cate_gory">
-                                        <a href="{% url 'shop:product_in_category' category %}" class=>{{ category.name }}</a>
+                                        <a href="{% url 'shop:product_in_category' main_category category %}" class=>{{ category.name }}</a>
                                     </li>
                                 {% endfor %}
                                 <li class="bg" style="top: 78px; width: 68px; left: 29px; opacity: 1;"></li>
@@ -164,7 +164,7 @@
                                 <a href="#main" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a>
                                 {% if category_name %}
                                     {% for page in page_range %}
-                                    <a href="{% url 'shop:product_in_category' category_name %}?page={{ page }}">
+                                    <a href="{% url 'shop:product_in_category' main_category category_name %}?page={{ page }}">
                                         <span>
                                             <strong class="layout-pagination-button layout-pagination-number">
                                                 {{ page }}
@@ -174,7 +174,7 @@
                                     {% endfor %}
                                 {% else %}
                                     {% for page in page_range %}
-                                        <a href="{% url 'shop:product_list' %}?page={{ page }}">
+                                        <a href="{% url 'shop:product_list' main_category %}?page={{ page }}">
                                             <span>
                                                 <strong class="layout-pagination-button layout-pagination-number">
                                                     {{ page }}

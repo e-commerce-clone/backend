@@ -184,7 +184,7 @@
                                 <ul class="menu">
                                     <li class="current">
                                         <!-- hover나 active시 current가 옮겨가도록 설정해야 함 -->
-                                        <a href="{% url 'shop:product_list' %}" class="main_item">
+                                        <a href="{% url 'shop:product_list' '채소' %}" class="main_item">
                                             <span class="ico">
                                                 <img src="https://img-cf.kurly.com/shop/data/category/icon_newyear_inactive_pc@2x.1609722514.png" alt="" class="ico off">
                                                 <img src="https://img-cf.kurly.com/shop/data/category/icon_newyear_active_pc@2x.1609722514.png" alt="" class="ico on">
@@ -200,7 +200,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="main_item">
+                                        <a href="{% url 'shop:product_list' '과일·견과·쌀' %}" class="main_item">
                                             <span class="ico">
                                                 <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
                                                     class="ico off">
@@ -214,7 +214,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="main_item">
+                                        <a href="{% url 'shop:product_list' '수산·해산·건어물' %}" class="main_item">
                                             <span class="ico">
                                                 <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png" alt=""
                                                     class="ico off">

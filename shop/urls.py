@@ -4,8 +4,8 @@ from . import views
 app_name = 'shop'
 
 urlpatterns = [
-    path('product_list/', views.product_list, name='product_list'),\
-    path('product_list/<str:name>/', views.product_in_category, name='product_in_category'),
+    path('product_list/<str:main_category>/', views.product_list, name='product_list'),\
+    path('product_list/<str:main_category>/<str:sub_category>/', views.product_in_category, name='product_in_category'),
     path('mobile_product_list/', views.mobile_product_list, name='mobile_product_list'),
     path('product/<int:id>/', views.product_detail, name='product_detail'),
     path('product_review_list.html', views.product_review, name='product_review'),
