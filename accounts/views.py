@@ -49,6 +49,9 @@ def join(request):        # 회원가입 뷰
         else:
             home_address = None
 
+        first_name = person_name[1:3]
+        last_name = person_name[0]
+
         res_data = {
             'username': username,
             'person_name': person_name,
@@ -56,6 +59,8 @@ def join(request):        # 회원가입 뷰
         }
         user = auth_User(username=username,
                          password=make_password(password),
+                         first_name=first_name,
+                         last_name=last_name,
                          email=email,
                          is_active=False)
         user_info = Profile(user=user,
@@ -118,6 +123,9 @@ def mobile_join(request):
         else:
             home_address = None
 
+        first_name = person_name[1:3]
+        last_name = person_name[0]
+
         res_data = {
             'username': username,
             'person_name': person_name,
@@ -126,6 +134,8 @@ def mobile_join(request):
 
         user = auth_User(username=username,
                          password=make_password(password),
+                         first_name=first_name,
+                         last_name=last_name,
                          email=email,
                          is_active=False)
         user_info = Profile(user=user,
@@ -176,14 +186,14 @@ def login(request):     # 로그인 뷰 : django auth login
             if (check_user.is_active == True):  # 계정 활성화일 경우
                 try:    # 로그인 가능
                     auth_login(request, user)   # login 수행
-                    if (name == "admin"):
-                        return render(request, "main/main.html", {'m_name': "admin"})
-                    profile = Profile.objects.get(user=user)
-                    person_name = profile.person_name
-                    data = {
-                        'm_name': person_name,
-                    }
-                    return render(request, "main/main.html", data)
+                    # if (name == "admin"):
+                    #     return render(request, "main/main.html", {'m_name': "admin"})
+                    # profile = Profile.objects.get(user=user)
+                    # person_name = profile.person_name
+                    # data = {
+                    #     'm_name': person_name,
+                    # }
+                    return render(request, "main/main.html")
                 except:     # 아이디 비밀번호 불일치일 경우
                     error = 1
                     data = {'error': error, }
