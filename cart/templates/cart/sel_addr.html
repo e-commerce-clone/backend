@@ -1,0 +1,52 @@
+<!-- +bo0 -->
+{% load static%}
+
+<head>
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <title>shopping-cart</title>
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'cart/css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'cart/css/list.bundle.css' %}">
+
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="{% static 'cart/js/cart.js' %}"></script>
+</head>
+
+<body onresize="parent.resizeTo(484,467)" onload="parent.resizeTo(484,467)">
+    <div class="section_destination">
+        <div id="inputForm" class>
+            <div class="modify only_pc">
+                <input type="hidden" name="addrNo" value="">
+                <input type="hidden" name="road_zonecode" value="15119">
+                <input type="hidden" name="zipcode" value="15119">
+                <p class="tit_result">주소를 입력해주세요.<br>
+                </p>
+                <div class="field">
+                    <div class="address_search">
+                        <input onclick="sel_addr()" id="addrMain" class="address" type="text" placeholder="주소를 검색해주세요.">
+                        <!-- text창을 누르면 검색버튼이 눌리도록 함.-->
+                        <button type="button" id="juso" class="btn">
+                        <span class="ico"></span>재검색<!-- 검색kakao api -->
+                    </button>
+                    </div>
+                    <input type="text" id="addrSub" name="addrSub" placeholder="나머지 주소를 입력해주세요" data-max-length="75" data-format="text" value="">
+                </div>
+                <label class="label_default"><br>
+                <p class="notice"><span class="ico">※</span> 
+                    저장된 배송지는 최대 7일 간 임시 저장 후 자동 삭제됩니다.<br>
+                    <span class="br"></span>
+                    로그인 할 경우, 회원님의 배송지 목록에 추가됩니다.</p>
+                <button type="button" class="btn active">저장</button>
+                <!-- 저장시 db에 반영됨. 기본배송지 체크 시 반영해야함.-->
+                
+        </div>
+    </div>
+</div>
+<script>
+    function sel_addr(){
+        document.getElementById('juso').click();
+    }
+
+</script>
