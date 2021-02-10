@@ -88,3 +88,8 @@ def ship_destination(request):
 
 def add_mydestination(request):
     return render(request, 'cart/add_mydestination.html')               #미완성
+
+
+
+def sel_addr(request): # +bo0
+    return render(request, 'cart/sel_addr.html')
