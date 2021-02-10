@@ -101,8 +101,7 @@
 
                     <div id="cartPut">
                         <div class="cart_option cart_type2">
-                            <form action="{% url 'cart:add_cart' image.id %}" method="post">
-                                {% csrf_token %}
+                            <form action="">
                                 <div class="inner_option">
                                     <div class="in_option">
                                         <div class="list_goods">
@@ -112,7 +111,7 @@
                                                     <div class="option">
                                                         <span class="count">
                                                             <button type="button" class="btn down on">수량내리기</button>
-                                                            <input type="number" readonly="readonly" name="count" value = 1 class="inp">
+                                                            <input type="number" readonly="readonly" value = 1 class="inp">
                                                             <button  type="button" class="btn up on">수량올리기</button>
                                                         </span>
 
@@ -668,9 +667,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="goods-view-infomation-content" id="goods-review"> <!-- 아래 주소창에 good_review_list.html url 넣어주면 됩니당-->
-                            <iframe src="{% url 'shop:product_review' %}" id="inreview" frameborder="0" class="goods-view-infomation-board" height="733"></iframe>
-                        </div>
+
                     </div>
                 </div>
             </div>
