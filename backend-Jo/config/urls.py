@@ -9,6 +9,7 @@ urlpatterns = [
     path('accounts/', include("accounts.urls")),
     path('shop/', include("shop.urls")),
     path('cart/', include("cart.urls")),
+    path('kakaopay/', include("kakaopay.urls")),
     path('', include("main.urls")),
 ]
 

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'accounts',             # 회원정보 관련 앱
     'shop',                 # 제품 리스트 등 상점 앱
     'cart',                 # 장바구니 앱
+    'kakaopay',             # 카카오페이 결제 앱
     'rangefilter',          # accounts -> admin.py 에 사용됨. admin 페이지에서 모델을 범위별로 검색하기 위한 모듈
     'six',
     'main',                 # 메인 앱
