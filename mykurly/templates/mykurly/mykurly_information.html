@@ -120,14 +120,14 @@
                                 <h3 class="tit">비밀번호 재확인</h3>
                                 <p class="sub">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해주세요.</p>
 
-                                <form name="contirmForm" action="post">
+                                <form action="" name="contirmForm" method="post">
                                     {% csrf_token %}
                                     <table class="tbl_comm">
                                         <tbody>
                                             <tr class="fst">
                                                 <th>아이디</th>
                                                 <td>
-                                                    <input type="text" value="{{ auth.username }}" readonly="" class="inp_read">
+                                                    <input type="text" name="id" value="{{ user.username }}" readonly="" class="inp_read">
                                                 </td>
                                             </tr>
 

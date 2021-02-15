@@ -12,5 +12,6 @@ urlpatterns = [
     path('review_register/', views.review_register, name="review_register"),
     path('information/', views.information, name="information"),
     path('information/modify/', views.information_modify, name="information_modify"),
+    path('information/withdrawal/', views.withdrawal, name="withdrawal"),
     path('delivery_list/address_search/', views.address_search, name="address_search"),
 ]

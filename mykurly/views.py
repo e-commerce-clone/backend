@@ -1,5 +1,7 @@
 from django.shortcuts import render
-
+from django.contrib.auth import authenticate
+from accounts.models import Profile
+from django.contrib.auth.models import User as auth_User
 # Create your views here.
 
 
@@ -20,6 +22,14 @@ def review_register(request):
 
 
 def information(request):
+    if request.method == "POST":
+        id = request.POST.get("id")
+        pw = request.POST.get("confirm_password")
+        try:
+            user = authenticate(username=id, password=pw)
+            return render(request, 'mykurly/mykurly_information_modify.html')
+        except:
+            pass
     return render(request, 'mykurly/mykurly_information.html')
 
 
@@ -37,3 +47,7 @@ def delivery_modify(request):
 
 def address_search(request):
     return render(request, 'mykurly/mykurly_address_search.html')
+
+
+def withdrawal(request):
+    return render(request, 'mykurly/mykurly_withdrawal.html')
