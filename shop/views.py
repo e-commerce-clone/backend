@@ -47,14 +47,37 @@ def mobile_category(request):
     return render(request, 'shop/mobile_category.html')
 
 def product_search(request):
-    search_keyword=request.GET.get('search_key', '')
-    product_list=Product_photo.objects.order_by('-id')
-    # page = request.GET.get('page', '1')
+    #search_products = None
 
-    if search_keyword :
+
+    if request.method == "GET":
+        search_keyword = request.GET.get('search_key', '')
+        product_list = Product_photo.objects.order_by('-id')
+
         search_products = product_list.filter(product__name__icontains=search_keyword)
+        print(search_products)
+        print(search_keyword)
 
-    print(search_products)
+        return render(request, 'shop/product_search.html', {'photos': search_products})
+
+    elif request.method == "POST":
+        add_cart(request, request.POST.get('produc_id'))
+        print(request.POST.get('produc_id'))
+
+        return render(request, 'cart/cart.html')
+
+    # elif request.method == "POST":
+    #     add_cart(request, request.POST.get('product_id'))
+    #     print(request.POST.get('product_id'))
+
+    #print(search_keyword)
+
+    # search_keyword=request.GET.get('search_key', '')
+    # product_list=Product_photo.objects.order_by('-id')
+    # # page = request.GET.get('page', '1')
+
+    #print(search_products)
     # paginator = Paginator(product_list, 100)                                         # 페이지 나누기
     # page_obj = paginator.get_page(page)
-    return render(request, 'shop/product_search.html', {'photos': search_products})
+    #return render(request, 'shop/product_search.html', {'photos': search_products})
+

@@ -1,73 +1,208 @@
 <!DOCTYPE html>
-{% load static %}
+{% extends 'base.html' %}
+{% block content %}
 {% load humanize %}
-<html lang="en">
-
-
+{% load static %}
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'shop/css/good_list01.css' %}">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="{% static 'shop/js/good_list01.js' %}"></script>
+    <title>INU Kurly</title>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <!-- common.css : header, footer 메인 페이지 -->
+	<link rel="stylesheet" href="{% static 'shop/css/goods_search.css' %}">
+    <!-- search.css : 검색 페이지 -->
+	<script defer src="{% static 'js/common.js' %}"></script>
+    <script defer src="{% static 'js/contents.js' %}"></script>
+    <script defer src="{% static 'shop/js/goods_search.js' %}"></script>
+    <SCRIPT LANGUAGE="JavaScript">
+
+        // if (top.document.location.search != "?mobile") {
+        //         var strGoto = "main_mobile.html";
+        //         var str = window.navigator.userAgent.toLowerCase();
+        //         if (/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)) {
+        //             top.document.location.replace(strGoto);
+        //         }
+        // }
+    </SCRIPT>
 </head>
 
 <body>
-<div class="list_goods">
-                            <div class="inner_listgoods">
-                                    <ul class="list">
-                                        {% for photo in photos %}     <!-- 여기서 부터 물건 리스트-->
-                                        <li>
-                                            <div class="item">
-                                                <div class="thumb">
-                                                    <a href="{% url 'shop:product_detail' photo.product.id %}" class="img" style="background-image: url(https://img-cf.kurly.com/shop/data/goods/1567574126435l0.jpg);">
-                                                        <img src="{{ photo.main_image.url }}" alt="무농약 콩으로 재배한 콩나물(1봉/200g)" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+	<div id="wrap">
+		<!-- id ="header" -->
+		<div id="main">
+			<div id="content">
+				<div id="qnb" class="quick-navition">
+					<div class="bnr_qnb" id="brnQuick">
+						<a href="/shop/event/kurlyEvent.php?htmid=event/2021/0115/newyearsday" id="brnQuickObj">
+							<img class="thumb" src="https://res.kurly.com/pc/service/main/2101/bnr_quick.png" alt="2021 설 선물">
+						</a>
+					</div>
 
+					<div class="side_menu">
+						<a href="#" class="link_menu">등급별 혜택</a>
+						<a href="#" class="link_menu">레시피</a>
+						<a href="#" class="link_menu">베스트 후기</a>
+					</div>
+				</div>
 
-                                                    </a>
-                                                    <span class="global_sticker" style="display: none;">
-                                                        <span class="inner_sticker">
-                                                            <span class="bg_sticker"></span>
-                                                            <span class="txt_sticker">
-                                                                <span class="emph_sticker">1+2
-                                                                </span>
-                                                                이벤트
-                                                            </span>
-                                                        </span>
-                                                    </span>
+				<div class="top_btn">
+					<button id="go-top" alt="맨 위로가기"></button>
+				</div>
 
-                                                    <div class="group_btn">
-                                                        <button type="submit" value={{ photo.product.id }} name="chk" class="btn btn_cart">
-                                                            <span class="screen_out">38300</span>
-                                                        </button>
-                                                    </div>
+				<div class="page_aticle page_search">
+					<form action="{% url 'shop:product_search' %}" name="frmList" method="get">
+                        {% csrf_token %}
+						<input type="hidden" name="searched" value="Y"> <!--먼지 모르겠음-->
 
+						<div class="search_box">
+							<div class="tit">
+								<label	label for="sword">검색 조건</label>
+							</div>
+							<div class="desc">
+								<input type="text" name="search_key" id="sword" class="inp" value="">
+								<input type="submit" class="styled-button btn_search" value="검색하기">
+							</div>
+						</div>
+					</form>
+					
+					<div id="goodsList" class="page_section section_goodslist">
+						<p class="search_result">
+							<strong class="emph">총 <span></span> 개</strong>의 상품이 검색되었습니다.
+						</p>
 
-
-                                                </div>
-
-                                                <a class="info">
-                                                    <span class="name">
-                                                        {{ photo.product.name }}
-                                                    </span>
-                                                    <span class="cost">
-                                                        <span class="price">{{ photo.product.price | intcomma }}</span>
-                                                        <input type="hidden"  id="product_cost1" value={{ photo.product.price }} >
-                                                        <span class="dodo">원</span>
-                                                    </span>
-
-                                                    <span class="desc">{{ photo.product.description }}</span>
-                                                    <span class="tag"></span>
-                                                </a>
-                                            </div>
-                                        </li>
+						<div class="list_goods">
+							<div class="inner_listgoods">
+								<ul class="list">
+                                    {% for photo in photos %}     <!-- 여기서 부터 물건 리스트-->
+									<li>
+										<div class="item">
+											<div class="thumb">
+												<a class="img" style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1530172373295l0.jpg');">
+													<span class="global_sticker">
+														<span class="inner_sticker">
+															<span class="bg_sticker" style="background-color: rgb(189, 118, 255); opacity: 0.9;"></span>
+															<span class="txt_sticker">
+																<span>
+																	<span class="emph_sticker">농할쿠폰20%</span>
+																</span>
+															</span>
+														</span>
+													</span>
+													<img src="{{ photo.main_image.url }}" alt="믿고 먹을 수 있는 상품을 합리적인 가격에, KF365" width="308" height="396">
+												</a>
+	
+												<div class="group_btn">
+													<button type="button" value={{ photo.id }} class="btn btn_cart2">
+														<span class="blind"></span>
+													</button>
+												</div>
+											</div>
+											
+											<a class="info">
+												<span class="name">{{ photo.product.name }}</span>
+												<span class="cost">
+													<span class="price">{{ photo.product.price | intcomma }}</span>
+                                                    <span class="won">원</span>
+                                                    <input type="hidden" value={{ photo.product.price }} class="value"> <!-- 백앤드에서 상품가격 value 에 넣어줘야됨-->
+												</span>
+												<span class="desc">{{ photo.product.one_description }}</span>
+												<span class="tag"></span>
+											</a>
+										</div>
+									</li>
                                     {% endfor %}
+								</ul>
+							</div>
+						</div>
+
+						<div class="layout-pagination">
+							<div class="pagediv">
+								<a href="#main" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a>
+								<a href="#main" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a>
+								<span>
+									<strong class="layout-pagination-button layout-pagination-number active">1</strong>
+									<!-- active 클래스가 붙어있을 때 -->
+								</span>
+								<a href="#main" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a>
+								<a href="#main" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a>
+							</div>
+						</div>
+					</div>
 
 
 
 
-                                </ul>
-                            </div>
+				</div>
+
+				<div class="bg_loading" id="bgLoading">
+					<div class="loading_show"></div>
+				</div>
+			</div>
+		</div>
+        <!-- id="footer" -->
+	</div>
+    <!-- id="wrap"-->
+    
+    <div id="cartPut">
+        <div id="" class="cart_option cartList cart_type1">
+            <form action="" mathod="POST" id="contactsForm">
+				{% csrf_token %}
+                <input type="hidden" name="csrfmiddlewaretoken" value="fkidl2oy2p7Xpln3vWOCFlPAhMgvR0xmy3Mf32y7nuXxgRiF4vloOp7sYJkeOFy7">
+                <div class="inner_option">
+                    <button type="button" class="btn_close1">레이어닫기</button>
+                    <!-- <strong class="tit_cart">[퀸나] 티파니 에어프라이어 2.3L 2종 QN-AF23W</strong> -->
+                    <div class="in_option">
+                        <div class="list_goods">
+                            <ul class="list list_nopackage"> <!--그냥 list와 list_nopackage로 나뉨-->
+                                <li class="">
+                                    <span class="name">[KF365] 감자 1kg</span>
+                                    <div class="option">
+                                        <span class="count">
+                                            <button type="button" class="btn down on">수량내리기</button>
+                                            <input type="text" readonly="readonly" class="inp" value = 1>
+                                            <button type="button" class="btn up on">수량올리기</button>
+                                        </span>
+                                        <span class="price">
+                                            <span class="dc_price">2,500원</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
+                        <div class="total">
+                            <div class="price">
+                                <strong class="tit">합계</strong>
+                                <span class="sum">
+                                    <span class="num">2,500</span>
+                                    <span class="won">원</span>
+                                </span>
+                            </div>
+                            <p class="txt_point">
+                                <span class="ico">적립</span>
+                                <span class="no_login hide"> <!--로그인 안된 상태(기본), 로그인 후엔 hide 클래스 추가-->
+                                    <span>로그인 후, 적립혜택 제공</span>
+                                </span>
+                                <span class="point show">구매 시 <!--로그인 되었을 때 show 클래스 추가-->
+                                    <strong class="emph"></strong>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="group_btn off layer_btn2">
+                        <span class="btn_type2">
+                            <button type="button" class="txt_type">취소</button>
+                        </span>
+                        <span class="btn_type1">
+                            <button type="submit" name="product_id" value="1" class="txt_type">장바구니 담기</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- id="cartPut" -->
+
 </body>
-</html>
+{% endblock %}
