@@ -10,6 +10,7 @@ urlpatterns = [
     path('shop/', include("shop.urls")),
     path('cart/', include("cart.urls", namespace="cart")),
     path('', include("main.urls")),
+    path('mykurly/', include("mykurly.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

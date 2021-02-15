@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'debug_toolbar',        # 디버깅툴
     'photo',                # 이미지 업로드
     'cart',                 # 장바구니
+    'mykurly',              # 마이컬리
 ]
 
 
