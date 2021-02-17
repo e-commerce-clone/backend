@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded',function(){
 
-    
+
 
     $('.top_event_close').click(function(){
         $("#top_event").slideUp(200)

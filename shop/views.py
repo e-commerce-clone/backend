@@ -22,8 +22,8 @@ def product_detail(request, id):
 
 def product_list(request):
     photos = Product_photo.objects.all()
-    if request.method == "POST":
-        add_cart(request, request.POST.get('product_id'))
+    # if request.method == "POST":
+    #     add_cart(request)
     return render(request, 'shop/product_list.html', {'photos': photos})
 
 
@@ -47,33 +47,20 @@ def mobile_category(request):
     return render(request, 'shop/mobile_category.html')
 
 def product_search(request):
-    #search_products = None
+    counter = 0
+    search_keyword = request.GET.get('search_key', '')
+    product_list = Product_photo.objects.order_by('-id')
 
+    search_products = product_list.filter(product__name__icontains=search_keyword)
 
-    if request.method == "GET":
-        search_keyword = request.GET.get('search_key', '')
-        product_list = Product_photo.objects.order_by('-id')
+    for x in search_products:
+        counter += 1
+    print(search_products)
+    print(search_keyword)
 
-        search_products = product_list.filter(product__name__icontains=search_keyword)
-        print(search_products)
-        print(search_keyword)
-
-        return render(request, 'shop/product_search.html', {'photos': search_products})
-
-    elif request.method == "POST":
-        add_cart(request, request.POST.get('produc_id'))
-        print(request.POST.get('produc_id'))
-
-        return render(request, 'cart/cart.html')
-
-    # elif request.method == "POST":
-    #     add_cart(request, request.POST.get('product_id'))
-    #     print(request.POST.get('product_id'))
-
-    #print(search_keyword)
-
-    # search_keyword=request.GET.get('search_key', '')
-    # product_list=Product_photo.objects.order_by('-id')
+    return render(request, 'shop/product_search.html', {'photos': search_products,
+                                                        'counter': counter,
+                                                        'search_keyword': search_keyword})
     # # page = request.GET.get('page', '1')
 
     #print(search_products)

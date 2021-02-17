@@ -124,8 +124,6 @@
                                                 <div class="thumb">
                                                     <a href="{% url 'shop:product_detail' photo.product.id %}" class="img">
                                                         <img src="{{ photo.main_image.url }}" alt="무농약 콩으로 재배한 콩나물(1봉/200g)" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
-
-
                                                     </a>
                                                     <span class="global_sticker" style="display: none;">
                                                         <span class="inner_sticker">
@@ -249,8 +247,9 @@
 
     <div id="cartPut">
         <div class="cart_option cart_type3" style="opacity: 1;">
-            <form action="" method="POST" id="contactsForm">
+            <form action="{% url 'cart:add_cart' %}" method="POST" id="contactsForm">
                 {% csrf_token %}
+                <input type="hidden" value={{ request.path }} name="current_url">
                 <div class="inner_option">
                     <div class="in_option">
                         <div class="list_goods">
@@ -301,7 +300,7 @@
                             <button type="button" class="txt_type">취소</button>
                         </span>
                         <span class="btn_type1">
-                            <button type="submit" value=1 name="produc_id" class="txt_type">장바구니 담기</button>
+                            <button type="submit" value=1 name="product_id" class="txt_type">장바구니 담기</button>
                         </span>
                     </div>
                 </div>
