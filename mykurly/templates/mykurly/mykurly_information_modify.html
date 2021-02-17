@@ -224,7 +224,7 @@
                                                 
                                             </th>
                                             <td>
-                                                <input type="text" name="id" maxlength="16" readonly=""  option="regId" value="siwha9808"> <!-- value에 이름데이터 나오게-->
+                                                <input type="text" name="id" maxlength="16" readonly=""  option="regId" value="{{ id }}"> <!-- value에 이름데이터 나오게-->
                                                 
                                                 <p class="txt_guide square">
                                                     <span class="txt txt_case1">
@@ -240,7 +240,7 @@
                                         <tr class="field_nowpw">
                                             <th>현재 비밀번호</th>
                                             <td>
-                                                <input type="password" name="originalPassword" id="originalPassword">
+                                                <input type="password" required="" name="originalPassword" id="originalPassword">
                                                  <p class="txt_guide square">
                                                     <span class="txt txt_case4">현재 비밀번호를 확인해주세요</span>
                                                 </p>
@@ -289,7 +289,7 @@
                                                 
                                             </th>
                                             <td>
-                                                <input type="text" name="name"   label="이름" value="이도현"> <!-- value에 이름데이터 나오게 설정 -->
+                                                <input type="text" name="name" required="" label="이름" value="{{ person_name }}"> <!-- value에 이름데이터 나오게 설정 -->
                                             </td>
                                         </tr>
     
@@ -300,7 +300,7 @@
                                             </th>
     
                                             <td>
-                                                <input type="text" name="email"   size="30" required=""  option="regEmail" label="이메일" value="siwha9808@naver.com"> <!-- value에 이메일 데이터 나오게-->
+                                                <input type="text" name="email" required="" size="30" required=""  option="regEmail" label="이메일" value="{{ email }}"> <!-- value에 이메일 데이터 나오게-->
                                                 <a href="#" class="btn default">중복확인</a>
                                             </td>
                                         </tr>
@@ -314,7 +314,7 @@
     
                                             <td>
                                                 <div class="phone_num">
-                                                    <input type="text" pattern="[0-9]*" name="mobileInp"  class="inp" value="01012345678"> <!-- value에 휴대폰 번호 데이터 나오게 -->
+                                                    <input type="text" pattern="[0-9]*" name="mobileInp" required="" class="inp" value="{{ phone_number }}"> <!-- value에 휴대폰 번호 데이터 나오게 -->
     
                                                 </div>
                                             </td>
@@ -327,13 +327,13 @@
     
                                             <td style="padding-bottom: 60px;">
                                                 <div class="birth_day">
-                                                    <input type="text" name="year" id="birth_year" pattern="[0-9]*"  label="생년월일" size="4" maxlength="4" placeholder="YYYY">
+                                                    <input type="text" name="year" required="" value="{{ birth_year }}" id="birth_year" pattern="[0-9]*"  label="생년월일" size="4" maxlength="4" placeholder="YYYY">
                                                     <span class="bar">
     
                                                     </span>
-                                                    <input type="text" name="month" id="birth_month" pattern="[0-9]*"  label="생년월일" size="2" maxlength="2" placeholder="MM">
+                                                    <input type="text" name="month" required="" value="{{ birth_month }}" id="birth_month" pattern="[0-9]*"  label="생년월일" size="2" maxlength="2" placeholder="MM">
                                                     <span class="bar"></span>
-                                                    <input type="text" name="day" id="birth_day" pattern="[0-9]*"  label="생년월일" size="2" maxlength="2" placeholder="DD">
+                                                    <input type="text" name="day" required="" value="{{ birth_day }}" id="birth_day" pattern="[0-9]*"  label="생년월일" size="2" maxlength="2" placeholder="DD">
     
                                                 </div>
                                             </td>
@@ -342,7 +342,7 @@
                                 </table>
 
                                 <div id="formSubmit" class="form_footer" style="border-top: 2px solid;">
-                                    <a href="{% url 'mykurly:withdrawal' %}" class="btn default">탈퇴하기</a>
+                                    <a href="{% url 'mykurly:withdrawal' user.pk %}" class="btn default">탈퇴하기</a>
                                     <button type="submit" class="btn active">회원정보수정</button>
                                 </div>
                             </form>

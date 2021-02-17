@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Product, Category, MainCategory
+from mykurly.models import Review
 from photo.models import Product_photo
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -95,8 +96,19 @@ def mobile_product_list(request):
     return render(request, 'shop/mobile_product_list.html', {'photos': photos})
 
 
-def product_review(request):
-    return render(request, 'shop/product_review_list.html')
+def product_review_list(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    reviews = Review.objects.filter(product=product)
+    count = 0
+    for _ in reviews:
+        count += 1
+    counts = list(range(1, count + 1))
+    data = {
+        'reviews': reviews,
+        'pk': pk,
+        'counts': counts
+    }
+    return render(request, 'shop/product_review_list.html', data)
 
 
 @csrf_exempt

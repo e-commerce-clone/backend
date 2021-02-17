@@ -37,17 +37,9 @@ def join(request):        # 회원가입 뷰
         birthday_month = request.POST.get('month', None)
         birthday_day = request.POST.get('day', None)
 
-        if (birthday_year and birthday_month and birthday_day):
-            age = 2021 - int(birthday_year) + 1
-            birthday = f'{birthday_year}-{birthday_month}-{birthday_day}'
-        else:
-            age = None
-            birthday = None
-
-        if (user_address and user_address_detail):
-            home_address = f'{user_address}, {user_address_detail}'
-        else:
-            home_address = None
+        age = 2021 - int(birthday_year) + 1
+        birthday = f'{birthday_year}-{birthday_month}-{birthday_day}'
+        home_address = f'{user_address}, {user_address_detail}'
 
         first_name = person_name[1:3]
         last_name = person_name[0]
@@ -111,17 +103,9 @@ def mobile_join(request):
         birthday_month = request.POST.get('month', None)
         birthday_day = request.POST.get('day', None)
 
-        if (birthday_year and birthday_month and birthday_day):
-            age = 2021 - int(birthday_year) + 1
-            birthday = f'{birthday_year}-{birthday_month}-{birthday_day}'
-        else:
-            age = None
-            birthday = None
-
-        if (user_address and user_address_detail):
-            home_address = f'{user_address}, {user_address_detail}'
-        else:
-            home_address = None
+        age = 2021 - int(birthday_year) + 1
+        birthday = f'{birthday_year}-{birthday_month}-{birthday_day}'
+        home_address = f'{user_address}, {user_address_detail}'
 
         first_name = person_name[1:3]
         last_name = person_name[0]

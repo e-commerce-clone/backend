@@ -126,6 +126,7 @@
             <div class="layer_parent">                
                 <div class="write_form find_view">
                     <form name="certForm" method="post" action="" onsubmit="return on_submit_check();">
+                        {% csrf_token %}
                         <strong class="tit_label">새 비밀번호 등록</strong>
         
                         <input type="password" name="newPassword" id="newPassword" class="password" required="" onkeyup="pw_check()"  maxlength="16" placeholder="새 비밀번호를 입력해주세요">

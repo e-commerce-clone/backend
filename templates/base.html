@@ -16,7 +16,6 @@
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
-
     <title>{% block title %}INU Kurly{% endblock %}</title>
 </head>
 <body>
@@ -69,13 +68,13 @@
                             </a>
                             <ul class="sub">
                                 <li class="list">
-                                    <a href="#" class="list_item">주문 내역</a>
+                                    <a href="{% url 'mykurly:order_list' %}" class="list_item">주문 내역</a>
                                 </li>
                                 <li class="list">
-                                    <a href="#" class="list_item">배송지 관리</a>
+                                    <a href="{% url 'mykurly:delivery_list' %}" class="list_item">배송지 관리</a>
                                 </li>
                                 <li class="list">
-                                    <a href="#" class="list_item">개인 정보 수정</a>
+                                    <a href="{% url 'mykurly:information' %}" class="list_item">개인 정보 수정</a>
                                 </li>
                                 <li class="list">
                                     <a href="{% url 'shop_admin:product_manage' %}" class="list_item">상품 관리자</a>

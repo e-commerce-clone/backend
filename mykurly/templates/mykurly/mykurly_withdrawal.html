@@ -24,6 +24,7 @@
                             </div>
 
                             <form action="" method="POST" id="form">
+                                {% csrf_token %}
                                 <table class="tbl_comm">
                                     <tbody>
                                         <tr>
@@ -44,7 +45,7 @@
                                                 비밀번호 확인
                                             </th>
                                             <td>
-                                                <input type="password" name="password" size="20">
+                                                <input type="password" required="" name="password" size="20">
                                             </td>
                                         </tr>
 
