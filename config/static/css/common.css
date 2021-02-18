@@ -3,7 +3,10 @@
 @charset "utf-8";
 
 /* 로그인 클래스 추가 /삭제 */
+
+
 /* 로그인: #top_event */
+
 #top_event .inner_top_event.login {
     display: none;
 }
@@ -23,25 +26,26 @@
     /* 1px로 했는데 2px로 나와서 수정 필요 */
 }
 
-#top_event.login .inner_top_event.login {
-    
-}
+#top_event.login .inner_top_event.login {}
 
 #top_event.login .inner_top_event .top_event_bnr.login {
     color: #4c4c4c;
 }
 
-#top_event.login .inner_top_event.login .b  {
+#top_event.login .inner_top_event.login .b {
     color: #5f0080;
 }
 
 #top_event.login .top_event_close.login {
     background-image: url("https://res.kurly.com/pc/ico/1908/ico_close_333_42x42.png");
 }
+
+
 /* 로그인; top_event 끝-- */
 
 
 /* 로그인: sign_menu */
+
 .sign_menu.login {
     min-width: 196px;
     white-space: nowrap;
@@ -53,11 +57,11 @@
 }
 
 .sign_menu.login .join,
-.sign_menu.login .login_none { 
+.sign_menu.login .login_none {
     display: none;
 }
 
-.sign_menu .link .login_check{
+.sign_menu .link .login_check {
     display: none;
 }
 
@@ -82,7 +86,9 @@
     margin-top: 10px;
 }
 
+
 /* sign_menu 로그인: grade 아이콘 설정 */
+
 .grade_comm .ico_grade {
     display: inline-block;
     min-width: 38px;
@@ -130,7 +136,6 @@
     position: relative;
 }
 
-
 .sign_menu.login .sub {
     display: none;
     position: absolute;
@@ -147,7 +152,6 @@
     display: none;
 }
 
-
 .sign_menu.login .sub .list_item {
     font-size: 12px;
     color: #404040;
@@ -155,26 +159,28 @@
     white-space: nowrap;
 }
 
-
-.sign_menu.login .link:nth-child(2):hover .sub{
+.sign_menu.login .link:nth-child(2):hover .sub {
     display: block;
     z-index: 200;
 }
+
+
 /* 로그인: sign_menu 끝 */
 
 
-
-
-
 /* header, footer */
+
 #wrap {
-    min-width: 1050px; /*고정 width 값으로 변경할 경우 min-width로 설정했던 모든 코드들이 쓸모없어져버림. >> 다른 방법 찾아야 함!*/
+    min-width: 1050px;
+    /*고정 width 값으로 변경할 경우 min-width로 설정했던 모든 코드들이 쓸모없어져버림. >> 다른 방법 찾아야 함!*/
     min-height: 100%;
     /* 임시 height 값 */
     margin: 0 auto;
 }
 
+
 /* header */
+
 #top_event {
     position: relative;
     min-width: 1050px;
@@ -205,7 +211,8 @@
     right: 0;
 }
 
-#top_event .bnr_arr, .top_event_close {
+#top_event .bnr_arr,
+.top_event_close {
     width: 42px;
     height: 42px;
 }
@@ -284,7 +291,7 @@
     display: block;
 }
 
-.sign_menu .link:last-child{
+.sign_menu .link:last-child {
     position: relative;
     padding-right: 10px;
 }
@@ -316,11 +323,6 @@
     line-height: 25px;
 }
 
-
-
-
-
-
 #header .header_logo {
     width: 1050px;
     height: 63px;
@@ -351,6 +353,7 @@
     z-index: 100;
 }
 
+
 /* gnb position: fixed 시켜야 함 */
 
 .gnb::after {
@@ -379,10 +382,11 @@
     color: #5f0080;
 }
 
-.gnb_menu .list + .list:active .txt,
-.gnb_menu .list + .list:hover .txt{
+.gnb_menu .list+.list:active .txt,
+.gnb_menu .list+.list:hover .txt {
     border-bottom: 1px solid #5f0080;
 }
+
 
 /* 추후 전체 카테고리 앞 메뉴 아이콘 컬러 변경 */
 
@@ -398,7 +402,7 @@
     text-align: center;
 }
 
-.gnb_menu .gnb_main .link{
+.gnb_menu .gnb_main .link {
     width: 168px;
     padding-left: 19px;
 }
@@ -414,6 +418,7 @@
 .gnb_menu .link .txt {
     font-weight: 700;
 }
+
 
 /* .gnb_main {
     position: relative;
@@ -597,20 +602,38 @@
     height: 50px;
     background: url(https://res.kurly.com/pc/ico/2011/ico_point_up_18x12.svg) no-repeat 50% 100%;
 }
-/* /* border가 색자체가 돼서 나중에 변경 예정 * */
 
+
+/* /* border가 색자체가 돼서 나중에 변경 예정 * */
 
 .gnb .location_login .location_notice.on,
 .gnb .location_login:active .location_notice,
-.gnb .location_login:hover .location_notice {
+.gnb .location_login:hover .location_notice,
+.gnb .location_set:hover .location_notice {
     display: block;
 }
+
+
 /* 포인터가 영역을 벗어나면 notice가 바로 사라져버림 
 >> z-index 추가해서 수정 완료*/
+
+
 /* js로 location_login에 3초간 active 붙게 설정*/
 
 .gnb .location_notice .emph {
     color: #5f0080;
+}
+
+
+/* 주소등록 부분 - 추가된 css (2021.02.17 - 왜 적용이 안될까요... */
+
+.gnb .location_notice .star {
+    font-size: 12px;
+    color: #5f0080;
+    display: block;
+    padding-top: 8px;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .gnb .group_button .btn {
@@ -638,6 +661,22 @@
     color: #fff;
 }
 
+.gnb .group_button .default {
+    border: 1px solid #5f0080;
+    background-color: #fff;
+    color: #5f0080;
+    display: block;
+    width: 100%;
+    height: 36px;
+    margin-top: 17px;
+    padding-bottom: 2px;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 32px;
+    letter-spacing: 0;
+    text-align: center;
+}
+
 .gnb .cart_count {
     position: absolute;
     right: -6px;
@@ -650,11 +689,16 @@
     height: 36px;
     background: url(https://res.kurly.com/pc/service/common/2011/ico_cart.svg) no-repeat 50% 50%;
 }
+
+
 /* btn_car와 btn_location은 hover 시 보라색으로 변경해야 함. url 못찾는 중 */
+
+
 /* #header 끝 */
 
 
 /* footer */
+
 #footer {
     width: 1050px;
     margin: 0 auto;
@@ -743,7 +787,9 @@
     color: #999;
 }
 
+
 /* #footer right */
+
 #footer .company_info {
     float: right;
     padding-top: 29px;
@@ -798,7 +844,6 @@
     width: 30px;
     height: 30px;
     margin-right: 10px;
-    
 }
 
 #footer .link_footer {
@@ -853,42 +898,8 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* 공통 클래스 */
+
 .blind {
     position: absolute;
     clip: rect(0 0 0 0);

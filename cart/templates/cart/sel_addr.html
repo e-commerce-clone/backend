@@ -14,7 +14,17 @@
     <script src="{% static 'cart/js/cart.js' %}"></script>
 </head>
 
-<body onresize="parent.resizeTo(484,467)" onload="parent.resizeTo(484,467)">
+<script>
+    $(document).ready(function() { /** 주소검색 시 사용하는 js */
+        $("#juso").click(function() {
+            setTimeout(function() {
+                document.getElementById("juso").innerText = '재검색';
+            }, 1000);
+        })
+    });
+</script>
+
+<body onresize="parent.resizeTo(510,440)" onload="parent.resizeTo(510,440)">
     <div class="section_destination">
         <div id="inputForm" class>
             <div class="modify only_pc">
@@ -28,7 +38,7 @@
                         <input onclick="sel_addr()" id="addrMain" class="address" type="text" placeholder="주소를 검색해주세요.">
                         <!-- text창을 누르면 검색버튼이 눌리도록 함.-->
                         <button type="button" id="juso" class="btn">
-                        <span class="ico"></span>재검색<!-- 검색kakao api -->
+                        검색<!-- 검색kakao api -->
                     </button>
                     </div>
                     <input type="text" id="addrSub" name="addrSub" placeholder="나머지 주소를 입력해주세요" data-max-length="75" data-format="text" value="">
@@ -39,7 +49,7 @@
                     <span class="br"></span>
                     로그인 할 경우, 회원님의 배송지 목록에 추가됩니다.</p>
                 <button type="button" class="btn active">저장</button>
-                <!-- 저장시 db에 반영됨. 기본배송지 체크 시 반영해야함.-->
+                <!-- 저장시 db에 반영되고 페이지 새로고침 된 후 페이지에서도 hover부분에 주소가 반영됨..-->
                 
         </div>
     </div>
