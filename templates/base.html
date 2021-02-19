@@ -264,7 +264,7 @@
                             <span class="txt">구매가능한 상품을 확인하세요!</span>
                             <div class="group_button">
                                 <button type="button" class="btn login" onclick="go_login()">로그인</button>
-                                <button type="button" class="btn search_address" onclick="find_addr()">
+                                <button type="button" class="btn search_address" onclick="popup_address_add()">
                                     <span class="ico"></span>
                                     주소검색
                                 </button>
@@ -298,7 +298,16 @@
 
                         function find_addr() { //배송지검색 페이지 이동을 위한 js.
                             var url = "{% url 'cart:sel_addr' %} ";
-                            window.open(url, "_blank", "width=510,height=400"); // !! 잘되다가 갑자기안됨.
+                            window.open(url, "_blank", "width=510,height=400");
+                        }
+
+                        function popup_address_add() { //배송지 추가
+                            var popupX = (window.screen.width / 2) - (530 / 2); // 팝업창을 가운데 띄우기 위한거
+                            var popupY = (window.screen.height / 2) - (400 / 2);
+                            var url = "{% url 'cart:sel_addr' %}"; // 주소검색 띄울 html url 적어주세욤 !
+                            var name = "popup test";
+                            var option = "width = 530, height = 500, top = " + popupY + " , left = " + popupX + " , location = no"
+                            window.open(url, name, option);
                         }
                     </script>
 
