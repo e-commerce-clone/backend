@@ -12,7 +12,7 @@ const inner_listgoods = document.querySelector('.inner_listgoods'),
 	cartPut_name = cartPut.querySelector(".name"),
 	cartPut_price = cartPut.querySelector(".dc_price"),
 	cartPut_sum_price = cartPut.querySelector(".num"),
-	cartPut_point = cartPut.querySelector(".emph")
+	cartPut_point = cartPut.querySelector(".emph"),
 	cancel = cartPut.querySelector(".txt_type"),
 	button_up = cartPut.querySelector(".up"),
 	button_down = cartPut.querySelector(".down"),
@@ -47,7 +47,7 @@ for (var i = 0; i < li.length; i++) {    // 클릭했을 때 그 인덱스 맞�
 			cartPut_name.innerHTML = product_name[idx].innerHTML;
 			cartPut_price.innerHTML = product_price[idx].innerHTML;
 			cartPut_sum_price.innerHTML = product_price[idx].innerHTML;
-			cartPut_point.innerHTML =  comma((product_value[idx] * 1)/20)+'원 적립'; 
+			cartPut_point.innerHTML =  comma((product_value[idx] * 1)/20)+'원 적립';
 
 			var k = 1
 			button_up.addEventListener('click', function(){   // 수량 올리기 버튼 클릭 함수

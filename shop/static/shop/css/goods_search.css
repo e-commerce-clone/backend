@@ -785,9 +785,9 @@
     display: none;
 }
 
-#cartPut .txt_point .point {
-    display: none;
-}
+/*#cartPut .txt_point .point {*/
+/*    display: none;*/
+/*}*/
 
 #cartPut .txt_point .point.show {
     display: inline;

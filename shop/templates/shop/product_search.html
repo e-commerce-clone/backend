@@ -175,15 +175,23 @@
                                     <span class="won">원</span>
                                 </span>
                             </div>
+						{% if user.is_authenticated %}
                             <p class="txt_point">
                                 <span class="ico">적립</span>
-                                <span class="no_login hide"> <!--로그인 안된 상태(기본), 로그인 후엔 hide 클래스 추가-->
-                                    <span>로그인 후, 적립혜택 제공</span>
-                                </span>
-                                <span class="point show">구매 시 <!--로그인 되었을 때 show 클래스 추가-->
+                                <span class="point">
+                                    구매 시 <!--로그인 되었을 때 show 클래스 추가-->
                                     <strong class="emph"></strong>
                                 </span>
                             </p>
+						{% else %}
+                            <p class="txt_point">
+                                <span class="ico">적립</span>
+                                <span class="point"> <!--로그인 안된 상태(기본), 로그인 후엔 hide 클래스 추가-->
+                                    <span>로그인 후, 적립혜택 제공</span>
+                                </span>
+                                </span>
+                            </p>
+                        {% endif %}
                         </div>
                     </div>
                     <div class="group_btn off layer_btn2">
