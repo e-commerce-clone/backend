@@ -7,12 +7,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from shop.models import Product
 from photo.models import Product_photo
-from .models import Cart, CartItem
+from .models import Cart, CartItem, Profile
 
 def _cart_id(request):
-    cart = request.session.session_key
+
+    profile = Profile.objects.get(user=request.user)
+    cart = profile.cart_key
+
     if not cart:
-        cart = request.session.create()
+        cart = request.session.session_key
+        profile.cart_key = cart
+        profile.save()
+
     return cart
 
 def add_cart(request):            #image_id
@@ -46,7 +52,7 @@ def add_cart(request):            #image_id
             cart = Cart.objects.get(cart_id=_cart_id(request))
         except Cart.DoesNotExist:
             cart = Cart.objects.create(
-                cart_id=_cart_id(request)
+                cart_id = _cart_id(request)
             )
             cart.save()
 
