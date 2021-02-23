@@ -48,17 +48,15 @@ function enterkey() { /* 엔터 누를 시 로그인 수행 */
 }
 
 function show_alert(err) {
+    var ele = "{% url 'accounts:login' %}";
     if (err == 0) {
         alert("계정 활성화를 위한 이메일 인증이 필요합니다.");
-        return;
     }
     if (err == 1) {
         alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-        return;
     }
     if (err == 2) {
         alert("회원정보가 없습니다.");
-        return;
     }
 
 
