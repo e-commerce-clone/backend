@@ -14,8 +14,12 @@
         var err = "{{ error }}";
         show_alert(err);
     </script>
-
+    {% endif %} {% if val == 0 %}
+    <script>
+        alert("비밀번호가 변경되었습니다. 로그인해주세요.");
+    </script>
     {% endif %}
+
     <div id="content">
         <div class="section_login">
             <h3 class="tit_login">LOGIN</h3>

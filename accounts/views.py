@@ -1,4 +1,6 @@
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.forms import PasswordChangeForm # pw 변경
+from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User as auth_User
@@ -286,22 +288,24 @@ def findpwemail(request, email):
 def findpwfail(request):
     return render(request, 'accounts/find_pw_fail.html')
 
+def resetpw(request): # 비밀번호 부분 수정중 -- 이메일로 user 추출.
+    mail = request.POST.get('email')
+    data ={ 'email':mail }
 
-def resetpw(request):
     if request.method == 'POST':
-        email = request.POST.get('email', None)
-        password = request.POST.get('newPassword', None)
-
-        user = auth_User.objects.get(email=email)
-
         try:
-            user.password = password
-            user.save()
-            return render(request, 'accounts/login.html')
+            user = auth_User.objects.get(email=mail)   
         except:
-            print("")
-
-    return render(request, 'accounts/reset_pw.html')
+            print("!!!!!! >>> Error")
+        new_password = request.POST.get("newPassword")
+        password_confirm = request.POST.get("confirmPassword")
+        if new_password == password_confirm and new_password is not None: 
+                user.set_password(new_password)
+                user.save()
+                change = 0
+                print(change)
+                return render(request, "accounts/login.html", {'val':change})   
+    return render(request, 'accounts/reset_pw.html', data)
 
 
 @csrf_exempt
