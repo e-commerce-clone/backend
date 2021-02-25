@@ -14,16 +14,16 @@
         function popup_address_add(){    //배송지 추가
             var popupX = (window.screen.width / 2) - (530 / 2);   // 팝업창을 가운데 띄우기 위한거
             var popupY = (window.screen.height / 2) - (400 / 2);
-            var url = "address_search";        // var url = "product_modify/"+ id;
+            var url = "address_search/";        // var url = "product_modify/"+ id;
             var name = "popup test";
             var option = "width = 530, height = 400, top = " + popupY + " , left = " + popupX + " , location = no"
             window.open(url, name, option);
         }
 
-        function popup_change(){    //수정
+        function popup_change(id){    //수정
             var popupX = (window.screen.width / 2) - (530 / 2);   // 팝업창을 가운데 띄우기 위한거
             var popupY = (window.screen.height / 2) - (510 / 2);
-            var url = "modify";        // var url = "product_modify/"+ id;
+            var url = "http://127.0.0.1:8000/mykurly/delivery_list/modify/"+ id        // var url = "product_modify/"+ id;
             var name = "popup";
             var option = "width = 530, height = 510, top = " + popupY + " , left = " + popupX + " , location = no"
             window.open(url, name, option);
@@ -159,42 +159,48 @@
                                 </thead>
 
                                 <tbody id="addrList">
-                                    <tr>
-                                        <td class="select type_radio">
-                                            <label class="skin_checkbox">
-                                                <input type="radio" name="addrNo" checked="">
-                                                <span class="ico"></span>
-                                                <span class="blind">
-                                                    선택하기
+                                    {% for delivery in deliveries %}
+                                        <tr>
+                                            <td class="select type_radio">
+                                                <label class="skin_checkbox">
+                                                    <input type="radio" name="addrNo" checked="">
+                                                    <span class="ico"></span>
+                                                    <span class="blind">
+                                                        선택하기
+                                                    </span>
+                                                </label>
+                                            </td>
+
+                                            <td class="address">
+                                                {% if delivery.basic_address %}
+                                                    <span class="badge_default">
+                                                        기본 배송지
+                                                    </span>
+                                                {% endif %}
+                                                <p class="addr">
+                                                    {{ delivery.address }}
+                                                </p>
+                                            </td>
+
+                                            <td class="name">{{ delivery.name }}</td>
+                                            {% if delivery.calling != "" %}
+                                                <td class="phone">{{ delivery.calling|slice:"0:3" }}-{{ delivery.calling|slice:"3:7" }}-{{ delivery.calling|slice:"7:11" }}</td>
+                                            {% else %}
+                                                <td class="phone"></td>
+                                            {% endif %}
+                                            <td>
+                                                <span class="delivery star">
+                                                    {{ delivery.delivery_type }}
                                                 </span>
-                                            </label>
-                                        </td>
+                                            </td>
 
-                                        <td class="address">
-                                            <span class="badge_default">
-                                                기본 배송지
-                                            </span>
-                                            <p class="addr">
-                                                인천광역시 인천대학교 
-                                            </p>
-                                        </td>
-
-                                        <td class="name">이도현</td>
-
-                                        <td class="phone">010-1111-2222</td>
-
-                                        <td>
-                                            <span class="delivery star">
-                                                샛별배송
-                                            </span>
-                                        </td>
-
-                                        <td>
-                                            <button type="button" class="ico modify" onclick="popup_change()">
-                                                수정하기
-                                            </button>
-                                        </td>
-                                    </tr>
+                                            <td>
+                                                <button type="button" class="ico modify" onclick="popup_change({{ delivery.pk }})">
+                                                    수정하기
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>

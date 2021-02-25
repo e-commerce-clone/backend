@@ -15,11 +15,12 @@ class Profile(models.Model):
     birthday = models.DateField('생년월일', null=True, blank=True)
     created_at = models.DateTimeField('생성 일자', auto_now_add=True)
     updated_at = models.DateTimeField('수정 일자', auto_now=True)
+    e_money = models.IntegerField('적립금', default=0)
 
     def __str__(self):
         return self.user.username
 
+
     class Meta:
         db_table = "Profile"
 
-    objects = models.Manager()  # 자동완성 .objects 를 사용하기 위한 설정

@@ -24,14 +24,14 @@
                     <h2 class="pop_head">배송지 수정</h2>
                     <div class="field">
                         <div id="addrMain" class="address">
-                            인천광역시 인천대학교
+                            {{ address1 }}
                         </div>
-                        <input type="text" id="addrSub" name="user_detail_address" placeholder="나머지 주소를 입력해주세요" value="101동 101호">
+                        <input type="text" id="addrSub" name="user_detail_address" placeholder="나머지 주소를 입력해주세요" value="{{ address2 }}">
                     </div>
 
                     <div class="field">
                         <div class="label_block">이름</div>
-                        <input type="text" id="receiverName" name="name"  placeholder="이름을 입력해주세요" value="이도현">
+                        <input type="text" id="receiverName" name="name"  placeholder="이름을 입력해주세요" value="{{ delivery.name }}">
                     </div>
 
 
@@ -39,7 +39,7 @@
                         <div class="label_block">
                             휴대폰
                         </div>
-                        <input type="text" id="receiverPhone" name="mobileInp"  data-format="number" pattern="[0-9]*" inputmode="decimal" placeholder="번호를 입력해주세요" value="01020844070">
+                        <input type="text" id="receiverPhone" name="mobileInp"  data-format="number" pattern="[0-9]*" inputmode="decimal" placeholder="번호를 입력해주세요" value="{{ delivery.calling }}">
                     </div>
 
                     <button type="submit" class="btn active">저장</button>

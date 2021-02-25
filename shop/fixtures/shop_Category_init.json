@@ -1,0 +1,164 @@
+[
+{
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {
+        "main_category": 1,
+        "name": "고구마·감자·당근",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 2,
+    "fields": {
+        "main_category": 1,
+        "name": "시금치·쌈채소·나물",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 3,
+    "fields": {
+        "main_category": 1,
+        "name": "브로콜리·파프리카·양배추",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 4,
+    "fields": {
+        "main_category": 1,
+        "name": "양파·대파·마늘·배추",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 5,
+    "fields": {
+        "main_category": 1,
+        "name": "오이·호박·고추",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 6,
+    "fields": {
+        "main_category": 1,
+        "name": "냉동·이색·간편채소",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 7,
+    "fields": {
+        "main_category": 2,
+        "name": "제철과일",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 8,
+    "fields": {
+        "main_category": 2,
+        "name": "국산과일",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 9,
+    "fields": {
+        "main_category": 2,
+        "name": "수입과일",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 10,
+    "fields": {
+        "main_category": 2,
+        "name": "냉동·건과일",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 11,
+    "fields": {
+        "main_category": 2,
+        "name": "견과류",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 12,
+    "fields": {
+        "main_category": 2,
+        "name": "쌀·잡곡",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 13,
+    "fields": {
+        "main_category": 3,
+        "name": "제철수산",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 14,
+    "fields": {
+        "main_category": 3,
+        "name": "생선류",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 15,
+    "fields": {
+        "main_category": 3,
+        "name": "굴비·반건류",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 16,
+    "fields": {
+        "main_category": 3,
+        "name": "오징어·낙지·문어",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 17,
+    "fields": {
+        "main_category": 3,
+        "name": "해산물·조개류",
+        "meta_description": ""
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 18,
+    "fields": {
+        "main_category": 3,
+        "name": "김·미역·해조류",
+        "meta_description": ""
+    }
+}
+]

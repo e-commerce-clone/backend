@@ -27,7 +27,7 @@ class CartItem(models.Model):
                                                                            MaxValueValidator(100)])
 
     class Meta:
-        db_table= 'CartItem'
+        db_table = 'CartItem'
 
     def sub_total(self):
         return self.photo.product.price * self.quantity

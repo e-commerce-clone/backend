@@ -23,7 +23,7 @@ def add_cart(request, image_id):
         cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.DoesNotExist:
         cart = Cart.objects.create(
-            cart_id = _cart_id(request)
+            cart_id=_cart_id(request)
         )
         cart.save()
 

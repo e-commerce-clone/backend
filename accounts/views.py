@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User as auth_User
 from django.contrib.auth.hashers import make_password
+from mykurly.models import Delivery
 from django.template import RequestContext
 from django.contrib import messages
 from .models import Profile
@@ -19,6 +20,7 @@ from django.utils.encoding import force_bytes, force_text
 from .token import account_activation_token
 
 # Create your views here
+
 
 
 def join(request):        # 회원가입 뷰
@@ -39,7 +41,7 @@ def join(request):        # 회원가입 뷰
 
         age = 2021 - int(birthday_year) + 1
         birthday = f'{birthday_year}-{birthday_month}-{birthday_day}'
-        home_address = f'{user_address}, {user_address_detail}'
+        home_address = f'{user_address},{user_address_detail}'
 
         first_name = person_name[1:3]
         last_name = person_name[0]
@@ -62,9 +64,18 @@ def join(request):        # 회원가입 뷰
                             home_address=home_address,
                             birthday=birthday,
                             age=age)
+        delivery = Delivery(
+            profile=user_info,
+            name=person_name,
+            calling=phone_number,
+            address=home_address,
+            delivery_type='일반배송',
+            basic_address=True
+        )
         try:
             user.save()  # 유저 저장
             user_info.save()  # 프로필 저장
+            delivery.save()     # 배송지 저장 (마이컬리에서 기본 배송지 설정을 위한 저장)
         except:
             user.delete()
             print("회원가입 에러")
@@ -105,7 +116,7 @@ def mobile_join(request):
 
         age = 2021 - int(birthday_year) + 1
         birthday = f'{birthday_year}-{birthday_month}-{birthday_day}'
-        home_address = f'{user_address}, {user_address_detail}'
+        home_address = f'{user_address},{user_address_detail}'
 
         first_name = person_name[1:3]
         last_name = person_name[0]
@@ -129,9 +140,16 @@ def mobile_join(request):
                             home_address=home_address,
                             birthday=birthday,
                             age=age)
+        delivery = Delivery(
+            profile=user_info,
+            address=home_address,
+            delivery_type='일반배송',
+            basic_address=True
+        )
         try:
             user.save()  # 유저 저장
             user_info.save()  # 프로필 저장
+            delivery.save()  # 배송지 저장 (마이컬리에서 기본 배송지 설정을 위한 저장)
         except:
             user.delete()
             print("회원가입 에러")
@@ -287,7 +305,8 @@ def resetpw(request):
         user = auth_User.objects.get(email=email)
 
         try:
-            user.password = password
+            # user.password = password
+            user.set_password(password)
             user.save()
             return render(request, 'accounts/login.html')
         except:

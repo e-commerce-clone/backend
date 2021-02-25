@@ -33,12 +33,12 @@
                             <div class="ico_cate">
                                 <span class="ico" style="display:block;">
                                 <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" id="goodsListIconView" alt="카테고리 아이콘"> </span>
-                                <span class="tit">채소</span>
+                                <span class="tit">{{ main_category }}</span>
                             </div>
 
                             <ul class="list">
                                 <li name="cate_gory">
-                                    <a href="{% url 'shop:product_in_category' main_category 'all' %}" class="on">전체보기</a>
+                                    <a href="{% url 'shop:product_list' main_category %}" class="on">전체보기</a>
                                 </li>
                                 {% for category in categories %}
                                     <li name="cate_gory">

@@ -19,14 +19,14 @@ class Category(models.Model):
     main_category = models.ForeignKey(MainCategory, on_delete=models.SET_NULL,
                                       null=True)
     name = models.CharField(max_length=200, db_index=True)
-    meta_description = models.TextField(blank=True)         # 검색엔진에 노출되게 하기위한 필드
+    meta_description = models.TextField(blank=True, default="")         # 검색엔진에 노출되게 하기위한 필드
     """
     slug = models.SlugField(max_length=200, db_index=True,
                             unique=True, allow_unicode=True)
     """
 
     class Meta:
-        ordering = ['name']
+        ordering = ["main_category"]
         verbose_name = 'category'
         verbose_name_plural = 'categories'
 
@@ -60,7 +60,6 @@ class Product(models.Model):
     stock = models.PositiveIntegerField('재고', null=True)                    # 재고
     available_display = models.BooleanField('판매가능여부', default=True)    # 판매가능여부
     available_order = models.BooleanField('주문가능여부', default=True)        # 주문가능여부
-
     created_at = models.DateTimeField('생성 시간', auto_now_add=True)
     updated_at = models.DateTimeField('갱신 시간', auto_now=True)
 

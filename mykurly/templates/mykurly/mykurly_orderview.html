@@ -94,7 +94,7 @@
                                     <a href="{% url 'mykurly:order_list' %}">주문내역</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'mykurly:delivery_list' %}">배송지 관리</a>
+                                    <a href="{% url 'mykurly:delivery_list' user.pk %}">배송지 관리</a>
                                 </li>
                                 <li>
                                     <a href="{% url 'mykurly:review' %}">상품 후기</a>

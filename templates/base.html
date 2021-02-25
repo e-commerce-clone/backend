@@ -71,7 +71,7 @@
                                     <a href="{% url 'mykurly:order_list' %}" class="list_item">주문 내역</a>
                                 </li>
                                 <li class="list">
-                                    <a href="{% url 'mykurly:delivery_list' %}" class="list_item">배송지 관리</a>
+                                    <a href="{% url 'mykurly:delivery_list' user.pk %}" class="list_item">배송지 관리</a>
                                 </li>
                                 <li class="list">
                                     <a href="{% url 'mykurly:information' %}" class="list_item">개인 정보 수정</a>

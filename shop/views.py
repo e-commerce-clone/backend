@@ -14,8 +14,17 @@ from cart.views import add_cart
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id)
     image = get_object_or_404(Product_photo, product=product)
+
+    try:
+        reviews = get_list_or_404(Review, product=product)
+    except:
+        reviews = []
+
+    review_count = len(reviews)
+
     return render(request, 'shop/product_detail.html', context={'product': product,
-                                                                'image': image})
+                                                                'image': image,
+                                                                'review_count': review_count})
 
 
 def product_list(request, main_category):
@@ -30,11 +39,12 @@ def product_list(request, main_category):
     photos = []
     products_in_category = []
     for s_category in all_categories:
-        tmp = get_list_or_404(Product, category=s_category)
+        # tmp = get_list_or_404(Product, category=s_category)
+        tmp = list(Product.objects.filter(category=s_category))
         for product in tmp:
             products_in_category.append(product)
     for product in products_in_category:
-        photos.append(get_object_or_404(Product_photo, product=product))
+        photos.append(Product_photo.objects.get(product=product))
     total_count = len(photos)
 
     if paginated_by >= total_count:
@@ -62,13 +72,13 @@ def product_in_category(request, main_category, sub_category):
     paginated_by = 3                                    # 페이지당 노출될 개수
 
     if category_name == "all":
-        photos = get_list_or_404(Product_photo)
+        photos = list(Product_photo.objects.all())
     else:
-        category = get_object_or_404(Category, name=category_name)
-        products = get_list_or_404(Product, category=category)
+        category = Category.objects.get(name=category_name)
+        products = Product.objects.filter(category=category)
         photos = []
         for product in products:
-            photos.append(get_object_or_404(Product_photo, product=product))
+            photos.append(Product_photo.objects.get(product=product))
 
     total_count = len(photos)
 
@@ -98,15 +108,33 @@ def mobile_product_list(request):
 
 def product_review_list(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    reviews = Review.objects.filter(product=product)
+    reviews = list(Review.objects.filter(product=product))
     count = 0
     for _ in reviews:
         count += 1
     counts = list(range(1, count + 1))
+
+    review_count = count
+    page = int(request.GET.get('page', 1))
+    paginated_by = 2
+
+    if paginated_by >= review_count:
+        total_page = 1
+    else:
+        total_page = math.ceil(review_count / paginated_by)
+
+    page_range = range(1, total_page + 1)
+
+    start_index = paginated_by * (page - 1)
+    end_index = paginated_by * page
+
+    reviews = reviews[start_index:end_index]
+
     data = {
         'reviews': reviews,
         'pk': pk,
-        'counts': counts
+        'counts': counts,
+        'page_range': page_range,
     }
     return render(request, 'shop/product_review_list.html', data)
 

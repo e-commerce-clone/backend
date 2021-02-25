@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/post.json" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/shop/fixtures/shop_Category_init.json" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/shop/fixtures/shop_MainCategory_init.json" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/shop_Category_init.json" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/shop_MainCategory_init.json" charset="x-windows-949" />
+  </component>
+</project>

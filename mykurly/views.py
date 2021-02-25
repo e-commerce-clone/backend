@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from accounts.models import Profile
 from shop.models import Product
 from photo.models import Product_photo, Review_photo
-from mykurly.models import Review
+from mykurly.models import Review, Delivery
 from django.http import JsonResponse
 from django.contrib.auth.models import User as auth_User
 from django.contrib.auth.decorators import login_required
@@ -44,19 +44,13 @@ def review_register(request, username, pk):
         except:
             images = None
 
-        reviews = Review.objects.filter(product=product)
-        count = 1
-        for _ in reviews:
-            count += 1
-
         user = get_object_or_404(auth_User, username=username)
-        writer = get_object_or_404(Profile, user=user)
         review = Review(product=product,
-                        writer=writer,
+                        writer=user,
                         title=title,
                         contents=contents,
                         product_image=images,
-                        count=count)
+                        )
         review.save()
         return redirect('mykurly:review')
 
@@ -124,17 +118,59 @@ def information_modify(request, pk):
 
 
 @login_required
-def delivery_list(request):
-    return render(request, 'mykurly/mykurly_delivery_list.html')
+def delivery_list(request, pk):
+    user = get_object_or_404(auth_User, pk=pk)
+    profile = get_object_or_404(Profile, user=user)
+    deliveries = Delivery.objects.filter(profile=profile)
+    return render(request, 'mykurly/mykurly_delivery_list.html', {'deliveries': deliveries})
 
 
 @login_required
-def delivery_modify(request):
-    return render(request, 'mykurly/mykurly_delivery_modify.html')
+def delivery_modify(request, delivery_pk):
+    delivery = get_object_or_404(Delivery, pk=delivery_pk)
+    address = delivery.address.split(',')
+    address1 = address[0]
+    address2 = address[1]
+    if request.method == "POST":
+        user_detail_address = request.POST.get('user_detail_address')
+        name = request.POST.get('name')
+        mobileInp = request.POST.get('mobileInp')
+        delivery.address = f"{address1},{user_detail_address}"
+        delivery.name = name
+        delivery.calling = mobileInp
+        try:
+            delivery.save()
+            context = {'check': True}
+        except:
+            context = {'check': False}
+        return JsonResponse(context)
+    data = {
+        'delivery': delivery,
+        'address1': address1,
+        'address2': address2
+    }
+    return render(request, 'mykurly/mykurly_delivery_modify.html', data)
 
 
 @login_required
-def address_search(request):
+def address_search(request, pk):
+    if request.method == "POST":
+        user_address = request.POST.get('user_address')
+        user_detail_address = request.POST.get('user_detail_address')
+        address = f"{user_address},{user_detail_address}"
+        user = get_object_or_404(auth_User, pk=pk)
+        profile = get_object_or_404(Profile, user=user)
+        delivery = Delivery(profile=profile,
+                            address=address,
+                            delivery_type="샛별배송",
+                            )
+        delivery.save()
+        try:
+            delivery.save()
+            context = {'check': True}
+        except:
+            context = {'check': False}
+        return JsonResponse(context)
     return render(request, 'mykurly/mykurly_address_search.html')
 
 
