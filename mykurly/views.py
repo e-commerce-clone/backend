@@ -132,18 +132,36 @@ def delivery_modify(request, delivery_pk):
     address1 = address[0]
     address2 = address[1]
     if request.method == "POST":
-        user_detail_address = request.POST.get('user_detail_address')
-        name = request.POST.get('name')
-        mobileInp = request.POST.get('mobileInp')
-        delivery.address = f"{address1},{user_detail_address}"
-        delivery.name = name
-        delivery.calling = mobileInp
-        try:
-            delivery.save()
-            context = {'check': True}
-        except:
-            context = {'check': False}
-        return JsonResponse(context)
+        if request.POST.get('save', None):
+
+            user_detail_address = request.POST.get('user_detail_address')
+            name = request.POST.get('name')
+            mobileInp = request.POST.get('mobileInp')
+            delivery.address = f"{address1},{user_detail_address}"
+            delivery.name = name
+            delivery.calling = mobileInp
+
+            if request.POST.get('Default_address', None):
+                a = Delivery.objects.get(basic_address=True)
+                a.basic_address = False
+                a.save()
+                delivery.basic_address = True
+
+            try:
+                delivery.save()
+                context = {'save_check': True}
+            except:
+                context = {'save_check': False}
+
+            return JsonResponse(context)
+        else:
+            try:
+                delivery.delete()
+                context = {'delete_check': True}
+            except:
+                context = {'delete_check': False}
+            return JsonResponse(context)
+
     data = {
         'delivery': delivery,
         'address1': address1,

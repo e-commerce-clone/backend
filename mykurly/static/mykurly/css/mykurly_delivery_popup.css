@@ -83,7 +83,6 @@
 
 .section_destination .only_pc.modify .btn.active {
     display: block;
-    margin-top: 30px;
     width: 100%;
 }
 
@@ -178,4 +177,73 @@
     font-size: 14px;
     line-height: 20px;
     letter-spacing: -.3px;
+}
+
+.btn.normal {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #333;
+    margin-top:8px;
+}
+
+.btn {
+    width: 100%;
+    height: 48px;
+    border: 0;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 50px;
+    text-align: center;
+    outline: none;
+}
+
+.section_destination .only_pc.modify .label_default {
+    padding: 7px 0 9px;
+    font-size: 14px;
+}
+
+.section_destination .modify .label_default {
+    display: block;
+
+    line-height: 24px;
+    letter-spacing: -.3px;
+}
+
+.skin_checkbox input[type=radio], input[type=checkbox] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+input[type=checkbox]+.ico, input[type=checkbox] {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #999;
+    border-radius: 2px;
+    background: 0 0;
+    vertical-align: -2px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.skin_checkbox input[type=radio]+.ico, input[type=checkbox]+.ico {
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    border: 0;
+    background-image: url(https://res.kurly.com/mobile/service/common/2006/ico_checkbox.svg);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: 50% 50%;
+    vertical-align: -7px;
+}
+
+input[type="checkbox"]:checked + .ico {
+    background: url(https://res.kurly.com/mobile/service/common/2003/ico_checkbox_checked.png) no-repeat 50% 50%;
+    background-size: 24px 24px;
 }

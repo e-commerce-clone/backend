@@ -38,15 +38,13 @@
 
                             <ul class="list">
                                 <li name="cate_gory">
-                                    <a href="{% url 'shop:product_list' main_category %}" class="on">전체보기</a>
+                                    <a href="{% url 'shop:product_list' main_category %}" class="">전체보기</a>
                                 </li>
                                 {% for category in categories %}
                                     <li name="cate_gory">
-                                        <a href="{% url 'shop:product_in_category' main_category category %}" class=>{{ category.name }}</a>
+                                        <a href="{% url 'shop:product_in_category' main_category category %}" class="">{{ category.name }}</a>
                                     </li>
                                 {% endfor %}
-                                <li class="bg" style="top: 78px; width: 68px; left: 29px; opacity: 1;"></li>
-
 
                             </ul>
 

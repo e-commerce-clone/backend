@@ -20,9 +20,7 @@ class Review(models.Model):
 
 
 # class Order(models.Model):
-#     product = models.OneToOneField(Product, on_delete=models.CASCADE)
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     review = models.OneToOneField(Review, on_delete=models.SET_NULL, null=True, default=None)
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 #     quantity = models.PositiveIntegerField('수량')
 #
 #     order_time = models.DateTimeField('주문 시간', auto_now_add=True)

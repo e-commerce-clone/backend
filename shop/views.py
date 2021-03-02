@@ -116,7 +116,7 @@ def product_review_list(request, pk):
 
     review_count = count
     page = int(request.GET.get('page', 1))
-    paginated_by = 2
+    paginated_by = 3
 
     if paginated_by >= review_count:
         total_page = 1

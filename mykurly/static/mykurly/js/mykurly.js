@@ -1,8 +1,11 @@
 $(document).ready(function(){
 
     $('#juso').click(function(){
-
+        var width = 500; //팝업의 너비
+        var height = 600
         new daum.Postcode({
+            width: width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
+            height: height,
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
@@ -34,17 +37,17 @@ $(document).ready(function(){
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    
-                
+
+
                 } else {
-                    
+
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-               
+
                 document.getElementById("addrMain").value = addr;
-                
-               
+
+
 
                 //주소 검색이 완료된 후 변하는 css 목록
                 $('#addrMain').css('color', 'black');
@@ -57,7 +60,7 @@ $(document).ready(function(){
 
 
 
-                
+
 
 
 
@@ -67,9 +70,12 @@ $(document).ready(function(){
 
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
                 // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-                // http://postcode.map.daum.net/guide  api주소 
+                // http://postcode.map.daum.net/guide  api주소
             }
-        }).open();
+        }).open({
+            left: (window.screen.width / 2) - (width / 2),
+            top: (window.screen.height / 2) - (height / 2)
+        });
 
 
 

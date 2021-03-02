@@ -18,7 +18,7 @@
 
     <div class="section_destination delivery_modify">
         <div id="inputForm">
-            <form action="" method="post">
+            <form method="post">
                 {% csrf_token %}
                 <div class="modify only_pc">
                     <h2 class="pop_head">배송지 수정</h2>
@@ -42,8 +42,19 @@
                         <input type="text" id="receiverPhone" name="mobileInp"  data-format="number" pattern="[0-9]*" inputmode="decimal" placeholder="번호를 입력해주세요" value="{{ delivery.calling }}">
                     </div>
 
-                    <button type="submit" class="btn active">저장</button>
-                        
+                    <label class="label_default">
+                        <input type="checkbox" id="isDefault" name="Default_address" value="1">
+                        <span class="ico"></span>
+                        기본 배송지로 저장
+                    </label>
+
+                    <button type="submit" class="btn active" formaction="" name="save" value="save" >저장</button>
+
+                    <form action="">
+                        <input type="hidden" value="delete" name="delete">
+                        <button type="submit" class="btn normal" formaction="" name="delete" >삭제</button>
+                    </form>
+
                 </div>
             </form>
         </div>

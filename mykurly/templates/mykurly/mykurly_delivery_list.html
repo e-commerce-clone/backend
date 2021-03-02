@@ -149,7 +149,7 @@
                             <table class="tbl tbl_type1">
                                 <thead>
                                     <tr>
-                                        <th class="tit_select">선택</th>
+                                        <th class="tit_num">번호</th>
                                         <th class="tit_address">주소</th>
                                         <th class="tit_receive">받으실 분</th>
                                         <th class="tit_phone">연락처</th>
@@ -161,16 +161,7 @@
                                 <tbody id="addrList">
                                     {% for delivery in deliveries %}
                                         <tr>
-                                            <td class="select type_radio">
-                                                <label class="skin_checkbox">
-                                                    <input type="radio" name="addrNo" checked="">
-                                                    <span class="ico"></span>
-                                                    <span class="blind">
-                                                        선택하기
-                                                    </span>
-                                                </label>
-                                            </td>
-
+                                            <td class="num">{{ forloop.counter }}</td>
                                             <td class="address">
                                                 {% if delivery.basic_address %}
                                                     <span class="badge_default">

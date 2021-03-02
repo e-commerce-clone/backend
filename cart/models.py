@@ -23,7 +23,7 @@ class CartItem(models.Model):
     photo = models.ForeignKey(Product_photo, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
-    quantity = models.PositiveIntegerField(null=True,default=1,validators=[MinValueValidator(1),
+    quantity = models.PositiveIntegerField(null=True, default=1, validators=[MinValueValidator(1),
                                                                            MaxValueValidator(100)])
 
     class Meta:
