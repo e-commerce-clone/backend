@@ -177,3 +177,19 @@
     font-size: 0;
     line-height: 0;
 }
+
+.delete_position {
+    position: relative;
+}
+
+.product_delete {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 0 none;
+    background: url(https://res.kurly.com/pc/service/cart/2007/ico_delete.svg) no-repeat 50% 50%;
+    font-size: 0;
+    line-height: 0;
+    top: 33px;
+    left: 19px;
+}

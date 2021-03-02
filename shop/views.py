@@ -148,3 +148,26 @@ def product_check(request):
 
 def mobile_category(request):
     return render(request, 'shop/mobile_category.html')
+
+
+def product_search(request):
+    counter = 0
+    search_keyword = request.GET.get('search_key', '')
+    product_list = Product_photo.objects.order_by('-id')
+
+    search_products = product_list.filter(product__name__icontains=search_keyword)
+
+    for x in search_products:
+        counter += 1
+    print(search_products)
+    print(search_keyword)
+
+    return render(request, 'shop/product_search.html', {'photos': search_products,
+                                                        'counter': counter,
+                                                        'search_keyword': search_keyword})
+    # # page = request.GET.get('page', '1')
+
+    #print(search_products)
+    # paginator = Paginator(product_list, 100)                                         # 페이지 나누기
+    # page_obj = paginator.get_page(page)
+    #return render(request, 'shop/product_search.html', {'photos': search_products})

@@ -99,8 +99,9 @@
 
                     <div id="cartPut">
                         <div class="cart_option cart_type2">
-                            <form action="{% url 'cart:add_cart' image.id %}" method="post">
+                            <form action="{% url 'cart:add_cart' %}" method="post">
                                 {% csrf_token %}
+                                <input type="hidden" value={{ request.path }} name="current_url">
                                 <div class="inner_option">
                                     <div class="in_option">
                                         <div class="list_goods">
@@ -140,7 +141,7 @@
                                             <button type="button" class="btn btn_save">늘 사는 것</button>
                                         </div>
                                         <span class="btn_type1">
-                                            <button type="submit" class="txt_type">장바구니 담기</button>
+                                            <button type="submit" value={{ image.id }} name="product_id" class="txt_type">장바구니 담기</button>
                                         </span>
                                     </div>
                                 </div>

@@ -16,6 +16,7 @@ class Profile(models.Model):
     created_at = models.DateTimeField('생성 일자', auto_now_add=True)
     updated_at = models.DateTimeField('수정 일자', auto_now=True)
     e_money = models.IntegerField('적립금', default=0)
+    cart_key = models.CharField(max_length=250, blank=True)
 
     def __str__(self):
         return self.user.username

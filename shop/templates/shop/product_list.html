@@ -235,10 +235,11 @@
 
 
 
-    <div id="cartPut">
+     <div id="cartPut">
         <div class="cart_option cart_type3" style="opacity: 1;">
-            <form action="" method="POST" id="contactsForm">
+            <form action="{% url 'cart:add_cart' %}" method="POST" id="contactsForm">
                 {% csrf_token %}
+                <input type="hidden" value={{ request.path }} name="current_url">
                 <div class="inner_option">
                     <div class="in_option">
                         <div class="list_goods">
@@ -274,13 +275,24 @@
                                 </span>
                             </div>
 
+                            {% if user.is_authenticated %}
                             <p class="txt_point">
                                 <span class="ico">적립</span>
                                 <span class="point">
-                                    구매 시
-                                    <strong class="emph">65원 적립</strong>
+                                    구매 시 <!--로그인 되었을 때 show 클래스 추가-->
+                                    <strong class="emph"></strong>
                                 </span>
                             </p>
+                            {% else %}
+                            <p class="txt_point">
+                                <span class="ico">적립</span>
+                                <span class="point"> <!--로그인 안된 상태(기본), 로그인 후엔 hide 클래스 추가-->
+                                    <span>로그인 후, 적립혜택 제공</span>
+                                </span>
+<!--                                    <strong class="emph">로그인 후, 적립혜택 제공</strong>-->
+                                </span>
+                            </p>
+                            {% endif %}
                         </div>
                     </div>
 
