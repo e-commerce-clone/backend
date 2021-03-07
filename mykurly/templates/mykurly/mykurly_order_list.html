@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 <html lang="en">
 <head>
@@ -138,39 +139,41 @@
                             </ul>
                         </div>
                         <ul class="list_order">
-                            <li>
-                                <div class="date">2020.12.17 (날짜 데이터 넣는 곳)</div>
-                                <div class="order_goods">
-                                    <div class="name">
-                                        <a href="{% url 'mykurly:order_view' %}">(상품 제목)</a>
-                                    </div>
-                                    <div class="order_info">
-                                        <div class="thumb">
-                                            <img src="https://img-cf.kurly.com/shop/data/goods/1506389622159s0.jpg" alt="해당 주문 대표 상품 이미지">
+                            {% for order in orders %}
+                                <li>
+                                    <div class="date">{{ order.order_time|date:"Y.m.d" }}</div>
+                                    <div class="order_goods">
+                                        <div class="name">
+                                            <a href="{% url 'mykurly:order_view' %}?pk={{ order.pk }}">{{ order.name }}</a>
                                         </div>
-                                        <div class="desc">
-                                            <dl>
-                                                <dt>주문번호</dt>
-                                                <dd>(주문번호 넣는곳)</dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>결제금액</dt>
-                                                <dd>0원(결제 금액 넣는곳)</dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>주문상태</dt>
-                                                <dd class="status end">배송완료</dd>
-                                            </dl>
+                                        <div class="order_info">
+                                            <div class="thumb">
+                                                <img src="https://img-cf.kurly.com/shop/data/goods/1506389622159s0.jpg" alt="해당 주문 대표 상품 이미지">
+                                            </div>
+                                            <div class="desc">
+                                                <dl>
+                                                    <dt>주문번호</dt>
+                                                    <dd>???</dd>
+                                                </dl>
+                                                <dl>
+                                                    <dt>결제금액</dt>
+                                                    <dd>{{ order.total_price | intcomma }}원</dd>
+                                                </dl>
+                                                <dl>
+                                                    <dt>주문상태</dt>
+                                                    <dd class="status end">{{ order.order_type }}</dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                        <div class="order_status">
+                                            <span class="inner_status">
+                                                <a class="link ga_tracking_event">1:1 문의</a>
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="order_status">
-                                        <span class="inner_status">
-                                            <a class="link ga_tracking_event">1:1 문의</a>
-                                        </span>
-                                    </div>
-                                </div>
 
-                            </li>
+                                </li>
+                            {% endfor %}
                         </ul>
                         <div class="layout-pagination">
                             <div class="pagediv">

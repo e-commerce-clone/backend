@@ -80,7 +80,8 @@
                                     data-type="cold">
                                     상품 삭제</button>
                             </div>
-                    </li>
+                        </div>
+                        </li>
                     {% endfor %}
                     <!--1끝-->
 
@@ -157,7 +158,7 @@
                 </div>
                 <!-- 계산 필요 . -->
                 <div class="btn_submit">
-                    <button type="submit" class="btn active">주문하기</button>
+                    <button type="submit" onclick="location.href='{% url 'order:order' %}'" class="btn active">주문하기</button>
                     <!-- 결제 페이지로 이동 -->
                 </div>
                 <div class="notice">

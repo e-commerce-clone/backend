@@ -1,10 +1,7 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
-
 from shop.models import Product
 from photo.models import Product_photo
 from .models import Cart, CartItem, Profile
@@ -25,12 +22,12 @@ def _cart_id(request):
 
 def add_cart(request):            # image_id
     if request.method == "GET":
-        photo = Product_photo.objects.get(id=int(request.GET.get('product_id')))  #id=image_id
+        photo = Product_photo.objects.get(id=int(request.GET.get('product_id')))  # id=image_id
         try:
             cart = Cart.objects.get(cart_id=_cart_id(request))
         except Cart.DoesNotExist:
             cart = Cart.objects.create(
-                cart_id = _cart_id(request)
+                cart_id=_cart_id(request)
             )
             cart.save()
 
@@ -54,7 +51,7 @@ def add_cart(request):            # image_id
             cart = Cart.objects.get(cart_id=_cart_id(request))
         except Cart.DoesNotExist:
             cart = Cart.objects.create(
-                cart_id = _cart_id(request)
+                cart_id=_cart_id(request)
             )
             cart.save()
 
@@ -90,7 +87,7 @@ def cart_detail(request, total=0, ship_price=3000, payment_amount=0, counter=0, 
         pass
 
     return render(request, 'cart/cart.html', dict(cart_items=cart_items, total=total, ship_price=ship_price,
-                                                       payment_amount=payment_amount, counter=counter))
+                                                  payment_amount=payment_amount, counter=counter))
 
 
 def ship_destination(request):

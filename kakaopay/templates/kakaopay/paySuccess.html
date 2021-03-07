@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이컬리- 결제완료</title>
+    <link rel="stylesheet" href="{% static 'mykurly/css/mykurly_order_list.css' %}">
+    <link rel="stylesheet" href="{% static 'mykurly/css/mykurly_orderview.css' %}">
+    <link rel="stylesheet" href="{% static 'order/css/order.css' %}">
+</head>
+<body>
+    <div id="container">
+
+        <div id="main" class="order_complete">
+            <div id="content">
+
+                <div class="page_aticle aticle_type2">
+
+
+                    <div class="section_orderview">
+                        <div class="head_aticle">
+                            <h2 class="tit">결제가 완료 되었습니다 !!</h2>
+                        </div>
+
+                        <div class="head_section link_type">
+                            <h3 class="tit">주문번호 1001</h3>
+                            <span class="link">
+                                배송 또는 상품에 문제가 있나요?
+                                <a href="#">1:1 문의하기</a>
+                            </span>
+                        </div>
+
+                        <form name="frmOrdView" method="POST" action="">
+                            <table class="tbl tbl_type1">
+                                <colgroup>
+                                    <col style="width:80px;">
+                                    <col style="width:auto">
+                                    <col style="width:100px;">
+                                    <col style="width:136px;">
+                                </colgroup>
+
+                                <tbody>
+                                    {% for item in order_items %}
+                                        <tr>
+                                            <td class="thumb">
+                                                <a href="#" style="background-image:url(https://res.kurly.com/mobile/img/1808/img_none_x2.png)"></a>
+                                            </td>
+                                            <td class="info">
+                                                <div class="name">
+                                                    <a href="#" class="link">[{{ item.product.product.name }}]</a>
+                                                </div>
+                                                <div class="name_package">
+                                                    <a href="#" class="link">[{{item.product.product.category.main_category.name}}-{{item.product.product.category.name}}]</a>
+                                                </div>
+
+                                                <div class="desc">
+                                                    <span class="price">{{item.product.product.price}}원</span>
+                                                    <span class="ea">{{item.quantity}}개</span>
+                                                </div>
+                                            </td>
+                                            <td class="progress">
+                                                <span class="end">
+                                                    {{ item.order_type }}
+                                                </span>
+                                            </td>
+                                            <td class="action">
+                                                <button type="button" class="btn btn_cart ga_tracking_event btn_cancel" >주문 취소</button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                        </form>
+
+                        <div id="orderCancel" class="order_cancel">
+                            <p class="cancel_notice">직접 주문취소는 ‘입금확인’ 상태일 경우에만 가능합니다.</p>
+                        </div>
+
+
+
+                        <div class="head_section ">
+                            <h3 class="tit">
+                                결제정보
+                            </h3>
+                        </div>
+
+                        <table class="tbl tbl_type2 tbl_type3">
+                            <colgroup>
+                                <col style="width:160px">
+                                <col style="width:auto">
+                            </colgroup>
+
+                            <tbody>
+                                <tr>
+                                    <th>상품금액</th>
+                                    <td>
+                                        <span id="paper_goodsprice">
+                                            {{ order.total_product_price | intcomma }}
+                                        </span>
+                                        원
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>배송비</th>
+                                    <td>
+
+                                        <span id="paper_delivery_msg1">
+                                            3,000
+                                        </span>
+                                        원
+                                    </td>
+                                </tr>
+
+
+
+
+
+                                <tr>
+                                    <th>적립금사용</th>
+                                    <td>
+                                        <span id="paper_emoney">
+                                            {{e_money | intcomma}}
+                                        </span>
+                                        원
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>결제금액</th>
+                                    <td>
+                                        <span id="paper_settlement">
+                                            {{ order.total_price | intcomma }}
+                                        </span>
+                                        원
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>적립예정금액</th>
+                                    <td>
+                                        0원
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>결제방법</th>
+                                    <td>
+                                        카카오페이
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+                        <div class="head_section">
+                            <h3 class="tit">주문정보</h3>
+                        </div>
+
+                        <table class="tbl tbl_type2">
+                            <colgroup>
+                                <col style="width:160px">
+                                <col style="width:auto">
+                            </colgroup>
+
+                            <tbody>
+                                <tr>
+                                    <th>주문 번호</th>
+                                    <td>[미구현]</td>
+                                </tr>
+
+                                <tr>
+                                    <th>주문자명</th>
+                                    <td>[{{ delivery.profile.person_name }}]</td>
+                                </tr>
+
+                                <tr>
+                                    <th>보내는 분</th>
+                                    <td>[{{ delivery.name }}]</td>
+                                </tr>
+
+                                <tr>
+                                    <th>결제일시</th>
+                                    <td>[{{ order.order_time }}]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="head_section">
+                            <h3 class="tit">배송 정보</h3>
+                        </div>
+
+                        <table class="tbl tbl_type2">
+                            <colgroup>
+                                <col style="width:160px">
+                                <col style="width:auto">
+                            </colgroup>
+
+                            <tbody>
+                                <tr>
+                                    <th>받는 분</th>
+                                    <td>[{{ delivery.name }}]</td>
+                                </tr>
+
+                                <tr>
+                                    <th>핸드폰</th>
+                                    <td>
+                                        {{ delivery.calling|slice:"0:3" }}-{{ delivery.calling|slice:"3:7" }}-{{ delivery.calling|slice:"7:11" }}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>배송방법</th>
+                                    <td>{{ delivery.delivery_type }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>주소</th>
+                                    <td>
+                                        [{{ delivery.address }}]
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>받으실 장소</th>
+                                    <td>문 앞</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

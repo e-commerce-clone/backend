@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 <html lang="en">
 <head>
@@ -134,89 +135,35 @@
                                 </colgroup>
 
                                 <tbody>
-                                    <tr>
-                                        <td class="thumb">
-                                            <a href="#" style="background-image:url(https://res.kurly.com/mobile/img/1808/img_none_x2.png)"></a>
-                                        </td>
-                                        <td class="info">
-                                            <div class="name">
-                                                <a href="#" class="link">[상품명]</a>
-                                            </div>
-                                            <div class="name_package">
-                                                <a href="#" class="link">[상품 카테고리]</a>
-                                            </div>
+                                    {% for item in order_items %}
+                                        <tr>
+                                            <td class="thumb">
+                                                <a href="#" style="background-image:url(https://res.kurly.com/mobile/img/1808/img_none_x2.png)"></a>
+                                            </td>
+                                            <td class="info">
+                                                <div class="name">
+                                                    <a href="#" class="link">{{ item.product.product.name }}</a>
+                                                </div>
+                                                <div class="name_package">
+                                                    <a href="#" class="link">{{item.product.product.category.main_category.name}}-{{item.product.product.category.name}}</a>
+                                                </div>
 
-                                            <div class="desc">
-                                                <span class="price">가격</span>
-                                                <span class="ea">0개</span>
-                                            </div>
-                                        </td>
-                                        <td class="progress">
-                                            <span class="end">
-                                                배송완료
-                                            </span>
-                                        </td>
-                                        <td class="action">
-                                            <button type="button" class="btn btn_cart ga_tracking_event" >장바구니 담기</button>
-                                            <button type="button" class="btn btn_cart ga_tracking_event btn_cancel" style="display:none" >주문 취소</button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="thumb">
-                                            <a href="#" style="background-image:url(https://res.kurly.com/mobile/img/1808/img_none_x2.png)"></a>
-                                        </td>
-                                        <td class="info">
-                                            <div class="name">
-                                                <a href="#" class="link">[상품명]</a>
-                                            </div>
-                                            <div class="name_package">
-                                                <a href="#" class="link">[상품 카테고리]</a>
-                                            </div>
-
-                                            <div class="desc">
-                                                <span class="price">가격</span>
-                                                <span class="ea">0개</span>
-                                            </div>
-                                        </td>
-                                        <td class="progress">
-                                            <span class="">
-                                                결제완료
-                                            </span>
-                                        </td>
-                                        <td class="action">
-                                            <button type="button" class="btn btn_cart ga_tracking_event" >장바구니 담기</button>
-                                            <button type="button" class="btn btn_cart ga_tracking_event btn_cancel" >주문 취소</button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="thumb">
-                                            <a href="#" style="background-image:url(https://res.kurly.com/mobile/img/1808/img_none_x2.png)"></a>
-                                        </td>
-                                        <td class="info">
-                                            <div class="name">
-                                                <a href="#" class="link">[상품명]</a>
-                                            </div>
-                                            <div class="name_package">
-                                                <a href="#" class="link">[상품 카테고리]</a>
-                                            </div>
-
-                                            <div class="desc">
-                                                <span class="price">가격</span>
-                                                <span class="ea">0개</span>
-                                            </div>
-                                        </td>
-                                        <td class="progress">
-                                            <span class="">
-                                                배송중
-                                            </span>
-                                        </td>
-                                        <td class="action">
-                                            <button type="button" class="btn btn_cart ga_tracking_event" >장바구니 담기</button>
-                                            <button type="button" class="btn btn_cart ga_tracking_event btn_cancel" >주문 취소</button>
-                                        </td>
-                                    </tr>
+                                                <div class="desc">
+                                                    <span class="price">{{ item.product.product.price | intcomma }}원</span>
+                                                    <span class="ea">{{ item.quantity }}개</span>
+                                                </div>
+                                            </td>
+                                            <td class="progress">
+                                                <span class="end">
+                                                    {{ item.order_type }}
+                                                </span>
+                                            </td>
+                                            <td class="action">
+                                                <button type="button" class="btn btn_cart ga_tracking_event" >장바구니 담기</button>
+                                                <button type="button" class="btn btn_cart ga_tracking_event btn_cancel" style="display:none" >주문 취소</button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </form>
@@ -267,7 +214,7 @@
                                     <th>상품금액</th>
                                     <td>
                                         <span id="paper_goodsprice">
-                                            0
+                                            {{ order.total_product_price | intcomma }}
                                         </span>
                                         원
                                     </td>
@@ -299,9 +246,8 @@
                                     <th>적립금사용</th>
                                     <td>
                                         <span id="paper_emoney">
-                                            0
+                                            [미구현]
                                         </span>
-                                        원
                                     </td>
                                 </tr>
 
@@ -309,7 +255,7 @@
                                     <th>결제금액</th>
                                     <td>
                                         <span id="paper_settlement">
-                                            999,999,999
+                                            {{ order.total_price | intcomma }}
                                         </span>
                                         원
                                     </td>
@@ -318,7 +264,7 @@
                                 <tr>
                                     <th>적립예정금액</th>
                                     <td>
-                                        0원
+                                        [미구현]
                                     </td>
                                 </tr>
 
@@ -346,22 +292,22 @@
                             <tbody>
                                 <tr>
                                     <th>주문 번호</th>
-                                    <td>[주문 번호]</td>
+                                    <td>[미구현]</td>
                                 </tr>
 
                                 <tr>
                                     <th>주문자명</th>
-                                    <td>[이름]</td>
+                                    <td>{{ user.last_name }}{{ user.first_name }}</td>
                                 </tr>
 
                                 <tr>
                                     <th>보내는 분</th>
-                                    <td>[이름]</td>
+                                    <td>{{ user.last_name }}{{ user.first_name }}</td>
                                 </tr>
 
                                 <tr>
                                     <th>결제일시</th>
-                                    <td>[날짜데이터 ex)2020-12-17 12:29:04]</td>
+                                    <td>{{ order.order_time }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -379,26 +325,25 @@
                             <tbody>
                                 <tr>
                                     <th>받는 분</th>
-                                    <td>[이름]</td>
+                                    <td>{{ delivery.name }}</td>
                                 </tr>
 
                                 <tr>
                                     <th>핸드폰</th>
                                     <td>
-                                        010-1111-1234
+                                        {{ delivery.calling|slice:"0:3" }}-{{ delivery.calling|slice:"3:7" }}-{{ delivery.calling|slice:"7:11" }}
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>배송방법</th>
-                                    <td>샛별배송</td>
+                                    <td>{{ delivery.delivery_type }}</td>
                                 </tr>
 
                                 <tr>
                                     <th>주소</th>
                                     <td>
-                                        [우편번호]
-                                        [상세주소]
+                                        {{ delivery.address }}
                                     </td>
                                 </tr>
 

@@ -4,6 +4,7 @@ from accounts.models import Profile
 from shop.models import Product
 from photo.models import Product_photo, Review_photo
 from mykurly.models import Review, Delivery
+from order.models import Order, Order_item
 from django.http import JsonResponse
 from django.contrib.auth.models import User as auth_User
 from django.contrib.auth.decorators import login_required
@@ -12,12 +13,30 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def order_list(request):
-    return render(request, 'mykurly/mykurly_order_list.html')
+    profile = get_object_or_404(Profile, user=request.user)
+    order = Order.objects.filter(profile=profile)
+
+    context = {
+        'orders': order,
+    }
+
+    return render(request, 'mykurly/mykurly_order_list.html', context)
 
 
 @login_required
 def order_view(request):
-    return render(request, 'mykurly/mykurly_orderview.html')
+    profile = get_object_or_404(Profile, user=request.user)
+    order = get_object_or_404(Order, pk=request.GET.get('pk'))
+    order_items = get_list_or_404(Order_item, order=order)
+    delivery = get_object_or_404(Delivery, profile=profile, basic_address=True)
+
+    context = {
+        'order_items': order_items,
+        'order': order,
+        'delivery': delivery
+    }
+
+    return render(request, 'mykurly/mykurly_orderview.html', context)
 
 
 @login_required
