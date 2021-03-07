@@ -1,0 +1,210 @@
+@charset "utf-8";
+
+body.layout_login {
+    margin-bottom: 0!important;
+    background-color: #fff;
+}
+
+.layout-main-wrapper {
+    position: relative;
+}
+
+.layout_login .layout-main-wrapper {
+    height: auto;
+}
+
+#wrap, 
+.preload:after {
+    height: 100%;
+    width: 100%;
+}
+
+#header {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff;
+    text-align: center;
+}
+
+.layout_login #header {
+    border-bottom: 0;
+}
+
+#header .logo .tit {
+    display: block;
+    overflow: hidden;
+    padding: 17px 50px 0;
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.layout_login2 #header .link_back {
+    background: url(https://res.kurly.com/mobile/service/common/1908/ico_close_333_100x100.png) no-repeat 50% 50%;
+    background-size: 50px 50px;
+}
+
+.tab_comm {
+    overflow: hidden;
+}
+
+.tab_comm li {
+	overflow: hidden;
+	width: 100%;
+}
+
+.tab_comm .menu {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    height: 44px;
+    padding-top: 11px;
+    font-size: 14px;
+    color: #666;
+    line-height: 24px;
+	text-align: center;
+}
+
+.tab_comm .on {
+    font-weight: 500;
+    color: #5f0080;
+}
+
+.tab_comm .bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+	background-color: #ccc;
+	height: 3px;
+    background-color: #5f0080;
+}
+
+.section_login .write_form {
+    padding: 30px 20px 0;
+}
+
+.section_login .login_view {
+    text-align: center;
+}
+
+.inp_initialization {
+    position: relative;
+}
+
+.inp_initialization .btn_initialization {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: 48px;
+    border: none;
+    background: url(https://res.kurly.com/mobile/ico/2009/ico_search_del.svg) no-repeat 50% 50%;
+    font-size: 0;
+    text-indent: -9999px;
+}
+
+.inp_initialization .btn_initialization.on {
+	/* js로 클릭 시 on 붙이기 */
+	display: block;
+}
+
+.section_login [name=password],
+.section_login [name=ordno],
+.section_login [name=srch_mail],
+.section_login [name=srch_id] {
+    margin-top: 10px;
+}
+
+.section_login .checkbox_save {
+    overflow: hidden;
+    padding: 10px 0 26px;
+}
+
+.section_login label {
+    padding-left: 12px;
+    font-size: 13px;
+    color: #666;
+    letter-spacing: -.6px;
+}
+
+.section_login .checkbox_save label:first-child {
+    float: left;
+    padding-left: 0;
+}
+
+.section_login [type=checkbox] {
+    margin-right: 3px;
+}
+
+.section_login .auto_security {
+    float: right;
+}
+
+.section_login .login_search {
+    display: inline-block;
+    overflow: hidden;
+    margin: 0 auto;
+    padding-top: 10px;
+    font-size: 0;
+}
+
+.section_login .login_search .link {
+    float: left;
+    height: 40px;
+    padding: 15px 6px 0;
+    font-size: 13px;
+    color: #666;
+    letter-spacing: -.6px;
+}
+
+.section_login .login_search .bar {
+    float: left;
+    width: 1px;
+    height: 10px;
+    margin-top: 15px;
+    background-color: #666;
+}
+
+.section_login .btn_type2 {
+    margin-top: 10px;
+}
+
+.section_login .btn_member {
+    margin-top: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 from django.db import models
 from shop.models import Product
-from main.models import Review
+from mykurly.models import Review
 # Create your models here.
 
 

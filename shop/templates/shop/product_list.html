@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
-{% block title %}상품 리스트{% endblock %}
 {% block content %}
 {% load static %}
 {% load humanize %}
@@ -9,8 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'shop/css/good_list.css' %}">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="{% static 'js/common.js' %}"></script>
     <script src="{% static 'shop/js/good_list.js' %}"></script>
     <SCRIPT LANGUAGE="JavaScript">
 
@@ -36,33 +33,18 @@
                             <div class="ico_cate">
                                 <span class="ico" style="display:block;">
                                 <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_active_pc@2x.1586324570.png" id="goodsListIconView" alt="카테고리 아이콘"> </span>
-                                <span class="tit">채소</span>
+                                <span class="tit">{{ main_category }}</span>
                             </div>
 
                             <ul class="list">
                                 <li name="cate_gory">
-                                    <a class="on">전체보기</a>
+                                    <a href="{% url 'shop:product_list' main_category %}" class="">전체보기</a>
                                 </li>
-                                <li name="cate_gory">
-                                    <a class=>고구마·감자·당근</a>
-                                </li>
-                                <li name="cate_gory">
-                                    <a class=>시금치·쌈채소·나물</a>
-                                </li>
-                                <li name="cate_gory">
-                                    <a class=>브로콜리·파프리카·양배추</a>
-                                </li>
-                                <li name="cate_gory">
-                                    <a class=>양파·대파·마늘·배추</a>
-                                </li>
-                                <li name="cate_gory">
-                                    <a class=>냉동·이색·간편채소</a>
-                                </li>
-                                <li name="cate_gory">
-                                    <a class=>콩나물·버섯</a>
-                                </li>
-                                <li class="bg" style="top: 78px; width: 68px; left: 29px; opacity: 1;"></li>
-
+                                {% for category in categories %}
+                                    <li name="cate_gory">
+                                        <a href="{% url 'shop:product_in_category' main_category category %}" class="">{{ category.name }}</a>
+                                    </li>
+                                {% endfor %}
 
                             </ul>
 
@@ -124,6 +106,8 @@
                                                 <div class="thumb">
                                                     <a href="{% url 'shop:product_detail' photo.product.id %}" class="img">
                                                         <img src="{{ photo.main_image.url }}" alt="무농약 콩으로 재배한 콩나물(1봉/200g)" onerror="this.src='https://res.kurly.com/mobile/img/1808/img_none_x2.png'" width="308" height="396">
+
+
                                                     </a>
                                                     <span class="global_sticker" style="display: none;">
                                                         <span class="inner_sticker">
@@ -176,21 +160,27 @@
                             <div class="pagediv">
                                 <a href="#main" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a>
                                 <a href="#main" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a>
-                                <span>
-                                    <strong class="layout-pagination-button layout-pagination-number __active">1</strong>
-                                </span>
-                                <span>
-                                    <strong class="layout-pagination-button layout-pagination-number">2</strong>
-                                </span>
-                                <span>
-                                    <strong class="layout-pagination-button layout-pagination-number">3</strong>
-                                </span>
-                                <span>
-                                    <strong class="layout-pagination-button layout-pagination-number">4</strong>
-                                </span>
-                                <span>
-                                    <strong class="layout-pagination-button layout-pagination-number">5</strong>
-                                </span>
+                                {% if category_name %}
+                                    {% for page in page_range %}
+                                    <a href="{% url 'shop:product_in_category' main_category category_name %}?page={{ page }}">
+                                        <span>
+                                            <strong class="layout-pagination-button layout-pagination-number">
+                                                {{ page }}
+                                            </strong>
+                                        </span>
+                                    </a>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for page in page_range %}
+                                        <a href="{% url 'shop:product_list' main_category %}?page={{ page }}">
+                                            <span>
+                                                <strong class="layout-pagination-button layout-pagination-number">
+                                                    {{ page }}
+                                                </strong>
+                                            </span>
+                                        </a>
+                                    {% endfor %}
+                                {% endif %}
                                 <a href="#main" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a>
                                 <a href="#main" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a>
 
@@ -245,7 +235,7 @@
 
 
 
-    <div id="cartPut">
+     <div id="cartPut">
         <div class="cart_option cart_type3" style="opacity: 1;">
             <form action="{% url 'cart:add_cart' %}" method="POST" id="contactsForm">
                 {% csrf_token %}

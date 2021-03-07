@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
-from shop.models import Product, Category
+from shop.models import Product, Category, MainCategory
 from photo.models import Product_photo
 from django.urls import reverse
 from django.views.generic.edit import DeleteView
@@ -45,7 +45,19 @@ def prd_upload(request):
         except:
             sub_image = "no_image"
 
-        category = Category(name=request.POST.get('product_category', None))
+        tmp = request.POST.get('product_category', None)
+        if tmp:
+            tmp = tmp.split('-')
+        else:
+            return render(request, 'shop_admin:admin_page_prd_manage.html', {'error': "카테고리 미입력"})
+        main_category = MainCategory(name=tmp[0])
+
+        try:
+            main_category = get_object_or_404(MainCategory, name=tmp[0])
+        except:
+            main_category.save()
+
+        category = Category(main_category=main_category, name=tmp[1])
 
         try:        # 쿼리가 DB 에 존재하지 않으면 category table 생성 X
             category = Category.objects.get(name=category.name)

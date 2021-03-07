@@ -8,9 +8,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("accounts.urls")),
     path('shop/', include("shop.urls")),
-    path('cart/', include("cart.urls")),
-    path('kakaopay/', include("kakaopay.urls")),
+    path('cart/', include("cart.urls", namespace="cart")),
     path('', include("main.urls")),
+    path('mykurly/', include("mykurly.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

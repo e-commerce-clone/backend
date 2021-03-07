@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User as auth_User
 from django.contrib.auth.hashers import make_password
+from mykurly.models import Delivery
 from django.template import RequestContext
 from django.contrib import messages
 from .models import Profile
@@ -21,6 +22,7 @@ from .token import account_activation_token
 # Create your views here
 
 
+
 def join(request):        # 회원가입 뷰
     if request.method == "GET":
         return render(request, 'accounts/join.html')
@@ -37,17 +39,12 @@ def join(request):        # 회원가입 뷰
         birthday_month = request.POST.get('month', None)
         birthday_day = request.POST.get('day', None)
 
-        if (birthday_year and birthday_month and birthday_day):
-            age = 2021 - int(birthday_year) + 1
-            birthday = f'{birthday_year}-{birthday_month}-{birthday_day}'
-        else:
-            age = None
-            birthday = None
+        age = 2021 - int(birthday_year) + 1
+        birthday = f'{birthday_year}-{birthday_month}-{birthday_day}'
+        home_address = f'{user_address},{user_address_detail}'
 
-        if (user_address and user_address_detail):
-            home_address = f'{user_address}, {user_address_detail}'
-        else:
-            home_address = None
+        first_name = person_name[1:3]
+        last_name = person_name[0]
 
         res_data = {
             'username': username,
@@ -56,6 +53,8 @@ def join(request):        # 회원가입 뷰
         }
         user = auth_User(username=username,
                          password=make_password(password),
+                         first_name=first_name,
+                         last_name=last_name,
                          email=email,
                          is_active=False)
         user_info = Profile(user=user,
@@ -65,9 +64,18 @@ def join(request):        # 회원가입 뷰
                             home_address=home_address,
                             birthday=birthday,
                             age=age)
+        delivery = Delivery(
+            profile=user_info,
+            name=person_name,
+            calling=phone_number,
+            address=home_address,
+            delivery_type='일반배송',
+            basic_address=True
+        )
         try:
             user.save()  # 유저 저장
             user_info.save()  # 프로필 저장
+            delivery.save()     # 배송지 저장 (마이컬리에서 기본 배송지 설정을 위한 저장)
         except:
             user.delete()
             print("회원가입 에러")
@@ -106,17 +114,12 @@ def mobile_join(request):
         birthday_month = request.POST.get('month', None)
         birthday_day = request.POST.get('day', None)
 
-        if (birthday_year and birthday_month and birthday_day):
-            age = 2021 - int(birthday_year) + 1
-            birthday = f'{birthday_year}-{birthday_month}-{birthday_day}'
-        else:
-            age = None
-            birthday = None
+        age = 2021 - int(birthday_year) + 1
+        birthday = f'{birthday_year}-{birthday_month}-{birthday_day}'
+        home_address = f'{user_address},{user_address_detail}'
 
-        if (user_address and user_address_detail):
-            home_address = f'{user_address}, {user_address_detail}'
-        else:
-            home_address = None
+        first_name = person_name[1:3]
+        last_name = person_name[0]
 
         res_data = {
             'username': username,
@@ -126,6 +129,8 @@ def mobile_join(request):
 
         user = auth_User(username=username,
                          password=make_password(password),
+                         first_name=first_name,
+                         last_name=last_name,
                          email=email,
                          is_active=False)
         user_info = Profile(user=user,
@@ -135,9 +140,16 @@ def mobile_join(request):
                             home_address=home_address,
                             birthday=birthday,
                             age=age)
+        delivery = Delivery(
+            profile=user_info,
+            address=home_address,
+            delivery_type='일반배송',
+            basic_address=True
+        )
         try:
             user.save()  # 유저 저장
             user_info.save()  # 프로필 저장
+            delivery.save()  # 배송지 저장 (마이컬리에서 기본 배송지 설정을 위한 저장)
         except:
             user.delete()
             print("회원가입 에러")
@@ -176,14 +188,14 @@ def login(request):     # 로그인 뷰 : django auth login
             if (check_user.is_active == True):  # 계정 활성화일 경우
                 try:    # 로그인 가능
                     auth_login(request, user)   # login 수행
-                    if (name == "admin"):
-                        return render(request, "main/main.html", {'m_name': "admin"})
-                    profile = Profile.objects.get(user=user)
-                    person_name = profile.person_name
-                    data = {
-                        'm_name': person_name,
-                    }
-                    return render(request, "main/main.html", data)
+                    # if (name == "admin"):
+                    #     return render(request, "main/main.html", {'m_name': "admin"})
+                    # profile = Profile.objects.get(user=user)
+                    # person_name = profile.person_name
+                    # data = {
+                    #     'm_name': person_name,
+                    # }
+                    return render(request, "main/main.html")
                 except:     # 아이디 비밀번호 불일치일 경우
                     error = 1
                     data = {'error': error, }
@@ -196,11 +208,52 @@ def login(request):     # 로그인 뷰 : django auth login
                 return render(request, template, data)
     return render(request, template)
 
+def mobile_login(request):
+    template = "accounts/mobile_login.html"
+
+    if request.method == "POST":
+        name = request.POST.get('username')  # id
+        pwd = request.POST.get('password')  # pw
+        user = authenticate(username=name, password=pwd)
+        try:
+            check_user = auth_User.objects.get(username=name)
+        except:  # 정보 부정확.
+            return render(request, template)
+
+        if check_user is not None:  # 계정이 있을 경우
+            if (check_user.is_active == True):  # 계정 활성화일 경우
+                try:  # 로그인 가능
+                    auth_login(request, user)  # login 수행
+                    # if (name == "admin"):
+                    #     return render(request, "main/main.html", {'m_name': "admin"})
+                    # profile = Profile.objects.get(user=user)
+                    # person_name = profile.person_name
+                    # data = {
+                    #     'm_name': person_name,
+                    # }
+                    return render(request, "main/main.html")
+
+                except:  # 아이디 비밀번호 불일치일 경우
+                    error = 1
+                    data = {'error': error, }
+                    print(error, '아이디 비번 불일치')
+                    return render(request, template, data)
+
+            elif (check_user.is_active == False):  # 계정 활성화 아닐 경우
+                error = 0
+                data = {'error': error, }
+                print(error, '계정활성화 필요')
+                return render(request, template, data)
+
+    return render(request, template)
 
 def logout(request):    # 로그아웃 뷰 : django auth logout
     auth_logout(request)
     return redirect("/")
 
+def mobile_logout(request):
+    auth_logout(request)
+    return redirect("/")
 
 def findid(request):
     if request.method == 'POST':
@@ -293,7 +346,8 @@ def resetpw(request):
         user = auth_User.objects.get(email=email)
 
         try:
-            user.password = password
+            # user.password = password
+            user.set_password(password)
             user.save()
             return render(request, 'accounts/login.html')
         except:

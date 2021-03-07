@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" href="{% static 'css/common_mobile.css' %}">
+	<link rel="stylesheet" href="{% static 'accounts/css/login_mobile.css' %}">
+	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script defer src="{% static 'accounts/js/login_mobile.js' %}"></script>
+</head>
+<body class="layout_login2 layout_login">
+	<div class="bg_loading loading" id="bgLoading">
+		<div class="loading_show"></div>
+	</div>
+	<div id="dymanic"></div>
+	<div id="wrap" class="layout-main-wrapper" style="padding-top: 50px;">
+		
+		<header id="header" class="header">
+			<h1 class="logo">
+				<span class="tit">로그인</span>
+			</h1>
+			<a href="#none" class="link_back" role="button"></a>
+		</header>
+
+		<div class="section_login">
+			<ul class="tab_comm on">
+			<!--비회원 list 삭제, 회원만 구현-->
+				<li>
+					<a href="#none" class="menu on">
+						회원<span class="bar"></span>
+					</a>
+				</li>
+			</ul>
+			<div class="write_form">
+				<div class="write_view login_view">
+					<form name="login_form" action="{% url 'accounts:mobile_login' %}" method="post" id="form" onsubmit="return checkReCaptcha();">
+						{% csrf_token %}
+						<div class="inp_initialization">
+							<input type="text" name="username" size="20" value placeholder="아이디를 입력해주세요">
+							<button type="button" class="btn_initialization" tabindex="-1">텍스트 삭제</button>
+						</div>
+						<div class="inp_initialization">
+							<input type="password" name="password" size="20" value placeholder="비밀번호를 입력해주세요" required="required" msgr="비밀번호를 입력해주세요">
+							<button type="button" class="btn_initialization" tabindex="-1">텍스트 삭제</button>
+						</div>
+						<div class="checkbox_save">
+							<label>
+								<input type="checkbox" name="save_id" value="y" checked="checked">
+								아이디 저장
+							</label>
+							<div class="auto_security">
+								<label>
+									<input type="checkbox" name="save_login_status" value="y">
+									자동 로그인
+								</label>
+								<label>
+									<input type="checkbox" name="chk_security" value="y" checked="checked">
+									보안접속
+								</label>
+
+							</div>
+						</div>
+						<button type="submit" onclick="check_input()" class="btn_type1">
+							<span class="txt_type">로그인</span>
+						</button>
+					</form>
+					<div class="login_search">
+						<a href="" class="link">아이디 찾기</a>
+						<span class="bar"></span>
+						<a href="" class="link">비밀번호 찾기</a>
+					</div>
+					<script>
+						let user_info = document.querySelectorAll('.link');
+
+						for (let i = 0; i < user_info.length; i++) {
+							user_info[i].addEventListener('click', function() {
+								alert('pc에서 진행해 주세요');
+							});
+						}
+					</script>
+					<a href="{% url 'accounts:mobile_join' %}" class="btn_type2 btn_member">
+						<span class="txt_type">회원가입</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,23 @@
+[
+{
+    "model": "shop.maincategory",
+    "pk": 1,
+    "fields": {
+        "name": "채소"
+    }
+},
+{
+    "model": "shop.maincategory",
+    "pk": 2,
+    "fields": {
+        "name": "과일·견과·쌀"
+    }
+},
+{
+    "model": "shop.maincategory",
+    "pk": 3,
+    "fields": {
+        "name": "수산·해산·건어물"
+    }
+}
+]

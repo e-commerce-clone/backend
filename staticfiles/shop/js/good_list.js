@@ -213,22 +213,22 @@ window.addEventListener('DOMContentLoaded',function(){
 
             var pos = $('.inner_lnb ul li:eq(' + cate_index + ') a').position()  // 변수 pos에다가 현재 클릭한 a 태그의 위치값 저장
 
-            $('.bg_loading').css('display', 'block'); // 로딩창 display block 했다가
-            setTimeout(function() {
-                $('.bg_loading').css('display', 'none');  //0.5초 뒤에 다시 로딩창 display none 하기
-            }, 500);
+//            $('.bg_loading').css('display', 'block'); // 로딩창 display block 했다가
+//            setTimeout(function() {
+//                $('.bg_loading').css('display', 'none');  //0.5초 뒤에 다시 로딩창 display none 하기
+//            }, 500);
 
 
 
 
 
 
-            $('.bg').stop().animate({    //bg막대 이동 animate실행
-                "left": pos.left + "px",  //left값은 위에서 구한 pos의 left값 만큼 이동
-                "bottom" : pos.bottom + "px" // bottom은 pos의 bottom값 만큼 이동
-            }, 150, function(){  // 150의 속도만큼
-                $('.bg').css('width', change_bg+'px');  // 막대길이는 위에서구한 change_bg만큼 변화
-            });
+//            $('.bg').stop().animate({    //bg막대 이동 animate실행
+//                "left": pos.left + "px",  //left값은 위에서 구한 pos의 left값 만큼 이동
+//                "bottom" : pos.bottom + "px" // bottom은 pos의 bottom값 만큼 이동
+//            }, 150, function(){  // 150의 속도만큼
+//                $('.bg').css('width', change_bg+'px');  // 막대길이는 위에서구한 change_bg만큼 변화
+//            });
 
 
         });
@@ -252,6 +252,8 @@ window.addEventListener('DOMContentLoaded',function(){
             return str;
 
         }
+
+
 
 
 

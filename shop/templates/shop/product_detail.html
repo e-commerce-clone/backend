@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
-{% block title %}상품정보{% endblock %}
 {% block content %}
 {% load static %}
 {% load humanize %}
@@ -9,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'shop/css/good_view.css' %}">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="{% static 'shop/js/good_view.js' %}"></script>
 </head>
 <body>
@@ -269,7 +267,7 @@
                             <li class="goods-view-infomation-tab">
                                 <a href="#goods-review" class="goods-view-infomation-tab-anchor">
                                     고객후기
-                                    <span class="count_review">(0)</span>
+                                    <span class="count_review">({{ review_count }})</span>
                                 </a>
                             </li>
                             <li class="goods-view-infomation-tab qna-show">
@@ -394,7 +392,7 @@
                             <li class="goods-view-infomation-tab">
                                 <a href="#goods-review" class="goods-view-infomation-tab-anchor">
                                     고객후기
-                                    <span class="count_review">(0)</span>
+                                    <span class="count_review">({{ review_count }})</span>
                                 </a>
                             </li>
                             <li class="goods-view-infomation-tab">
@@ -423,7 +421,7 @@
                             <li class="goods-view-infomation-tab">
                                 <a href="#goods-review" class="goods-view-infomation-tab-anchor">
                                     고객후기
-                                    <span class="count_review">(0)</span>
+                                    <span class="count_review">({{ review_count }})</span>
                                 </a>
                             </li>
                             <li class="goods-view-infomation-tab">
@@ -660,7 +658,7 @@
                             <li class="goods-view-infomation-tab">
                                 <a href="#goods-review" class="goods-view-infomation-tab-anchor __active">
                                     고객후기
-                                    <span class="count_review">(0)</span>
+                                    <span class="count_review">({{ review_count }})</span>
                                 </a>
                             </li>
                             <li class="goods-view-infomation-tab">
@@ -670,7 +668,7 @@
                             </li>
                         </ul>
                         <div class="goods-view-infomation-content" id="goods-review"> <!-- 아래 주소창에 good_review_list.html url 넣어주면 됩니당-->
-                            <iframe src="{% url 'shop:product_review' %}" id="inreview" frameborder="0" class="goods-view-infomation-board" height="733"></iframe>
+                            <iframe src="{% url 'shop:product_review' product.id %}" id="inreview" frameborder="0" class="goods-view-infomation-board" height="733"></iframe>
                         </div>
                     </div>
                 </div>

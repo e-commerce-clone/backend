@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상품리뷰 페이지</title>
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
     <link rel="stylesheet" href="{% static 'shop/css/good_review_list.css' %}">
-
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        function going(){
+            window.parent.location.href = "{% url 'mykurly:review_register' user.username pk %}";
+        }
+    </script>
 </head>
 <body style="overflow-y: hidden">
-
     <div id="contents-wrapper" class="goods_board">
         <div class="xans-element- xans-product xans-product-additional detail_board">
             <div class="board">
@@ -111,7 +114,8 @@
                         </div>
                     </div>
 
-                    <div class="tr_line on">
+                    {% for review in reviews%}
+                        <div class="tr_line on">
                         <table class="xans-board-listheaderd tbl_newtype1" width="100%" cellpadding="0" cellspacing="0" onclick="">
                             <caption style="display:none">구매후기 내용</caption>
                             <colgroup>
@@ -122,17 +126,16 @@
                                 <col style="width:100px;">
                                 <col style="width:40px;">
                                 <col style="width:80px;">
-    
                             </colgroup>
                             <tr>
-                                <td align="center">공지</td>
+                                <td align="center">{{ forloop.counter }}</td>
                                 <td class="subject">
-                                    <div>금주의 Best 후기 안내</div>
+                                    <div>{{ review.title }}</div>
                                 </td>
                                 <td class="user_grade grade_comm"></td>
 
-                                <td class="user_grade">Marketkurly</td>
-                                <td class="time">2021-01-17</td>
+                                <td class="user_grade">{{ user.username }}</td>
+                                <td class="time">{{ review.created_at|date:"Y-m-d" }}</td>
                                 <td>
                                     <span class="review-like-cnt">0</span>
                                 </td>
@@ -145,61 +148,20 @@
 
                         <div class="review_view review_notice">
                             <div class="inner_review">
-                                <p>고객님 안녕하세요, 마켓컬리입니다</p>
+                                <p>{{ review.title }}</p>
                                 <br>
-                                <p>어쩌구 저쩌구 어쩌구 저쩌구</p>
-                               
+                                <p>{{ review.contents }}</p>
+
 
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
 
-                    <div class="tr_line on">
-                        <table class="xans-board-listheaderd tbl_newtype1" width="100%" cellpadding="0" cellspacing="0" onclick="">
-                            <caption style="display:none">구매후기 내용</caption>
-                            <colgroup>
-                                <col style="width:70px;">
-                                <col style="width:auto;">
-                                <col style="width:51px;">
-                                <col style="width:77px;">
-                                <col style="width:100px;">
-                                <col style="width:40px;">
-                                <col style="width:80px;">
-    
-                            </colgroup>
-                            <tr>
-                                <td align="center">공지</td>
-                                <td class="subject">
-                                    <div>금주의 Best 후기 안내</div>
-                                </td>
-                                <td class="user_grade grade_comm"></td>
-
-                                <td class="user_grade">Marketkurly</td>
-                                <td class="time">2021-01-17</td>
-                                <td>
-                                    <span class="review-like-cnt">0</span>
-                                </td>
-                                <td>
-                                    <span class="review-hit-cnt">0</span>
-                                </td>
-                            </tr>
-                        </table>
-
-
-                        <div class="review_view review_notice">
-                            <div class="inner_review">
-                                <p>고객님 안녕하세요, 마켓컬리입니다</p>
-                                <br>
-                                <p>어쩌구 저쩌구 어쩌구 저쩌구</p>
-                               
-
-                            </div>
-                        </div>
-                    </div>
                 </form>
 
                 <p class="btnArea after">
-                    <a href="#none" onclick="">
+                    <a onclick="going()">
                         <span class="bhs_button" style="line-height:30px; width:130px;">후기쓰기</span>
                     </a>
                 </p>
@@ -211,16 +173,9 @@
         <div class="board_pg_area">
             <a href="#" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a>
             <a href="#" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a>
-            <a href="#" class="layout-pagination-button layout-pagination-number __active">1</a>
-            <a href="#" class="layout-pagination-button layout-pagination-number">2</a>
-            <a href="#" class="layout-pagination-button layout-pagination-number">3</a>
-            <a href="#" class="layout-pagination-button layout-pagination-number">4</a>
-            <a href="#" class="layout-pagination-button layout-pagination-number">5</a>
-            <a href="#" class="layout-pagination-button layout-pagination-number">6</a>
-            <a href="#" class="layout-pagination-button layout-pagination-number">7</a>
-            <a href="#" class="layout-pagination-button layout-pagination-number">8</a>
-            <a href="#" class="layout-pagination-button layout-pagination-number">9</a>
-            <a href="#" class="layout-pagination-button layout-pagination-number">10</a>
+            {% for page in page_range %}
+                <a href="{% url 'shop:product_review' pk %}?page={{ page }}" class="layout-pagination-button layout-pagination-number">{{ page }}</a>
+            {% endfor %}
 
             <a href="#" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a>
             <a href="#" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a>
