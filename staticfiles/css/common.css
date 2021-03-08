@@ -2,6 +2,31 @@
 
 @charset "utf-8";
 
+
+/* 이도현이 추가한거 */
+
+textarea::placeholder, input::placeholder{
+    color:rgb(173, 173, 173);
+}
+
+#header, #container, #content {
+    position: relative;
+}
+
+#main {
+    border-bottom: 1px solid #f7f7f7;
+}
+
+#content {
+    min-width: 1050px;
+    padding-bottom: 120px;
+}
+
+
+
+
+
+
 /* 로그인 클래스 추가 /삭제 */
 /* 로그인: #top_event */
 #top_event .inner_top_event.login {
@@ -23,9 +48,7 @@
     /* 1px로 했는데 2px로 나와서 수정 필요 */
 }
 
-#top_event.login .inner_top_event.login {
-    
-}
+
 
 #top_event.login .inner_top_event .top_event_bnr.login {
     color: #4c4c4c;
@@ -688,7 +711,7 @@
 .inner_footer .cc_tit {
     padding: 29px 0 2px;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 30px;
     color: #333;
     line-height: 24px;
 }
@@ -711,7 +734,7 @@
 .inner_footer .cc_call .tit {
     padding-top: 4px;
     font-weight: 800;
-    font-size: 28px;
+    font-size: 18px;
     color: #333;
     line-height: 36px;
     letter-spacing: -.5px;
@@ -851,14 +874,6 @@
     width: 102px;
     height: 34px;
 }
-
-
-
-
-
-
-
-
 
 
 

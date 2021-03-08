@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배송지 수정</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'mykurly/css/mobile_mykurly_destination.css' %}">
+</head>
+<body>
+
+    <div id="wrap" class="layout-main-wrapper no_relative" style="padding-top: 49px; ">
+        <header id="header" class="header" style="top: 0px;">
+            <h1 class="logo">
+                <span class="tit">배송지</span>
+            </h1>
+            <a href="javascript:history.back();" class="link_back" role="button">  <!-- javascript로 뒤로가기 구현-->
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            
+        </header>
+        
+        <header id="header-bottom" class="menu_shortcut">
+            <ul id="userMenu" class="list">
+                <li>
+                    <a href="#" class="shortcut_home">
+                        홈
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_menu">
+                        카테고리
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="search-area-open" class="shortcut_search">
+                        검색
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_mypage on">
+                        마이컬리
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+
+        <div class="section_destination">
+            <div id="inputForm">
+                <form action="" method="post">
+                    <div class="modify">
+                        <div class="field">
+                            <span class="badge_default">기본 배송지</span>
+                            <div id="addrMain" class="address">[기본배송지 주소]</div>
+                            <input type="text" id="addrSub" name="addrSub" placeholder="나머지 주소를 입력해주세요" data-max-length="84" data-format="text" value="상세 주소">
+                        </div>
+
+                        <div class="field">
+                            <label class="label_block" for="receiverName">받으실 분</label>
+                            <input type="text" id="receiverName" name="receiverName" data-max-length="20" placeholder="이름을 입력해주세요" value="이름">
+                        </div>
+
+                        <div class="field">
+                            <label class="label_block" for="receiverPhone">휴대폰</label>
+                            <input type="text" id="receiverPhone" name="receiverPhone" data-max-length="11" data-format="number" pattern="[0-9]*" inputmode="decimal" placeholder="번호를 입력해주세요" value="휴대폰 번호">
+                        </div>
+
+                        <button type="submit" class="btn active">저장</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+      
+        
+        
+        
+
+
+    </div>
+    
+</body>
+</html>
+{% endblock %}

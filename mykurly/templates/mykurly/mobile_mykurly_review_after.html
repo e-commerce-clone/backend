@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 후기</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'mykurly/css/mobile_mykurly_review.css' %}">
+</head>
+<body>
+
+    <div id="wrap" class="layout-main-wrapper no_relative" style="padding-top: 49px; ">
+        <header id="header" class="header" style="top: 0px; border: none;">
+            <h1 class="logo">
+                <span class="tit">상품후기</span>
+            </h1>
+            <a href="javascript:history.back();" class="link_back" role="button">  <!-- javascript로 뒤로가기 구현-->
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            <div class="header_shortcut">
+                <a href="#" class="cart_count" role="button">
+                    <span class="screen_out">장바구니로 가기</span>
+                    <span class="num_count" id="cart_item_count" style="display: inline;">2</span>
+                </a>
+            </div>
+        </header>
+        
+        <header id="header-bottom" class="menu_shortcut">
+            <ul id="userMenu" class="list">
+                <li>
+                    <a href="#" class="shortcut_home">
+                        홈
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_menu">
+                        카테고리
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="search-area-open" class="shortcut_search">
+                        검색
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_mypage on">
+                        마이컬리
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+        <div id="reviewView" class="user_form header_menu" style="top:50px;">
+            <div class="inner_headermenu">
+                <ul class="tab_menu2">
+                    <li class="" >
+                        <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_review_before.html">
+                            작성가능 후기 
+                            <span>(0)</span>
+                        </a>
+                    </li>
+
+                    <li class="on" >
+                        <a href="#">
+                            작성완료 후기 
+                            <span>(4)</span>
+                        </a>
+                    </li>
+                </ul>
+                <span class="bar" style="left: 50%;"></span>
+            </div>
+        </div>
+
+        <div id="appStyle" class="user_form section_review">
+            <div id="viewAfterList" class="after_view">
+                <div>
+                    <ul class="list_after">
+                        <li>
+                            <div class="tit_after">
+                                <span class="main_name">[램노스] 스프레더블 리코타치즈</span>
+                            </div>
+
+                            <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_review_detail.html" class="cont_after">
+                                <span class="desc_after">
+                                    <span class="thumb">
+                                        <span class="photo" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/review/20200526/94edd664f356ea243a30d8e9797cc5ad.jpg&quot;);">
+                                            <img src="https://img-cf.kurly.com/shop/data/review/20200526/94edd664f356ea243a30d8e9797cc5ad.jpg" alt="상품이미지" class="photo">
+                                        </span>
+                                    </span>
+
+                                    <span class="desc">
+                                        <span class="subject">
+                                            그냥 리코타 치즈 ㅇㅇ
+                                        </span> 
+                                        <span class="txt">
+                                            양은 꽤 많고 리코타 치즈치고 약간 묽긴한데 몽글몽글한게 참 귀엽습니다. 샐러드에 넣어 먹을 때 가장 맛있는 치즈 같아요
+                                        </span>
+                                    </span>
+                                </span>
+
+                                <span class="info_after">
+                                    <span class="date">21.02.17 수정</span> 
+                                    <span class="help">도움이 돼요 0</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <div class="tit_after">
+                                <span class="main_name">[램노스] 스프레더블 리코타치즈</span>
+                            </div>
+
+                            <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_review_detail.html" class="cont_after">
+                                <span class="desc_after">
+                                    <span class="thumb">
+                                        <span class="photo" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/review/20200526/94edd664f356ea243a30d8e9797cc5ad.jpg&quot;);">
+                                            <img src="https://img-cf.kurly.com/shop/data/review/20200526/94edd664f356ea243a30d8e9797cc5ad.jpg" alt="상품이미지" class="photo">
+                                        </span>
+                                    </span>
+
+                                    <span class="desc">
+                                        <span class="subject">
+                                            그냥 리코타 치즈 ㅇㅇ
+                                        </span> 
+                                        <span class="txt">
+                                            양은 꽤 많고 리코타 치즈치고 약간 묽긴한데 몽글몽글한게 참 귀엽습니다. 샐러드에 넣어 먹을 때 가장 맛있는 치즈 같아요
+                                        </span>
+                                    </span>
+                                </span>
+
+                                <span class="info_after">
+                                    <span class="date">21.02.17 수정</span> 
+                                    <span class="help">도움이 돼요 0</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+        
+
+
+
+    </div>
+    
+</body>
+</html>
+{% endblock %}

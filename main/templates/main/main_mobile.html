@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>mainPage</title>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+        <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+        <link rel="stylesheet" href="{% static 'shop/css/search_mobile.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/main_mobile.css' %}">
+        <!-- swiper -->
+        <link rel="stylesheet" href="{% static 'main/css/swiper-bundle.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/swiper-bundle.min.css' %}">
+
+        <script defer src="{% static 'main/js/main_mobile.js' %}"></script>
+        <script src="{% static 'main/js/swiper-bundle.js' %}"></script>
+        <script src="{% static 'main/js/swiper-bundle.min.js' %}"></script>
+        
+
+    </head>
+    <body>
+
+        <!-- <header id="header" class="header" style="top: 0px;">      *** 헤더부분 흰색으로 나오는 코드 ***
+            <h1 class="logo">                                           *** 흰색 테마 사용하시려면 이거 주석 해제해주세요! ***
+                <span class="tit">수정해주세요</span>                   *** 아래껀 주석처리 되어 있어야 합니다! ***
+            </h1>
+            <a href="#" class="link_back" role="button">
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            <div class="header_shortcut">
+                <a href="#" class="cart_count" role="button">
+                    <span class="screen_out">장바구니로 가기</span>
+                    <span class="num_count" id="cart_item_count"></span>
+                </a>
+            </div>
+        </header> -->
+        <div class="bg_loading" id="bgLoading">
+            <div class="loading_show"></div>
+        </div>
+        <div id="wrap" class="layout-main-wrapper" style="padding-top: 133px;">
+            
+
+            <div class="top_btn">
+                <button id="m-go-top" alt="맨 위로가기"></button>
+            </div>
+
+            <aside id="search-menu" class="layout-search-area">
+                <!-- 모바일 검색창 -->
+                    <div class="layer_search">
+                        <form action="./search_mobile.html" class="layout-search-form" id="search-form" autocomplete="off">
+                            <fieldset class="layout-search-fieldset">
+                                    <legend hidden>검색어 입력</legend>
+                                    <input type="search" name="kw" id="sword" class="inp_search" placeholder="검색어를 입력해주세요." value="따뜻한 나라로 떠나는 해외미식여행" required>
+                                <button type="button" class="btn_del" id="searchDelete">삭제</button> <!--input 값 있을 때 on 클래스 붙음-->
+                                <button class="layout-search-close-button" type="button" id="search-area-close">닫기</button>
+                            </fieldset>
+                        </form>
+                        <div class="layout-search-container" id="search-keyword-area">
+                            <ul class="layout-search-tab" id="search-keyword-tab">
+                                <li class="layout-search-tab-item">
+                                    <a href="#early-keyword" class="tab_search __active"> <!--active 되었을 때 글씨 색, 하단 bar 변경-->
+                                        최근 검색어
+                                        <span class="bar"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="layout-search-wrapper __active" id="early-keyword">
+                                <div class="layout-search-scroller" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                                    <div class="layout-search-content">
+                                        <ul class="layout-search-result-list layout-search-early-list">
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <template id="search-early-item-template"> <!--최근 검색어 list-->
+                                    <li class="item">
+                                        <a href="#" class="link" data-keyword="" data-style="recent"></a>
+                                        <button class="btn_del" data-index="">이 검색어를 삭제하기</button>
+                                    </li>
+                                </template>
+                            </div> 
+                        </div>
+                    </div>
+            </aside>
+            
+            <div id="appBanner">
+                <a href="#" id="eventLanding" class="link">
+                    <span class="txt">
+                        지금가입하고 인기상품 <strong>100원</strong>에 받아가세요!
+                    </span>
+                </a>
+                <button id="bnrHeaderClose" class="btn_close">가입하고 혜택받기</button>
+            </div>
+
+            
+
+            <header id="header_purple" class="header_purple"> 
+                <h1 class="logo">
+                    <a href="main_mobile.html" class="link_main">
+                        <span id="gnbLogoContainer"></span>
+                        <img src="img/logo.png" alt="INUkurly로고">
+                    </a>
+                </h1>
+
+                <div class="header_shortcut">
+                    <div id="sectionLocation">
+                        <a class="location" href="">배송지관리 바로가기</a>
+                        <div class="location_status">
+                            <p class="addr"></p>
+                            <p class="txt" style="font-size:14px;">
+                                배송지를 등록하고
+                                <br>
+                                구매 가능한 상품을 확인하세요!
+                            </p>
+                        </div>
+                    </div>
+                    <a href="" class="cart_count" role="button">
+                        <span class="num_count" id="cart_item_count" style="display:inline;">1</span>
+                    </a>
+                </div>
+            </header>
+
+
+            <header id="header-bottom" class="menu_shortcut">
+                <ul id="userMenu" class="list">
+                    <li>
+                        <a href="main_mobile.html" class="shortcut_home on">
+                            홈
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="shortcut_menu">
+                            카테고리
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" id="search-area-open" class="shortcut_search">
+                            검색
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="login_mobile.html" class="shortcut_mypage">
+                            마이컬리
+                        </a>
+                    </li>
+                </ul>
+            </header>
+
+
+            <div id="lnbMenu" class="lnb_menu lnb_menu_main">
+                <div class="inner_lnb">
+                    <ul class="list">
+                        <li>
+                            <a href="#" class="on">컬리추천
+                                <span class="bg_on" style="width: 163px;"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">신상품</a>
+                        </li>
+                        <li>
+                            <a href="#">베스트</a>
+                        </li>
+                        <li>
+                            <a href="#">알뜰쇼핑</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">금주혜택</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div id="kurly_main" class="page_main">
+                <h2 class="blind">마켓컬리 메인</h2>
+
+                    <!-- visual 슬라이드
+                        swiper API 사용-->
+                    <div>
+                        <div id="visualMobile" class="visual_mobile">
+                            <div class="list_goods swiper-container swiper1 swiper-container-initialized swiper-container-horizontal swiper-container-android">
+                                <ul data-section="main_banner" class="list swiper-wrapper">
+                                    <li data-index="1" class="swiper-slide">
+                                        <a href="#" class="thumb_goods" style="background-image: url(img/thumb_do.png);">
+                                        <img alt="메인배너" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAFUCAQAAAB18bTtAAAAAXNSR0IArs4c6QAAAQ5JREFUeNrtwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeDPlmQABbV89KgAAAABJRU5ErkJggg==">
+                                        </a>
+                                    </li>
+                                    <li data-index="2" class="swiper-slide">
+                                        <a href="#" class="thumb_goods" style="background-image: url(img/thumb_bo.png);">
+                                            <img alt="메인배너" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAFUCAQAAAB18bTtAAAAAXNSR0IArs4c6QAAAQ5JREFUeNrtwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeDPlmQABbV89KgAAAABJRU5ErkJggg==">
+                                        </a>
+                                    </li>
+                                    <li data-index="3" class="swiper-slide">
+                                        <a href="#" class="thumb_goods" style="background-image: url(img/thumb_ji.png);">
+                                            <img alt="메인배너" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAFUCAQAAAB18bTtAAAAAXNSR0IArs4c6QAAAQ5JREFUeNrtwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeDPlmQABbV89KgAAAABJRU5ErkJggg==">
+                                        </a>
+                                    </li>
+                                    <li data-index="4" class="swiper-slide">
+                                        <a href="#" class="thumb_goods" style="background-image: url(img/thumb_bin.png);">
+                                            <img alt="메인배너" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAFUCAQAAAB18bTtAAAAAXNSR0IArs4c6QAAAQ5JREFUeNrtwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeDPlmQABbV89KgAAAABJRU5ErkJggg==">
+                                        </a>
+                                    </li>
+                                    <li data-index="5" class="swiper-slide">
+                                        <a href="#" class="thumb_goods" style="background-image: url(img/thumb_seong.png);">
+                                            <img alt="메인배너" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAFUCAQAAAB18bTtAAAAAXNSR0IArs4c6QAAAQ5JREFUeNrtwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeDPlmQABbV89KgAAAABJRU5ErkJggg==">
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- visual 슬라이드 끝-->
+
+                    <!-- main_type1: 이 상품어때요? 
+                        swiper API 사용-->
+                    <div>
+                        <div class="main_type1">
+                            <div class="product_list_swiper2">
+                                <div class="tit_goods">
+                                    <h3 class="tit">
+                                        <span class="name">
+                                            이 상품 어때요?
+                                        </span>
+                                    </h3>
+                                </div>
+
+                                <!-- swiper API 사용 -->
+                                <!-- desktop과 마찬가지로 data 이름 등은 임시 값! -->
+                                <div class="list_goods swiper-container swiper2">
+                                    <ul data-title="이 상품 어때요?" data-section="today_recommendation" class="list swiper-wrapper">
+                                        <li data-index="1" class="swiper-slide" data-name="today_recommendation">
+                                            <a class="thumb_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACRCAQAAABjof6/AAAANUlEQVR4Ae3BgQAAAADDoPtTT+AI1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAnfAsAAe7+tYwAAAAASUVORK5CYII=" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1597828127237l0.jpg&quot;);">
+                                            </a>
+                                            <div class="info_goods">
+                                                <span class="name">
+                                                    <a class="txt">[린트] 엑셀런스 다크 초콜릿 4종</a>
+                                                </span>
+                                                <span class="price">
+                                                    <span class="dc">30%</span>
+                                                    4,900원
+                                                </span>
+                                                <span class="cost">7,000원</span>
+                                            </div>
+                                        </li>
+
+                                        <li data-index="2" class="swiper-slide" style="margin-right: 8px;" data-name="today_recommendation">
+                                            <a class="thumb_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACRCAQAAABjof6/AAAANUlEQVR4Ae3BgQAAAADDoPtTT+AI1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAnfAsAAe7+tYwAAAAASUVORK5CYII=" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1597828127237l0.jpg&quot;);">
+                                            </a>
+                                            <div class="info_goods">
+                                                <span class="name">
+                                                    <a class="txt">[린트] 엑셀런스 다크 초콜릿 4종</a>
+                                                </span>
+                                                <span class="price">
+                                                    <span class="dc">30%</span>
+                                                    4,900원
+                                                </span>
+                                                <span class="cost">7,000원</span>
+                                            </div>
+                                        </li>
+
+                                        <li data-index="3" class="swiper-slide" style="margin-right: 8px;" data-name="today_recommendation">
+                                            <a class="thumb_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACRCAQAAABjof6/AAAANUlEQVR4Ae3BgQAAAADDoPtTT+AI1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAnfAsAAe7+tYwAAAAASUVORK5CYII=" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1597828127237l0.jpg&quot;);">
+                                            </a>
+                                            <div class="info_goods">
+                                                <span class="name">
+                                                    <a class="txt">[린트] 엑셀런스 다크 초콜릿 4종</a>
+                                                </span>
+                                                <span class="price">
+                                                    <span class="dc">30%</span>
+                                                    4,900원
+                                                </span>
+                                                <span class="cost">7,000원</span>
+                                            </div>
+                                        </li>
+
+                                        <li data-index="4" class="swiper-slide" style="margin-right: 8px;" data-name="today_recommendation">
+                                            <a class="thumb_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACRCAQAAABjof6/AAAANUlEQVR4Ae3BgQAAAADDoPtTT+AI1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAnfAsAAe7+tYwAAAAASUVORK5CYII=" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1597828127237l0.jpg&quot;);">
+                                            </a>
+                                            <div class="info_goods">
+                                                <span class="name">
+                                                    <a class="txt">[린트] 엑셀런스 다크 초콜릿 4종</a>
+                                                </span>
+                                                <span class="price">
+                                                    <span class="dc">30%</span>
+                                                    4,900원
+                                                </span>
+                                                <span class="cost">7,000원</span>
+                                            </div>
+                                        </li>
+
+                                        <li data-index="5" class="swiper-slide" style="margin-right: 8px;" data-name="today_recommendation">
+                                            <a class="thumb_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACRCAQAAABjof6/AAAANUlEQVR4Ae3BgQAAAADDoPtTT+AI1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAnfAsAAe7+tYwAAAAASUVORK5CYII=" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1597828127237l0.jpg&quot;);">
+                                            </a>
+                                            <div class="info_goods">
+                                                <span class="name">
+                                                    <a class="txt">[린트] 엑셀런스 다크 초콜릿 4종</a>
+                                                </span>
+                                                <span class="price">
+                                                    <span class="dc">30%</span>
+                                                    4,900원
+                                                </span>
+                                                <span class="cost">7,000원</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+            
+                    </div>
+                    <!-- main_type1: 이 상품어때요? 끝-->
+
+
+                    <!-- main_type2: 이벤트 소식 -->
+                    <div>
+                        <div class="main_type2 bg">
+                            <div class="main_event">
+                                <div class="tit_goods">
+                                    <h3 class="tit">
+                                        <a class="name">
+                                            <span class="ico">이벤트 소식</span>
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div class="list_goods">
+                                    <ul data-title="이벤트 소식" data-section="event" class="list">
+                                        <li data-index="1">
+                                            <a class="thumb_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF4AAABeCAQAAAAA22vlAAAAAXNSR0IArs4c6QAAACdJREFUeAHtwQENAAAAwiD7p34PBwwAAAAAAAAAAAAAAAAAAAAA4FpFZgABkfKClwAAAABJRU5ErkJggg==" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/main/3/mobile_img_1611755131.jpg&quot;);">
+                                            </a>
+
+                                            <div class="info_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPsAAABeCAQAAABPqqpwAAAAAXNSR0IArs4c6QAAAERJREFUeAHtwTEBAAAAwiD7p14JT2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQbiyAAHjdLrpAAAAAElFTkSuQmCC" alt="">
+                                                <div class="inner_info">
+                                                    <span class="name">
+                                                        <a class="txt">아로마티카 최대 45% 할인</a>
+                                                    </span>
+                                                    <span class="desc">
+                                                        <a class="txt">모두를 생각하는 클린뷰티</a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    
+                                        <li data-index="2">
+                                            <a class="thumb_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF4AAABeCAQAAAAA22vlAAAAAXNSR0IArs4c6QAAACdJREFUeAHtwQENAAAAwiD7p34PBwwAAAAAAAAAAAAAAAAAAAAA4FpFZgABkfKClwAAAABJRU5ErkJggg==" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/main/3/mobile_img_1611755131.jpg&quot;);">
+                                            </a>
+
+                                            <div class="info_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPsAAABeCAQAAABPqqpwAAAAAXNSR0IArs4c6QAAAERJREFUeAHtwTEBAAAAwiD7p14JT2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQbiyAAHjdLrpAAAAAElFTkSuQmCC" alt="">
+                                                <div class="inner_info">
+                                                    <span class="name">
+                                                        <a class="txt">아로마티카 최대 45% 할인</a>
+                                                    </span>
+                                                    <span class="desc">
+                                                        <a class="txt">모두를 생각하는 클린뷰티</a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li data-index="3">
+                                            <a class="thumb_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF4AAABeCAQAAAAA22vlAAAAAXNSR0IArs4c6QAAACdJREFUeAHtwQENAAAAwiD7p34PBwwAAAAAAAAAAAAAAAAAAAAA4FpFZgABkfKClwAAAABJRU5ErkJggg==" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/main/3/mobile_img_1611755131.jpg&quot;);">
+                                            </a>
+
+                                            <div class="info_goods">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPsAAABeCAQAAABPqqpwAAAAAXNSR0IArs4c6QAAAERJREFUeAHtwTEBAAAAwiD7p14JT2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQbiyAAHjdLrpAAAAAElFTkSuQmCC" alt="">
+                                                <div class="inner_info">
+                                                    <span class="name">
+                                                        <a class="txt">아로마티카 최대 45% 할인</a>
+                                                    </span>
+                                                    <span class="desc">
+                                                        <a class="txt">모두를 생각하는 클린뷰티</a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- main_type2: 이벤트 소식 끝-->
+
+                    <!-- main_type1 반복-->
+                    <div>
+                            <div class="main_type1">
+                                <div class="product_list_swiper2">
+                                    <div class="tit_goods">
+                                        <h3 class="tit">
+                                            <span class="name">
+                                                이 상품 어때요?
+                                            </span>
+                                        </h3>
+                                    </div>
+        
+                                    <!-- swiper API 사용 -->
+                                    <!-- desktop과 마찬가지로 data 이름 등은 임시 값! -->
+                                    <div class="list_goods swiper-container swiper2">
+                                        <ul data-title="이 상품 어때요?" data-section="today_recommendation" class="list swiper-wrapper">
+                                            <li data-index="1" class="swiper-slide" data-name="today_recommendation">
+                                                <a class="thumb_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACRCAQAAABjof6/AAAANUlEQVR4Ae3BgQAAAADDoPtTT+AI1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAnfAsAAe7+tYwAAAAASUVORK5CYII=" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1597828127237l0.jpg&quot;);">
+                                                </a>
+                                                <div class="info_goods">
+                                                    <span class="name">
+                                                        <a class="txt">[린트] 엑셀런스 다크 초콜릿 4종</a>
+                                                    </span>
+                                                    <span class="price">
+                                                        <span class="dc">30%</span>
+                                                        4,900원
+                                                    </span>
+                                                    <span class="cost">7,000원</span>
+                                                </div>
+                                            </li>
+        
+                                            <li data-index="2" class="swiper-slide" style="margin-right: 8px;" data-name="today_recommendation">
+                                                <a class="thumb_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACRCAQAAABjof6/AAAANUlEQVR4Ae3BgQAAAADDoPtTT+AI1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAnfAsAAe7+tYwAAAAASUVORK5CYII=" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1597828127237l0.jpg&quot;);">
+                                                </a>
+                                                <div class="info_goods">
+                                                    <span class="name">
+                                                        <a class="txt">[린트] 엑셀런스 다크 초콜릿 4종</a>
+                                                    </span>
+                                                    <span class="price">
+                                                        <span class="dc">30%</span>
+                                                        4,900원
+                                                    </span>
+                                                    <span class="cost">7,000원</span>
+                                                </div>
+                                            </li>
+        
+                                            <li data-index="3" class="swiper-slide" style="margin-right: 8px;" data-name="today_recommendation">
+                                                <a class="thumb_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACRCAQAAABjof6/AAAANUlEQVR4Ae3BgQAAAADDoPtTT+AI1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAnfAsAAe7+tYwAAAAASUVORK5CYII=" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1597828127237l0.jpg&quot;);">
+                                                </a>
+                                                <div class="info_goods">
+                                                    <span class="name">
+                                                        <a class="txt">[린트] 엑셀런스 다크 초콜릿 4종</a>
+                                                    </span>
+                                                    <span class="price">
+                                                        <span class="dc">30%</span>
+                                                        4,900원
+                                                    </span>
+                                                    <span class="cost">7,000원</span>
+                                                </div>
+                                            </li>
+        
+                                            <li data-index="4" class="swiper-slide" style="margin-right: 8px;" data-name="today_recommendation">
+                                                <a class="thumb_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACRCAQAAABjof6/AAAANUlEQVR4Ae3BgQAAAADDoPtTT+AI1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAnfAsAAe7+tYwAAAAASUVORK5CYII=" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1597828127237l0.jpg&quot;);">
+                                                </a>
+                                                <div class="info_goods">
+                                                    <span class="name">
+                                                        <a class="txt">[린트] 엑셀런스 다크 초콜릿 4종</a>
+                                                    </span>
+                                                    <span class="price">
+                                                        <span class="dc">30%</span>
+                                                        4,900원
+                                                    </span>
+                                                    <span class="cost">7,000원</span>
+                                                </div>
+                                            </li>
+        
+                                            <li data-index="5" class="swiper-slide" style="margin-right: 8px;" data-name="today_recommendation">
+                                                <a class="thumb_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACRCAQAAABjof6/AAAANUlEQVR4Ae3BgQAAAADDoPtTT+AI1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAnfAsAAe7+tYwAAAAASUVORK5CYII=" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/goods/1597828127237l0.jpg&quot;);">
+                                                </a>
+                                                <div class="info_goods">
+                                                    <span class="name">
+                                                        <a class="txt">[린트] 엑셀런스 다크 초콜릿 4종</a>
+                                                    </span>
+                                                    <span class="price">
+                                                        <span class="dc">30%</span>
+                                                        4,900원
+                                                    </span>
+                                                    <span class="cost">7,000원</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                
+                    </div>
+                    <!-- main_type1 반복 끝-->
+        
+                    <!-- main_type2 반복-->
+                    <div>
+                            <div class="main_type2 bg">
+                                <div class="main_event">
+                                    <div class="tit_goods">
+                                        <h3 class="tit">
+                                            <a class="name">
+                                                <span class="ico">이벤트 소식</span>
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div class="list_goods">
+                                        <ul data-title="이벤트 소식" data-section="event" class="list">
+                                            <li data-index="1">
+                                                <a class="thumb_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF4AAABeCAQAAAAA22vlAAAAAXNSR0IArs4c6QAAACdJREFUeAHtwQENAAAAwiD7p34PBwwAAAAAAAAAAAAAAAAAAAAA4FpFZgABkfKClwAAAABJRU5ErkJggg==" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/main/3/mobile_img_1611755131.jpg&quot;);">
+                                                </a>
+        
+                                                <div class="info_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPsAAABeCAQAAABPqqpwAAAAAXNSR0IArs4c6QAAAERJREFUeAHtwTEBAAAAwiD7p14JT2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQbiyAAHjdLrpAAAAAElFTkSuQmCC" alt="">
+                                                    <div class="inner_info">
+                                                        <span class="name">
+                                                            <a class="txt">아로마티카 최대 45% 할인</a>
+                                                        </span>
+                                                        <span class="desc">
+                                                            <a class="txt">모두를 생각하는 클린뷰티</a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        
+                                            <li data-index="2">
+                                                <a class="thumb_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF4AAABeCAQAAAAA22vlAAAAAXNSR0IArs4c6QAAACdJREFUeAHtwQENAAAAwiD7p34PBwwAAAAAAAAAAAAAAAAAAAAA4FpFZgABkfKClwAAAABJRU5ErkJggg==" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/main/3/mobile_img_1611755131.jpg&quot;);">
+                                                </a>
+        
+                                                <div class="info_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPsAAABeCAQAAABPqqpwAAAAAXNSR0IArs4c6QAAAERJREFUeAHtwTEBAAAAwiD7p14JT2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQbiyAAHjdLrpAAAAAElFTkSuQmCC" alt="">
+                                                    <div class="inner_info">
+                                                        <span class="name">
+                                                            <a class="txt">아로마티카 최대 45% 할인</a>
+                                                        </span>
+                                                        <span class="desc">
+                                                            <a class="txt">모두를 생각하는 클린뷰티</a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+        
+                                            <li data-index="3">
+                                                <a class="thumb_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF4AAABeCAQAAAAA22vlAAAAAXNSR0IArs4c6QAAACdJREFUeAHtwQENAAAAwiD7p34PBwwAAAAAAAAAAAAAAAAAAAAA4FpFZgABkfKClwAAAABJRU5ErkJggg==" alt="상품이미지" class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/main/3/mobile_img_1611755131.jpg&quot;);">
+                                                </a>
+        
+                                                <div class="info_goods">
+                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPsAAABeCAQAAABPqqpwAAAAAXNSR0IArs4c6QAAAERJREFUeAHtwTEBAAAAwiD7p14JT2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQbiyAAHjdLrpAAAAAElFTkSuQmCC" alt="">
+                                                    <div class="inner_info">
+                                                        <span class="name">
+                                                            <a class="txt">아로마티카 최대 45% 할인</a>
+                                                        </span>
+                                                        <span class="desc">
+                                                            <a class="txt">모두를 생각하는 클린뷰티</a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <!-- main_type2 반복 끝-->
+
+                    <!-- bnr_main -->
+                    <div>
+                        <div class="bnr_main">
+                            <a class="link" style="background-image: url(&quot;//img-cf.kurly.com/shop/data/main/15/mobile_img_1601803115.png&quot;);">
+                                <span class="inner_link"></span>
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAABMCAQAAAA8Az+vAAAAAXNSR0IArs4c6QAAAE5JREFUeNrtwTEBAAAAwqD1T20Hb6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeA3e9AABLRK7rwAAAABJRU5ErkJggg==" alt="">
+                            </a>
+                        </div>
+                    </div>
+
+            </div>
+            <!--kurly_main 끝-->
+
+
+            <footer id="footer" style="opacity: 1;" class="bnr_app">
+                <ul class="list_menu">
+                    <li>
+                        <a href="#" class="link">컬리소개</a>
+                    </li>
+                    <li>
+                        <a href="#" class="link">이용안내</a>
+                    </li>
+                    <li>
+                        <a href="#" class="link">배송안내</a>
+                    </li>
+                    <li>
+                        <a href="#" class="link">자주하는 질문</a>
+                    </li>
+                    <li 
+                    class="notice"><a href="" class="link">공지사항</a>
+                    </li>
+                    <li>
+                        <a href="#" class="link" target="_blank">인재채용</a>
+                    </li>
+                    <li>
+                        <a href="#" class="link">이용약관</a>
+                    </li>
+                    <li>
+                        <a href="#" class="link emph">개인정보처리방침</a>
+                    </li>
+                </ul>
+
+                <ul class="list_sns">
+                <!-- sns 아이콘 -->
+                    <li>
+                        <a href="#" target="_blank" class="link ico_instagram">마켓컬리 인스타그램 바로가기</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="link ico_fb">마켓컬리 페이스북 바로가기</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="link ico_blog">마켓컬리 네이버 블로그 바로가기</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="link ico_post">마켓컬리 네이버 포스트 바로가기</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="link ico_youtube">마켓컬리 유튜브 바로가기</a>
+                    </li>
+                </ul>
+                
+                <div class="customer">
+                    <strong class="tit">고객행복센터</strong>
+                    <div class="tel">
+                        <a href="#" class="link">1644-1107</a>
+                    </div>
+                    <p class="txt">
+                        365고객센터 <span class="bar">|</span> 오전 7시 - 오후 7시
+                    </p>
+                    </div>
+                <div class="kakaotalk">
+                    카카오톡 <a href="#" class="link">@마켓컬리</a> 친구 추가하고 소식과 혜택을 받아보세요.
+                    <div id="plusfriend-addfriend-button">
+                        <a href="#">
+                            <img src="https://developers.kakao.com/assets/img/about/logos/plusfriend/friendadd_small_yellow_rect.png" title="플러스친구 친구 추가 버튼" alt="플러스친구 친구 추가 버튼">
+                        </a>
+                    </div>
+                </div>
+                    <div class="company">
+                    주식회사 컬리 <span class="bar">|</span> 대표이사 : 김슬아
+                    <br>
+                    개인정보보호책임자 : 이원준
+                    <br>
+                    사업자등록번호 : 261-81-23567 <a href="#" target="_blank" class="link">사업자정보 확인</a>
+                    <br>
+                    통신판매업 : 제 2018-서울강남-01646 호
+                    <br>
+                    주소 : 서울특별시 강남구 도산대로 16길 20, 이래빌딩 B1~4F
+                    <div class="contact">
+                    입점문의 : <a href="#" target="_blank" class="link">입점문의하기</a>
+                    <br>
+                    제휴문의 : <a href="#" class="link">business@kurlycorp.com</a>
+                    <br>
+                    채용문의 : <a href="#" class="link">recruit@kurlycorp.com</a>
+                    <br>
+                    팩스 : 070-7500-6098 <span class="bar">|</span> 이메일 : <a href="#" class="link">help@kurlycorp.com</a>
+                    </div>
+                </div>
+
+                <div class="certification">
+                    <a href="#" target="_blank" class="desc isms">
+                    <img data-cfsrc="https://res.kurly.com/pc/ico/2001/logo_isms.png" alt="isms 로고" class="logo" src="https://res.kurly.com/pc/ico/2001/logo_isms.png">
+                    <p class="txt">
+                    [인증범위] 마켓컬리 쇼핑몰 서비스 개발 · 운영<br>
+                    [유효기간] 2019.04.01 ~ 2022.03.31
+                    </p>
+                    </a>
+                    <a href="#" target="_blank" class="desc eprivacy">
+                    <img data-cfsrc="https://res.kurly.com/pc/ico/2001/logo_eprivacyplus.png" alt="isms 로고" class="logo" src="https://res.kurly.com/pc/ico/2001/logo_eprivacyplus.png">
+                    <p class="txt">
+                    개인정보보호 우수 웹사이트 ·<br>
+                    개인정보처리시스템 인증 (ePRIVACY PLUS)
+                    </p>
+                    </a>
+                </div>
+            </footer>
+                
+        </div>
+        
+        <!-- swiper js 파일을 따로 만들면 작동 안함. 여기서 실행! -->
+        <script>
+            let mySwiper = new Swiper ('.swiper1', {
+                // Optional parameters
+                loop: true, 
+                speed: 400,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false, //페이지 터치 후 autoplay 계속 작동하도록
+                },
+                
+                // If I need pagination 
+                pagination: { el: '.swiper-pagination'}
+            });
+
+            let mySwiper2 = new Swiper ('.swiper2', {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            });
+        </script>
+
+    </body>
+</html>
+{% endblock %}

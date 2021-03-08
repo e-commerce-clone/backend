@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>검색결과</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+	<meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+	<link rel="stylesheet" href="{% static 'shop/css/search_mobile.css' %}">
+	<script defer src="{% static 'shop/js/search_mobile.js' %}"></script>
+
+
+	
+</head>
+<body class="layout_list branch-banner-is-active" style="margin-bottom: 60px; transition: all 0.375s ease 0s;">
+	<div class="bg_loading" id="bgLoading">
+		<div class="loading_show"></div>
+	</div>
+	<div id="dynamic"></div> <!--이건 왜 있는지 모르겠음-->
+	<div id="wrap" class="layout-main-wrapper" style="padding-top: 95px;">
+            
+		<div class="top_btn">
+			<button id="m-go-top" alt="맨 위로가기"></button>
+		</div>
+
+		<div id="cartPut">
+			<div class="cart_option cartList cart_type3">
+				<div class="inner_option">
+					<button type="button" class="btn_close1">레이어닫기</button>
+					<div class="in_option">
+						<div class="list_goods">
+							<ul class="list list_nopackage">
+								<li class="on">
+									<span class="btn_position">
+										<button type="button" class="btn_del">
+											<span class="txt">삭제하기</span>
+										</button>
+									</span>
+									<span class="name"></span>
+									<div class="option">
+										<span class="count">
+											<button type="button" class="btn down on">수량내리기</button>
+											<input type="number" readonly="readonly" onfocus="this.blur()" class="inp">
+											<button type="button" class="btn up on">수량올리기</button>
+										</span>
+										<span class="price">
+											<span class="dc_price"></span>
+											<span class="original_price"></span>
+										</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="total">
+							<div class="price">
+								<strong class="tit">합계</strong>
+								<span class="sum">
+									<span class="num"></span><span class="won">원</span>
+								</span>
+							</div>
+							<p class="txt_point">
+                                <span class="ico">적립</span>
+                                <span class="point">구매 시 <!--로그인 되었을 때 show 클래스 추가-->
+                                    <strong class="emph"></strong>
+                                </span>
+                            </p>
+                            <p class="txt_point">
+                                <span class="ico">적립</span>
+                                <span class="point"> <!--로그인 안된 상태(기본), 로그인 후엔 hide 클래스 추가-->
+                                    <span>로그인 후, 적립혜택 제공</span>
+                                </span>
+                            </p>
+						</div>
+					</div>
+					<div class="group_btn off layer_btn2">
+						<span class="btn_type2">
+							<button type="button" class="txt_type">취소</button>
+						</span>
+						<span class="btn_type1">
+							<button type="button" class="txt_type">장바구니 담기</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<aside id="search-menu" class="layout-search-area">
+            <!-- 모바일 검색창 -->
+                <div class="layer_search">
+                    <form action="" class="layout-search-form" id="search-form" autocomplete="off">
+                        <fieldset class="layout-search-fieldset">
+                            <legend hidden>검색어 입력</legend> <!--hidden 속성을 통해 숨길 수 있음-->
+                            <input type="search" name="kw" id="sword" class="inp_search" placeholder="검색어를 입력해주세요." value="따뜻한 나라로 떠나는 해외미식여행" required>
+                            <button type="button" class="btn_del" id="searchDelete">삭제</button> <!--input 값 있을 때 on 클래스 붙음-->
+                            <button class="layout-search-close-button" type="button" id="search-area-close">닫기</button>
+                        </fieldset>
+                    </form>
+                    <div class="layout-search-container" id="search-keyword-area">
+                        <ul class="layout-search-tab" id="search-keyword-tab">
+                            <li class="layout-search-tab-item">
+                                <a href="#early-keyword" class="tab_search __active"> <!--active 되었을 때 글씨 색, 하단 bar 변경-->
+                                    최근 검색어
+                                    <span class="bar"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="layout-search-wrapper __active" id="early-keyword">
+                            <div class="layout-search-scroller" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                                <div class="layout-search-content">
+                                    <ul class="layout-search-result-list layout-search-early-list">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+						</div>
+						<template id="search-early-item-template"> <!--최근 검색어 list-->
+							<li class="item">
+								<a href="#" class="link" data-keyword="" data-style="recent"></a>
+								<button class="btn_del" data-index="">이 검색어를 삭제하기</button>
+							</li>
+						</template>
+                    </div>
+                </div>
+        </aside>
+
+		<header id="header" class="header" style="top: 0;"> 
+			<h1 class="logo">
+				<span class="tit">검색결과</span>
+			</h1>
+
+			<a href="javascript:history.back();" class="link_back" role="button">
+				<span class="blind">뒤로가기</span>
+			</a>
+
+			<div class="header_shortcut">
+				<div id="sectionLocation">
+					<a class="location" href="">배송지관리 바로가기</a>
+					<div class="location_status">
+						<p class="addr"></p>
+						<p class="txt" style="font-size:14px;">
+							배송지를 등록하고
+							<br>
+							구매 가능한 상품을 확인하세요!
+						</p>
+					</div>
+				</div>
+				<a href="" class="cart_count" role="button">
+					<span class="blind">장바구니로 가기</span>
+					<span class="num_count" id="cart_item_count">1</span> <!--장바구니 담기면 dislay: inline으로 변경-->
+				</a>
+			</div>
+		</header>
+
+		<div id="layerLocation"></div>
+
+		<header id="header-bottom" class="menu_shortcut">
+			<ul id="userMenu" class="list">
+				<li>
+					<a href="main_mobile.html" class="shortcut_home">
+						홈
+					</a>
+				</li>
+
+				<li>
+					<a href="#" class="shortcut_menu">
+						카테고리
+					</a>
+				</li>
+
+				<li>
+					<a href="#" id="search-area-open" class="shortcut_search on">
+						검색
+					</a>
+				</li>
+
+				<li>
+					<a href="main_mobile.html" class="shortcut_mypage">
+						마이컬리
+					</a>
+				</li>
+			</ul>
+		</header>
+
+
+		<div id="lnbMenu" class="lnb_menu lnb_search">
+			<span class="bg_shadow shadow_before"></span>
+			<span class="bg_shadow shadow_after"></span>
+			<div class="inner_lnb" style="height: 812px;">
+				<ul class="list">
+					<li class="bg"></li>
+					<li>
+						<a class="result">
+							<span class="emph"><!--검색 결과 넣을 곳--></span>의 검색결과
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="goodsList" class="search_list">
+			<div class="sort_menu">
+			<!-- sort_menu 용도가 뭘까... -->
+				<div class=""></div>
+			</div>
+			<div class="list_goods">
+				<ul class="list">
+					<li class="list_item">
+						<div class="item">
+							<div class="thumb">
+								<a class="img" style="background-image: url('https://img-cf.kurly.com/shop/data/goods/161284575655l0.jpg');">
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKgAAADaCAQAAACYqMH1AAAAXklEQVR42u3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3g0fCQABohc6wAAAAABJRU5ErkJggg==" alt="고소한 맛이 일품인 겨울 생선">
+								</a>
+								<div class="group_btn">
+									<button type="button" class="btn btn_cart"></button>
+									<span class="blind"></span>
+								</div>
+							</div>
+							<div class="info">
+								<span class="name">송초 제철 양미리(냉동)</span>
+								<span class="cost">
+									<span class="dc">6</span><span class="percent">%</span>
+									<span class="price">6,486</span><span class="won">원</span>
+									<input type="hidden" value="6486" class="value">
+									<!--백앤드에서 상품 가격 value에 넣어줘야됨 -->
+									<span class="original">6,900</span>
+								</span>
+							</div>
+						</div>
+					</li>
+					<li class="list_item">
+						<div class="item">
+							<div class="thumb">
+								<a class="img" style="background-image: url('');"><!--상품 이미지 넣기-->
+									<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKgAAADaCAQAAACYqMH1AAAAXklEQVR42u3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3g0fCQABohc6wAAAAABJRU5ErkJggg==" alt="고소한 맛이 일품인 겨울 생선">
+								</a>
+								<div class="group_btn">
+									<button type="button" class="btn btn_cart"></button>
+									<span class="blind"></span>
+								</div>
+							</div>
+							<div class="info">
+								<span class="name">[스카트] 주방, 식탁 전용 물티슈 40매</span>
+								<span class="cost">
+									<span class="price">5,000</span><span class="won">원</span>
+									<input type="hidden" value="5000" class="value">
+									<!--백앤드에서 상품 가격 value에 넣어줘야됨 -->
+								</span>
+							</div>
+						</div>
+					</li>
+					
+					
+					
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	<!-- wrap -->
+
+</body>
+</html>
+{% endblock %}

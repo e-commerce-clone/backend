@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카테고리</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="../../pc/main/css/reset.css">
+    <link rel="stylesheet" href="./css/mobile_common.css">
+    <link rel="stylesheet" href="./css/mobile_category.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="./js/mobile_common.js"></script>
+    <script src="./js/mobile_category.js"></script>
+    
+    
+    
+
+</head>
+<body>
+
+    <div id="wrap" class="layout-main-wrapper" style="padding-top: 50px;">
+
+
+
+        <header id="header_purple" class="header_purple" style="top: 0px;">   
+            <h1 class="logo">                                                       
+                <span class="tit">카테고리</span>                               
+            </h1>
+            <div class="header_shortcut">
+                <div id="sectionLocation">
+                    <a class="location" href="">배송지관리 바로가기</a>
+                    <div class="location_status">
+                        <p class="addr"></p>
+                        <p class="txt" style="font-size:14px;">
+                            배송지를 등록하고
+                            <br>
+                            구매 가능한 상품을 확인하세요!
+                        </p>
+                    </div>
+                </div>
+                <a href="" class="cart_count" role="button">
+                    <span class="num_count" id="cart_item_count" style="display:inline;">1</span>
+                </a>
+            </div>
+        </header>
+
+
+
+
+
+        <header id="header-bottom" class="menu_shortcut">
+            <ul id="userMenu" class="list">
+                <li>
+                    <a href="#" class="shortcut_home">
+                        홈
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_menu on">
+                        카테고리
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="search-area-open" class="shortcut_search">
+                        검색
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_mypage">
+                        마이컬리
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+
+
+        <div id="gnbMenu">
+            <h2 class="screen_out">마켓컬리 메뉴</h2>
+            <ul class="list_gnb">
+                <li type="mobile" class="slide">
+                    <a href="#" class="menu link_often">
+                        자주 사는 상품
+                    </a>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(https://img-cf.kurly.com/shop/data/category/icon_newyear_inactive@3x.1609722515.png);"></span>
+                        <span class="ico" style="background-image: url(https://img-cf.kurly.com/shop/data/category/icon_newyear_active@3x.1609722515.png); display: none;"></span>
+                        <span class="txt">2021 설 선물세트</span>
+                        <span class="ico_new" style="background-image: url(&quot;https://res.kurly.com/pc/service/common/1908/ico_new_42x42_v2.png&quot;);">new</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">-- 카테고리별 --</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">홍삼·즙·건강식품</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">정육·가공육·건육</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">수산·건어물·젓갈</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">과일·견과·곡류</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">디저트·한과·차·커피</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">면·양념·오일·캔류</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">생활·주방·뷰티</a>
+                            </li>
+                            <li>
+                                <a class="sub">--- 가격대별 ---</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">20만원 이상</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">10-20만원</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">5-10만원</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">3-5만원</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">3만원 미만</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive@3x.1586324413.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_veggies_active@3x.1586324413.png&quot;); display: none;"></span>
+                        <span class="txt">채소</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">고구마·감자·당근</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">시금치·쌈채소·나물</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">브로콜리·파프리카·양배추</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">양파·대파·마늘·배추</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">오이·호박·고추</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">냉동·이색·간편채소</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_fruit_inactive@3x.1572229045.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_fruit_active@3x.1572229046.png&quot;); display: none;"></span>
+                        <span class="txt">과일·견과·쌀</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">제철과일</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">국산과일</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">수입과일</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">간편과일</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">냉동·건과일</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">견과류</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_seafood_inactive@3x.1572228964.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_seafood_active@3x.1572228965.png&quot;); display: none;"></span>
+                        <span class="txt">수산·해산·건어물</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">제철수산</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">생선류</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">굴비·반건류</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">오징어·낙지·문어</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">새우·게·랍스터</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">해산물·조개류</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_meat_inactive@3x.1572229206.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_meat_active@3x.1572229206.png&quot;); display: none;"></span>
+                        <span class="txt">정육·계란</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">국내산 소고기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">수입산 소고기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">돼지고기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">계란류</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">닭·오리고기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">양념육·돈까스</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_inactive@3x.1572243189.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_active@3x.1572243189.png&quot;); display: none;"></span>
+                        <span class="txt">국·반찬·메인요리</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">국·탕·찌개</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">밀키트·메인요리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">밑반찬</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">김치·젓갈·장류</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">두부·어묵·부침개</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">베이컨·햄·통조림</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_inactive@3x.1572243189.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_active@3x.1572243189.png&quot;); display: none;"></span>
+                        <span class="txt">카테고리 이름</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_inactive@3x.1572243189.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_active@3x.1572243189.png&quot;); display: none;"></span>
+                        <span class="txt">카테고리 이름</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_inactive@3x.1572243189.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_active@3x.1572243189.png&quot;); display: none;"></span>
+                        <span class="txt">카테고리 이름</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_inactive@3x.1572243189.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_active@3x.1572243189.png&quot;); display: none;"></span>
+                        <span class="txt">카테고리 이름</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_inactive@3x.1572243189.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_active@3x.1572243189.png&quot;); display: none;"></span>
+                        <span class="txt">카테고리 이름</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li type="mobile">
+                    <a class="menu">
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_inactive@3x.1572243189.png&quot;);"></span>
+                        <span class="ico" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/icon_side_active@3x.1572243189.png&quot;); display: none;"></span>
+                        <span class="txt">카테고리 이름</span>
+                    </a>
+                    <div style="display:none;">
+                        <ul class="sub_menu">
+                            <li>
+                                <a class="sub">전체보기</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                            <li>
+                                <a href="#" class="sub">(소)카테고리</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                
+
+
+            </ul>
+
+            <div class="recommend_gnb">
+                <h3 class="tit">컬리의 추천</h3>
+                <ul class="list">
+                    <li>
+                        <a href="" class="link sub">
+                            <span class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/thumbnail_kp_210108_4.1610088265.jpg&quot;);"><!----> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAAB4CAQAAAA0nIrnAAAAPUlEQVR42u3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAOZSAABSigZ6wAAAABJRU5ErkJggg==" alt=""></span>
+                            <span class="name">컬리마트</span>
+                            <span class="border"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="link sub">
+                            <span class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/thumbnail_breakfast.1585549149.jpg&quot;);"><!----> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAAB4CAQAAAA0nIrnAAAAPUlEQVR42u3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAOZSAABSigZ6wAAAABJRU5ErkJggg==" alt=""></span>
+                            <span class="name">간편한 아침식사</span>
+                            <span class="border"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="link sub">
+                            <span class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/thumbnail_breakfast.1585549149.jpg&quot;);"><!----> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAAB4CAQAAAA0nIrnAAAAPUlEQVR42u3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAOZSAABSigZ6wAAAABJRU5ErkJggg==" alt=""></span>
+                            <span class="name">간편한 아침식사</span>
+                            <span class="border"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="link sub">
+                            <span class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/thumbnail_breakfast.1585549149.jpg&quot;);"><!----> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAAB4CAQAAAA0nIrnAAAAPUlEQVR42u3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAOZSAABSigZ6wAAAABJRU5ErkJggg==" alt=""></span>
+                            <span class="name">간편한 아침식사</span>
+                            <span class="border"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="link sub">
+                            <span class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/thumbnail_breakfast.1585549149.jpg&quot;);"><!----> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAAB4CAQAAAA0nIrnAAAAPUlEQVR42u3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAOZSAABSigZ6wAAAABJRU5ErkJggg==" alt=""></span>
+                            <span class="name">간편한 아침식사</span>
+                            <span class="border"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="link sub">
+                            <span class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/thumbnail_breakfast.1585549149.jpg&quot;);"><!----> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAAB4CAQAAAA0nIrnAAAAPUlEQVR42u3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAOZSAABSigZ6wAAAABJRU5ErkJggg==" alt=""></span>
+                            <span class="name">간편한 아침식사</span>
+                            <span class="border"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="link sub">
+                            <span class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/thumbnail_breakfast.1585549149.jpg&quot;);"><!----> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAAB4CAQAAAA0nIrnAAAAPUlEQVR42u3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAOZSAABSigZ6wAAAABJRU5ErkJggg==" alt=""></span>
+                            <span class="name">간편한 아침식사</span>
+                            <span class="border"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="link sub">
+                            <span class="thumb" style="background-image: url(&quot;https://img-cf.kurly.com/shop/data/category/thumbnail_breakfast.1585549149.jpg&quot;);"><!----> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAAB4CAQAAAA0nIrnAAAAPUlEQVR42u3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAOZSAABSigZ6wAAAABJRU5ErkJggg==" alt=""></span>
+                            <span class="name">간편한 아침식사</span>
+                            <span class="border"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="bg_loading" id="bgLoading">
+                <div class="loading_show"></div>
+            </div>
+
+        </div>
+
+    </div>
+    
+</body>
+</html>

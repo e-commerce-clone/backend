@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이컬리</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'mykurly/css/mobile_mykurly_menulist.css' %}">
+
+</head>
+<body>
+
+    <div id="wrap" class="layout-main-wrapper" style="padding-top: 50px;">
+
+
+
+        <header id="header_purple" class="header_purple" style="top: 0px;">   
+            <h1 class="logo">                                                       
+                <span class="tit">마이컬리</span>                               
+            </h1>
+            <div class="header_shortcut">
+                <div id="sectionLocation">
+                    <a class="location" href="">배송지관리 바로가기</a>
+                    <div class="location_status">
+                        <p class="addr"></p>
+                       
+                    </div>
+                </div>
+                <a href="" class="cart_count" role="button">
+                    <span class="num_count" id="cart_item_count" style="display:inline;">1</span>
+                </a>
+            </div>
+        </header>
+
+        <header id="header-bottom" class="menu_shortcut">
+            <ul id="userMenu" class="list">
+                <li>
+                    <a href="#" class="shortcut_home">
+                        홈
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_menu">
+                        카테고리
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="search-area-open" class="shortcut_search">
+                        검색
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_mypage on">
+                        마이컬리
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+        <div class="mykurly_page">
+            <div id="myPageTop" class="mypage_top">
+                <div>
+                    <div class="mypagetop_user">
+                        <div class="grade_user">
+                            <div class="grade">
+                                <span class="blind">등급</span>
+                                <span class="ico_grade class0">
+                                    <span class="inner_grade">
+                                        <span class="in_grade">일반</span>
+                                    </span>
+                                </span>
+
+                                <div class="grade_bnenfit">
+                                    <div class="inner">
+                                        <div class="user">이도현님</div>
+                                    </div>
+                                </div>
+
+                                <div class="grade_bnenfit2">
+                                    <div class="benefit">
+                                        <strong class="tit"></strong>
+                                        적립 0.5%
+                                    </div>
+
+                                    <div class="benefit"></div>
+                                </div>
+                            </div>
+
+                            <div class="next">
+                                <a href="#" class="total_grade">전체등급 보기</a>
+                                <a href="#" class="next_month">다음 달 예상등급 보기</a>
+                            </div>
+                        </div>
+
+                        <ul class="list_mypage">
+                            <li class="user_reserve">
+                                <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_emoneylist.html" class="link">
+                                    <div class="inner_link">
+                                        <div class="tit">
+                                            적립금 
+                                        </div>
+                                        <div class="info">
+                                            132 원 
+                                            <img src="https://res.kurly.com/pc/ico/1803/ico_arrow_16x24.png" alt="">
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+
+
+                            
+
+
+                        </ul>
+                    </div>
+
+                    <ul class="list_mypage">
+                        <li>
+                            <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_orderlist.html">
+                                <div class="tit">주문 내역</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_destination.html">
+                                <div class="tit">
+                                    배송지 관리
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_review_before.html">
+                                <div class="tit">
+                                    상품 후기
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+
+                    <ul class="list_mypage">
+                        <li>
+                            <a href="#">
+                                <div class="tit">
+                                    1:1 문의
+                                </div>
+                            </a>
+                        </li> 
+
+
+                        <li>
+                            <a href="#">
+                                <div class="tit">
+                                    공지사항
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_information.html">
+                                <div class="tit">
+                                    개인 정보 수정
+                                </div>
+                            </a>
+                        </li>
+ 
+                        <li>
+                            <a href="#">
+                                <div class="tit">
+                                    고객센터 및 자주하는 질문
+                                </div>
+                            </a>
+                        </li> 
+
+
+
+                        <li>
+                            <a href="#">
+                                <div class="tit">
+                                    컬리소개
+                                </div>
+                            </a>
+                        </li> 
+
+                        <li style="margin-top: 20px;">
+                            <a href="#">
+                                <div class="tit">
+                                    로그아웃
+                                </div>
+                            </a>
+                        </li> 
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+    </div>
+    
+</body>
+</html>
+{% endblock %}

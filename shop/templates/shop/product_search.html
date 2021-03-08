@@ -14,13 +14,13 @@
     <script defer src="{% static 'shop/js/goods_search.js' %}"></script>
     <SCRIPT LANGUAGE="JavaScript">
 
-        // if (top.document.location.search != "?mobile") {
-        //         var strGoto = "main_mobile.html";
-        //         var str = window.navigator.userAgent.toLowerCase();
-        //         if (/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)) {
-        //             top.document.location.replace(strGoto);
-        //         }
-        // }
+        if (top.document.location.search != "?mobile") {
+                var strGoto = "{% url 'shop:mobile_search' %}";
+                var str = window.navigator.userAgent.toLowerCase();
+                if (/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)) {
+                    top.document.location.replace(strGoto);
+                }
+        }
     </SCRIPT>
 </head>
 

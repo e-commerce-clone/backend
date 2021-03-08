@@ -8,6 +8,16 @@
         <link rel="stylesheet" href="{% static 'main/css/visual.css' %}">
         <script defer src="{% static 'main/js/contents.js' %}"></script>
         <script defer src="{% static 'main/js/visual.js' %}"></script>
+        <SCRIPT LANGUAGE="JavaScript">
+
+        if (top.document.location.search != "?mobile") {
+                var strGoto = "{% url 'main:mobile_main' %}";
+                var str = window.navigator.userAgent.toLowerCase();
+                if (/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)) {
+                    top.document.location.replace(strGoto);
+                }
+        }
+    </SCRIPT>
     </head>
         <div id="visual">
             <h2 class="blind">마켓컬리 메인</h2>

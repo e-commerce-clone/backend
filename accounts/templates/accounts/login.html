@@ -7,6 +7,18 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <link rel="stylesheet"  href="{% static 'accounts/css/login.css' %}">
     <script src="{% static 'accounts/js/login.js' %}"></script>
+    <SCRIPT LANGUAGE="JavaScript">
+
+        if(top.document.location.search != "?mobile") //접속할때 모바일이면 아래 strGoto 주소의 html로 접속됨
+        {
+                var strGoto = "{% url 'accounts:mobile_login' %}";
+                var str = window.navigator.userAgent.toLowerCase();
+                if(/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)){
+                 top.document.location.replace(strGoto);
+                }
+        }
+
+    </SCRIPT>
 </head>
 
     <body>

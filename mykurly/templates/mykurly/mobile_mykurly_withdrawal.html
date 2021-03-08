@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원탈퇴</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'mykurly/css/mobile_mykurly_information.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/mobile_join.css' %}">
+</head>
+<body style="background-color: #f4f4f4;">
+
+    <div id="wrap" class="layout-main-wrapper no_relative" style="padding-top: 49px; ">
+        <header id="header" class="header" style="top: 0px;">
+            <h1 class="logo">
+                <span class="tit">회원탈퇴</span>
+            </h1>
+            <a href="javascript:history.back();" class="link_back" role="button">  <!-- javascript로 뒤로가기 구현-->
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            <div class="header_shortcut">
+                <a href="#" class="cart_count" role="button">
+                    <span class="screen_out">장바구니로 가기</span>
+                    <span class="num_count" id="cart_item_count" style="display: inline;">2</span>
+                </a>
+            </div>
+        </header>
+        
+        <header id="header-bottom" class="menu_shortcut">
+            <ul id="userMenu" class="list">
+                <li>
+                    <a href="#" class="shortcut_home">
+                        홈
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_menu">
+                        카테고리
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="search-area-open" class="shortcut_search">
+                        검색
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_mypage on">
+                        마이컬리
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+
+        <div id="appStyle" class="user_form">
+            <div class="user_hack user_reg">
+                <div class="section_head">
+                    <h3 class="tit">회원탈퇴 안내</h3>
+                    <div class="desc">
+                        고객님께서 회원 탈퇴를 원하신다니 저희 쇼핑몰의 서비스가 많이 부족하고 미흡했나 봅니다. 불편하셨던 점이나 불만사항을 알려주시면 적극 반영해서 고객님의 불편함을 해결해 드리도록 노력하겠습니다.
+                        <strong class="emph">아울러 회원 탈퇴시의 아래 사항을 숙지하시기 바랍니다.</strong>
+                        1. 회원 탈퇴 시 고객님의 정보는 상품 반품 및 A/S를 위해 전자상거래 등에서의 소비자 보호에 관한 법률에 의거한 고객정보 보호정책에따라 관리 됩니다.<br>
+                        2. 탈퇴 시 고객님께서 보유하셨던 적립금은 모두 삭제 됩니다.<br>
+                        3. 회원 탈퇴 후 30일간 재가입이 불가능합니다.<br>
+                        4. 회원 탈퇴 시 컬리패스 해지는 별도로 고객행복센터(1644-1107)를 통해서 가능합니다. 직접 해지를 요청하지 않으면 해지 처리가 되지 않습니다.
+                    </div>
+                </div>
+
+                <form name="hackForm" id="hackForm" method="POST" action="">
+
+                    <div class="join_cell">
+                        <div class="tit tit_emph">비밀번호 입력</div>
+                        <div class="desc">
+                            <input type="password" name="hack_password" id="hack_password" placeholder="현재 비밀번호를 입력해주세요.">
+                        </div>
+                    </div>
+
+                    <div class="join_cell field_complaint">
+                        <div class="tit tit_emph">무엇이 불편하였나요?</div>
+                        <div class="desc">
+                            <select name="hack_reason" id="hack_reason" class="hack_reason off">
+                                <option value="">무엇이 불편하셨나요?</option>
+                                <option value="01">고객서비스(상담,포장 등) 불만</option>
+                                <option value="02">배송불만</option>
+                                <option value="03">교환/환불/반품 불만</option>
+                                <option value="04">방문 빈도가 낮음</option>
+                                <option value="05">상품가격 불만</option>
+                                <option value="06">개인 정보유출 우려</option>
+                                <option value="07">쇼핑몰의 신뢰도 불만</option>
+                                <option value="08">쇼핑 기능 불만</option>
+                            </select>
+                            <span class="select_arrow"></span>
+                        </div>
+                    </div>
+
+                    <div class="section_foot">
+                        <button type="submit" id="btn_save" class="btn active">탈퇴하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+
+    </div>
+    
+</body>
+</html>
+{% endblock %}

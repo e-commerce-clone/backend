@@ -9,6 +9,18 @@
     <title>마이컬리- 개인정보수정</title>
     <link rel="stylesheet" href="{% static 'mykurly/css/mykurly_order_list.css' %}">
     <link rel="stylesheet" href="{% static 'mykurly/css/mykurly_information.css' %}">
+    <SCRIPT LANGUAGE="JavaScript">
+
+        if(top.document.location.search != "?mobile") //접속할때 모바일이면 아래 strGoto 주소의 html로 접속됨
+        {
+                var strGoto = "{% url 'mykurly:mobile_information' %}";
+                var str = window.navigator.userAgent.toLowerCase();
+                if(/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)){
+                 top.document.location.replace(strGoto);
+                }
+        }
+
+    </SCRIPT>
 </head>
 <body>
     <div id="container">

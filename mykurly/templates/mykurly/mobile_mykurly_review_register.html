@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 후기 쓰기</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'mykurly/css/mobile_mykurly_review.css' %}">
+</head>
+<body>
+
+    <div id="wrap" class="layout-main-wrapper no_relative" style="padding-top: 49px; ">
+        <header id="header" class="header" style="top: 0px;">
+            <h1 class="logo">
+                <span class="tit">상품 후기 쓰기</span>
+            </h1>
+            <a href="javascript:history.back();" class="link_back" role="button">  <!-- javascript로 뒤로가기 구현-->
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            <div class="header_shortcut">
+                <a href="#" class="cart_count" role="button">
+                    <span class="screen_out">장바구니로 가기</span>
+                    <span class="num_count" id="cart_item_count" style="display: inline;">2</span>
+                </a>
+            </div>
+        </header>
+        
+        <header id="header-bottom" class="menu_shortcut">
+            <ul id="userMenu" class="list">
+                <li>
+                    <a href="#" class="shortcut_home">
+                        홈
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_menu">
+                        카테고리
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="search-area-open" class="shortcut_search">
+                        검색
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_mypage on">
+                        마이컬리
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+
+        <div id="appStyle" class="user_form section_write">
+            <div id="member-qna-table" class="after_write">
+                <form action="" id="form_review" method="POST">
+                    <div class="tit_after">
+                        <span class="main_name">바다포도 (Sea Grapes) 100g(냉장)</span>
+                    </div>
+
+                    <div class="tit_write">
+                        <h3 class="tit">후기 작성</h3>
+                    </div>
+
+                    <input type="text" name="subject" class="inp on_txt" placeholder="제목을 입력해주세요." value="">
+
+                    <div class="field_cmt">
+                        <div class="inner_field">
+                            <textarea name="contents" id="fieldCmt" cols="1" rows="10" class="on_txt" placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 됩니다"></textarea>
+
+
+                        </div>
+
+                        <p class="txt_count">
+                            <span class="num">0</span>
+                            자 / 최소 10자
+                        </p>
+                    </div>
+
+                    <div class="photo_view">
+                        <div class="tit_photo">
+                            <h4 class="tit">사진 등록</h4>
+                            <div class="file_count">
+                                <p class="txt_count">
+                                    <span class="num">0</span>
+                                    장 / 최대 4장
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="photo_scroll">
+                            <div class="photo_add">
+                                <div class="inner_photo"></div>
+                                <span class="btn_upload">
+                                    <input type="file" name="file[]" class="file_upload" onchange="photoUp($(this))" value="사진등록하기" accept="image/x-png,image/gif,image/jpeg">
+                                </span>
+                            </div>
+
+                            
+                        </div>
+
+                        <p class="photo_notice">구매한 상품이 아니거나 캡쳐 사진을 첨부할 경우, 통보없이 삭제 및 적립 혜택이 취소됩니다.</p>
+                    </div>
+
+                    <button type="button" id="btnSubmit" class="btn_type1">
+                        <span class="txt_type">
+                            등록하기
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        
+        
+        
+
+
+
+    </div>
+    
+</body>
+</html>
+{% endblock %}
