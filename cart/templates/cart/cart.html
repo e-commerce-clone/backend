@@ -18,11 +18,7 @@
         <div class="cart_item ">
             <div class="cart_select">
                 <div class="inner_select">
-                    <label class="check">
-                        <input type="checkbox" name="checkAll" class="checkAll" onclick="sel_all(this)">
-                        <span class="ico"></span>전체선택 (1/1)
-                    </label>
-                    <a href="#none" class="btn_delete">선택삭제</a>
+                    <a href="{% url 'cart:cart_clear' %}" class="btn_delete">전체삭제</a>
                 </div>
             </div>
             <div class="box cold">
@@ -38,14 +34,6 @@
                         <li>
                         <!-- 상품 목록 중 1. 추가/삭제될 목록임. -->
                         <div class="item">
-                            <label class="check" for="chkItem1">
-                                <!-- 개당 체크박스 -->
-                                <input onclick='check_sel_all(this)' type="checkbox" id="chkItem1" name="checkOne"
-                                    class="checkOne" data-item-id="c7b3a4e1-4517-416c-9b3e-d41c0e7592f2" data-item-no="65810"
-                                    data-item-parent-no="65810">
-                                <span class="ico"></span>
-                            </label>
-
                             <div class="name">
                                 <div class="inner_name">
                                     <a href="#" class="package ">{{ cart_item.photo.product.name }}</a>
@@ -64,46 +52,29 @@
                                         </div>
                                         <!-- 개수 조정 부분. -->
                                         <div class="stamper count">
-                                            <button type="button" class="btn minus off"
+                                            <a href="{% url 'cart:decrease_product' cart_item.photo.id %}" class="btn minus off"
                                                 data-item-id="c7b3a4e1-4517-416c-9b3e-d41c0e7592f2" data-item-no="65810"
-                                                data-opt="decrease">감소</button>
-                                            <input type="text" id="stepperCounter" name="" class="num" readonly="" value={{ cart_item.quantity }}>
-                                            <button type="button" class="btn plus"
+                                                data-opt="decrease">감소</a>
+                                            <input type="text" id="stepperCounter" name="" class="num" value={{ cart_item.quantity }}>
+                                            <a href="{% url 'cart:add_product' cart_item.photo.id %}" class="btn plus"
                                                 data-item-id="c7b3a4e1-4517-416c-9b3e-d41c0e7592f2" data-item-no="65810"
-                                                data-opt="increase">추가</button>
+                                                data-opt="increase">추가</a>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- 상품 삭제 시 db반영 (btn_delete)-->
-                                <button type="button" onclick="del_row(this)" class="btn_delete"
+                                <a href="{% url 'cart:delete_product' cart_item.photo.id %}" onclick="del_row(this)" class="btn_delete"
                                     data-item-id="c7b3a4e1-4517-416c-9b3e-d41c0e7592f2" data-item-no="65810"
                                     data-type="cold">
-                                    상품 삭제</button>
+                                    상품 삭제</a>
                             </div>
-                        </div>
                         </li>
                     {% endfor %}
-                    <!--1끝-->
-
-                    <!-- """밑에 코드는 장바구니 데이터가 하나도 없을 경우 출력하도록 구현 바람.(cart_empty.html 참고)"""
-                        <div class="inner_empty"><span class="bg"></span>
-                        <p class="txt">장바구니에 담긴 상품이 없습니다</p></div>
- -->
                 </ul>
             </div>
 
 
             <!-- 여긴 고정. -->
-            <div class="cart_select">
-                <div class="inner_select">
-                    <label class="check">
-                        <input type="checkbox" name="checkAll" onclick="sel_all(this)">
-                        <span class="ico"></span>전체선택 (1/1)
-                    </label>
-                    <!-- 1/n : db-->
-                    <a href="#none" class="btn_delete">선택삭제</a>
-                </div>
-            </div>
         </div>
         <div class="cart_result">
             <div class="inner_result" style="top: 60px;">
@@ -158,7 +129,7 @@
                 </div>
                 <!-- 계산 필요 . -->
                 <div class="btn_submit">
-                    <button type="submit" onclick="location.href='{% url 'order:order' %}'" class="btn active">주문하기</button>
+                    <button type="submit" class="btn active">주문하기</button>
                     <!-- 결제 페이지로 이동 -->
                 </div>
                 <div class="notice">

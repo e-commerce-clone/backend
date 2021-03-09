@@ -5,7 +5,7 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('login/', views.login, name='login'),
-    path('mobile_login/', TemplateView.as_view(template_name='accounts/login_mobile.html'), name='mobile_login'),
+    path('mobile_login/', views.mobile_login, name='mobile_login'),
     path('logout/', views.logout, name='logout'),
     path('join/', views.join, name="join"),
     path('join/id_check', views.id_overlap_check, name="id_overlap_check"),

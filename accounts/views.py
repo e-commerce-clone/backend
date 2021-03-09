@@ -208,6 +208,44 @@ def login(request):     # 로그인 뷰 : django auth login
                 return render(request, template, data)
     return render(request, template)
 
+def mobile_login(request):
+    template = "accounts/mobile_login.html"
+
+    if request.method == "POST":
+        name = request.POST.get('username')  # id
+        pwd = request.POST.get('password')  # pw
+        user = authenticate(username=name, password=pwd)
+        try:
+            check_user = auth_User.objects.get(username=name)
+        except:  # 정보 부정확.
+            return render(request, template)
+
+        if check_user is not None:  # 계정이 있을 경우
+            if (check_user.is_active == True):  # 계정 활성화일 경우
+                try:  # 로그인 가능
+                    auth_login(request, user)  # login 수행
+                    # if (name == "admin"):
+                    #     return render(request, "main/main.html", {'m_name': "admin"})
+                    # profile = Profile.objects.get(user=user)
+                    # person_name = profile.person_name
+                    # data = {
+                    #     'm_name': person_name,
+                    # }
+                    return render(request, "main/main.html")
+
+                except:  # 아이디 비밀번호 불일치일 경우
+                    error = 1
+                    data = {'error': error, }
+                    print(error, '아이디 비번 불일치')
+                    return render(request, template, data)
+
+            elif (check_user.is_active == False):  # 계정 활성화 아닐 경우
+                error = 0
+                data = {'error': error, }
+                print(error, '계정활성화 필요')
+                return render(request, template, data)
+
+    return render(request, template)
 
 def logout(request):    # 로그아웃 뷰 : django auth logout
     auth_logout(request)

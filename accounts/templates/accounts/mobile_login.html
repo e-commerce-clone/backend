@@ -15,14 +15,17 @@
 	<script defer src="{% static 'accounts/js/login_mobile.js' %}"></script>
 </head>
 <body class="layout_login2 layout_login">
+	<div class="bg_loading loading" id="bgLoading">
+		<div class="loading_show"></div>
+	</div>
 	<div id="dymanic"></div>
 	<div id="wrap" class="layout-main-wrapper" style="padding-top: 50px;">
-		
+
 		<header id="header" class="header">
 			<h1 class="logo">
 				<span class="tit">로그인</span>
 			</h1>
-			<a href="main_mobile.html" class="link_back" role="button"></a>
+			<a href="#none" class="link_back" role="button"></a>
 		</header>
 
 		<div class="section_login">
@@ -36,13 +39,14 @@
 			</ul>
 			<div class="write_form">
 				<div class="write_view login_view">
-					<form name="login_form" action="main_mobile.html" method="post">
+					<form name="login_form" action="{% url 'accounts:mobile_login' %}" method="post" id="form" onsubmit="return checkReCaptcha();">
+						{% csrf_token %}
 						<div class="inp_initialization">
-							<input type="text" name="m_id" size="20" value placeholder="아이디를 입력해주세요">
+							<input type="text" name="username" size="20" value="{{ form.username.value|default_if_none:'' }}" placeholder="아이디를 입력해주세요">
 							<button type="button" class="btn_initialization" tabindex="-1">텍스트 삭제</button>
 						</div>
 						<div class="inp_initialization">
-							<input type="password" name="password" size="20" value placeholder="비밀번호를 입력해주세요" required="required" msgr="비밀번호를 입력해주세요">
+							<input type="password" name="password" size="20" value="{{ form.password.value|default_if_none:'' }}" placeholder="비밀번호를 입력해주세요" required="required" msgr="비밀번호를 입력해주세요">
 							<button type="button" class="btn_initialization" tabindex="-1">텍스트 삭제</button>
 						</div>
 						<div class="checkbox_save">
@@ -80,7 +84,7 @@
 							});
 						}
 					</script>
-					<a href="" class="btn_type2 btn_member">
+					<a href="{% url 'accounts:mobile_join' %}" class="btn_type2 btn_member">
 						<span class="txt_type">회원가입</span>
 					</a>
 				</div>

@@ -12,7 +12,5 @@ urlpatterns = [
     path('product_list/product_check', views.product_check, name="product_check"),
     path('mobile_product_list/mobile_category/', views.mobile_category, name='mobile_category'),
     path('product_search/', views.product_search, name='product_search'),
-    path('mobile_product_search/',
-         TemplateView.as_view(template_name='shop/search_mobile.html'),
-         name='mobile_search'),
+    path('mobile_product_search/', views.mobile_search, name='mobile_search'),
 ]

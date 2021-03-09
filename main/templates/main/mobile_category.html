@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,12 +10,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
     <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
-    <link rel="stylesheet" href="../../pc/main/css/reset.css">
-    <link rel="stylesheet" href="./css/mobile_common.css">
-    <link rel="stylesheet" href="./css/mobile_category.css">
+    <link rel="stylesheet" href="{% static 'main/css/mobile_category.css' %}">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="./js/mobile_common.js"></script>
-    <script src="./js/mobile_category.js"></script>
+    <script src="{% static 'main/js/mobile_category.js' %}"></script>
     
     
     

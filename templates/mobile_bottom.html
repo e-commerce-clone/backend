@@ -3,17 +3,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/mobile_common.css' %}">
     <link rel="stylesheet" href="{% static 'css/common_mobile.css' %}">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="{% static 'js/mobile_common.js' %}"></script>
-    <script src="{% static 'js/common_mobile.js' %}"></script>
+    <script defer src="{% static 'js/common_mobile.js' %}"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
     {% block content %}
     {% endblock %}
+    <aside id="search-menu" class="layout-search-area">
+            <!-- 모바일 검색창 -->
+                <div class="layer_search">
+                    <form action="{% url 'shop:mobile_search' %}" method="get" class="layout-search-form" id="search-form" autocomplete="off">
+						{% csrf_token %}
+                        <fieldset class="layout-search-fieldset">
+                            <legend hidden>검색어 입력</legend> <!--hidden 속성을 통해 숨길 수 있음-->
+                            <input type="search" name="search_key" id="keyword" class="inp_search" placeholder="검색어를 입력해주세요." value="" required>
+                            <button type="button" class="btn_del" id="searchDelete">삭제</button> <!--input 값 있을 때 on 클래스 붙음-->
+                            <button class="layout-search-close-button" type="button" id="search-area-close">닫기</button>
+                        </fieldset>
+                    </form>
+                    <div class="layout-search-container" id="search-keyword-area">
+                        <ul class="layout-search-tab" id="search-keyword-tab">
+                            <li class="layout-search-tab-item">
+                                <a href="#early-keyword" class="tab_search __active"> <!--active 되었을 때 글씨 색, 하단 bar 변경-->
+                                    최근 검색어
+                                    <span class="bar"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="layout-search-wrapper __active" id="early-keyword">
+                            <div class="layout-search-scroller" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                                <div class="layout-search-content">
+                                    <ul class="layout-search-result-list layout-search-early-list">
+
+                                    </ul>
+                                </div>
+                            </div>
+						</div>
+						<template id="search-early-item-template"> <!--최근 검색어 list-->
+							<li class="item">
+								<a href="#" class="link" data-keyword="" data-style="recent"></a>
+								<button class="btn_del" data-index="">이 검색어를 삭제하기</button>
+							</li>
+						</template>
+                    </div>
+                </div>
+        </aside>
+
+
     <header id="header-bottom" class="menu_shortcut">
             <ul id="userMenu" class="list">
                 <li>
@@ -29,7 +68,7 @@
                 </li>
 
                 <li>
-                    <a href="#" id="search-area-open" class="shortcut_search">
+                    <a href="#" id="search-area-open" onclick="search_click();" class="shortcut_search">
                         검색
                     </a>
                 </li>
