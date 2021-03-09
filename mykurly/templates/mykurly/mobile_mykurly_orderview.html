@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문 내역 상세</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'mykurly/css/mobile_mykurly_orderview.css' %}">
+</head>
+<body>
+
+    <div id="wrap" class="layout-main-wrapper no_relative" style="padding-top: 49px; ">
+        <header id="header" class="header" style="top: 0px;">
+            <h1 class="logo">
+                <span class="tit">주문내역 상세</span>
+            </h1>
+            <a href="javascript:history.back();" class="link_back" role="button">  <!-- javascript로 뒤로가기 구현-->
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            <div class="header_shortcut">
+                <a href="#" class="cart_count" role="button">
+                    <span class="screen_out">장바구니로 가기</span>
+                    <span class="num_count" id="cart_item_count" style="display: inline;">2</span>
+                </a>
+            </div>
+        </header>
+        
+        <header id="header-bottom" class="menu_shortcut">
+            <ul id="userMenu" class="list">
+                <li>
+                    <a href="#" class="shortcut_home">
+                        홈
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_menu">
+                        카테고리
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="search-area-open" class="shortcut_search">
+                        검색
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_mypage on">
+                        마이컬리
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+        <div id="appStyle" class="user_form section_orderlist">
+            <div class="order_delivery">
+                <h3 class="tit">배송조회</h3>
+                <ul class="list_status">
+                    <li>
+                        <div class="subject">
+                            <span class="type">냉장</span>
+                        </div>
+
+                        <div class="detail">
+                            <span class="maker">프레시솔루션</span>
+                            <a class="search" href="#" target="_blank">배송조회</a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="subject">
+                            <span class="type">상온</span>
+                        </div>
+
+                        <div class="detail">
+                            <span class="maker">프레시솔루션</span>
+                            <a class="search" href="#" target="_blank">배송조회</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="goods_list box_type on">
+                <h3 class="box_tit">
+                    <a href="#" class="btn_view">
+                        주문번호 1608175672040
+
+                    </a>
+                </h3>
+
+                <div class="box_view" style="display: block;">
+                    <div class="put_cart">
+                        <button type="button" id="cartPut" class="btn_type2">
+                            <span class="txt_type">전체 상품 다시 담기</span>
+                        </button>
+                    </div>
+
+                    <ul class="list_goods">
+                        <li class="package">
+                            <div class="goods_thumb">
+                                <a href="#">
+                                    <img  onerror="this.src='https://res.kurly.com/mobile/service/common/bg_1x1.png'" src="https://res.kurly.com/mobile/img/1808/img_none_x2.png">
+                                </a>
+                            </div>
+                            <div class="goods_info">
+                                <a class="tit_product" href="#">[상품명]</a>
+                                <a class="tit_package" href="#">[상품 카테고리]</a>
+                                <div class="goods_price">
+                                    <span class="price">[가격]원</span>
+                                    <span class="ea">
+                                        <span class="bar"></span>
+                                        1개
+                                    </span>
+                                </div>
+
+                                <div class="progress">
+                                    <span class="end">배송완료</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="package">
+                            <div class="goods_thumb">
+                                <a href="#">
+                                    <img  onerror="this.src='https://res.kurly.com/mobile/service/common/bg_1x1.png'" src="https://res.kurly.com/mobile/img/1808/img_none_x2.png">
+                                </a>
+                            </div>
+                            <div class="goods_info">
+                                <a class="tit_product" href="#">[상품명]</a>
+                                <a class="tit_package" href="#">[상품 카테고리]</a>
+                                <div class="goods_price">
+                                    <span class="price">[가격]원</span>
+                                    <span class="ea">
+                                        <span class="bar"></span>
+                                        1개
+                                    </span>
+                                </div>
+
+                                <div class="progress">
+                                    <span class="end">배송완료</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="box_type type_settlement on">
+                <h3 class="box_tit">
+                    <a href="#" class="btn_view">
+                        결제정보
+                    </a>
+                </h3>
+
+                <div class="box_view" style="display: block;">
+                    <dl>
+                        <dt>상품금액</dt>
+                        <dd>[상품 총 가격]원</dd>
+                    </dl>
+                    <dl>
+                        <dt>배송비</dt>
+                        <dd>3,000원</dd>
+                    </dl>
+                    <dl>
+                        <dt>상품할인금액</dt>
+                        <dd>-[할인금액]원</dd>
+                    </dl>
+                    <dl>
+                        <dt>결제금액</dt>
+                        <dd>
+                        [총 가격]원
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>적립금액</dt>
+                        <dd>
+                        [적립금]원
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="box_type on">
+
+                <h3 class="box_tit">
+                    <a class="btn_view" href="#none">
+                        주문정보
+                    </a>
+                </h3>
+                <div class="box_view" style="display: block;">
+                    <dl>
+                        <dt>주문번호</dt>
+                        <dd>[주문번호]</dd>
+                    </dl>
+                    <dl>
+                        <dt>주문자명</dt>
+                        <dd>[이름]</dd>
+                    </dl>
+                    <dl>
+                        <dt>보내는 분</dt>
+                        <dd>[이름]</dd>
+                    </dl>
+                    <dl>
+                        <dt>결제일시</dt>
+                        <dd>[날짜] ex) 2020-12-17 12:29:04</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="box_type on">
+
+                <h3 class="box_tit">
+                    <a class="btn_view" href="#none">
+                        배송정보
+                    </a>
+                </h3>
+                <div class="box_view" style="display: block;">
+                    <dl>
+                        <dt>받는 분</dt>
+                        <dd>[이름]</dd>
+                    </dl>
+                    <dl>
+                        <dt>핸드폰</dt>
+                        <dd>
+                        휴대폰번호
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>배송방법</dt>
+                        <dd>샛별배송</dd>
+                    </dl>
+                    <dl>
+                        <dt>주소</dt>
+                        <dd>
+                        (우편번호)
+                        상세주소
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>받으실 장소</dt>
+                        <dd>문 앞</dd>
+                    </dl>
+                    <dl>
+                        <dt>공동현관 출입방법</dt>
+                        <dd>공동현관 비밀번호 (*******************)</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="box_type on">
+
+                <h3 class="box_tit">
+                    <a class="btn_view" href="#none">추가정보</a>
+                </h3>
+                <div class="box_view" style="display: block;">
+                    <dl>
+                        <dt>메세지 전송시점</dt>
+                        <dd>
+                            배송직후
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>미출시 조치방법</dt>
+                        <dd>결제수단으로 환불</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div id="orderCancel" class="order_cancel">
+                <div class="info_notice">
+                    <p class="notice">
+                        직접 주문 취소는
+                        <strong class="emph">‘입금확인’</strong>
+                        상태일
+                        경우에만 가능합니다.                        
+                    </p>
+
+                    <a class="link" href="#">1:1 문의하기</a>
+                </div>
+
+                <button type="button" class="btn_type1">
+                    <span class="txt_type">전체 상품 주문 취소</span>
+                </button>
+            </div>
+        </div>
+
+        
+        
+
+
+    </div>
+    
+</body>
+</html>
+{% endblock %}

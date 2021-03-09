@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>적립금 내역</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'mykurly/css/mobile_mykurly_emoneylist.css' %}">
+</head>
+<body>
+
+    <div id="wrap" class="layout-main-wrapper no_relative" style="padding-top: 49px; ">
+        <header id="header" class="header" style="top: 0px;">
+            <h1 class="logo">
+                <span class="tit">적립금 내역</span>
+            </h1>
+            <a href="javascript:history.back();" class="link_back" role="button">  <!-- javascript로 뒤로가기 구현-->
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            <div class="header_shortcut">
+                <a href="#" class="cart_count" role="button">
+                    <span class="screen_out">장바구니로 가기</span>
+                    <span class="num_count" id="cart_item_count" style="display: inline;">2</span>
+                </a>
+            </div>
+        </header>
+        
+        <header id="header-bottom" class="menu_shortcut">
+            <ul id="userMenu" class="list">
+                <li>
+                    <a href="#" class="shortcut_home">
+                        홈
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_menu">
+                        카테고리
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="search-area-open" class="shortcut_search">
+                        검색
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_mypage on">
+                        마이컬리
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+        <div id="appStyle" class="user_form section_point">
+            <div id="viewPointList">
+                <div class="point_header">
+                    <div class="point_view">
+                        <h3 class="tit">현재 적립금</h3>
+                        <strong class="point">
+                            132 
+                            <span class="won">원</span>
+                        </strong>
+                    </div>
+
+                    <span class="disappear">
+                        <span class="subject no_day">
+                            소멸예정 적립금 
+                        </span>
+                        <span class="num">0 원</span>
+                    </span>
+                </div>
+
+                <ul class="list_point">
+                    <li>
+                        <div class="desc">
+                            <span class="link">
+                                <strong class="tit">[구매적립] 주문
+                                    <br>
+                                    (1608175672040) 0.5% 적립</strong>
+                            </span>
+
+                            <span class="date">2020.12.18</span>
+                        </div>
+
+                        <div class="point">
+                            <span>+</span>
+                            53 원            
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="desc">
+                            <span class="link">
+                                <strong class="tit">[구매적립] 주문
+                                    <br>
+                                    (1608175672040) 0.5% 적립</strong>
+                            </span>
+
+                            <span class="date">2020.12.01</span>
+                        </div>
+
+                        <div class="point">
+                            <span>+</span>
+                            79 원            
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div>
+    
+</body>
+</html>
+{% endblock %}

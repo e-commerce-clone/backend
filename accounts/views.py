@@ -251,9 +251,6 @@ def logout(request):    # 로그아웃 뷰 : django auth logout
     auth_logout(request)
     return redirect("/")
 
-def mobile_logout(request):
-    auth_logout(request)
-    return redirect("/")
 
 def findid(request):
     if request.method == 'POST':

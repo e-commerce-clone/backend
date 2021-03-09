@@ -1,4 +1,35 @@
+.bg_loading {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .5;
+}
 
+.loading_show {
+    position: fixed;
+    z-index: 10000;
+    top: 50%;
+    left: 50%;
+    margin: -16px 0 0 -16px;
+    width: 32px;
+    height: 32px;
+    background: url(https://res.kurly.com/pc/img/1909/img_loading_128x128.gif) no-repeat 50% 50%;
+    background-size: 16px 16px;
+}
+
+.bg_loading.show {
+    display: block;
+}
+
+.bg_loading.hide {
+    display: none;
+    opacity: 0;
+}
 
 #header {
     position: fixed;
@@ -35,16 +66,13 @@
     background-size: 50px 50px;
 }
 
-.screen_out {
-    display: block;
-    overflow: hidden;
+.blind {
     position: absolute;
-    left: -9999px;
+    overflow: hidden;
     width: 1px;
     height: 1px;
-    font-size: 0;
-    line-height: 0;
-    text-indent: -9999px;
+    clip: rect(0 0 0 0);
+    margin: -1px;
 }
 
 #header .cart_count {
@@ -64,35 +92,29 @@
     top: 8px;
     width: 18px;
     height: 18px;
-    padding-top: 1px;
     border: 2px solid #fff;
     border-radius: 10px;
     background-color: #5f0080;
     font-weight: 600;
     font-size: 10px;
-    line-height: 14px;
     color: #fff;
     text-align: center;
     white-space: nowrap;
 }
 
 
-#header .location {
-    background: url(https://res.kurly.com/mobile/service/common/2011/ico_navi_location_white.svg?v=2) no-repeat 50% 50%;
-}
 
-#header .location {
-    display: block;
-    overflow: hidden;
-    position: absolute;
-    right: 46px;
-    top: 0;
-    width: 50px;
-    height: 50px;
-    background: url(https://res.kurly.com/mobile/service/common/2011/ico_navi_location_black.svg?v=2) no-repeat 50% 50%;
-    font-size: 0;
-    text-indent: -9999px;
-}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -161,8 +183,6 @@
     background-image: url(https://res.kurly.com/mobile/service/common/2011/ico_search.svg?ver=2);
 }
 
-
-
 .menu_shortcut li:last-child {
     float: none;
     width: auto;
@@ -178,6 +198,10 @@
 
 .menu_shortcut .on.shortcut_mypage:before {
     background-image: url(https://res.kurly.com/mobile/service/common/2011/ico_mypage_on.svg?ver=2);
+}
+
+.menu_shortcut .on.shortcut_search:before {
+    background-image: url(https://res.kurly.com/mobile/service/common/2011/ico_search_on.svg?ver=2);
 }
 
 body #header_purple{
@@ -201,7 +225,6 @@ body #header_purple{
 #header_purple  .logo .tit {
     color: #fff;
 }
-
 
 #header_purple .logo .tit {
     display: block;
@@ -262,13 +285,11 @@ body #header_purple  .cart_count {
     top: 8px;
     width: 14px;
     height: 13px;;
-    padding-top: 1px;
     border: 2px solid #fff;
     border-radius: 10px;
     background-color: #5f0080;
     font-weight: 600;
     font-size: 10px;
-    line-height: 14px;
     color: #fff;
     text-align: center;
     white-space: nowrap;
@@ -286,27 +307,106 @@ body #header_purple  .cart_count {
     background-image: url(https://res.kurly.com/mobile/service/common/2011/ico_mypage.svg?ver=2);
 }
 
-
-.bg_loading {
-    position: fixed;
-    z-index: 9998;
-    left: 0;
-    top: 0;
+input[type=search],
+input[type=email],
+input[type=password],
+input[type=text],
+input[type=number],
+textarea, .field_address .txt_address, .birth_day {
     width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: .5;
+    height: 48px;
+    padding: 0 11px 1px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
 }
 
+/* input search clear 버튼 삭제 */
+input::-ms-clear,
+input::-ms-reveal{
+	display:none;width:0;height:0;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration{
+	display:none;
+}
 
-.loading_show {
-    position: fixed;
-    z-index: 10000;
-    top: 50%;
-    left: 50%;
-    margin: -16px 0 0 -16px;
-    width: 32px;
-    height: 32px;
-    background: url(https://res.kurly.com/pc/img/1909/img_loading_128x128.gif) no-repeat 50% 50%;
+label {
+    position: relative;
+    font-size: 16px;
+    color: #333;
+    line-height: 24px;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+input[type=checkbox]+.ico, input[type=checkbox] {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #999;
+    border-radius: 2px;
+    background: 0 0;
+    vertical-align: -2px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type=checkbox]:checked+.ico, input[type=checkbox]:checked {
+    border-radius: 0;
+    border: 0;
+    background: transparent url(https://res.kurly.com/mobile/service/common/1908/ico_checkbox_checked.png) no-repeat 0 0;
     background-size: 16px 16px;
+}
+
+.btn_type1, .btn_type2, .btn_type3, .btn_type4, .btn_type5, .btn_type99, .btn_type100 {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 48px;
+    border-radius: 4px;
+    font-size: 0;
+    text-align: center;
+    outline: none;
+}
+
+.btn_type1 {
+    border: 1px solid #5f0081;
+    background-color: #5f0080;
+}
+
+.btn_type2 {
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.btn_type1 .txt_type, .btn_type2 .txt_type, .btn_type3 .txt_type, .btn_type4 .txt_type, .btn_type5 .txt_type, .btn_type99 .txt_type, .btn_type100 .txt_type {
+    display: inline-block;
+    height: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    color: #fff;
+    line-height: 48px;
+    text-align: center;
+}
+
+.btn_type1 .txt_type {
+    color: #fff;
+}
+
+.btn_type2 .txt_type {
+    color: #333;
 }

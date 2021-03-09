@@ -11,6 +11,8 @@ urlpatterns = [
     path('cart/', include("cart.urls", namespace="cart")),
     path('', include("main.urls")),
     path('mykurly/', include("mykurly.urls")),
+    path('order/', include("order.urls")),
+    path('kakaopay/', include("kakaopay.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

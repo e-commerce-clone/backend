@@ -159,9 +159,24 @@ def product_search(request):
 
     for x in search_products:
         counter += 1
+
+    return render(request, 'shop/product_search.html', {'photos': search_products,
+                                                        'counter': counter,
+                                                        'search_keyword': search_keyword})
+
+def mobile_search(request):
+    counter = 0
+    search_keyword = request.GET.get('search_key', '')
+    product_list = Product_photo.objects.order_by('-id')
+
+    search_products = product_list.filter(product__name__icontains=search_keyword)
+
+    for x in search_products:
+        counter += 1
+
     print(search_products)
     print(search_keyword)
 
-    return render(request, 'shop/product_search.html', {'photos': search_products,
+    return render(request, 'shop/search_mobile.html', {'photos': search_products,
                                                         'counter': counter,
                                                         'search_keyword': search_keyword})

@@ -7,11 +7,11 @@
 // // visual.css의 ul의 총 너비를 4200에서 5250으로 변경
 
 // function move() {
-
+	
 // 	let curIndex = 0; //current Index
 
 // 	setInterval(function(){ //setInterval  = 일정 간격으로 코드를 반복 실행하는 함수, {코드}, 시간간격(ms)
-
+		
 // 		var size = 1900;
 // 		if ($(window).width() <= 1900){
 // 			size = $(window).width()
@@ -28,12 +28,12 @@
 // 				ul.style.transform = "translate3d(0px, 0px, 0px)"; //현재 위치에서 이동 없음
 // 			}, 601) //복사본이 자리잡은 0.601초 뒤 transition, transform 끔
 // 			curIndex = 0; //index 1로 되돌림
-// 		} //
+// 		} // 
 
 // 	}, 3000); // 3초 간격 {코드} 실행
 // }
 
-
+ 
 $(document).ready(function(){                                  // 브라우저가 로딩이 됐을때 아래 코드 실행!
 
 	if($(window).width() <= 1900 && $(window).width() > 1050){     // 만약의 현재 브라우저 창의 크기가 1900보다 작고 1050보다 크면
@@ -53,27 +53,27 @@ $(document).ready(function(){                                  // 브라우저�
 	}
 
 	$(window).resize(function() {                                     // 현재 브라우저 창의 크기를 조절할때마다 아래 코드 실행!
-
+		 
 		if($(window).width() <= 1900 && $(window).width() > 1050){      // 위에와 똑같은 코드 반복!
-			$('#visual').css('width', $(window).width());
-
+			$('#visual').css('width', $(window).width()); 
+	
 			$('.swipe .slide_list').css('width', $(window).width());
 		}
 		else if($(window).width() <= 1050){
 			$('#visual').css('width', 1050+"px");
-
+	
 			$('.swipe .slide_list').css('width', 1050+"px");
 		}
 		else if($(window).width() > 1900){
 			$('#visual').css('width', 1900+"px");
-
+	
 			$('.swipe .slide_list').css('width', 1900+"px");
 		}
-
-
+	
+	
 
 	});
-	// move();
+	
 
 		var $banner = $(".swipe").find("ul");
 
@@ -95,15 +95,15 @@ $(document).ready(function(){                                  // 브라우저�
 			rollingId = setInterval(function() { rollingStart(); }, 3000);
 			$(this).css("cursor", "default");
 		});
-
+		
 		function rollingStart() {
 			// $banner.css("width", $bannerWidth * $bannerLength + "px");
-
+			
 			//배너의 좌측 위치를 옮겨 준다.
 			$banner.animate({left: - $bannerWidth + "px"}, 1500, function() { //숫자는 롤링 진행되는 시간이다.
 				// //첫번째 이미지를 마지막 끝에  추가한다.
-
-
+				
+				
 				$('.swipe ul li').first().appendTo('.swipe ul');
 				//다음 움직임을 위해서 배너 좌측의 위치값을 초기화 한다.
 				$(this).css("left", 0);
@@ -113,16 +113,6 @@ $(document).ready(function(){                                  // 브라우저�
 
 
 
-
-
-})
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function(){ //문서의 로드시점을 DOMContentLoaded로 함. = onload 이벤트보다 먼저 발생하며, 빠른 실행속도가 필요할 때 적합
-
+	
+	
 });
-// 참고: https://takeknowledge.tistory.com/34

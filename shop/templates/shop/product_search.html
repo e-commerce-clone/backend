@@ -12,6 +12,16 @@
 	<link rel="stylesheet" href="{% static 'shop/css/goods_search.css' %}">
     <!-- search.css : 검색 페이지 -->
     <script defer src="{% static 'shop/js/goods_search.js' %}"></script>
+    <SCRIPT LANGUAGE="JavaScript">
+
+        if (top.document.location.search != "?mobile") {
+                var strGoto = "{% url 'shop:mobile_search' %}";
+                var str = window.navigator.userAgent.toLowerCase();
+                if (/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)) {
+                    top.document.location.replace(strGoto);
+                }
+        }
+    </SCRIPT>
 </head>
 
 <body>
@@ -131,7 +141,7 @@
 
     <div id="cartPut">
         <div id="" class="cart_option cartList cart_type1">
-            <form action="{% url 'cart:add_cart' %}" method="post" id="contactsForm">
+            <form action="{% url 'cart:add_cart' %}" mathod="post" id="contactsForm">
 				{% csrf_token %}
 				<input type="hidden" value={{ request.get_full_path }} name="current_url">
                 <div class="inner_option">

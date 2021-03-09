@@ -78,7 +78,6 @@ $(function(){
     });
 });
 function check_sel_all(checkbox)  { /*개별 선택에 따른 전체선택상태변경 */
-
     const selectall = document.querySelectorAll('input[name="checkAll"]');
     const checkboxes = document.querySelectorAll('input[name="checkOne"]');    
     var temp = false;
@@ -86,8 +85,6 @@ function check_sel_all(checkbox)  { /*개별 선택에 따른 전체선택상태
     checkboxes.forEach((checkbox) => {
         if (checkbox.checked){
             temp=true;
-
-            checkboxes.value(1);
         }
         if (!checkbox.checked){
             temp2=false;
@@ -157,14 +154,4 @@ $(document).ready(function(){ /* 체크박스 선택후 삭제하기 */
           }
       }); 
     });
-
-
-    $(".check_box").click(function(){
-        if ($("#chkItem1").is(":checked") == true){
-            $("#chkItem1").val(0);
-        }
-        else{
-            $("#chkItem1").val(1);
-        }
-    })
 });

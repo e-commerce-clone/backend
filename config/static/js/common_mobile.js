@@ -49,19 +49,25 @@ const searchOpen = document.querySelector('#search-area-open'),
 
 
 
-    // 검색 레이어가 나타나면 배경을 고정시켜 스크롤 되지 않게 함. 
-    searchOpen.addEventListener('click', function() {
+    // 검색 레이어가 나타나면 배경을 고정시켜 스크롤 되지 않게 함.
+    function search_click(){
         wrap.style.cssText = "padding-top: 95px; overflow-y: hidden";
         searchMenu.classList.add('__active');
         searchDelete.classList.add('on');
-        
-    // 2. input에 값이 있으면 btn_del에 on 클래스 추가, 값이 없을 때 삭제
-        searchInput.addEventListener('input', function() {
-            if (searchInput.value !== null) {
-                searchDelete.classList.add('on');
-            };
-        }); 
-    });
+    }
+    // searchOpen.addEventListener('click', function() {
+    //     console.log("ghh");
+    //     wrap.style.cssText = "padding-top: 95px; overflow-y: hidden";
+    //     searchMenu.classList.add('__active');
+    //     searchDelete.classList.add('on');
+    //
+    // // 2. input에 값이 있으면 btn_del에 on 클래스 추가, 값이 없을 때 삭제
+    //     searchInput.addEventListener('input', function() {
+    //         if (searchInput.value !== null) {
+    //             searchDelete.classList.add('on');
+    //         };
+    //     });
+    // });
 
     searchDelete.addEventListener('click', function() {
         searchInput.value = '';
@@ -86,7 +92,7 @@ searchForm.addEventListener('submit', function() { //엔터치면 paint_list() �
 
 function save_list() {
     // localStorage: 웹 브라우저에 key, value로 이루어진 데이터 저장. 창 끼리 데이터 공유. 창을 닫아도 데이터가 남음.
-    // string이 아닌 원본 데이터를 그대로 가져오기 위해 JSON으로 직렬화 해줌. 
+    // string이 아닌 원본 데이터를 그대로 가져오기 위해 JSON으로 직렬화 해줌.
     //키에 데이터 쓰기: localStorage.setItem('key', value);
     //데이터를 서버에 전송할 때 JSON.stringify를 이용해 JSON 표기법의 문자열로 변환
     localStorage.setItem('key', JSON.stringify(search_list_save));
@@ -114,7 +120,7 @@ function paint_list(text) { //input 값 받아와서 추가하는 함수
         text : text, // a 태그 안에 들어갈 text
         id : newId //idNumbers = 쿠키에 저장할 리스트 번호
     };
-    search_list_save.push(search_result); //배열에 search_list 키와 값들을 넣음. 
+    search_list_save.push(search_result); //배열에 search_list 키와 값들을 넣음.
     save_list(); // 배열에 넣은 키, 값 들을 localStorage에 저장
 }
 
@@ -131,14 +137,14 @@ function paint_list(text) { //input 값 받아와서 추가하는 함수
         save_list();
     }
 
-    
+
 
 
     function load_search_list() { // 브라우저 실행했을 때 localStroage에 있는 값을 불러오는 함수
         const loadedlist = localStorage.getItem('key');
 
-        if (loadedlist !== null) { // 값 체크 
-            const parsedlist = JSON.parse(loadedlist); // string이 아닌 원본 데이터를 그대로 가져오기 위해 JSON으로 역직렬화 해줌. 
+        if (loadedlist !== null) { // 값 체크
+            const parsedlist = JSON.parse(loadedlist); // string이 아닌 원본 데이터를 그대로 가져오기 위해 JSON으로 역직렬화 해줌.
             parsedlist.forEach(function(_index) {
                 paint_list(_index.text);
             });
@@ -146,15 +152,3 @@ function paint_list(text) { //input 값 받아와서 추가하는 함수
     }
 
 load_search_list();
-
-
-
-
-
-
-
-
-
-
-
-

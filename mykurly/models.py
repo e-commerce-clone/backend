@@ -19,16 +19,6 @@ class Review(models.Model):
         return self.title
 
 
-# class Order(models.Model):
-#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-#     quantity = models.PositiveIntegerField('수량')
-#
-#     order_time = models.DateTimeField('주문 시간', auto_now_add=True)
-#
-#     def __str__(self):
-#         return self.product.name
-
-
 class Delivery(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     name = models.CharField('받을 사람', max_length=20, default="", blank=True)

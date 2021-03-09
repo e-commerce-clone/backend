@@ -55,6 +55,9 @@ INSTALLED_APPS = [
     'photo',                # 이미지 업로드
     'cart',                 # 장바구니
     'mykurly',              # 마이컬리
+    'order',                # 주문
+    'mathfilters',          # django template 에서 사칙연산을 하기 위한 모듈
+    'kakaopay',
 ]
 
 

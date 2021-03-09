@@ -307,11 +307,11 @@ body #header_purple  .cart_count {
     background-image: url(https://res.kurly.com/mobile/service/common/2011/ico_mypage.svg?ver=2);
 }
 
-input[type=search], 
-input[type=email], 
-input[type=password], 
-input[type=text], 
-input[type=number], 
+input[type=search],
+input[type=email],
+input[type=password],
+input[type=text],
+input[type=number],
 textarea, .field_address .txt_address, .birth_day {
     width: 100%;
     height: 48px;
@@ -347,7 +347,7 @@ label {
     line-height: 24px;
 }
 
-input[type=checkbox], 
+input[type=checkbox],
 input[type=radio] {
     box-sizing: border-box;
     padding: 0;
@@ -410,15 +410,3 @@ input[type=checkbox]:checked+.ico, input[type=checkbox]:checked {
 .btn_type2 .txt_type {
     color: #333;
 }
-
-
-
-
-
-
-
-
-
-
-
-

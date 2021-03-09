@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-
 {% extends 'mobile_bottom.html' %}
 {% load static %}
 {% block content %}
-
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
@@ -13,12 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
     <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
-
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-	<link rel="stylesheet" href="{% static 'css/common_mobile.css' %}">
 	<link rel="stylesheet" href="{% static 'accounts/css/login_mobile.css' %}">
-	
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script defer src="{% static 'accounts/js/login_mobile.js' %}"></script>
 </head>
 <body class="layout_login2 layout_login">
@@ -27,7 +20,7 @@
 	</div>
 	<div id="dymanic"></div>
 	<div id="wrap" class="layout-main-wrapper" style="padding-top: 50px;">
-		
+
 		<header id="header" class="header">
 			<h1 class="logo">
 				<span class="tit">로그인</span>
@@ -49,11 +42,11 @@
 					<form name="login_form" action="{% url 'accounts:mobile_login' %}" method="post" id="form" onsubmit="return checkReCaptcha();">
 						{% csrf_token %}
 						<div class="inp_initialization">
-							<input type="text" name="username" size="20" value placeholder="아이디를 입력해주세요">
+							<input type="text" name="username" size="20" value="{{ form.username.value|default_if_none:'' }}" placeholder="아이디를 입력해주세요">
 							<button type="button" class="btn_initialization" tabindex="-1">텍스트 삭제</button>
 						</div>
 						<div class="inp_initialization">
-							<input type="password" name="password" size="20" value placeholder="비밀번호를 입력해주세요" required="required" msgr="비밀번호를 입력해주세요">
+							<input type="password" name="password" size="20" value="{{ form.password.value|default_if_none:'' }}" placeholder="비밀번호를 입력해주세요" required="required" msgr="비밀번호를 입력해주세요">
 							<button type="button" class="btn_initialization" tabindex="-1">텍스트 삭제</button>
 						</div>
 						<div class="checkbox_save">

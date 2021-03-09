@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% extends 'mobile_bottom.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보수정</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="naver-site-verification" content="58ff7c242d41178131208256bfec0c2f93426a1d">
+    <meta name="facebook-domain-verification" content="tyur3wmoos7t63tpkb7zosur6p98m1">
+    <link rel="stylesheet" href="{% static 'mykurly/css/mobile_mykurly_information.css' %}">
+</head>
+<body>
+
+    <div id="wrap" class="layout-main-wrapper no_relative" style="padding-top: 49px; ">
+        <header id="header" class="header" style="top: 0px;">
+            <h1 class="logo">
+                <span class="tit">개인정보수정</span>
+            </h1>
+            <a href="javascript:history.back();" class="link_back" role="button">  <!-- javascript로 뒤로가기 구현-->
+                <span class="screen_out">뒤로가기</span>
+            </a>
+            <div class="header_shortcut">
+                <a href="#" class="cart_count" role="button">
+                    <span class="screen_out">장바구니로 가기</span>
+                    <span class="num_count" id="cart_item_count" style="display: inline;">2</span>
+                </a>
+            </div>
+        </header>
+        
+        <header id="header-bottom" class="menu_shortcut">
+            <ul id="userMenu" class="list">
+                <li>
+                    <a href="#" class="shortcut_home">
+                        홈
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_menu">
+                        카테고리
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="search-area-open" class="shortcut_search">
+                        검색
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="shortcut_mypage on">
+                        마이컬리
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+
+        <div id="appStyle" class="user_form section_join">
+            <form action="" method="POST" name="confirmForm">
+                <div class="user_reg">
+                    <div class="join_cell">
+                        <h3 class="tit">비밀번호 재확인</h3>
+                        <div class="desc">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한 번 확인해주세요.</div>
+                    </div>
+
+                    <div class="join_cell">
+                        <div class="tit tit_emph">아이디</div>
+                        <div class="desc">
+                            <input class="input" type="text" value="siwha9808" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="join_cell">
+                        <div class="tit tit_emph">
+                            비밀번호
+                            <span class="ico"></span>
+                        </div>
+                        <div class="desc">
+                            <input class="input" type="password" name="confirm_password" id="confirm_password" placeholder="현재 비밀번호를 입력해주세요.">
+                        </div>
+                    </div>
+
+                    <div class="join_submit">
+                        <button class="btn active" tabindex="5" type="submit"><span class="txt_type">확인</span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        
+
+        
+        
+        
+
+
+
+    </div>
+    
+</body>
+</html>
+{% endblock %}

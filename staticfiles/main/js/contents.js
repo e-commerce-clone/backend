@@ -26,9 +26,9 @@ goTop();
 function hideAni () {    //안내 메세지 사라지게 하기
   const tooltip = $('.location_notice');
   tooltip && setTimeout(() => {
-
+    
     tooltip.animate({
-
+      
     }, 300, () => {
       tooltip.css('display', 'none');
     });
