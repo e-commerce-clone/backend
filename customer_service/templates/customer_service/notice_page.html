@@ -1,0 +1,150 @@
+{% extends 'base.html' %} {% block content %} {% load static%}
+
+<head>
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <title>notice page</title>
+    <link rel="stylesheet" href="{% static 'customer_service/css/customer.css' %}">
+    <link rel="stylesheet" href="{% static 'customer_service/css/section2.css' %}">
+    <link rel="stylesheet" href="{% static 'customer_service/css/normalize.css' %}">
+    <script src="{% static 'customer_service/js/customer.js' %}"></script>
+
+</head>
+
+
+
+<div class="page_aticle aticle_type2">
+    <div id="snb" class="snb_cc">
+        <h2 class="tit_snb">고객센터</h2>
+        <div class="inner_snb">
+            <ul class="list_menu">
+                <li class="on">
+                    <a href="{% url 'customer_service:nt_list' %}">공지사항</a>
+                </li>
+                <li>
+                    <a href="{% url 'customer_service:iq_list' %}">1:1 문의</a>
+                </li>
+
+            </ul>
+        </div>
+        <a href="{% url 'customer_service:iq_list' %}" class="link_inquire"><span class="emph">도움이 필요하신가요 ?</span> 1:1 문의하기</a>
+    </div>
+
+    <div class="page_aticle">
+
+        <div class="page_section">
+            <div class="head_aticle">
+                <h2 class="tit">공지사항 <span class="tit_sub">컬리의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h2>
+            </div>
+
+            <form name="frmList" action="shop/board/list.php?&" onsubmit="">
+                <input type="hidden" name="id" value="notice">
+
+            </form>
+            <style>
+                .notice .layout-pagination {
+                    margin: 0
+                }
+                
+                .eng2 {
+                    color: #939393
+                }
+                
+                .xans-board-listheader {
+                    font-size: 12px
+                }
+            </style>
+            <table width="100%" align="center" cellpadding="0" cellsapcing="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="lists">
+                                <table width="100%" class="list board" cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr class="list1">
+                                            <th>분류</th>
+                                            <th>제목</th>
+                                            <th>작성자</th>
+                                            <th>작성일</th>
+                                            <th>조회</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- for -->
+                                        {% for li in list %}
+                                        <tr class="lists2">
+                                            <td width="50" nowrap align="center">
+                                                {{li.category}}</td>
+                                            <td style="padding-left:10px; text-align:left; color:#999">
+                                                <a href="{% url 'customer_service:nt_details' li.title %}">
+                                                    <b>{{li.title}}</b>
+                                                </a>
+                                                <b></b></td>
+                                            <td width="100" nowrap align="center">{{li.person_name}}</td>
+                                            <td width="100" nowrap align="center" class="eng2">{{li.create_date|date:'Y-m-d'}}</td>
+                                            <td width="30" nowrap align="center" class="eng2">{{li.hit}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                        <!-- end -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <!-- 글쓰기는 관리자만 가능 -->
+            <!-- {% if user.username == 'admin' %} -->
+            <div style="position:relative; padding-bottom:200px;">
+                <div style="position:absolute;right:0;top:60px;">
+                    <button id="write" class="write"><span class="bhs_buttonsm yb" style="float:none;">글쓰기</span></button>
+
+                </div>
+            </div>
+            <!-- {% endif %} -->
+            <div class="layout-pagination">
+                <div class="pagediv" style="font-size:0px;">
+                    <a class="layout-pagination-button layout-pagination-first-page" href="#">맨 처음 페이지로 가기</a>
+                    <a href="#" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a>
+                    <strong class="layout-pagination-button layout-pagination-number">1</strong>
+                    <!-- 클릭시 __active 적용 (음영) -->
+                    <a href="#" class="layout-pagination-button layout-pagination-number">2</a>
+                    <a href="#" class="layout-pagination-button layout-pagination-number">3</a>
+                    <a href="#" class="layout-pagination-button layout-pagination-number">4</a>
+                    <a href="#" class="layout-pagination-button layout-pagination-number">5</a>
+                    <a href="#" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a>
+                    <a href="#" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a>
+                </div>
+            </div>
+            <table class="xans-board-search xans-board-search2">
+                <tbody>
+                    <tr>
+                        <td class="input_txt">검색어 선택</td>
+                        <td class="stxt">
+                            <input type="checkbox" name="search[name]">이름
+                            <input type="checkbox" name="search[subject]">제목
+                            <input type="checkbox" name="search[contents]">내용&nbsp;
+                        </td>
+                        <td class="input_txt">&nbsp;</td>
+                        <td>
+                            <div class="search_bt">
+                                <a href="#"><img src="https://img.icons8.com/fluent-systems-regular/24/000000/search--v2.png" align="absmiddle"></a>
+                                <input type="text" name="search[word]" value="" required="">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script>
+        $(".write").click(function() {
+            location.href = "{% url 'customer_service:nt_write' %}"
+        })
+    </script>
+
+</div>
+{%endblock%}
