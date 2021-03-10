@@ -1,75 +1,73 @@
-{% extends 'base.html' %}
-{% block content %}
-{% load static %}
+{% extends 'base.html' %} {% block content %} {% load static %}
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Cache-Control" content="no-cache">
-    <link rel="stylesheet"  href="{% static 'accounts/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
     <script src="{% static 'accounts/js/login.js' %}"></script>
     <SCRIPT LANGUAGE="JavaScript">
-
-        if(top.document.location.search != "?mobile") //접속할때 모바일이면 아래 strGoto 주소의 html로 접속됨
+        if (top.document.location.search != "?mobile") //접속할때 모바일이면 아래 strGoto 주소의 html로 접속됨
         {
-                var strGoto = "{% url 'accounts:mobile_login' %}";
-                var str = window.navigator.userAgent.toLowerCase();
-                if(/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)){
-                 top.document.location.replace(strGoto);
-                }
+            var strGoto = "{% url 'accounts:mobile_login' %}";
+            var str = window.navigator.userAgent.toLowerCase();
+            if (/iphone/.test(str) || /android/.test(str) || /opera/.test(str) || /bada/.test(str) || /iemobile/.test(str) || /lgtelecom/.test(str) || /ppc/.test(str) || /sonyericsson/.test(str) || /sonyericsson/.test(str) || /blackberry/.test(str)) {
+                top.document.location.replace(strGoto);
+            }
         }
-
     </SCRIPT>
 </head>
 
-    <body>
-        {% if error >= 0 %}
-        <script>
-            var err = "{{ error }}";
-            show_alert(err);
-        </script>
-        {% endif %}
-        <div id="content">
-            <div class="section_login">
-                <h3 class="tit_login">LOGIN</h3>
-                <div class="write_form">
-                    <div class="write_view login_view">
-                        <form method="post" name="login_form" id="form" onsubmit="return checkReCaptcha();"
-                         action="{% url 'accounts:login' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="ck" id="ck" value="true">
-                            <input type="hidden" name="returnUrl" value="">
-                            <input type="hidden" name="close" value>
-                            <input type="text" name="username" id="username" size="20" tabindex="1"
-                            value="{{ form.username.value|default_if_none:'' }}" placeholder="아이디 입력">
-                            <input onkeyup="enterkey();" type="password" name="password" id="password" size="20" tabindex="2"
-                            value="{{ form.password.value|default_if_none:'' }}" placeholder="비밀번호 입력">
-                            <div class="checkbox_save">
-                                <label class="label_checkbox checked">
+<body>
+    {% if error >= 0 %}
+    <script>
+        var err = "{{ error }}"; // 로그인 실패 시 유형별 alert
+        show_alert(err);
+    </script>
+    {% endif %} {% if val == 0 %}
+    <script>
+        alert("비밀번호가 변경되었습니다. 로그인해주세요."); // 비밀번호 변경 완료 시
+    </script>
+    {% endif %}
+    <div id="content">
+        <div class="section_login">
+            <h3 class="tit_login">LOGIN</h3>
+            <div class="write_form">
+                <div class="write_view login_view">
+                    <form method="post" name="login_form" id="form" onsubmit="return checkReCaptcha();" action="{% url 'accounts:login' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="ck" id="ck" value="true">
+                        <input type="hidden" name="returnUrl" value="">
+                        <input type="hidden" name="close" value>
+                        <input type="text" name="username" id="username" size="20" tabindex="1" value="{{ form.username.value|default_if_none:'' }}" placeholder="아이디 입력">
+                        <input onkeyup="enterkey();" type="password" name="password" id="password" size="20" tabindex="2" value="{{ form.password.value|default_if_none:'' }}" placeholder="비밀번호 입력">
+                        <div class="checkbox_save">
+                            <label class="label_checkbox checked">
                                     <input type="checkbox" id="chk_security" name="chk_security" value="y" checked="checked"
                                     onchange="if (this.checked){$(this).parent().addClass('checked')}else{$(this).parent().removeClass('checked')}">
                                     보안접속
                                 </label>
-                                <div class="login_search">
-                                    <a href="{% url 'accounts:findid' %}" class="link">아이디 찾기</a>
-                                    <span class="bar"></span>
-                                    <a href="{% url 'accounts:findpw' %}" class="link">비밀번호 찾기</a>
-                                </div>
+                            <div class="login_search">
+                                <a href="{% url 'accounts:findid' %}" class="link">아이디 찾기</a>
+                                <span class="bar"></span>
+                                <a href="{% url 'accounts:findpw' %}" class="link">비밀번호 찾기</a>
                             </div>
-                            <button type="button" onclick="check_input()" class="btn_type1">
+                        </div>
+                        <button type="button" onclick="check_input()" class="btn_type1">
                                 <span class="txt_type">로그인</span>
                             </button>
 
-                        </form>
-                        <a href="{% url 'accounts:join' %}" class="btn_type2 btn_member">
-                            <span class="txt_type">회원가입</span>
-                        </a>
-
-                    </div>
+                    </form>
+                    <a href="{% url 'accounts:join' %}" class="btn_type2 btn_member">
+                        <span class="txt_type">회원가입</span>
+                    </a>
 
                 </div>
+
             </div>
         </div>
+    </div>
 
-    </body>
+</body>
 
 {% endblock %}

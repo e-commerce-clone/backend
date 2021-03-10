@@ -182,19 +182,14 @@ def login(request):     # 로그인 뷰 : django auth login
         try:
             check_user = auth_User.objects.get(username=name)
         except:     # 정보 부정확.
-            return render(request, template)
+            error = 2
+            data = {'error': error, }
+            return render(request, template, data)
 
         if check_user is not None:  # 계정이 있을 경우
             if (check_user.is_active == True):  # 계정 활성화일 경우
                 try:    # 로그인 가능
-                    auth_login(request, user)   # login 수행
-                    # if (name == "admin"):
-                    #     return render(request, "main/main.html", {'m_name': "admin"})
-                    # profile = Profile.objects.get(user=user)
-                    # person_name = profile.person_name
-                    # data = {
-                    #     'm_name': person_name,
-                    # }
+                    auth_login(request, user)   # login 수행                    
                     return render(request, "main/main.html")
                 except:     # 아이디 비밀번호 불일치일 경우
                     error = 1
@@ -336,21 +331,23 @@ def findpwfail(request):
 
 
 def resetpw(request):
+    mail = request.POST.get('email')
+    data ={ 'email':mail }
+
     if request.method == 'POST':
-        email = request.POST.get('email', None)
-        password = request.POST.get('newPassword', None)
-
-        user = auth_User.objects.get(email=email)
-
         try:
-            # user.password = password
-            user.set_password(password)
-            user.save()
-            return render(request, 'accounts/login.html')
+            user = auth_User.objects.get(email=mail)   
         except:
-            print("")
-
-    return render(request, 'accounts/reset_pw.html')
+            print("!!!!!! >>> Error")
+        new_password = request.POST.get("newPassword")
+        password_confirm = request.POST.get("confirmPassword")
+        if new_password == password_confirm and new_password is not None: 
+                user.set_password(new_password)
+                user.save()
+                change = 0
+                print(change)
+                return render(request, "accounts/login.html", {'val':change})   
+    return render(request, 'accounts/reset_pw.html', data)
 
 
 @csrf_exempt
