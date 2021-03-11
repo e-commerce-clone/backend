@@ -1,4 +1,6 @@
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.forms import PasswordChangeForm # pw 변경
+from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User as auth_User
@@ -219,13 +221,7 @@ def mobile_login(request):
             if (check_user.is_active == True):  # 계정 활성화일 경우
                 try:  # 로그인 가능
                     auth_login(request, user)  # login 수행
-                    # if (name == "admin"):
-                    #     return render(request, "main/main.html", {'m_name': "admin"})
-                    # profile = Profile.objects.get(user=user)
-                    # person_name = profile.person_name
-                    # data = {
-                    #     'm_name': person_name,
-                    # }
+                    
                     return render(request, "main/main.html")
 
                 except:  # 아이디 비밀번호 불일치일 경우
