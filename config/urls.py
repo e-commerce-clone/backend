@@ -12,6 +12,7 @@ urlpatterns = [
     path('', include("main.urls")),
     path('mykurly/', include("mykurly.urls")),
     path('order/', include("order.urls")),
+    path('customer_service/', include("customer_service.urls")),
     path('kakaopay/', include("kakaopay.urls")),
 ]
 
