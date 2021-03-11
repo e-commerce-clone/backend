@@ -50,18 +50,24 @@ const searchOpen = document.querySelector('#search-area-open'),
 
 
     // 검색 레이어가 나타나면 배경을 고정시켜 스크롤 되지 않게 함.
-    searchOpen.addEventListener('click', function() {
+    function search_click(){
         wrap.style.cssText = "padding-top: 95px; overflow-y: hidden";
         searchMenu.classList.add('__active');
         searchDelete.classList.add('on');
-
-    // 2. input에 값이 있으면 btn_del에 on 클래스 추가, 값이 없을 때 삭제
-        searchInput.addEventListener('input', function() {
-            if (searchInput.value !== null) {
-                searchDelete.classList.add('on');
-            };
-        });
-    });
+    }
+    // searchOpen.addEventListener('click', function() {
+    //     console.log("ghh");
+    //     wrap.style.cssText = "padding-top: 95px; overflow-y: hidden";
+    //     searchMenu.classList.add('__active');
+    //     searchDelete.classList.add('on');
+    //
+    // // 2. input에 값이 있으면 btn_del에 on 클래스 추가, 값이 없을 때 삭제
+    //     searchInput.addEventListener('input', function() {
+    //         if (searchInput.value !== null) {
+    //             searchDelete.classList.add('on');
+    //         };
+    //     });
+    // });
 
     searchDelete.addEventListener('click', function() {
         searchInput.value = '';
