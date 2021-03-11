@@ -141,3 +141,6 @@ def ship_destination(request):
 
 def add_mydestination(request):
     return render(request, 'cart/add_mydestination.html')                               # 미완성
+
+def sel_addr(request): # 메인화면에서 3초동안 나오는 부분.
+    return render(request, 'cart/sel_addr.html')
