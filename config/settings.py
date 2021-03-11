@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'order',                # 주문
     'mathfilters',          # django template 에서 사칙연산을 하기 위한 모듈
     'kakaopay',
+    'customer_service',
 ]
 
 

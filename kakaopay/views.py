@@ -8,11 +8,15 @@ from order.models import Order_item, Order
 from django.contrib.auth.models import User as auth_User
 import requests
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
+
 
 @login_required
 def index(request):
     if request.method == "POST":
         URL = 'https://kapi.kakao.com/v1/payment/ready'
+        current_site = get_current_site(request)
+        current_site = current_site.domain
         headers = {
             "Authorization": f'KakaoAK ' + 'df530ab3e101768ce0adb6e163be98e9',  # 변경불가
             "Content-type": "application/x-www-form-urlencoded;charset=utf-8",  # 변경불가
@@ -42,9 +46,9 @@ def index(request):
             "quantity": f"{count}",  # 구매 물품 수량
             "total_amount": f"{total_price}",  # 구매 물품 가격
             "tax_free_amount": "0",  # 구매 물품 비과세
-            "approval_url": "http://127.0.0.1:8000/kakaopay/payApproval/" + f"?e_money={e_money}&price={total_price}",
-            "cancel_url": "http://127.0.0.1:8000/kakaopay/payCancel/",
-            "fail_url": "http://127.0.0.1:8000/kakaopay/payFail/",
+            "approval_url": "http://" + current_site + "/kakaopay/payApproval/" + f"?e_money={e_money}&price={total_price}",
+            "cancel_url": "http://" + current_site + "/kakaopay/payCancel/",
+            "fail_url": "http://" + current_site + "/kakaopay/payFail/",
         }
 
         res = requests.post(URL, data=data, headers=headers)
