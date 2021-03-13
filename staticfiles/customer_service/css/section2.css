@@ -2480,10 +2480,6 @@ tr#product-review-read p {
     display: table
 }
 
-.login {
-    text-align: center
-}
-
 .login_button {
     margin-top: 50px;
     border-top: 1px solid #6a3664;
@@ -2518,23 +2514,7 @@ tr#product-review-read p {
     padding-left: 5px
 }
 
-.login ul {
-    display: inline-block;
-    vertical-align: middle;
-    height: 90px;
-    padding-right: 20px
-}
 
-.login ul li {
-    clear: both;
-    height: 45px;
-    line-height: 45px
-}
-
-.login ul li span {
-    color: #000;
-    font-weight: 700
-}
 
 .login input[type=text],
 .login input[type=password] {
