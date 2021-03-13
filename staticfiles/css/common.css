@@ -2,33 +2,9 @@
 
 @charset "utf-8";
 
-
-/* 이도현이 추가한거 */
-
-textarea::placeholder, input::placeholder{
-    color:rgb(173, 173, 173);
-}
-
-#header, #container, #content {
-    position: relative;
-}
-
-#main {
-    border-bottom: 1px solid #f7f7f7;
-}
-
-#content {
-    min-width: 1050px;
-    padding-bottom: 120px;
-}
-
-
-
-
-
-
 /* 로그인 클래스 추가 /삭제 */
 /* 로그인: #top_event */
+
 #top_event .inner_top_event.login {
     display: none;
 }
@@ -48,7 +24,9 @@ textarea::placeholder, input::placeholder{
     /* 1px로 했는데 2px로 나와서 수정 필요 */
 }
 
+#top_event.login .inner_top_event.login {
 
+}
 
 #top_event.login .inner_top_event .top_event_bnr.login {
     color: #4c4c4c;
@@ -76,7 +54,7 @@ textarea::placeholder, input::placeholder{
 }
 
 .sign_menu.login .join,
-.sign_menu.login .login_none { 
+.sign_menu.login .login_none {
     display: none;
 }
 
@@ -198,12 +176,20 @@ textarea::placeholder, input::placeholder{
 }
 
 /* header */
+
 #top_event {
     position: relative;
     min-width: 1050px;
     height: 42px;
-    background-color: #5f0080;
-    z-index: 9999;
+    background-color: #885798;
+    z-index: 999;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+#top_event.hide {
+    height: 0;
+    overflow: hidden;
 }
 
 #top_event .inner_top_event {
@@ -597,6 +583,7 @@ textarea::placeholder, input::placeholder{
 
 .gnb .location_notice {
     display: none;
+    opacity: 0;
     position: absolute;
     right: 41px;
     top: 56px;
@@ -609,6 +596,26 @@ textarea::placeholder, input::placeholder{
     font-size: 16px;
     color: #333;
     line-height: 24px;
+    -webkit-animation: visible .5s;
+    animation: visible .5s;
+}
+
+@-webkit-keyframes visible {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes visible {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .gnb .location_notice::after {
@@ -624,11 +631,13 @@ textarea::placeholder, input::placeholder{
 
 
 .gnb .location_login .location_notice.on,
-.gnb .location_login:active .location_notice,
+.gnb .location_login.active .location_notice,
 .gnb .location_login:hover .location_notice {
     display: block;
+    opacity: 1;
+
 }
-/* 포인터가 영역을 벗어나면 notice가 바로 사라져버림 
+/* 포인터가 영역을 벗어나면 notice가 바로 사라져버림
 >> z-index 추가해서 수정 완료*/
 /* js로 location_login에 3초간 active 붙게 설정*/
 
@@ -711,7 +720,7 @@ textarea::placeholder, input::placeholder{
 .inner_footer .cc_tit {
     padding: 29px 0 2px;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 20px;
     color: #333;
     line-height: 24px;
 }
@@ -734,7 +743,7 @@ textarea::placeholder, input::placeholder{
 .inner_footer .cc_call .tit {
     padding-top: 4px;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 28px;
     color: #333;
     line-height: 36px;
     letter-spacing: -.5px;
@@ -821,7 +830,7 @@ textarea::placeholder, input::placeholder{
     width: 30px;
     height: 30px;
     margin-right: 10px;
-    
+
 }
 
 #footer .link_footer {
@@ -874,6 +883,16 @@ textarea::placeholder, input::placeholder{
     width: 102px;
     height: 34px;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
