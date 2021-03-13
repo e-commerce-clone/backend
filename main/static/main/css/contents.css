@@ -17,6 +17,7 @@
 
 /* top 가는 버튼 */
 .page_aticle #go-top {
+    opacity: 0;
     position: fixed;
     z-index: 200;
     right: 31px;
@@ -27,7 +28,7 @@
     background: url(https://res.kurly.com/pc/service/common/1903/btn_pagetop_v2.png) no-repeat 50% 50%;
     font-size: 0;
     line-height: 0;
-    transition: background .5s;
+    transition: all 0.5s;
 }
 
 /* hover시 transition 색 변경 */
@@ -44,39 +45,31 @@
     }
 }
 
-
-
-#main{
-    min-width: 1050px;
-    position: relative;
-}
-
-.qnb {
-    position: absolute;
-    z-index: 1;
+.page_aticle .qnb {
+    position: fixed;
     right: 20px;
-    top: 70px;
     width: 80px;
-    font: normal 12px/16px "Noto Sans";
     color: #333;
-    letter-spacing: -0.3px;
+    letter-spacing: -.3;
+    z-index: 1;
     transition: top 0.2s;
+    /* top에서부터 0.2초 딜레이 */
 }
 
-.qnb .thumb {
+.page_aticle .qnb .thumb {
     width: 80px;
     height: 120px;
     padding-bottom: 7px;
 }
 
-.qnb .side_menu {
+.page_aticle .qnb .side_menu {
     width: 80px;
     border: 1px solid #ddd;
     background-color: #fff;
     border-top: none;
 }
 
-.side_menu .link_menu {
+.page_aticle .side_menu .link_menu {
     display: block;
     height: 29px;
     line-height: 29px;
@@ -118,9 +111,9 @@
 .page_aticle .list_goods .thumb_goods .thumb:hover {
     transform: scale(1.02); /*이미지 확대 효과*/
     transition: transform.5s;
-} 
+}
 
-.page_aticle .list_goods .thumb_goods .thumb { 
+.page_aticle .list_goods .thumb_goods .thumb {
     display: block;
     margin: 0 auto;
     background-position: 50% 50%;
@@ -149,7 +142,7 @@
     display: block;
     margin-top: 12px;
     overflow: hidden;
-    max-height: 50px; 
+    max-height: 50px;
     text-overflow: ellipsis; /*말줄임 효과*/
     display: -webkit-box;
     -webkit-line-clamp: 2; /*2줄 넘어가면 말줄임*/
@@ -187,8 +180,16 @@
     margin: 0 auto;
 }
 
-.page_aticle .bx_controls_direction {
+.main_type1 .bx_controls_direction {
     position: relative;
+    width: 1050px;
+    top: -350px;
+    margin: 0 auto;
+}
+
+.main_type3 .bx_controls_direction {
+    position: relative;
+    bottom: 95px;
     width: 1050px;
     margin: 0 auto;
 }
@@ -197,12 +198,18 @@
 .page_aticle .bx_controls_direction .bx-next {
     overflow: hidden;
     position: absolute;
-    bottom: 316px;
     width: 60px;
     height: 60px;
 }
 
-.page_aticle .bx_controls_direction .bx-prev {
+.main_type1 .bx_controls_direction .bx-prev {
+    left: -30px;
+    background: url(https://res.kurly.com/pc/service/main/1908/btn_prev_default.png?v=1) no-repeat 50% 50%;
+    transition: background 0.5s;
+}
+
+.main_type3 .bx_controls_direction .bx-prev {
+    bottom: 58px;
     left: -30px;
     background: url(https://res.kurly.com/pc/service/main/1908/btn_prev_default.png?v=1) no-repeat 50% 50%;
     transition: background 0.5s;
@@ -214,7 +221,13 @@
     transition: background 0.5s;
 }
 
-.page_aticle .bx_controls_direction .bx-next {
+.main_type1 .bx_controls_direction .bx-next {
+    right: -30px;
+    background: url(https://res.kurly.com/pc/service/main/1908/btn_next_default.png?v=1) no-repeat 50% 50%;
+    transition: background 0.5s;
+}
+
+.main_type3 .bx_controls_direction .bx-next {
     right: -30px;
     background: url(https://res.kurly.com/pc/service/main/1908/btn_next_default.png?v=1) no-repeat 50% 50%;
     transition: background 0.5s;
@@ -225,6 +238,8 @@
     background: url(https://res.kurly.com/pc/service/main/1908/btn_next_default_hover_x1.png?v=1) no-repeat 50% 50%;;
     transition: background 0.5s;
 }
+
+
 
 /* main_type2 = 이벤트 소식 */
 .page_aticle .bg {
@@ -241,7 +256,7 @@
 /* main_event 안에 main_type2가 있는 것 */
 .main_event .list_goods {
     overflow: hidden;
-    height: 538px;    
+    height: 538px;
 }
 
 .main_type2 .list_goods {
@@ -339,13 +354,4 @@
 
 .main_type3 .bnr a {
     font-weight: 700;
-}
-
-.main_type3 .bx_controls_direction .bx-prev, 
-.main_type3 .bx_controls_direction .bx-next {
-    bottom: 58px;
-}
-
-body #header .location_login .location_notice{  /* 안내메세지 처음에 block이였다가 사라지게 하기위해 */
-    display:block;
 }
