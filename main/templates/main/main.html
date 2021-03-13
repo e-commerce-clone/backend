@@ -21,7 +21,7 @@
                     top.document.location.replace(strGoto);
                 }
         }
-    </SCRIPT>
+        </SCRIPT>
     </head>
         <div id="visual">
             <h2 class="blind">마켓컬리 메인</h2>
@@ -693,4 +693,44 @@
             </div>
         </div>
         <!-- id="contents" -->
+<script>
+       let type1 = new Swiper('.first', {
+
+        slidesPerView: 4,
+        slidesPerGroup: 4,
+
+        loopFillGroupWithBlank: true,
+
+        navigation: {
+            nextEl: '#swiper-next1',
+            prevEl: '#swiper-prev1',
+        },
+        });
+
+        let type1Dup = new Swiper('.second', {
+
+        slidesPerView: 4,
+        slidesPerGroup: 4,
+
+        loopFillGroupWithBlank: true,
+
+        navigation: {
+            nextEl: '#swiper-next2',
+            prevEl: '#swiper-prev2',
+        },
+        });
+
+        let type3 = new Swiper('.third', {
+
+        slidesPerView: 6,
+        slidesPerGroup: 1,
+
+        loopFillGroupWithBlank: true,
+
+        navigation: {
+            nextEl: '#swiper-next3',
+            prevEl: '#swiper-prev3',
+        },
+        });
+    </script>
 {% endblock %}

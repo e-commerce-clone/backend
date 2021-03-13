@@ -27,7 +27,7 @@
             </h1>
             <div class="header_shortcut">
                 <div id="sectionLocation">
-                    <a class="location" href="">배송지관리 바로가기</a>
+                    <a class="location" href="{% url 'mykurly:mobile_delivery' %}">배송지관리 바로가기</a>
                     <div class="location_status">
                         <p class="addr"></p>
                        
@@ -39,33 +39,33 @@
             </div>
         </header>
 
-        <header id="header-bottom" class="menu_shortcut">
-            <ul id="userMenu" class="list">
-                <li>
-                    <a href="#" class="shortcut_home">
-                        홈
-                    </a>
-                </li>
+<!--        <header id="header-bottom" class="menu_shortcut">-->
+<!--            <ul id="userMenu" class="list">-->
+<!--                <li>-->
+<!--                    <a href="#" class="shortcut_home">-->
+<!--                        홈-->
+<!--                    </a>-->
+<!--                </li>-->
 
-                <li>
-                    <a href="#" class="shortcut_menu">
-                        카테고리
-                    </a>
-                </li>
+<!--                <li>-->
+<!--                    <a href="#" class="shortcut_menu">-->
+<!--                        카테고리-->
+<!--                    </a>-->
+<!--                </li>-->
 
-                <li>
-                    <a href="#" id="search-area-open" class="shortcut_search">
-                        검색
-                    </a>
-                </li>
+<!--                <li>-->
+<!--                    <a href="#" id="search-area-open" class="shortcut_search">-->
+<!--                        검색-->
+<!--                    </a>-->
+<!--                </li>-->
 
-                <li>
-                    <a href="#" class="shortcut_mypage on">
-                        마이컬리
-                    </a>
-                </li>
-            </ul>
-        </header>
+<!--                <li>-->
+<!--                    <a href="#" class="shortcut_mypage on">-->
+<!--                        마이컬리-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </header>-->
 
         <div class="mykurly_page">
             <div id="myPageTop" class="mypage_top">
@@ -104,7 +104,7 @@
 
                         <ul class="list_mypage">
                             <li class="user_reserve">
-                                <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_emoneylist.html" class="link">
+                                <a href="{% url 'mykurly:mobile_emoneylist' %}" class="link">
                                     <div class="inner_link">
                                         <div class="tit">
                                             적립금 
@@ -127,13 +127,13 @@
 
                     <ul class="list_mypage">
                         <li>
-                            <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_orderlist.html">
+                            <a href="{% url 'mykurly:mobile_order' %}">
                                 <div class="tit">주문 내역</div>
                             </a>
                         </li>
 
                         <li>
-                            <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_destination.html">
+                            <a href="{% url 'mykurly:mobile_delivery' %}">
                                 <div class="tit">
                                     배송지 관리
                                 </div>
@@ -141,7 +141,7 @@
                         </li>
 
                         <li>
-                            <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_review_before.html">
+                            <a href="{% url 'mykurly:mobile_review_after' %}">
                                 <div class="tit">
                                     상품 후기
                                 </div>
@@ -169,7 +169,7 @@
                         </li>
 
                         <li>
-                            <a href="http://127.0.0.1:5500/mobile/mykurly/mobile_mykurly_information.html">
+                            <a href="{% url 'mykurly:mobile_information' %}">
                                 <div class="tit">
                                     개인 정보 수정
                                 </div>

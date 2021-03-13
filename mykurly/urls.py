@@ -51,7 +51,6 @@ urlpatterns = [
          TemplateView.as_view(template_name='mykurly/mobile_mykurly_emoneylist.html'),
          name='mobile_emoneylist'),
     path('mobile_menulist/',
-         TemplateView.as_view(template_name='mykurly/mobile_mykulry_menulist.html'),
+         TemplateView.as_view(template_name='mykurly/mobile_mykurly_menulist.html'),
          name='mobile_menulist'),
-
 ]

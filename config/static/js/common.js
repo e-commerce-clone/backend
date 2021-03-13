@@ -11,7 +11,7 @@ top_event_close.addEventListener('click', function() {
     top_event.classList.add('hide');
 });
 
-// 로딩 시 3초 간 안내메세지 
+// 로딩 시 3초 간 안내메세지
 const location_login = document.querySelector('.location_login');
 const location_notice = location_login.querySelector('.location_notice');
 window.addEventListener('load', function() {
